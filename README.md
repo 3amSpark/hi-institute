@@ -1,6 +1,6 @@
 # HI Institute
 
-A monorepo containing multiple sites for HI Institute, built with [Astro](https://astro.build/) and shared UI components.
+A monorepo containing multiple sites for HI Institute, built with [Astro](https://astro.build/) and shared UI components. By Adrian.
 
 ## Project Structure
 
