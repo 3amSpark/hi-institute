@@ -1,0 +1,151 @@
+---
+import RootLayout from "../layouts/root.astro";
+import Card from "@repo/ui/components/card";
+const title = "Astro";
+---
+
+<RootLayout>
+  <section
+    class="w-full bg-black overflow-hidden h-dvh relative flex flex-col items-center justify-center thingy"
+  >
+    <div class="flex flex-col gap-4 self-center z-10">
+      <h2 class="text-white text-7xl">Reveal your best skin & radiance</h2>
+      <div class="flex gap-4">
+        <button
+          class="bg-black text-white py-2 px-3.5 group relative overflow-hidden cursor-pointer"
+        >
+          <span class="invisible">Book an appointment</span>
+          <span
+            class="absolute inset-0 flex items-center justify-center -translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+          >
+            Book an appointment
+          </span>
+          <span
+            class="absolute inset-0 flex items-center justify-center translate-y-0 group-hover:translate-y-full transition-transform duration-300"
+          >
+            Book an appointment
+          </span>
+        </button>
+        <button
+          class="bg-transparent text-black border-2 border-black duration-300 py-2 px-3.5 cursor-pointer"
+          >See treatments</button
+        >
+      </div>
+    </div>
+
+    <img
+      src="/hero.jpg"
+      alt="test"
+      srcset=""
+      class="absolute -scale-x-100 w-full place-self-center image"
+    />
+
+    <div class="absolute inset-0 bg-black z-20 reveal-mask"></div>
+  </section>
+
+  <section
+    class="text-white bg-eggshell text-5xl px-8 py-20 flex flex-col gap-4 max-w-7xl mx-auto"
+  >
+    <h1 class="heading text-iroko text-5xl tracking-tight origin-center">
+      Tu piel, nuestro compromiso.
+    </h1>
+    <p class="text-iroko/80 text-lg heading">
+      Nuestro objetivo es ofrecer soluciones médicas y estéticas para satisfacer
+      las necesidades de salud y belleza de la piel. Nos destacamos por nuestro
+      compromiso con la formación continua, la investigación y por contar con un
+      equipo altamente especializado, tanto clínico como estético, junto con lo
+      mejor de la tecnología avanzada
+    </p>
+  </section>
+  <section class="w-full mx-auto pb-20">
+    <div class="grid grid-cols-1 md:grid-cols-3">
+      {
+        [
+          "Dermatología Médica",
+          "Rejuvenecimiento Facial",
+          "Medicina Láser",
+          "Hidrafaciales",
+          "Depilación Láser",
+          "Inyectables",
+        ].map((service) => (
+          <a
+            href="#"
+            class="relative aspect-5/3 overflow-hidden group cursor-pointer"
+          >
+            <img
+              src="/service.jpg"
+              alt={service}
+              class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-400 group-hover:scale-105 "
+            />
+            <div class="absolute inset-x-0 bottom-0 p-4 bg-linear-to-t from-black/70 to-transparent">
+              <span class="text-white text-xl font-medium ">{service}</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+  <section
+    class="h-screen w-screen text-white bg-black text-5xl grid place-items-center"
+  >
+    <h1 class="heading">Skin Care</h1>
+  </section>
+  <section
+    class="h-screen w-screen text-white bg-black text-5xl grid place-items-center"
+  >
+    <h1 class="heading">Skin Care</h1>
+  </section>
+</RootLayout>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { ScrollSmoother } from "gsap/ScrollSmoother";
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+  ScrollSmoother.create({
+    smooth: 0.5,
+    effects: true,
+  });
+
+  // Horizontal mask reveal on appear
+  gsap.to(".reveal-mask", {
+    clipPath: "inset(0 0 0 100%)",
+    duration: 1,
+    ease: "power3.inOut",
+  });
+
+  gsap.to(".image", {
+    y: -150,
+    duration: 1,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".thingy",
+      start: "top top",
+      scrub: true,
+      // markers: true,
+    },
+  });
+
+  gsap.utils.toArray(".heading").forEach((heading) => {
+    gsap.fromTo(
+      heading as HTMLElement,
+      { opacity: 0, scale: 0.75 },
+      {
+        opacity: 1,
+        scale: 1,
+
+        ease: "power2.inOut",
+        scrollTrigger: {
+          markers: true,
+          trigger: heading as HTMLElement,
+          // onEnter onLeave onEnterBack onLeaveBack
+          toggleActions: "play none none reverse",
+          start: "top bottom",
+          end: "bottom center",
+          scrub: 1,
+        },
+      }
+    );
+  });
+</script>

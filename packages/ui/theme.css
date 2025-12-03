@@ -1,0 +1,8 @@
+@theme {
+  --color-brand-primary: oklch(0.5 0.2 300);
+  --color-iroko: oklch(0.3316 0.0445 58.5);
+  --color-eggshell: oklch(0.9761 0 0);
+  --color-brand-secondary: oklch(0.8 0.1 240);
+
+  --font-family-sans: system-ui, sans-serif;
+}
