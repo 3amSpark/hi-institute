@@ -1,12 +1,11 @@
 ---
 import RootLayout from "../layouts/root.astro";
 import Card from "@repo/ui/components/card";
-const title = "Astro";
 ---
 
 <RootLayout>
   <section
-    class="w-full bg-black overflow-hidden h-dvh relative flex flex-col items-center justify-center thingy"
+    class="w-full bg-black overflow-hidden h-dvh relative flex flex-col items-center justify-center thingy z-0"
   >
     <div class="flex flex-col gap-4 self-center z-10">
       <h2 class="text-white text-7xl">Reveal your best skin & radiance</h2>
@@ -40,7 +39,7 @@ const title = "Astro";
       class="absolute -scale-x-100 w-full place-self-center image"
     />
 
-    <div class="absolute inset-0 bg-black z-20 reveal-mask"></div>
+    <div class="absolute inset-0 bg-black z-10 reveal-mask"></div>
   </section>
 
   <section
@@ -103,9 +102,18 @@ const title = "Astro";
   import { ScrollSmoother } from "gsap/ScrollSmoother";
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-  ScrollSmoother.create({
+  const smoother = ScrollSmoother.create({
     smooth: 0.5,
     effects: true,
+  });
+
+  // Pin the navbar at the top using GSAP Pin
+  ScrollTrigger.create({
+    trigger: "#navbar",
+    start: "top top",
+    end: "max",
+    pin: true,
+    pinSpacing: false,
   });
 
   // Horizontal mask reveal on appear
