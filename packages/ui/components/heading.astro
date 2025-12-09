@@ -1,0 +1,21 @@
+---
+interface Props {
+  text: string;
+  level: 1 | 2 | 3 | 4 | 5 | 6;
+  className?: string;
+}
+const { text, level, className } = Astro.props as Props;
+
+const sizeMap = {
+  1: "text-6xl tracking-tighter",
+  2: "text-5xl tracking-tight",
+  3: "text-4xl tracking-tight",
+  4: "text-2xl",
+  5: "text-lg",
+  6: "text-base",
+};
+
+const Tag = `h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+---
+
+<Tag class:list={[sizeMap[level], "font-heading", className]}>{text}</Tag>

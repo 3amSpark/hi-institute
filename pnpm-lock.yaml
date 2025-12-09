@@ -8,22 +8,18 @@ importers:
 
   .: {}
 
-  packages/ui: {}
-
-  sites/skin:
+  packages/ui:
     dependencies:
-      '@repo/ui':
-        specifier: workspace:^
-        version: link:../../packages/ui
-      '@tailwindcss/vite':
-        specifier: ^4.1.17
-        version: 4.1.17(vite@6.4.1(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2))
-      astro:
-        specifier: ^5.16.3
-        version: 5.16.3(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.3)(typescript@5.9.3)
+      gsap:
+        specifier: ^3.13.0
+        version: 3.13.0
       tailwindcss:
         specifier: ^4.1.17
         version: 4.1.17
+    devDependencies:
+      astro:
+        specifier: ^5.16.3
+        version: 5.16.3(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.3)(typescript@5.9.3)
 
   sites/skin-beauty:
     dependencies:

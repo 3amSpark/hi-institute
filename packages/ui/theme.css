@@ -1,8 +1,20 @@
-@theme {
-  --color-brand-primary: oklch(0.5 0.2 300);
-  --color-iroko: oklch(0.3316 0.0445 58.5);
-  --color-eggshell: oklch(0.9761 0 0);
-  --color-brand-secondary: oklch(0.8 0.1 240);
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap");
+@import "tailwindcss";
 
-  --font-family-sans: system-ui, sans-serif;
+@source "./components";
+
+@theme {
+  --color-brand-gray: oklch(0.4917 0.0013 197.12);
+
+  /* HI Femcare Brand Colors */
+  --color-ziggurat: oklch(0.7035 0.0435 201.95);
+  --color-smokey-pink: oklch(0.6849 0.0652 20.12);
+
+  /* HI Skin & Beauty Brand Colors */
+  --color-eggshell: oklch(0.9761 0 0);
+  --color-iroko: oklch(0.3316 0.0445 58.5);
+  --color-skin: oklch(0.8147 0.0565 71.34);
+
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Space Grotesk", sans-serif;
 }

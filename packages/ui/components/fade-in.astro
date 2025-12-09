@@ -1,0 +1,65 @@
+---
+// src/components/FadeIn.astro
+interface Props {
+  duration?: number;
+  delay?: number;
+  yOffset?: number;
+}
+
+const { duration = 0.5, delay = 0, yOffset = 50 } = Astro.props;
+---
+
+<fade-in data-duration={duration} data-delay={delay} data-y-offset={yOffset}>
+  <slot />
+</fade-in>
+
+<script>
+  // Import GSAP and ScrollTrigger
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  // Register the plugin
+  gsap.registerPlugin(ScrollTrigger);
+
+  class FadeIn extends HTMLElement {
+    connectedCallback() {
+      // Read the data attributes we set in the HTML above
+      // Note: dataset values are always strings, so we parse them.
+      const duration = parseFloat(this.dataset.duration || "0.5");
+      const delay = parseFloat(this.dataset.delay || "0");
+      const yOffset = parseFloat(this.dataset.yOffset || "50");
+
+      // Set initial state to avoid "flash of unstyled content"
+      // Create the animation with GPU acceleration
+      gsap.fromTo(
+        this,
+        {
+          opacity: 0,
+          y: yOffset,
+          scale: 0.95,
+        },
+        {
+          delay: delay,
+          duration: duration,
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          ease: "power2.out",
+          force3D: true, // GPU accelerated transforms
+          scrollTrigger: {
+            trigger: this,
+            start: "top 85%", // Slightly earlier trigger for smoother perceived entry
+            toggleActions: "play none none reverse",
+            fastScrollEnd: true, // Better handling of fast scrolls
+          },
+        }
+      );
+    }
+  }
+
+  // Define the custom element
+  // Browser checks if defined to prevent errors during hot module reloading
+  if (!customElements.get("fade-in")) {
+    customElements.define("fade-in", FadeIn);
+  }
+</script>
