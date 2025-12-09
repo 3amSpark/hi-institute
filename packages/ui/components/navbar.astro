@@ -1,9 +1,11 @@
 ---
 interface Props {
+  logo?: string;
   navItems: Array<{
     id: string;
     label: string;
     href?: string;
+    category?: string;
     children?: Array<{
       id: string;
       label: string;
@@ -17,55 +19,75 @@ interface Props {
   }>;
 }
 
-const { navItems } = Astro.props;
+const { logo = "HI | SKIN & BEAUTY", navItems } = Astro.props;
 ---
 
 <nav id="navbar">
   <div class="navbar-container">
-    <div class="navbar-logo">ARCHON™</div>
-    <ul class="navbar-links">
-      {navItems.map((item) => (
-        <li class="navbar-item" data-item-id={item.id}>
-          <a href={item.href || "#"} class="navbar-link">
-            {item.label}
-            {item.children && item.children.length > 0 && (
-              <span class="navbar-caret">▼</span>
+    <a href="/" class="navbar-logo">{logo}</a>
+    <div class="navbar-right">
+      <ul class="navbar-links">
+        {navItems.map((item) => (
+          <li class="navbar-item" data-item-id={item.id}>
+            {item.children && item.children.length > 0 ? (
+              <button type="button" class="navbar-link navbar-button">
+                {item.label}
+                <span class="navbar-caret">▼</span>
+              </button>
+            ) : (
+              <a href={item.href || "#"} class="navbar-link">
+                {item.label}
+              </a>
             )}
-          </a>
-          {item.children && item.children.length > 0 && (
-            <div class="navbar-dropdown" data-dropdown-id={item.id}>
-              <div class="dropdown-content">
-                {item.children.map((child) => (
-                  <div class="dropdown-section">
-                    <a
-                      href={child.href || "#"}
-                      class="dropdown-item dropdown-parent"
-                    >
-                      {child.label}
-                    </a>
-                    {child.children && child.children.length > 0 && (
-                      <div class="dropdown-children">
-                        {child.children.map((grandchild) => (
-                          <a
-                            href={grandchild.href || "#"}
-                            class="dropdown-item dropdown-child"
-                          >
-                            {grandchild.label}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
+            {item.children && item.children.length > 0 && (
+              <div class="navbar-dropdown" data-dropdown-id={item.id}>
+                <div class="dropdown-content">
+                  {/* {item.category && (
+                    <div class="dropdown-category">{item.category}</div>
+                  )} */}
+                  {item.children.map((child) => (
+                    <div class="dropdown-section">
+                      {child.children && child.children.length > 0 ? (
+                        <a
+                        href={child.href || "#"}
+                        class="dropdown-category dropdown-parent"
+                        >
+                          {child.label}
+                        </a>
+                        ) : (
+                        <a
+                        href={child.href || "#"}
+                        class="dropdown-item dropdown-child"
+                        >
+                          {child.label}
+                        </a>
+                      )
+                        
+                      }
+                      {child.children && child.children.length > 0 && (
+                        <div class="dropdown-children">
+                          {child.children.map((grandchild) => (
+                            <a
+                              href={grandchild.href || "#"}
+                              class="dropdown-item dropdown-child"
+                            >
+                              {grandchild.label}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </li>
-      ))}
-    </ul>
-    <div class="navbar-actions">
-      <button class="btn-primary">Book Online</button>
-      <button class="btn-secondary">Gift Vouchers</button>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div class="navbar-actions">
+        <button class="btn-primary">Agenda</button>
+        <button class="btn-secondary">Regala</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -77,36 +99,57 @@ const { navItems } = Astro.props;
     top: 0;
     background-color: var(--color-eggshell);
     width: 100%;
-    border-bottom: 1px solid var(--color-iroko) / 0.1;
+    height: fit-content;
   }
 
   .navbar-container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 1rem 2rem;
-    max-width: 1400px;
+    padding: 0rem 1rem;
+    max-width: 1420px;
     margin: 0 auto;
+    min-height: 80px;
+  }
+
+  .navbar-right {
+    display: flex;
+    height: auto;
+    gap: 1.5rem;
   }
 
   .navbar-logo {
+    display: flex;
+    align-items: center;
+    height: auto;
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--color-iroko);
     font-family: var(--font-family-sans);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .navbar-logo:hover {
+    color: var(--color-brand-primary);
   }
 
   .navbar-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
     margin: 0;
     padding: 0;
+    height: auto;
     align-items: center;
   }
 
   .navbar-item {
+    display: flex;
     position: relative;
+    height: 100%;
+    padding: 1rem 1rem;
+    border-bottom-width: 1.5px;
+    border-color: transparent;
+    transition: all ease-in-out 0.4s;
   }
 
   .navbar-link {
@@ -118,10 +161,17 @@ const { navItems } = Astro.props;
     font-family: var(--font-family-sans);
     font-size: 0.9375rem;
     transition: color 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
   }
 
   .navbar-link:hover {
     color: var(--color-brand-primary);
+  }
+
+  .navbar-button {
+    padding: 0;
   }
 
   .navbar-caret {
@@ -133,19 +183,22 @@ const { navItems } = Astro.props;
     transform: rotate(180deg);
   }
 
+  .navbar-item[data-open="true"] {
+    border-color: var(--color-iroko);
+  }
+
   .navbar-dropdown {
     position: absolute;
     background-color: var(--color-eggshell);
-    border: 1px solid var(--color-iroko) / 0.1;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    min-width: 250px;
-    padding: 1rem;
+    min-width: 280px;
+    max-width: 400px;
+    padding: 1.5rem;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
     pointer-events: none;
+    left: 0;
   }
 
   .navbar-item[data-open="true"] .navbar-dropdown {
@@ -158,7 +211,21 @@ const { navItems } = Astro.props;
   .dropdown-content {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
+    z-index: 10;
+  }
+
+  .dropdown-category {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: color-mix(in srgb, var(--color-iroko) 60%, transparent);
+    padding: 0.5rem 0.5rem;
+    margin: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-iroko) 15%, transparent);
+    pointer-events: none;
+    user-select: none;
   }
 
   .dropdown-section {
@@ -168,8 +235,9 @@ const { navItems } = Astro.props;
   }
 
   .dropdown-section:not(:last-child) {
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--color-iroko) / 0.1;
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.3rem;
+    /* border-bottom: 1px solid color-mix(in srgb, var(--color-iroko) 10%, transparent); */
   }
 
   .dropdown-item {
@@ -183,15 +251,15 @@ const { navItems } = Astro.props;
   }
 
   .dropdown-item:hover {
-    background-color: var(--color-iroko) / 0.05;
+    background-color: color-mix(in srgb, var(--color-iroko) 5%, transparent);
     color: var(--color-brand-primary);
   }
 
   .dropdown-parent {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
+    font-weight: 500;
+    text-transform: none;
+    font-size: 0.875rem;
+    letter-spacing: normal;
   }
 
   .dropdown-children {
@@ -216,7 +284,7 @@ const { navItems } = Astro.props;
   .btn-primary,
   .btn-secondary {
     padding: 0.625rem 1.25rem;
-    border-radius: 0.375rem;
+    border-radius: 0.1rem;
     font-family: var(--font-family-sans);
     font-size: 0.875rem;
     font-weight: 500;
@@ -231,7 +299,7 @@ const { navItems } = Astro.props;
   }
 
   .btn-primary:hover {
-    background-color: var(--color-iroko) / 0.9;
+    background-color: color-mix(in srgb, var(--color-iroko) 90%, transparent);
   }
 
   .btn-secondary {
@@ -241,7 +309,7 @@ const { navItems } = Astro.props;
   }
 
   .btn-secondary:hover {
-    background-color: var(--color-iroko) / 0.05;
+    background-color: color-mix(in srgb, var(--color-iroko) 5%, transparent);
   }
 </style>
 
@@ -251,6 +319,29 @@ const { navItems } = Astro.props;
   // Initialize dropdowns
   document.addEventListener("DOMContentLoaded", () => {
     const navbarItems = document.querySelectorAll(".navbar-item");
+    let openDropdown: HTMLElement | null = null;
+
+    const closeAllDropdowns = () => {
+      navbarItems.forEach((item) => {
+        item.removeAttribute("data-open");
+      });
+      openDropdown = null;
+    };
+
+    const updatePosition = async (
+      link: HTMLElement,
+      dropdown: HTMLElement
+    ) => {
+      const { x, y } = await computePosition(link, dropdown, {
+        placement: "bottom-start",
+        middleware: [offset(17), flip(), shift({ padding: 16 })],
+      });
+
+      Object.assign(dropdown.style, {
+        left: `${x-40}px`,
+        top: `${y}px`,
+      });
+    };
 
     navbarItems.forEach((item) => {
       const link = item.querySelector(".navbar-link") as HTMLElement | null;
@@ -258,41 +349,58 @@ const { navItems } = Astro.props;
 
       if (!link || !dropdown) return;
 
-      let isOpen = false;
+      const handleClick = (e: Event) => {
+        e.preventDefault();
+        e.stopPropagation();
 
-      const updatePosition = async () => {
-        if (!isOpen) return;
+        const isCurrentlyOpen = item.getAttribute("data-open") === "true";
 
-        const { x, y } = await computePosition(link, dropdown, {
-          placement: "bottom-start",
-          middleware: [offset(8), flip(), shift({ padding: 16 })],
-        });
+        // Close all dropdowns first
+        closeAllDropdowns();
 
-        Object.assign(dropdown.style, {
-          left: `${x}px`,
-          top: `${y}px`,
-        });
+        // If this one wasn't open, open it
+        if (!isCurrentlyOpen) {
+          item.setAttribute("data-open", "true");
+          openDropdown = item as HTMLElement;
+          updatePosition(link, dropdown);
+        }
       };
 
-      const handleMouseEnter = () => {
-        isOpen = true;
-        item.setAttribute("data-open", "true");
-        updatePosition();
-      };
-
-      const handleMouseLeave = () => {
-        isOpen = false;
-        item.removeAttribute("data-open");
-      };
-
-      link.addEventListener("mouseenter", handleMouseEnter);
-      item.addEventListener("mouseleave", handleMouseLeave);
-
-      // Update position on scroll/resize
-      const handleScroll = () => updatePosition();
-      const handleResize = () => updatePosition();
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      window.addEventListener("resize", handleResize);
+      link.addEventListener("click", handleClick);
     });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      const clickedInsideNavbar = target.closest("#navbar");
+      
+      if (!clickedInsideNavbar && openDropdown) {
+        closeAllDropdowns();
+      }
+    });
+
+    // Update position on scroll/resize for open dropdown
+    const handleScroll = () => {
+      if (openDropdown) {
+        const link = openDropdown.querySelector(".navbar-link") as HTMLElement;
+        const dropdown = openDropdown.querySelector(".navbar-dropdown") as HTMLElement;
+        if (link && dropdown) {
+          updatePosition(link, dropdown);
+        }
+      }
+    };
+
+    const handleResize = () => {
+      if (openDropdown) {
+        const link = openDropdown.querySelector(".navbar-link") as HTMLElement;
+        const dropdown = openDropdown.querySelector(".navbar-dropdown") as HTMLElement;
+        if (link && dropdown) {
+          updatePosition(link, dropdown);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
   });
 </script>

@@ -4,9 +4,9 @@ import "../styles/global.css";
 
 const navItems = [
   {
-    id: "hi-skin-beauty",
-    label: "Hi-Skin-and-Beauty",
-    href: "#",
+    id: "piel",
+    label: "Piel",
+    category: "Piel",
     children: [
       {
         id: "dermatologia",
@@ -16,11 +16,6 @@ const navItems = [
           { id: "dermatologia-piel", label: "Dermatología de la Piel", href: "#" },
           { id: "dermatologia-cabello", label: "Dermatología del Cabello", href: "#" },
         ],
-      },
-      {
-        id: "medicina-laser",
-        label: "Medicina Láser",
-        href: "#",
       },
       {
         id: "mas-solicitados",
@@ -48,16 +43,33 @@ const navItems = [
         href: "#",
       },
       {
-        id: "depilacion-laser",
-        label: "Depilación Láser",
-        href: "#",
-      },
-      {
         id: "analisis-3d",
         label: "Análisis 3D del Rostro",
         href: "#",
       },
     ],
+  },
+  {
+    id: "laser",
+    label: "Laser",
+    category: "Laser",
+    children: [
+      {
+        id: "medicina-laser",
+        label: "Medicina Láser",
+        href: "#",
+      },
+      {
+        id: "depilacion-laser",
+        label: "Depilación Láser",
+        href: "#",
+      },
+    ],
+  },
+  {
+    id: "contacto",
+    label: "Contacto",
+    href: "#",
   },
 ];
 ---
@@ -73,7 +85,7 @@ const navItems = [
   <body class="bg-eggshell">
     <div id="smooth-wrapper">
       <div id="smooth-content">
-        <NavBar navItems={navItems} />
+        <NavBar logo="HI | SKIN & BEAUTY" navItems={navItems} />
         <slot />
       </div>
     </div>
