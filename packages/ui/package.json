@@ -6,5 +6,8 @@
         "./theme.css": "./theme.css",
         "./components/card": "./components/card.astro",
         "./components/navbar": "./components/navbar.astro"
+    },
+    "dependencies": {
+        "@floating-ui/dom": "^1.7.4"
     }
 }

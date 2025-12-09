@@ -1,6 +1,65 @@
 ---
 import NavBar from "@repo/ui/components/navbar";
 import "../styles/global.css";
+
+const navItems = [
+  {
+    id: "hi-skin-beauty",
+    label: "Hi-Skin-and-Beauty",
+    href: "#",
+    children: [
+      {
+        id: "dermatologia",
+        label: "Dermatología",
+        href: "#",
+        children: [
+          { id: "dermatologia-piel", label: "Dermatología de la Piel", href: "#" },
+          { id: "dermatologia-cabello", label: "Dermatología del Cabello", href: "#" },
+        ],
+      },
+      {
+        id: "medicina-laser",
+        label: "Medicina Láser",
+        href: "#",
+      },
+      {
+        id: "mas-solicitados",
+        label: "Los más Solicitados",
+        href: "#",
+        children: [
+          { id: "marcas-acne", label: "Marcas de Acné", href: "#" },
+          { id: "rosacea", label: "Rosácea", href: "#" },
+          { id: "manchas", label: "Manchas", href: "#" },
+          { id: "arrugas", label: "Suavizado de Arrugas", href: "#" },
+        ],
+      },
+      {
+        id: "rejuvenecimiento",
+        label: "Rejuvenecimiento",
+        href: "#",
+        children: [
+          { id: "inyectables", label: "Inyectables", href: "#" },
+          { id: "ultra-clear", label: "Ultra Clear", href: "#" },
+        ],
+      },
+      {
+        id: "hidrafaciales",
+        label: "Hidrafaciales",
+        href: "#",
+      },
+      {
+        id: "depilacion-laser",
+        label: "Depilación Láser",
+        href: "#",
+      },
+      {
+        id: "analisis-3d",
+        label: "Análisis 3D del Rostro",
+        href: "#",
+      },
+    ],
+  },
+];
 ---
 
 <html lang="en">
@@ -14,7 +73,7 @@ import "../styles/global.css";
   <body class="bg-eggshell">
     <div id="smooth-wrapper">
       <div id="smooth-content">
-        <NavBar />
+        <NavBar navItems={navItems} />
         <slot />
       </div>
     </div>
