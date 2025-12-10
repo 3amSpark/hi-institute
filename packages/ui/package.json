@@ -4,7 +4,8 @@
   "private": true,
   "exports": {
     "./theme.css": "./theme.css",
-    "./components/*": "./components/*"
+    "./components/*": "./components/*",
+    "./icons/*": "./icons/*"
   },
   "devDependencies": {
     "astro": "^5.16.3"

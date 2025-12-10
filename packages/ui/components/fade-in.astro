@@ -4,12 +4,23 @@ interface Props {
   duration?: number;
   delay?: number;
   yOffset?: number;
+  class?: string;
 }
 
-const { duration = 0.5, delay = 0, yOffset = 50 } = Astro.props;
+const {
+  duration = 0.5,
+  delay = 0,
+  yOffset = 50,
+  class: className,
+} = Astro.props;
 ---
 
-<fade-in data-duration={duration} data-delay={delay} data-y-offset={yOffset}>
+<fade-in
+  data-duration={duration}
+  data-delay={delay}
+  data-y-offset={yOffset}
+  class={className}
+>
   <slot />
 </fade-in>
 
