@@ -3,6 +3,7 @@ import RootLayout from "../layouts/root.astro";
 import Heading from "@repo/ui/components/heading.astro";
 import FadeIn from "@repo/ui/components/fade-in.astro";
 import ArrowRight from "@repo/ui/icons/arrow-right.astro";
+import RevealSlides from "@repo/ui/components/reveal-slides.astro";
 ---
 
 <RootLayout>
@@ -151,20 +152,23 @@ import ArrowRight from "@repo/ui/icons/arrow-right.astro";
       <source srcset="/hero-mobile.webp" media="(max-width: 799px)" />
       <source srcset="/hero-desktop.webp" media="(min-width: 800px)" />
       <img
-        src="/hero-desktop.webp"
         alt="Cool hero"
         class="h-full w-full object-cover absolute inset-0 scale-130 parallax-image z-0"
       />
     </picture>
     <div class="absolute inset-0 bg-gradient-hero z-1"></div>
     <div class="absolute inset-0 bg-grain-hero z-2"></div>
-
+    <RevealSlides
+      duration={0.75}
+      colors={["bg-black", "bg-brand-gray", "bg-smokey-pink"]}
+    />
+    <!-- 
     <div class="fixed inset-0 bg-black z-[100] reveal-mask pointer-events-none">
     </div>
     <div
       class="fixed inset-0 bg-smokey-pink z-[99] reveal-mask-2 pointer-events-none"
     >
-    </div>
+    </div> -->
   </section>
 
   <section
@@ -173,7 +177,7 @@ import ArrowRight from "@repo/ui/icons/arrow-right.astro";
     <FadeIn duration={1}>
       <Heading
         level={2}
-        className="text-neutral-700 font-medium text-xl sm:text-center"
+        className="text-brand-gray font-medium text-xl sm:text-center"
         text="Cuidada. Precisa. Personal."
       />
       <Heading
@@ -229,7 +233,7 @@ import ArrowRight from "@repo/ui/icons/arrow-right.astro";
             />
             <Heading
               level={4}
-              className="text-white text-center z-10 uppercase font-medium text-shadow-2xs"
+              className="text-white text-center z-10 uppercase font-medium text-shadow-2xs text-shadow-neutral-700"
               text={service.name}
             />
             <div class="translate-y-16 group-hover:translate-y-0 transition-transform duration-500 absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1">
@@ -479,8 +483,8 @@ import ArrowRight from "@repo/ui/icons/arrow-right.astro";
   .service::after {
     background: linear-gradient(
       to top right,
-      oklch(from var(--color-ziggurat) l c h / 0.65),
-      oklch(from var(--color-smokey-pink) l c h / 0.65)
+      oklch(from var(--color-ziggurat) l c h / 1),
+      oklch(from var(--color-smokey-pink) l c h / 1)
     );
     mix-blend-mode: multiply;
     z-index: 1;
@@ -525,18 +529,18 @@ import ArrowRight from "@repo/ui/icons/arrow-right.astro";
   gsap.registerPlugin(ScrollTrigger);
 
   // reveal mask, clip path left to right
-  gsap.to(".reveal-mask", {
-    clipPath: "inset(0 100% 0 0)",
-    duration: 1.1,
-    ease: "power2.out",
-  });
+  // gsap.to(".reveal-mask", {
+  //   clipPath: "inset(0 100% 0 0)",
+  //   duration: 1.1,
+  //   ease: "power2.out",
+  // });
 
-  gsap.to(".reveal-mask-2", {
-    clipPath: "inset(0 100% 0 0)",
-    duration: 1.34, // shorter = catches up
-    delay: 0.175,
-    ease: "power3.out", // snappier = more energy
-  });
+  // gsap.to(".reveal-mask-2", {
+  //   clipPath: "inset(0 100% 0 0)",
+  //   duration: 1.34, // shorter = catches up
+  //   delay: 0.175,
+  //   ease: "power3.out", // snappier = more energy
+  // });
 
   // Hero image parallax - using force3D for GPU acceleration
   gsap.to(".parallax-image", {

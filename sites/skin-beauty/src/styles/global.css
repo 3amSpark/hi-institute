@@ -32,3 +32,14 @@
     );
   }
 }
+
+h2.heading-custom-styles {
+  font-size: 40px;
+  color: var(--color-brand-gray);
+}
+
+@media (min-width: 640px) {
+  h2.heading-custom-styles {
+    font-size: 40px;
+  }
+}

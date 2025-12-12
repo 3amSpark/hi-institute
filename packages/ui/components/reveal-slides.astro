@@ -1,0 +1,54 @@
+---
+interface Props {
+  colors: string[];
+  direction?: "ltr" | "rtl" | "tb" | "bt";
+  duration?: number;
+}
+const { colors, direction = "ltr", duration = 1 } = Astro.props as Props;
+---
+
+<reveal-slides data-direction={direction} data-duration={duration}>
+  {
+    colors.map((color, idx) => (
+      <div
+        class:list={["fixed inset-0 pointer-events-none", color]}
+        style={`z-index: ${99 + colors.length - idx};`}
+      />
+    ))
+  }
+</reveal-slides>
+
+<script>
+  import gsap from "gsap";
+
+  class RevealSlides extends HTMLElement {
+    connectedCallback() {
+      const direction =
+        (this.dataset.direction as "ltr" | "rtl" | "tb" | "bt") || "ltr";
+      const duration = parseFloat(this.dataset.duration || "1.5");
+
+      const finalClipStates = {
+        ltr: "inset(0 0 0 100%)",
+        rtl: "inset(0 100% 0 0)",
+        tb: "inset(100% 0 0 0)",
+        bt: "inset(0 0 100% 0)",
+      };
+
+      const endClip = finalClipStates[direction] || finalClipStates.ltr;
+
+      gsap.to(this.children, {
+        clipPath: endClip,
+        duration: duration,
+        ease: "power2.inOut",
+        stagger: {
+          each: 0.075,
+          from: "start",
+        },
+        willChange: "clip-path",
+      });
+    }
+  }
+
+  if (!customElements.get("reveal-slides"))
+    customElements.define("reveal-slides", RevealSlides);
+</script>
