@@ -1,0 +1,92 @@
+---
+import Heading from "./heading.astro";
+import ArrowRight from "../icons/arrow-right.astro";
+
+interface Props {
+  name: string;
+  image: string;
+  index: number;
+  href?: string;
+}
+
+const { name, image, index, href = "#" } = Astro.props;
+---
+
+<a
+  href={href}
+  class="relative group grid place-items-center aspect-square w-full flex-[0_0_calc(100%-var(--spacing)*4*2)] md:flex-[0_0_calc(50%-2rem)] lg:flex-[0_0_calc(33.333%-0.5rem)] overflow-hidden cursor-pointer service rounded-lg"
+>
+  <span
+    class="absolute left-3 top-2 z-10 text-white text-xl font-medium font-heading"
+  >
+    0{index + 1}
+  </span>
+  <img
+    src={image}
+    alt={name}
+    loading="lazy"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+  <Heading
+    level={4}
+    className="text-white text-center z-10  font-medium text-shadow-2xs "
+    text={name}
+  />
+  <div
+    class="translate-y-16 group-hover:translate-y-0 transition-transform duration-500 absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1"
+  >
+    <Heading level={5} className="text-white font-medium" text={"Ver más"} />
+    <ArrowRight class="text-white size-4" />
+  </div>
+</a>
+
+<style>
+  @media (width > 768px) {
+    :global(.service-grid:hover) .service {
+      opacity: 0.87;
+      scale: 0.99;
+    }
+  }
+  .service {
+    transition:
+      opacity var(--spring-duration) var(--spring-easing),
+      border-radius 0.7s var(--spring-easing),
+      scale 0.7s var(--spring-easing);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    /* Gradient Wipe */
+    &::before {
+      background: var(--brand-gradient);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform var(--spring-duration) var(--spring-easing);
+      z-index: 2;
+    }
+
+    /* Blend Mode Overlay */
+    &::after {
+      background: var(--brand-gradient);
+      mix-blend-mode: multiply;
+      z-index: 1;
+    }
+
+    /* Hover State */
+    &:hover {
+      opacity: 1;
+      scale: 1;
+      border-radius: 1.1rem;
+      z-index: 3;
+
+      &::before {
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+    }
+  }
+</style>
