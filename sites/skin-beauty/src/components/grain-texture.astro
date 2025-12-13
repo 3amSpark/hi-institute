@@ -1,0 +1,46 @@
+---
+interface Props {
+  grainOpacity?: number;
+  gradientOpacity?: number;
+}
+const { grainOpacity = 0.8, gradientOpacity = 1 } = Astro.props as Props;
+---
+
+<div
+  class="absolute inset-0 grain z-1"
+  style={{
+    "--grain-opacity": grainOpacity,
+  }}
+>
+</div>
+
+<div
+  class="absolute inset-0 gradient z-2"
+  style={{
+    "--gradient-opacity": gradientOpacity,
+  }}
+>
+</div>
+
+<style>
+  .grain {
+    mix-blend-mode: multiply;
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image: var(--grain-texture);
+    background-repeat: repeat;
+    background-size: 200px;
+    opacity: var(--grain-opacity);
+  }
+
+  .gradient {
+    background: var(--brand-gradient);
+    mix-blend-mode: color;
+    pointer-events: none;
+    opacity: var(--gradient-opacity); /* Use the CSS variable directly */
+  }
+</style>

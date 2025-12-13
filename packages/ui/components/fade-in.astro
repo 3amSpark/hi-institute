@@ -10,7 +10,7 @@ interface Props {
 const {
   duration = 0.5,
   delay = 0,
-  yOffset = 50,
+  yOffset = 20,
   class: className,
 } = Astro.props;
 ---
@@ -40,14 +40,17 @@ const {
       const delay = parseFloat(this.dataset.delay || "0");
       const yOffset = parseFloat(this.dataset.yOffset || "50");
 
-      // Set initial state to avoid "flash of unstyled content"
+      // Different trigger points for mobile vs desktop
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+      const triggerStart = isMobile ? "top 105%" : "top 85%";
+
       // Create the animation with GPU acceleration
       gsap.fromTo(
         this,
         {
           opacity: 0,
           y: yOffset,
-          scale: 0.95,
+          scale: 0.9,
         },
         {
           delay: delay,
@@ -59,7 +62,7 @@ const {
           force3D: true, // GPU accelerated transforms
           scrollTrigger: {
             trigger: this,
-            start: "top 85%", // Slightly earlier trigger for smoother perceived entry
+            start: triggerStart,
             toggleActions: "play none none reverse",
             fastScrollEnd: true, // Better handling of fast scrolls
           },
