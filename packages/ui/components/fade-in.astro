@@ -1,24 +1,44 @@
 ---
 // src/components/FadeIn.astro
+type Direction =
+  | "bottom"
+  | "top"
+  | "left"
+  | "right"
+  | "top-left"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-right";
+
 interface Props {
   duration?: number;
   delay?: number;
-  yOffset?: number;
+  from?: Direction;
+  offset?: number;
   class?: string;
+  /** @deprecated Use `from` and `offset` instead */
+  yOffset?: number;
 }
 
 const {
   duration = 0.5,
   delay = 0,
-  yOffset = 20,
+  from = "bottom",
+  offset = 20,
+  yOffset,
   class: className,
 } = Astro.props;
+
+// Support legacy yOffset prop
+const finalOffset = yOffset !== undefined ? yOffset : offset;
+const finalFrom = yOffset !== undefined ? "top" : from;
 ---
 
 <fade-in
   data-duration={duration}
   data-delay={delay}
-  data-y-offset={yOffset}
+  data-from={finalFrom}
+  data-offset={finalOffset}
   class={className}
 >
   <slot />
@@ -32,13 +52,53 @@ const {
   // Register the plugin
   gsap.registerPlugin(ScrollTrigger);
 
+  type Direction =
+    | "bottom"
+    | "top"
+    | "left"
+    | "right"
+    | "top-left"
+    | "top-right"
+    | "bottom-left"
+    | "bottom-right";
+
+  function getOffsets(
+    from: Direction,
+    offset: number
+  ): { x: number; y: number } {
+    const diagonal = offset * 0.707; // cos(45°) for diagonal movement
+
+    switch (from) {
+      case "top":
+        return { x: 0, y: -offset };
+      case "bottom":
+        return { x: 0, y: offset };
+      case "left":
+        return { x: -offset, y: 0 };
+      case "right":
+        return { x: offset, y: 0 };
+      case "top-left":
+        return { x: -diagonal, y: -diagonal };
+      case "top-right":
+        return { x: diagonal, y: -diagonal };
+      case "bottom-left":
+        return { x: -diagonal, y: diagonal };
+      case "bottom-right":
+        return { x: diagonal, y: diagonal };
+      default:
+        return { x: 0, y: offset };
+    }
+  }
+
   class FadeIn extends HTMLElement {
     connectedCallback() {
       // Read the data attributes we set in the HTML above
-      // Note: dataset values are always strings, so we parse them.
       const duration = parseFloat(this.dataset.duration || "0.5");
       const delay = parseFloat(this.dataset.delay || "0");
-      const yOffset = parseFloat(this.dataset.yOffset || "50");
+      const from = (this.dataset.from || "bottom") as Direction;
+      const offset = parseFloat(this.dataset.offset || "20");
+
+      const { x, y } = getOffsets(from, offset);
 
       // Different trigger points for mobile vs desktop
       const isMobile = window.matchMedia("(max-width: 767px)").matches;
@@ -49,13 +109,15 @@ const {
         this,
         {
           opacity: 0,
-          y: yOffset,
+          x: x,
+          y: y,
           scale: 0.9,
         },
         {
           delay: delay,
           duration: duration,
           autoAlpha: 1,
+          x: 0,
           y: 0,
           scale: 1,
           ease: "power2.out",
@@ -64,7 +126,6 @@ const {
             trigger: this,
             start: triggerStart,
             toggleActions: "play none none reverse",
-            fastScrollEnd: true, // Better handling of fast scrolls
           },
         }
       );

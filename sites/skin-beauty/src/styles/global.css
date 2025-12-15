@@ -70,3 +70,15 @@
   background-size: 150px;
   opacity: 0.4;
 }
+
+blockquote {
+  quotes: auto;
+}
+
+blockquote > p::before {
+  content: open-quote;
+}
+
+blockquote > p::after {
+  content: close-quote;
+}

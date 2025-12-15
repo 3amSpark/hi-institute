@@ -9,118 +9,13 @@ import ParallaxImage from "src/components/parallax-image.astro";
 import ScheduleButton from "src/components/schedule-button.astro";
 import GrainTexture from "src/components/grain-texture.astro";
 import Footer from "src/components/footer.astro";
+import WhyUs from "src/components/why-us.astro";
+import Navbar from "src/components/navbar.astro";
 ---
 
 <RootLayout>
   <!-- Navbar -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        <!-- Logo -->
-        <a href="/" class="shrink-0">
-          <img src="/logo.svg" alt="Hi Fem Care" class="h-8 w-auto" />
-        </a>
-
-        <!-- Desktop Navigation -->
-        <div class="hidden lg:flex items-center gap-8">
-          <a
-            href="#ginecologia"
-            class="text-brand-gray hover:text-smokey-pink transition-colors font-medium font-heading text-sm uppercase tracking-wide"
-          >
-            Ginecología
-          </a>
-          <a
-            href="#vph"
-            class="text-brand-gray hover:text-smokey-pink transition-colors font-medium font-heading text-sm uppercase tracking-wide"
-          >
-            VPH
-          </a>
-          <a
-            href="#endometriosis"
-            class="text-brand-gray hover:text-smokey-pink transition-colors font-medium font-heading text-sm uppercase tracking-wide"
-          >
-            Endometriosis
-          </a>
-          <a
-            href="#uroginecologia"
-            class="text-brand-gray hover:text-smokey-pink transition-colors font-medium font-heading text-sm uppercase tracking-wide"
-          >
-            Uroginecología
-          </a>
-          <a
-            href="#femcare-total"
-            class="text-brand-gray hover:text-smokey-pink transition-colors font-medium font-heading text-sm uppercase tracking-wide"
-          >
-            Femcare Total
-          </a>
-          <a
-            href="#monalisa-touch"
-            class="text-brand-gray hover:text-smokey-pink transition-colors font-medium font-heading text-sm uppercase tracking-wide"
-          >
-            Monalisa Touch
-          </a>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button class="lg:hidden p-2" aria-label="Abrir menú">
-          <svg
-            class="w-6 h-6 text-iroko"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Menu (hidden by default) -->
-    <div class="hidden lg:hidden">
-      <div class="px-4 py-4 space-y-3 bg-white border-t border-gray-100">
-        <a
-          href="#ginecologia"
-          class="block text-iroko hover:text-smokey-pink transition-colors font-heading text-sm uppercase tracking-wide"
-        >
-          Ginecología
-        </a>
-        <a
-          href="#vph"
-          class="block text-iroko hover:text-smokey-pink transition-colors font-heading text-sm uppercase tracking-wide"
-        >
-          VPH
-        </a>
-        <a
-          href="#endometriosis"
-          class="block text-iroko hover:text-smokey-pink transition-colors font-heading text-sm uppercase tracking-wide"
-        >
-          Endometriosis
-        </a>
-        <a
-          href="#uroginecologia"
-          class="block text-iroko hover:text-smokey-pink transition-colors font-heading text-sm uppercase tracking-wide"
-        >
-          Uroginecología
-        </a>
-        <a
-          href="#femcare-total"
-          class="block text-iroko hover:text-smokey-pink transition-colors font-heading text-sm uppercase tracking-wide"
-        >
-          Femcare Total
-        </a>
-        <a
-          href="#monalisa-touch"
-          class="block text-iroko hover:text-smokey-pink transition-colors font-heading text-sm uppercase tracking-wide"
-        >
-          Monalisa Touch
-        </a>
-      </div>
-    </div>
-  </nav>
+  <Navbar />
 
   <section
     class="w-full bg-black overflow-hidden h-dvh relative flex flex-col items-center md:justify-center justify-end"
@@ -220,63 +115,37 @@ import Footer from "src/components/footer.astro";
       </div>
     </div>
   </section>
-  <section class="w-full px-2 py-40 relative overflow-hidden">
-    <ParallaxImage yPercent={20} start="top 80%" end="bottom top">
-      <img
-        src="/why-femcare.webp"
-        alt="Why Hi Fem Care"
-        class="absolute inset-0 w-full h-full object-cover object-center z-0 scale-130"
-      />
-    </ParallaxImage>
-    <GrainTexture />
-    <div class="relative z-10 flex flex-col gap-20">
-      <Heading
-        level={2}
-        className="text-white text-shadow-sm font-medium text-center text-balance "
-        text="¿Por qué Hi Fem Care es tu mejor opción?"
-      />
-      <div
-        class="grid md:grid-cols-3 grid-cols-1 sm:w-full mx-auto grid-rows-[auto_1fr] gap-y-3 gap-x-4 max-w-6xl"
-      >
-        {
-          [
-            {
-              title: "Medicina moderna que realmente funciona.",
-              description: [
-                "No tratamos síntomas.",
-                "Tratamos causas.",
-                'En Hi Fem Care no damos “soluciones rápidas".',
-                "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
-                "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
-              ],
-            },
-            {
-              title: "Médicos y especialistas que saben cómo cuidarte.",
-              description: [
-                "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
-                "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
-              ],
-            },
-            {
-              title: "Tecnología moderna, precisa y no invasiva.",
-              description: [
-                "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
-                "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
-              ],
-            },
-          ].map((item, idx) => (
-            <ValueCard
-              title={item.title}
-              description={item.description}
-              index={idx}
-              duration={1}
-              delay={idx * 0.1}
-              yOffset={-20}
-            />
-          ))
-        }
-      </div>
-    </div>
-  </section>
+
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
   <Footer />
 </RootLayout>
