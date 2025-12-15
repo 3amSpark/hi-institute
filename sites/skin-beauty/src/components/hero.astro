@@ -1,0 +1,62 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import ParallaxImage from "src/components/parallax-image.astro";
+import GrainTexture from "src/components/grain-texture.astro";
+import RevealSlides from "@repo/ui/components/reveal-slides.astro";
+
+interface Props {
+  title: string;
+  alt: string;
+  images: {
+    size: "sm" | "md" | "lg";
+    src: string;
+  }[];
+}
+
+const { title, alt, images } = Astro.props;
+---
+
+<section
+  class="relative flex h-svh w-full flex-col items-center justify-end overflow-hidden bg-white md:justify-center"
+>
+  <div
+    class="z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 p-4 md:pt-30 md:pb-0"
+  >
+    <FadeIn duration={1}>
+      <Heading
+        text="Cuidamos tu salud íntima con precisión y ciencia."
+        className="max-w-3/4 font-medium text-balance text-white text-shadow-sm"
+        level={1}
+      />
+    </FadeIn>
+    <FadeIn duration={1} delay={0.1}>
+      <ScheduleButton
+        href="https://calendly.com/hi-fem-care/agenda-cita"
+        text="Agenda tu cita ahora"
+      />
+    </FadeIn>
+  </div>
+  <ParallaxImage yPercent={20}>
+    <picture>
+      {
+        images.map((image) => (
+          <source
+            srcset={image.src}
+            media={`(max-width: ${image.size === "sm" ? "767px" : image.size === "md" ? "1023px" : "1920px"})`}
+          />
+        ))
+      }
+      <img
+        alt={alt}
+        class="absolute inset-0 z-0 h-full w-full scale-110 object-cover object-center"
+      />
+    </picture>
+  </ParallaxImage>
+  <GrainTexture />
+  <RevealSlides
+    duration={0.75}
+    colors={["bg-black", "bg-brand-gray", "bg-smokey-pink"]}
+  />
+</section>
