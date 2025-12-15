@@ -23,14 +23,16 @@ const {
 ---
 
 <section class="w-full px-2 py-40 relative overflow-hidden">
-  <ParallaxImage yPercent={20} start="top 80%" end="bottom top">
-    <img
-      src={backgroundImage}
-      alt={backgroundImageAlt}
-      class="absolute inset-0 w-full h-full object-cover object-center z-0 scale-130"
-    />
+  <ParallaxImage yPercent={20} start="top top" end="bottom top">
+    <div class="absolute inset-0 scale-130 z-0">
+      <img
+        src={backgroundImage}
+        alt={backgroundImageAlt}
+        class="w-full h-full object-cover object-center"
+      />
+      <GrainTexture />
+    </div>
   </ParallaxImage>
-  <GrainTexture />
   <div class="relative z-10 flex flex-col gap-20">
     <Heading
       level={2}

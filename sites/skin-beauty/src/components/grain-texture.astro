@@ -1,13 +1,18 @@
 ---
 interface Props {
   grainOpacity?: number;
+  class?: string;
   gradientOpacity?: number;
 }
-const { grainOpacity = 0.8, gradientOpacity = 1 } = Astro.props as Props;
+const {
+  grainOpacity = 0.8,
+  gradientOpacity = 1,
+  class: className,
+} = Astro.props as Props;
 ---
 
 <div
-  class="absolute inset-0 grain z-1"
+  class:list={["absolute inset-0 grain z-1", className]}
   style={{
     "--grain-opacity": grainOpacity,
   }}
@@ -15,7 +20,7 @@ const { grainOpacity = 0.8, gradientOpacity = 1 } = Astro.props as Props;
 </div>
 
 <div
-  class="absolute inset-0 gradient z-2"
+  class:list={["absolute inset-0 gradient z-2", className]}
   style={{
     "--gradient-opacity": gradientOpacity,
   }}

@@ -4,6 +4,7 @@ interface Props {
   scrub?: number;
   start?: string;
   end?: string;
+  disable?: boolean;
 }
 
 const {
@@ -11,6 +12,7 @@ const {
   scrub = 0.5,
   start = "top bottom",
   end = "bottom top",
+  disable = false,
 } = Astro.props;
 ---
 
@@ -19,6 +21,7 @@ const {
   data-scrub={scrub}
   data-start={start}
   data-end={end}
+  data-disable={disable}
   style="display: contents;"
   class="parallax-image"
 >
@@ -34,6 +37,7 @@ const {
     private scrollTrigger: ScrollTrigger | null = null;
 
     connectedCallback() {
+      if (this.dataset.disable === "true") return;
       const yPercent = parseFloat(this.dataset.yPercent || "-15");
       const scrub = parseFloat(this.dataset.scrub || "0.5");
       const start = this.dataset.start || "top bottom";

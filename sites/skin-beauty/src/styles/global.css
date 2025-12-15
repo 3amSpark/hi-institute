@@ -1,5 +1,9 @@
 @import "@repo/ui/theme.css";
 
+html {
+  background-color: var(--color-eggshell);
+}
+
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -7,12 +7,12 @@ interface Props {
 const { text, level, className } = Astro.props as Props;
 
 const sizeMap = {
-  1: "text-5xl sm:text-6xl tracking-tighter ",
-  2: "text-4xl sm:text-5xl tracking-tight",
+  1: "text-4xl md:text-5xl sm:text-6xl tracking-tighter ",
+  2: "text-3xl md:text-4xl sm:text-5xl tracking-tight",
   3: "text-3xl sm:text-4xl tracking-tight",
-  4: "text-2xl sm:text-3xl tracking-tight",
-  5: "text-base sm:text-lg ",
-  6: "text-sm sm:text-base",
+  4: "text-2xl md:text-3xl sm:text-3xl tracking-tight",
+  5: "text-base md:text-lg sm:text-lg ",
+  6: "text-sm md:text-base sm:text-base",
 };
 
 const Tag = `h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

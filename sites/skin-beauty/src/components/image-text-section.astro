@@ -1,0 +1,46 @@
+---
+import ParallaxImage from "src/components/parallax-image.astro";
+import GrainTexture from "src/components/grain-texture.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+
+interface Props {
+  imageSrc: string;
+  imageAlt: string;
+  imagePosition?: "left" | "right";
+  class?: string;
+}
+
+const {
+  imageSrc,
+  imageAlt,
+  imagePosition = "left",
+  class: className,
+} = Astro.props;
+---
+
+<section class:list={["sm:py-20 pt-4 px-2", className]}>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-10 max-w-7xl mx-auto px-2"
+  >
+    <div
+      class:list={[
+        "relative rounded-2xl bg-white overflow-hidden",
+        imagePosition === "right" && "md:order-2",
+      ]}
+    >
+      <GrainTexture />
+      <ParallaxImage yPercent={13} start="top 80%" disable={true}>
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          class="w-full h-full aspect-video object-cover scale-115"
+        />
+      </ParallaxImage>
+    </div>
+    <FadeIn duration={1} delay={0} from="bottom" offset={30}>
+      <div class="flex flex-col sm:gap-4 gap-2 justify-between p-2">
+        <slot />
+      </div>
+    </FadeIn>
+  </div>
+</section>
