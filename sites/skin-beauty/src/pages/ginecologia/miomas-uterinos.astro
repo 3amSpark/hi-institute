@@ -1,0 +1,243 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import ServiceHero from "src/components/service-hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import WhyUs from "src/components/why-us.astro";
+import Footer from "src/components/footer.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import TreatmentGrid from "src/components/treatment-grid.astro";
+---
+
+<RootLayout>
+  <Navbar />
+  <ServiceHero
+    title="Controla tus miomas sin detener tu vida."
+    serviceName="Miomas Uterinos"
+    mainImageAlt="Miomas Uterinos"
+    images={[
+      {
+        src: "/gynaecology/hero-miomas-sm.webp",
+        media: "(max-width: 767px)",
+      },
+      {
+        src: "/gynaecology/hero-miomas-md.webp",
+        media: "(max-width: 1023px) and (min-width: 768px)",
+      },
+      {
+        src: "/gynaecology/hero-miomas.webp",
+        media: "(min-width: 1024px)",
+      },
+    ]}
+  >
+    <p>
+      Los miomas son tumores benignos del útero. Son comunes y muchas veces no
+      causan síntomas.
+    </p>
+    <p>
+      Pero cuando crecen o están en una posición incómoda, pueden provocar
+      sangrados abundantes, dolor pélvico, presión, molestias urinarias o
+      dificultad para embarazarse.
+    </p>
+    <p>
+      Su crecimiento está ligado a desequilibrios hormonales y metabólicos, por
+      eso es importante tratarlos con un enfoque integral.
+    </p>
+  </ServiceHero>
+
+  <!-- Síntomas -->
+  <ImageTextSection
+    imageSrc="/gynaecology/infections/symptoms.webp"
+    imageAlt="Síntomas de los Miomas Uterinos"
+    imagePosition="left"
+  >
+    <Heading
+      level={3}
+      className="text-brand-gray font-medium text-balance"
+      text="Síntomas más frecuentes"
+    />
+    <Heading
+      level={5}
+      className="text-brand-gray"
+      text="Puedes presentar uno o varios de estos signos:"
+    />
+    <ul class="text-brand-gray font-heading list-inside list-disc">
+      <li>Menstruaciones muy abundantes o dolorosas</li>
+      <li>Sangrados prolongados</li>
+      <li>Dolor pélvico o sensación de presión</li>
+      <li>Ciclos muy cortos, muy largos o irregulares</li>
+      <li>Problemas urinarios o digestivos</li>
+      <li>Dificultad para embarazarte</li>
+    </ul>
+  </ImageTextSection>
+
+  <!-- ¿Por qué aparecen? -->
+  <ImageTextSection
+    imageSrc="/gynaecology/infections/need-to-know.webp"
+    imageAlt="¿Por qué aparecen los Miomas?"
+    imagePosition="right"
+  >
+    <Heading
+      level={3}
+      className="text-brand-gray font-medium text-balance"
+      text="¿Por qué aparecen?"
+    />
+    <Heading
+      level={5}
+      className="text-brand-gray"
+      text="Los miomas no surgen 'de la nada'. Suelen estar influenciados por:"
+    />
+    <ul class="text-brand-gray font-heading list-inside list-disc">
+      <li>Exceso de estrógenos</li>
+      <li>Resistencia a la insulina</li>
+      <li>Inflamación crónica</li>
+    </ul>
+    <p class="text-brand-gray font-heading">
+      Estos factores pueden hacer que los miomas crezcan más rápido o generen
+      síntomas.
+    </p>
+  </ImageTextSection>
+
+  <!-- ¿Cuándo es necesario operar? -->
+  <section class="bg-neutral-100 px-4 py-20">
+    <div class="mx-auto max-w-4xl">
+      <FadeIn duration={1} delay={0}>
+        <Heading
+          level={3}
+          className="text-brand-gray mb-8 text-center font-medium"
+          text="¿Cuándo es necesario operar?"
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <Heading
+          level={5}
+          className="text-brand-gray mb-8 text-center"
+          text="Se recomienda cirugía cuando los miomas:"
+        />
+        <div class="mx-auto grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
+          <div
+            class="from-ziggurat/10 to-smokey-pink/10 flex items-center justify-center rounded-lg bg-linear-to-br p-6 text-center"
+          >
+            <p class="text-brand-gray font-heading text-lg">
+              Causan sangrado importante
+            </p>
+          </div>
+          <div
+            class="from-ziggurat/10 to-smokey-pink/10 flex items-center justify-center rounded-lg bg-linear-to-bl p-6 text-center"
+          >
+            <p class="text-brand-gray font-heading text-lg">
+              Dificultan un embarazo
+            </p>
+          </div>
+          <div
+            class="from-ziggurat/10 to-smokey-pink/10 flex items-center justify-center rounded-lg bg-linear-to-tr p-6 text-center"
+          >
+            <p class="text-brand-gray font-heading text-lg">
+              Comprimen órganos cercanos (vejiga, intestino, uréteres)
+            </p>
+          </div>
+          <div
+            class="from-ziggurat/10 to-smokey-pink/10 flex items-center justify-center rounded-lg bg-linear-to-tl p-6 text-center"
+          >
+            <p class="text-brand-gray font-heading text-lg">
+              Crecen de forma acelerada
+            </p>
+          </div>
+        </div>
+        <p class="text-brand-gray font-heading mt-10 text-center font-medium">
+          No todos los miomas necesitan cirugía. Pero sí necesitan vigilancia y
+          un plan claro.
+        </p>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Tratamiento -->
+  <TreatmentGrid
+    heading="¿Cómo lo tratamos en Hi Fem Care?"
+    treatments={[
+      {
+        title: "Consulta ginecológica especializada",
+        description:
+          "Evaluamos tus síntomas, tu historia y cómo impactan tu vida diaria.",
+      },
+      {
+        title: "Evaluación metabólica personalizada",
+        description:
+          "Analizamos cómo tus hormonas, tu insulina y tu cortisol influyen en el crecimiento de los miomas.",
+      },
+      {
+        title: "Nutrición funcional + apoyo hormonal o biofuncional",
+        description:
+          "Creamos un plan nutricional y, si es necesario, utilizamos suplementación o terapia bioidéntica para equilibrar hormonas y reducir inflamación.",
+      },
+    ]}
+  />
+
+  <!-- Inspiring -->
+  <div class="mx-auto max-w-4xl px-4 py-20">
+    <FadeIn duration={1}>
+      <p class="text-brand-gray font-heading text-xl sm:text-center">
+        En Hi Fem Care tratamos los miomas desde la raíz, con un
+        <span class="font-medium">
+          enfoque completo que respeta tu cuerpo y tu bienestar.
+        </span>
+      </p>
+    </FadeIn>
+  </div>
+
+  <!-- CTA -->
+  <section class="px-4 pb-20">
+    <div class="mx-auto max-w-3xl text-center">
+      <FadeIn duration={1} delay={0}>
+        <Heading
+          level={3}
+          className="text-brand-gray mb-6 font-medium"
+          text="No tienes que vivir con molestias."
+        />
+        <p class="text-brand-gray font-heading mb-8 text-xl">
+          Podemos ayudarte a controlar tus miomas.
+        </p>
+        <ScheduleButton
+          href="https://calendly.com/hi-fem-care/agenda-cita"
+          text="¡Agenda tu cita hoy!"
+        />
+      </FadeIn>
+    </div>
+  </section>
+
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

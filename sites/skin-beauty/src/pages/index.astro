@@ -11,51 +11,29 @@ import GrainTexture from "src/components/grain-texture.astro";
 import Footer from "src/components/footer.astro";
 import WhyUs from "src/components/why-us.astro";
 import Navbar from "src/components/navbar.astro";
+import Hero from "src/components/hero.astro";
 ---
 
 <RootLayout>
   <!-- Navbar -->
   <Navbar />
-
-  <section
-    class="w-full bg-black overflow-hidden h-dvh relative flex flex-col items-center md:justify-center justify-end"
-  >
-    <div
-      class="w-full flex flex-col gap-6 z-10 max-w-7xl px-4 pb-20 md:pb-0 md:pt-30 mx-auto"
-    >
-      <FadeIn duration={1}>
-        <Heading
-          text="Cuidamos tu salud íntima con precisión y ciencia."
-          className=" max-w-3/4 font-medium text-white text-balance  text-shadow-sm"
-          level={1}
-        />
-      </FadeIn>
-      <FadeIn duration={1} delay={0.1}>
-        <ScheduleButton
-          href="https://calendly.com/hi-fem-care/agenda-cita"
-          text="Agenda tu cita ahora"
-        />
-      </FadeIn>
-    </div>
-    <ParallaxImage yPercent={20}>
-      <picture>
-        <source srcset="/landing/hero-sm.webp" media="(max-width: 767px)" />
-        <source srcset="/landing/hero-lg.webp" media="(min-width: 768px)" />
-        <img
-          alt="Hi Fem Care Hero Image"
-          class="h-full w-full object-cover object-center absolute inset-0 scale-110 z-0"
-        />
-      </picture>
-    </ParallaxImage>
-    <GrainTexture />
-    <RevealSlides
-      duration={0.75}
-      colors={["bg-black", "bg-brand-gray", "bg-smokey-pink"]}
-    />
-  </section>
-
+  <Hero
+    title="Cuidamos tu salud íntima con precisión y ciencia."
+    alt="Hi Fem Care Hero Image"
+    images={[
+      {
+        size: "sm",
+        src: "/landing/hero-sm.webp",
+      },
+      {
+        size: "lg",
+        src: "/landing/hero-lg.webp",
+      },
+    ]}
+    revealSlides={true}
+  />
   <section class="bg-linear-to-b from-white from-20% to-neutral-200">
-    <div class="px-4 sm:px-6 pt-20 flex flex-col gap-6 max-w-7xl mx-auto">
+    <div class="mx-auto flex max-w-7xl flex-col gap-6 px-4 pt-20 sm:px-6">
       <FadeIn duration={1}>
         <Heading
           level={3}
@@ -64,13 +42,13 @@ import Navbar from "src/components/navbar.astro";
         />
         <Heading
           level={2}
-          className="text-neutral-700/90 font-medium text-balance sm:text-center"
+          className="font-medium text-balance text-neutral-700/90 sm:text-center"
           text="En Hi Fem Care redefinimos la salud de la mujer"
         />
       </FadeIn>
       <FadeIn duration={1} delay={0.1}>
         <p
-          class="text-brand-gray text-lg font-heading leading-relaxed sm:text-center sm:max-w-3/5 mx-auto"
+          class="text-brand-gray font-heading mx-auto text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
         >
           Somos la única clínica creada exclusivamente para acompañar cada etapa
           de tu vida como mujer: tu bienestar hormonal, tu fertilidad, tu piso
@@ -78,9 +56,9 @@ import Navbar from "src/components/navbar.astro";
         </p>
       </FadeIn>
     </div>
-    <div class="w-full mx-auto py-20 max-w-7xl">
+    <div class="mx-auto w-full max-w-7xl py-20">
       <div
-        class="flex flex-wrap gap-6 sm:gap-2 service-grid justify-center duration-700"
+        class="service-grid flex flex-wrap justify-center gap-6 duration-700 sm:gap-2"
       >
         {
           [
