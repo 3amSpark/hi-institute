@@ -13,9 +13,10 @@ interface Props {
     size: "sm" | "md" | "lg";
     src: string;
   }[];
+  revealSlides?: boolean;
 }
 
-const { title, alt, images } = Astro.props;
+const { title, alt, images, revealSlides = false } = Astro.props;
 ---
 
 <section
@@ -26,7 +27,7 @@ const { title, alt, images } = Astro.props;
   >
     <FadeIn duration={1}>
       <Heading
-        text="Cuidamos tu salud íntima con precisión y ciencia."
+        text={title}
         className="max-w-3/4 font-medium text-balance text-white text-shadow-sm"
         level={1}
       />
@@ -38,7 +39,7 @@ const { title, alt, images } = Astro.props;
       />
     </FadeIn>
   </div>
-  <ParallaxImage yPercent={20}>
+  <ParallaxImage yPercent={20} start="middle top" end="bottom top">
     <picture>
       {
         images.map((image) => (
@@ -55,8 +56,12 @@ const { title, alt, images } = Astro.props;
     </picture>
   </ParallaxImage>
   <GrainTexture />
-  <RevealSlides
-    duration={0.75}
-    colors={["bg-black", "bg-brand-gray", "bg-smokey-pink"]}
-  />
+  {
+    revealSlides && (
+      <RevealSlides
+        duration={0.75}
+        colors={["bg-black", "bg-brand-gray", "bg-smokey-pink"]}
+      />
+    )
+  }
 </section>

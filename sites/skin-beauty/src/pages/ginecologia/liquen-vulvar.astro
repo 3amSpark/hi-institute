@@ -1,0 +1,200 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import ServiceHero from "src/components/service-hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import WhyUs from "src/components/why-us.astro";
+import Footer from "src/components/footer.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import TreatmentGrid from "src/components/treatment-grid.astro";
+---
+
+<RootLayout>
+  <Navbar />
+  <ServiceHero
+    title="Picazón, ardor o dolor no son normales. Podemos ayudarte."
+    serviceName="Liquen Vulvar"
+    mainImageAlt="Liquen Vulvar"
+    images={[
+      {
+        src: "/gynaecology/hero-sm.webp",
+        media: "(max-width: 767px)",
+      },
+      {
+        src: "/gynaecology/hero-md.webp",
+        media: "(max-width: 1023px) and (min-width: 768px)",
+      },
+      {
+        src: "/gynaecology/hero.webp",
+        media: "(min-width: 1024px)",
+      },
+    ]}
+  >
+    <p>
+      El liquen escleroso vulvar es una condición inflamatoria que afecta la
+      piel de la vulva. Puede causar resequedad, cambios en la textura, dolor o
+      molestias que muchas mujeres callan por vergüenza o porque creen que "es
+      parte de la edad".
+    </p>
+    <p>
+      No lo es. Y no tienes que vivir así. Aunque es más común después de los
+      40, puede aparecer a cualquier edad y con frecuencia no se diagnostica a
+      tiempo.
+    </p>
+  </ServiceHero>
+
+  <!-- Síntomas -->
+  <ImageTextSection
+    imageSrc="/gynaecology/infections/symptoms.webp"
+    imageAlt="Síntomas del Liquen Vulvar"
+    imagePosition="left"
+  >
+    <Heading
+      level={3}
+      className="text-brand-gray font-medium text-balance"
+      text="Síntomas frecuentes"
+    />
+    <Heading
+      level={5}
+      className="text-brand-gray"
+      text="Si algo de esto te sucede, tu cuerpo está pidiendo atención:"
+    />
+    <ul class="text-brand-gray font-heading list-inside list-disc">
+      <li>Picazón o ardor constantes</li>
+      <li>Sensación de resequedad o tirantez</li>
+      <li>Dolor al orinar o al tener relaciones</li>
+      <li>
+        Cambios visibles en la piel: áreas blancas, finas, fisuras o cicatrices
+      </li>
+      <li>
+        En casos avanzados, puede afectar el clítoris y aumentar el riesgo de
+        cáncer vulvar
+      </li>
+    </ul>
+  </ImageTextSection>
+
+  <!-- ¿Por qué ocurre? -->
+  <ImageTextSection
+    imageSrc="/gynaecology/infections/need-to-know.webp"
+    imageAlt="¿Por qué ocurre el Liquen Vulvar?"
+    imagePosition="right"
+  >
+    <Heading
+      level={3}
+      className="text-brand-gray font-medium text-balance"
+      text="¿Por qué ocurre?"
+    />
+    <Heading
+      level={5}
+      className="text-brand-gray"
+      text="La causa exacta no se conoce, pero suele relacionarse con:"
+    />
+    <ul class="text-brand-gray font-heading list-inside list-disc">
+      <li>Cambios hormonales importantes (menopausia, posparto, etc.)</li>
+      <li>Alteraciones del sistema inmune</li>
+      <li>Antecedentes familiares</li>
+      <li>Infecciones previas o uso prolongado de esteroides</li>
+    </ul>
+    <p class="text-brand-gray font-heading font-medium">
+      No es algo que "se quite solo", pero sí es algo que se puede tratar y
+      mejorar.
+    </p>
+  </ImageTextSection>
+
+  <!-- Tratamiento -->
+  <TreatmentGrid
+    heading="¿Cómo lo tratamos en Hi Fem Care?"
+    treatments={[
+      {
+        title: "Diagnóstico claro y cuidadoso",
+        description:
+          "Antes de cualquier tratamiento, realizamos una evaluación íntima y respetuosa para confirmar el diagnóstico y entender el estado de tu piel. Un buen diagnóstico marca toda la diferencia.",
+      },
+      {
+        title: "Tecnología regenerativa de precisión",
+        description:
+          "Usamos láser avanzado especialmente diseñado para tejido vulvar. Estimula la producción de colágeno, mejora la elasticidad, la hidratación y el color de la piel. El procedimiento es rápido, sin dolor y sin tiempo de recuperación.",
+      },
+    ]}
+  />
+
+  <div class="mx-auto max-w-4xl px-4 py-20">
+    <FadeIn duration={1}>
+      <p class="text-brand-gray font-heading text-xl sm:text-center">
+        En Hi Fem Care no normalizamos tu dolor, tu cansancio ni tu confusión.
+        Nuestro objetivo es simple: <span class="font-medium"
+          >ayudarte a recuperar comodidad, confianza y calidad de vida.
+        </span>
+      </p>
+    </FadeIn>
+  </div>
+
+  <!-- Quote -->
+  <!-- <div class="mx-auto max-w-4xl px-4 py-20">
+    <FadeIn duration={1} delay={0}>
+      <blockquote class="relative">
+        <p
+          class="text-brand-gray before:text-brand-gray/50 after:text-brand-gray/50 font-heading text-center text-2xl font-medium text-balance md:text-4xl"
+        >
+          Nuestro objetivo es simple: ayudarte a recuperar comodidad, confianza
+          y calidad de vida.
+        </p>
+      </blockquote>
+    </FadeIn>
+  </div> -->
+
+  <!-- CTA -->
+  <section class="px-4 pb-20">
+    <div class="mx-auto max-w-3xl text-center">
+      <FadeIn duration={1} delay={0}>
+        <Heading
+          level={3}
+          className="text-brand-gray mb-6 font-medium"
+          text="Picazón, ardor o dolor no son normales."
+        />
+        <p class="text-brand-gray font-heading mb-8 text-xl">
+          Podemos ayudarte.
+        </p>
+        <ScheduleButton
+          href="https://calendly.com/hi-fem-care/agenda-cita"
+          text="¡Agenda tu cita hoy!"
+        />
+      </FadeIn>
+    </div>
+  </section>
+
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

@@ -1,0 +1,142 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import Hero from "src/components/hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import ArrowRight from "@repo/ui/icons/arrow-right.astro";
+import Footer from "src/components/footer.astro";
+import WhyUs from "src/components/why-us.astro";
+
+const services = [
+  {
+    name: "Infecciones Vaginales",
+    href: "/ginecologia/infecciones-vaginales",
+  },
+  {
+    name: "Síndrome del Ovario Poliquístico",
+    href: "/ginecologia/sindrome-ovario-poliquistico",
+  },
+  {
+    name: "Liquen Vulvar",
+    href: "/ginecologia/liquen-vulvar",
+  },
+  {
+    name: "Perimenopausia y Menopausia",
+    href: "/ginecologia/perimenopausia-menopausia",
+  },
+  {
+    name: "Miomas Uterinos",
+    href: "/ginecologia/miomas-uterinos",
+  },
+  {
+    name: "Ciclos Menstruales Irregulares",
+    href: "/ginecologia/ciclos-irregulares",
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="Tu bienestar íntimo empieza aquí."
+    alt="Ginecología"
+    images={[
+      {
+        size: "sm",
+        src: "/gynaecology/hero-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/gynaecology/hero-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/gynaecology/hero.webp",
+      },
+    ]}
+  />
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-8 px-4 py-20"
+  >
+    <Heading
+      level={2}
+      className="text-center font-medium text-balance text-neutral-700/90"
+      text="Hi Fem Care: creada para tu salud íntima."
+    />
+    <FadeIn duration={1} delay={0.1}>
+      <p
+        class="text-brand-gray font-heading mx-auto text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+      >
+        Aquí la ginecología no se queda en un chequeo anual. Acompañamos lo que
+        muchas veces ha sido ignorado o normalizado: infecciones recurrentes,
+        ovario poliquístico, liquen vulvar, ciclos irregulares, dolor al tener
+        relaciones, perimenopausia, menopausia y miomas uterinos.
+      </p>
+    </FadeIn>
+    <FadeIn duration={1} delay={0.1}>
+      <p
+        class="text-brand-gray font-heading mx-auto text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+      >
+        Combinamos diagnóstico preciso y tratamientos regenerativos no invasivos
+        para ayudarte a recuperar comodidad, equilibrio y bienestar real.
+
+        <b>
+          Te escuchamos, te entendemos y te acompañamos en cada etapa.<b></b>
+        </b>
+      </p>
+    </FadeIn>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 pt-10 pb-40">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map((service) => (
+          <a
+            href={service.href}
+            class="from-ziggurat to-smokey-pink/40 group relative flex min-h-[120px] items-center justify-center rounded-lg border-[0.75px] border-white bg-radial-[at_50%_80%] p-10 text-center transition-all duration-300 hover:rounded-2xl"
+          >
+            <span class="font-heading text-lg font-medium text-balance text-white text-shadow-2xs">
+              {service.name}
+            </span>
+            <ArrowRight class="absolute right-4 size-5 text-white transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+        ))
+      }
+    </div>
+  </section>
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>
+
+<style></style>

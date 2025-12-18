@@ -1,0 +1,71 @@
+---
+import ParallaxImage from "src/components/parallax-image.astro";
+import GrainTexture from "src/components/grain-texture.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+
+interface ImageSource {
+  src: string;
+  media?: string;
+}
+
+interface Props {
+  title: string;
+  serviceName: string;
+  images: ImageSource[];
+  mainImageAlt: string;
+}
+
+const { title, serviceName, images, mainImageAlt } = Astro.props;
+
+// The last image or one without media is used for the <img> tag
+const mainImage = images.find((img) => !img.media) || images[images.length - 1];
+---
+
+<section class="relative flex w-full flex-col justify-end bg-black lg:h-svh">
+  <div
+    class="z-10 mx-auto flex min-h-svh max-w-7xl items-end justify-center pb-8 md:pb-10"
+  >
+    <FadeIn duration={1} delay={0} offset={-20}>
+      <Heading
+        level={1}
+        className="text-center text-balance text-white text-shadow-xs"
+        text={title}
+      />
+    </FadeIn>
+  </div>
+  <!-- half of the section, solid background color -->
+  <div
+    class="grain from-smokey-pink to-ziggurat relative z-10 flex w-full flex-col justify-around gap-4 bg-radial-[at_50%_10%] px-2 py-8 sm:items-center sm:p-4 md:p-8"
+  >
+    <div
+      class="relative z-20 flex flex-col justify-around gap-4 sm:items-center"
+    >
+      <FadeIn duration={1} delay={0.1} offset={-20}>
+        <Heading
+          level={3}
+          className="text-center text-3xl font-medium text-balance text-white uppercase text-shadow-sm"
+          text={serviceName}
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.2} offset={-20}>
+        <div
+          class="font-heading mx-auto flex flex-col items-center justify-center gap-4 text-center text-lg text-balance text-white sm:max-w-1/2"
+        >
+          <slot />
+        </div>
+      </FadeIn>
+    </div>
+  </div>
+  <ParallaxImage yPercent={-20} start="middle top" end="bottom top">
+    <picture>
+      {images.map((img) => <source srcset={img.src} media={img.media} />)}
+      <img
+        src={mainImage?.src}
+        alt={mainImageAlt}
+        class="absolute inset-0 z-0 h-full w-full object-cover"
+      />
+    </picture>
+  </ParallaxImage>
+  <GrainTexture />
+</section>

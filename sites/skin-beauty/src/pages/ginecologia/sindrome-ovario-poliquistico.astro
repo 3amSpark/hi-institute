@@ -1,0 +1,204 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import ServiceHero from "src/components/service-hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import WhyUs from "src/components/why-us.astro";
+import Footer from "src/components/footer.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import TreatmentGrid from "src/components/treatment-grid.astro";
+---
+
+<RootLayout>
+  <Navbar />
+  <ServiceHero
+    title="Vivir con ovario poliquístico no es tu destino."
+    serviceName="Síndrome del Ovario Poliquístico"
+    mainImageAlt="Síndrome del Ovario Poliquístico"
+    images={[
+      {
+        src: "/gynaecology/hero-sm.webp",
+        media: "(max-width: 767px)",
+      },
+      {
+        src: "/gynaecology/hero-md.webp",
+        media: "(max-width: 1023px) and (min-width: 768px)",
+      },
+      {
+        src: "/gynaecology/hero.webp",
+        media: "(min-width: 1024px)",
+      },
+    ]}
+  >
+    <p>
+      El Síndrome del Ovario Poliquístico (SOP) no es solo un "problema
+      hormonal". Afecta tu metabolismo, tu ovulación, tu energía, tu piel, tu
+      peso y hasta cómo tu cuerpo responde al estrés.
+    </p>
+    <p>
+      Por eso tantas mujeres pasan años sin diagnóstico: se tratan los síntomas
+      por separado… pero nadie une las piezas.
+    </p>
+  </ServiceHero>
+
+  <!-- ¿Por qué sucede? -->
+  <ImageTextSection
+    imageSrc="/gynaecology/infections/symptoms.webp"
+    imageAlt="¿Por qué sucede el SOP?"
+    imagePosition="left"
+  >
+    <Heading
+      level={3}
+      className="text-brand-gray font-medium text-balance"
+      text="¿Por qué sucede?"
+    />
+    <Heading
+      level={5}
+      className="text-brand-gray"
+      text="El SOP suele aparecer cuando hay desequilibrios como:"
+    />
+    <ul class="text-brand-gray font-heading list-inside list-disc">
+      <li>Resistencia a la insulina</li>
+      <li>Cambios en la glucosa</li>
+      <li>Estrés crónico</li>
+      <li>Inflamación y déficit nutricional</li>
+    </ul>
+    <p class="text-brand-gray font-heading">
+      Este desorden impacta ciclos irregulares, acné, caída de cabello,
+      dificultad para embarazarse, aumento de peso y cansancio constante.
+    </p>
+    <p class="text-brand-gray font-heading font-medium">
+      No es "normal". Tampoco es tu culpa. Y sí tiene solución.
+    </p>
+  </ImageTextSection>
+
+  <!-- Tratamiento -->
+  <TreatmentGrid
+    heading="¿Cómo lo tratamos en Hi Fem Care?"
+    treatments={[
+      {
+        title: "Diagnóstico completo, sin adivinar",
+        description:
+          "Revisamos tu historia, tus ciclos, tus hormonas y tu metabolismo con estudios claros y específicos. Un SOP bien diagnosticado es un SOP que se puede tratar.",
+      },
+      {
+        title: "Restauración metabólica y hormonal",
+        description:
+          "Diseñamos un plan que reduce inflamación, mejora la insulina y ayuda a que tu cuerpo vuelva a ovular de forma natural.",
+      },
+      {
+        title: "Reequilibrio hormonal",
+        description:
+          "Usamos suplementación avanzada y, cuando corresponde, ovuladores naturales o terapia bioidéntica. No recurrimos a anticonceptivos como primera opción.",
+      },
+      {
+        title: "Acompañamiento real",
+        description:
+          "Te guiamos en movimiento, sueño y manejo del estrés para que todo tu eje hormonal vuelva a funcionar.",
+      },
+    ]}
+  />
+
+  <!-- Inspiring -->
+  <div class="mx-auto max-w-4xl px-4 py-20">
+    <FadeIn duration={1}>
+      <p class="text-brand-gray font-heading text-xl sm:text-center">
+        <span class="font-medium">
+          En Hi Fem Care no normalizamos tu dolor, tu cansancio ni tu confusión.
+        </span>
+        Te acompañamos para que recuperes tu equilibrio y vuelvas a sentirte tú.
+      </p>
+    </FadeIn>
+  </div>
+
+  <!-- Lo que debes saber -->
+  <section class="bg-neutral-100 px-4 pb-20">
+    <div class="mx-auto max-w-4xl">
+      <FadeIn duration={1} delay={0}>
+        <Heading
+          level={3}
+          className="text-brand-gray mb-8 text-center font-medium"
+          text="Lo que debes saber sobre el SOP"
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div
+              class="from-ziggurat to-smokey-pink mt-1.5 h-3 w-3 shrink-0 rounded-full bg-linear-to-br"
+            >
+            </div>
+            <p class="text-brand-gray font-heading text-lg">
+              El Síndrome de Ovario Poliquístico responde muy bien cuando se
+              trabaja desde la raíz: metabolismo, hormonas y estilo de vida.
+            </p>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+              class="from-ziggurat to-smokey-pink mt-1.5 h-3 w-3 shrink-0 rounded-full bg-linear-to-br"
+            >
+            </div>
+            <p class="text-brand-gray font-heading text-lg">
+              Más del 70% de las mujeres logran mejorar su ciclo y volver a
+              ovular sin usar anticonceptivos cuando reciben el tratamiento
+              adecuado.
+            </p>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+              class="from-ziggurat to-smokey-pink mt-1.5 h-3 w-3 shrink-0 rounded-full bg-linear-to-br"
+            >
+            </div>
+            <p class="text-brand-gray font-heading text-lg font-medium">
+              El SOP sí puede mejorar. Tu cuerpo sí puede volver a funcionar
+              mejor.
+            </p>
+          </div>
+        </div>
+      </FadeIn>
+      <FadeIn duration={1} delay={0.2}>
+        <div class="mt-10 flex justify-center">
+          <ScheduleButton
+            href="https://calendly.com/hi-fem-care/agenda-cita"
+            text="¡Agenda tu cita hoy!"
+          />
+        </div>
+      </FadeIn>
+    </div>
+  </section>
+
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

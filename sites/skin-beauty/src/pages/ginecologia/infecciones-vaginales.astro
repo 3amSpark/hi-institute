@@ -1,8 +1,7 @@
 ---
 import RootLayout from "src/layouts/root.astro";
-import ParallaxImage from "src/components/parallax-image.astro";
 import Navbar from "src/components/navbar.astro";
-import GrainTexture from "src/components/grain-texture.astro";
+import ServiceHero from "src/components/service-hero.astro";
 import Heading from "@repo/ui/components/heading.astro";
 import WhyUs from "src/components/why-us.astro";
 import Footer from "src/components/footer.astro";
@@ -13,79 +12,39 @@ import ImageTextSection from "src/components/image-text-section.astro";
 
 <RootLayout>
   <Navbar />
-  <section class="relative flex w-full flex-col justify-end bg-black lg:h-svh">
-    <div
-      class="z-10 mx-auto flex h-svh max-w-7xl items-end justify-center pb-8 md:pb-10"
-    >
-      <FadeIn duration={1} delay={0} offset={-20}>
-        <Heading
-          level={1}
-          className="text-center text-balance text-white text-shadow-xs"
-          text="Porque tu bienestar íntimo merece soluciones reales."
-        />
-      </FadeIn>
-    </div>
-    <!-- half of the section, solid background color -->
-    <div
-      class="grain from-smokey-pink to-ziggurat relative z-10 flex w-full flex-col justify-around gap-4 bg-radial-[at_50%_10%] px-2 py-8 sm:items-center sm:p-4 md:p-8"
-    >
-      <div
-        class="relative z-20 flex flex-col justify-around gap-4 sm:items-center"
-      >
-        <FadeIn duration={1} delay={0.1} offset={-20}>
-          <Heading
-            level={3}
-            className="text-center text-3xl font-medium text-balance text-white uppercase text-shadow-sm"
-            text="Infecciones Vaginales"
-          />
-        </FadeIn>
-        <FadeIn duration={1} delay={0.2} offset={-20}>
-          <div
-            class="font-heading mx-auto flex flex-col items-center justify-center gap-4 text-center text-lg text-balance text-white sm:max-w-1/2"
-          >
-            <p>
-              En Hi Fem Care sabemos lo incómodo, desgastante y frustrante que
-              pueden ser las infecciones vaginales recurrentes.
-            </p>
-            <p>
-              No solo afectan tu cuerpo, también tu tranquilidad y tu día a día.
-            </p>
-            <p>
-              Por eso unimos diagnóstico preciso con tecnología regenerativa
-              —como el láser MonaLisa Touch— para tratar no solo los síntomas,
-              sino la causa.
-            </p>
-            <p>
-              Ayudamos a restaurar el tejido, equilibrar la flora vaginal y
-              prevenir que la infección regrese, con un tratamiento suave, no
-              invasivo y sin dolor.
-            </p>
-          </div>
-        </FadeIn>
-      </div>
-    </div>
-    <ParallaxImage yPercent={-20} start="middle top" end="bottom top">
-      <picture>
-        <source
-          srcset="/gynaecology/infections/hero-sm.webp"
-          media="(max-width: 767px)"
-        />
-        <source
-          srcset="/gynaecology/infections/hero-md.webp"
-          media="(max-width: 1023px) and (min-width: 768px)"
-        />
-        <source
-          srcset="/gynaecology/infections/hero.webp"
-          media="(min-width: 1024px)"
-        />
-        <img
-          alt="Infecciones Vaginales"
-          class="absolute inset-0 z-0 h-full w-full object-cover"
-        />
-      </picture>
-    </ParallaxImage>
-    <GrainTexture />
-  </section>
+  <ServiceHero
+    title="Porque tu bienestar íntimo merece soluciones reales."
+    serviceName="Infecciones Vaginales"
+    mainImageAlt="Infecciones Vaginales"
+    images={[
+      {
+        src: "/gynaecology/infections/hero-sm.webp",
+        media: "(max-width: 767px)",
+      },
+      {
+        src: "/gynaecology/infections/hero-md.webp",
+        media: "(max-width: 1023px) and (min-width: 768px)",
+      },
+      {
+        src: "/gynaecology/infections/hero.webp",
+        media: "(min-width: 1024px)",
+      },
+    ]}
+  >
+    <p>
+      En Hi Fem Care sabemos lo incómodo, desgastante y frustrante que pueden
+      ser las infecciones vaginales recurrentes.
+    </p>
+    <p>No solo afectan tu cuerpo, también tu tranquilidad y tu día a día.</p>
+    <p>
+      Por eso unimos diagnóstico preciso con tecnología regenerativa —como el
+      láser MonaLisa Touch— para tratar no solo los síntomas, sino la causa.
+    </p>
+    <p>
+      Ayudamos a restaurar el tejido, equilibrar la flora vaginal y prevenir que
+      la infección regrese, con un tratamiento suave, no invasivo y sin dolor.
+    </p>
+  </ServiceHero>
   <!-- Sintomas -->
   <ImageTextSection
     imageSrc="/gynaecology/infections/symptoms.webp"
@@ -117,6 +76,7 @@ import ImageTextSection from "src/components/image-text-section.astro";
       text="Si te identificas con uno o varios de estos síntomas, no tienes que normalizarlos. En Hi Fem Care podemos ayudarte a recuperar comodidad, bienestar y confianza en tu cuerpo."
     />
   </ImageTextSection>
+
   <div class="mx-auto max-w-4xl py-20">
     <FadeIn duration={1} delay={0} yOffset={-20}>
       <blockquote class="relative">
@@ -139,7 +99,7 @@ import ImageTextSection from "src/components/image-text-section.astro";
         delay={0}
         from="left"
         offset={75}
-        class="from-ziggurat to-smokey-pink/70 row-span-2 grid grid-rows-subgrid items-center gap-1 rounded-3xl bg-radial-[at_100%_0%] p-6 text-center text-white sm:p-10"
+        class="from-ziggurat to-smokey-pink/70 row-span-2 grid grid-rows-subgrid items-center gap-1 rounded-lg bg-radial-[at_100%_0%] p-6 text-center text-white sm:p-10"
       >
         <Heading
           level={4}
@@ -158,7 +118,7 @@ import ImageTextSection from "src/components/image-text-section.astro";
         delay={0.2}
         from="right"
         offset={75}
-        class="from-ziggurat to-smokey-pink/70 row-span-2 grid grid-rows-subgrid items-center gap-4 rounded-3xl bg-radial-[at_0%_100%] p-6 text-center text-white sm:p-10"
+        class="from-ziggurat to-smokey-pink/70 row-span-2 grid grid-rows-subgrid items-center gap-4 rounded-lg bg-radial-[at_0%_100%] p-6 text-center text-white sm:p-10"
       >
         <Heading
           level={4}
