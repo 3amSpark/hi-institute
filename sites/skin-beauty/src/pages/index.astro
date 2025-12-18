@@ -3,7 +3,7 @@ import RootLayout from "../layouts/root.astro";
 import Heading from "@repo/ui/components/heading.astro";
 import FadeIn from "@repo/ui/components/fade-in.astro";
 import RevealSlides from "@repo/ui/components/reveal-slides.astro";
-import ServiceCard from "@repo/ui/components/service-card.astro";
+import ServiceGrid from "@repo/ui/components/service-grid.astro";
 import ValueCard from "src/components/value-card.astro";
 import ParallaxImage from "src/components/parallax-image.astro";
 import ScheduleButton from "src/components/schedule-button.astro";
@@ -32,17 +32,19 @@ import Hero from "src/components/hero.astro";
     ]}
     revealSlides={true}
   />
-  <section class="bg-linear-to-b from-white from-20% to-neutral-200">
-    <div class="mx-auto flex max-w-7xl flex-col gap-6 px-4 pt-20 sm:px-6">
+  <section
+    class="flex flex-col items-center justify-center gap-20 bg-linear-to-b from-white to-neutral-200 px-4 py-20 sm:px-6"
+  >
+    <div class="mx-auto flex max-w-7xl flex-col gap-6">
       <FadeIn duration={1}>
         <Heading
-          level={3}
-          className="text-brand-gray font-heading sm:text-center"
+          level={4}
+          className="text-brand-gray/80 font-heading text-pretty sm:text-center"
           text="Cuidada. Precisa. Personal."
         />
         <Heading
           level={2}
-          className="font-medium text-balance text-neutral-700/90 sm:text-center"
+          className="text-brand-gray font-medium text-balance sm:text-center"
           text="En Hi Fem Care redefinimos la salud de la mujer"
         />
       </FadeIn>
@@ -56,41 +58,31 @@ import Hero from "src/components/hero.astro";
         </p>
       </FadeIn>
     </div>
-    <div class="mx-auto w-full max-w-7xl py-20">
-      <div
-        class="service-grid flex flex-wrap justify-center gap-6 duration-700 sm:gap-2"
-      >
-        {
-          [
-            {
-              name: "Ginecología",
-              image: "/ginecologia.webp",
-            },
-            {
-              name: "Virus del Papiloma Humano",
-              image: "/virus-pailoma-humano.webp",
-            },
-            {
-              name: "Endometriosis",
-              image: "/endometriosis.webp",
-            },
-            {
-              name: "Uroginecología",
-              image: "/uroginecologia.webp",
-            },
-            {
-              name: "Fem Care Total",
-              image: "/fem-care-total.webp",
-            },
-          ].map((service, idx) => (
-            <ServiceCard
-              name={service.name}
-              image={service.image}
-              index={idx}
-            />
-          ))
-        }
-      </div>
+    <div class="mx-auto w-full max-w-7xl">
+      <ServiceGrid
+        services={[
+          {
+            name: "Ginecología",
+            image: "/ginecologia.webp",
+          },
+          {
+            name: "Virus del Papiloma Humano",
+            image: "/virus-pailoma-humano.webp",
+          },
+          {
+            name: "Endometriosis",
+            image: "/endometriosis.webp",
+          },
+          {
+            name: "Uroginecología",
+            image: "/uroginecologia.webp",
+          },
+          {
+            name: "Fem Care Total",
+            image: "/fem-care-total.webp",
+          },
+        ]}
+      />
     </div>
   </section>
 

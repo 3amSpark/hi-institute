@@ -8,6 +8,25 @@ import Footer from "src/components/footer.astro";
 import FadeIn from "@repo/ui/components/fade-in.astro";
 import ScheduleButton from "src/components/schedule-button.astro";
 import ImageTextSection from "src/components/image-text-section.astro";
+
+const treatments = [
+  {
+    title: "Evaluación Ginecológica Completa",
+    description:
+      "Para entender lo que te está pasando, primero escuchamos tu historia y analizamos tus síntomas con calma. Un buen diagnóstico no es una lista de exámenes: es comprender qué está causando la molestia y descartar otras condiciones que puedan pasar desapercibidas.",
+    bg: "bg-radial-[at_100%_0%]",
+    from: "left",
+    delay: 0,
+  },
+  {
+    title: "Tratamiento Láser CO₂ MonaLisa Touch",
+    description:
+      "Usamos un láser ginecológico fraccionado, seguro y no invasivo, diseñado para regenerar el tejido, equilibrar la flora vaginal y reducir síntomas de forma real y sostenible. No duele, no requiere cirugía y te ayuda a recuperar tu bienestar íntimo sin complicaciones.",
+    bg: "bg-radial-[at_0%_100%]",
+    from: "right",
+    delay: 0.2,
+  },
+];
 ---
 
 <RootLayout>
@@ -94,44 +113,29 @@ import ImageTextSection from "src/components/image-text-section.astro";
     <div
       class="mx-auto grid max-w-7xl grid-cols-1 grid-rows-[auto_1fr] gap-2 sm:gap-4 lg:grid-cols-2"
     >
-      <FadeIn
-        duration={1}
-        delay={0}
-        from="left"
-        offset={75}
-        class="from-ziggurat to-smokey-pink/70 row-span-2 grid grid-rows-subgrid items-center gap-1 rounded-lg bg-radial-[at_100%_0%] p-6 text-center text-white sm:p-10"
-      >
-        <Heading
-          level={4}
-          className="self-center text-balance text-white uppercase text-shadow-xs"
-          text="Evaluación Ginecológica Completa"
-        />
-        <p class="font-heading self-start text-base text-white">
-          Para entender lo que te está pasando, primero escuchamos tu historia y
-          analizamos tus síntomas con calma. Un buen diagnóstico no es una lista
-          de exámenes: es comprender qué está causando la molestia y descartar
-          otras condiciones que puedan pasar desapercibidas.
-        </p>
-      </FadeIn>
-      <FadeIn
-        duration={1}
-        delay={0.2}
-        from="right"
-        offset={75}
-        class="from-ziggurat to-smokey-pink/70 row-span-2 grid grid-rows-subgrid items-center gap-4 rounded-lg bg-radial-[at_0%_100%] p-6 text-center text-white sm:p-10"
-      >
-        <Heading
-          level={4}
-          className="self-center text-balance text-white uppercase text-shadow-xs"
-          text="Tratamiento Láser CO₂ MonaLisa Touch"
-        />
-        <p class="font-heading self-start text-base text-white">
-          Usamos un láser ginecológico fraccionado, seguro y no invasivo,
-          diseñado para regenerar el tejido, equilibrar la flora vaginal y
-          reducir síntomas de forma real y sostenible. No duele, no requiere
-          cirugía y te ayuda a recuperar tu bienestar íntimo sin complicaciones.
-        </p>
-      </FadeIn>
+      {
+        treatments.map((treatment) => (
+          <FadeIn
+            duration={1}
+            delay={treatment.delay}
+            from={treatment.from as any}
+            offset={75}
+            class:list={[
+              "from-ziggurat to-smokey-pink/70 row-span-2 grid grid-rows-subgrid items-center gap-1 rounded-lg p-6 text-center text-white sm:p-10",
+              treatment.bg,
+            ]}
+          >
+            <Heading
+              level={4}
+              className="self-center text-balance text-white uppercase text-shadow-xs"
+              text={treatment.title}
+            />
+            <p class="font-heading self-start text-base text-white">
+              {treatment.description}
+            </p>
+          </FadeIn>
+        ))
+      }
     </div>
   </section>
 

@@ -14,7 +14,7 @@ const { name, image, index, href = "#" } = Astro.props;
 
 <a
   href={href}
-  class="relative group grid place-items-center aspect-square w-full flex-[0_0_calc(100%-var(--spacing)*4*2)] md:flex-[0_0_calc(50%-2rem)] lg:flex-[0_0_calc(33.333%-0.5rem)] overflow-hidden cursor-pointer service rounded-lg"
+  class="relative group grid place-items-center aspect-square w-full flex-[0_0_calc(100%-var(--spacing)*4)] md:flex-[0_0_calc(50%-2rem)] lg:flex-[0_0_calc(33.333%-0.5rem)] overflow-hidden cursor-pointer service rounded-lg"
 >
   <span
     class="absolute left-3 top-2 z-10 text-white text-xl font-medium font-heading"
@@ -81,6 +81,9 @@ const { name, image, index, href = "#" } = Astro.props;
       opacity: 1;
       scale: 1;
       border-radius: 1.1rem;
+      /* box-shadow:
+        rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
       z-index: 3;
 
       &::before {

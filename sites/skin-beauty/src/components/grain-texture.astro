@@ -12,7 +12,7 @@ const {
 ---
 
 <div
-  class:list={["absolute inset-0 grain z-1", className]}
+  class:list={["grain absolute inset-0 z-1", className]}
   style={{
     "--grain-opacity": grainOpacity,
   }}
@@ -20,7 +20,7 @@ const {
 </div>
 
 <div
-  class:list={["absolute inset-0 gradient z-2", className]}
+  class:list={["gradient absolute inset-0 z-2", className]}
   style={{
     "--gradient-opacity": gradientOpacity,
   }}
@@ -38,7 +38,7 @@ const {
     z-index: 1;
     background-image: var(--grain-texture);
     background-repeat: repeat;
-    background-size: 200px;
+    background-size: 150px;
     opacity: var(--grain-opacity);
   }
 
