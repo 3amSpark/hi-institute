@@ -2,15 +2,19 @@
 interface Props {
   text: string;
   href: string;
+  class?: string;
 }
-const { href, text } = Astro.props as Props;
+const { href, text, class: className } = Astro.props as Props;
 ---
 
 <a
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  class="from-ziggurat to-smokey-pink font-heading group highlight relative inline-block w-fit cursor-pointer overflow-hidden rounded-full bg-radial-[at_50%_80%] px-7 py-2 text-lg font-medium text-white uppercase"
+  class:list={[
+    "from-ziggurat to-smokey-pink font-heading group highlight relative inline-block w-fit cursor-pointer overflow-hidden rounded-full bg-radial-[at_50%_80%] px-7 py-2 text-lg font-medium text-white uppercase",
+    className,
+  ]}
 >
   <span class="invisible">{text}</span>
   <span
