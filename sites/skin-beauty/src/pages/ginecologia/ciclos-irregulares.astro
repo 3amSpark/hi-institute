@@ -9,6 +9,27 @@ import FadeIn from "@repo/ui/components/fade-in.astro";
 import ScheduleButton from "src/components/schedule-button.astro";
 import ImageTextSection from "src/components/image-text-section.astro";
 import TreatmentGrid from "src/components/treatment-grid.astro";
+
+const causes = [
+  {
+    title: "SOP / PECO (Síndrome de Ovario Poliquístico)",
+    description:
+      "Ciclos largos o ausentes, provocados por resistencia a la insulina y un desbalance hormonal.",
+    bg: "bg-linear-to-br",
+  },
+  {
+    title: "Endometriosis o Adenomiosis",
+    description: "Sangrados abundantes, dolor pélvico, inflamación y fatiga.",
+    bg: "bg-linear-to-bl",
+  },
+  {
+    title: "Perimenopausia (35–50 años)",
+    description:
+      "Cambios hormonales que generan ciclos irregulares, sangrados variables y síntomas emocionales y físicos.",
+    bg: "bg-linear-to-t",
+    className: "sm:col-span-2 sm:mx-auto sm:max-w-[calc(50%-0.5rem)]",
+  },
+];
 ---
 
 <RootLayout>
@@ -63,38 +84,24 @@ import TreatmentGrid from "src/components/treatment-grid.astro";
       </FadeIn>
       <FadeIn duration={1} delay={0.1}>
         <div class="mx-auto grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
-          <div
-            class="from-ziggurat/10 to-smokey-pink/10 flex flex-col items-center justify-center gap-2 rounded-lg bg-linear-to-br p-6 text-center"
-          >
-            <p class="text-brand-gray font-heading text-lg font-medium">
-              SOP / PECO (Síndrome de Ovario Poliquístico)
-            </p>
-            <p class="text-brand-gray font-heading">
-              Ciclos largos o ausentes, provocados por resistencia a la insulina
-              y un desbalance hormonal.
-            </p>
-          </div>
-          <div
-            class="from-ziggurat/10 to-smokey-pink/10 flex flex-col items-center justify-center gap-2 rounded-lg bg-linear-to-bl p-6 text-center"
-          >
-            <p class="text-brand-gray font-heading text-lg font-medium">
-              Endometriosis o Adenomiosis
-            </p>
-            <p class="text-brand-gray font-heading">
-              Sangrados abundantes, dolor pélvico, inflamación y fatiga.
-            </p>
-          </div>
-          <div
-            class="from-ziggurat/10 to-smokey-pink/10 flex flex-col items-center justify-center gap-2 rounded-lg bg-linear-to-t p-6 text-center sm:col-span-2 sm:mx-auto sm:max-w-[calc(50%-0.5rem)]"
-          >
-            <p class="text-brand-gray font-heading text-lg font-medium">
-              Perimenopausia (35–50 años)
-            </p>
-            <p class="text-brand-gray font-heading">
-              Cambios hormonales que generan ciclos irregulares, sangrados
-              variables y síntomas emocionales y físicos.
-            </p>
-          </div>
+          {
+            causes.map((cause) => (
+              <div
+                class:list={[
+                  "from-ziggurat/10 to-smokey-pink/10 flex flex-col items-center justify-center gap-2 rounded-lg p-6 text-center",
+                  cause.bg,
+                  cause.className,
+                ]}
+              >
+                <Heading
+                  level={5}
+                  text={cause.title}
+                  className="text-brand-gray font-medium"
+                />
+                <p class="text-brand-gray font-heading">{cause.description}</p>
+              </div>
+            ))
+          }
         </div>
       </FadeIn>
     </div>

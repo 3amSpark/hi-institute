@@ -9,6 +9,25 @@ import FadeIn from "@repo/ui/components/fade-in.astro";
 import ScheduleButton from "src/components/schedule-button.astro";
 import ImageTextSection from "src/components/image-text-section.astro";
 import TreatmentGrid from "src/components/treatment-grid.astro";
+
+const surgeryReasons = [
+  {
+    text: "Causan sangrado importante",
+    bg: "bg-linear-to-br",
+  },
+  {
+    text: "Dificultan un embarazo",
+    bg: "bg-linear-to-bl",
+  },
+  {
+    text: "Comprimen órganos cercanos (vejiga, intestino, uréteres)",
+    bg: "bg-linear-to-tr",
+  },
+  {
+    text: "Crecen de forma acelerada",
+    bg: "bg-linear-to-tl",
+  },
+];
 ---
 
 <RootLayout>
@@ -101,7 +120,7 @@ import TreatmentGrid from "src/components/treatment-grid.astro";
   </ImageTextSection>
 
   <!-- ¿Cuándo es necesario operar? -->
-  <section class="bg-neutral-100 px-4 py-20">
+  <section class="bg-neutral-100 px-4 py-20 shadow-inner">
     <div class="mx-auto max-w-4xl">
       <FadeIn duration={1} delay={0}>
         <Heading
@@ -117,34 +136,20 @@ import TreatmentGrid from "src/components/treatment-grid.astro";
           text="Se recomienda cirugía cuando los miomas:"
         />
         <div class="mx-auto grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
-          <div
-            class="from-ziggurat/10 to-smokey-pink/10 flex items-center justify-center rounded-lg bg-linear-to-br p-6 text-center"
-          >
-            <p class="text-brand-gray font-heading text-lg">
-              Causan sangrado importante
-            </p>
-          </div>
-          <div
-            class="from-ziggurat/10 to-smokey-pink/10 flex items-center justify-center rounded-lg bg-linear-to-bl p-6 text-center"
-          >
-            <p class="text-brand-gray font-heading text-lg">
-              Dificultan un embarazo
-            </p>
-          </div>
-          <div
-            class="from-ziggurat/10 to-smokey-pink/10 flex items-center justify-center rounded-lg bg-linear-to-tr p-6 text-center"
-          >
-            <p class="text-brand-gray font-heading text-lg">
-              Comprimen órganos cercanos (vejiga, intestino, uréteres)
-            </p>
-          </div>
-          <div
-            class="from-ziggurat/10 to-smokey-pink/10 flex items-center justify-center rounded-lg bg-linear-to-tl p-6 text-center"
-          >
-            <p class="text-brand-gray font-heading text-lg">
-              Crecen de forma acelerada
-            </p>
-          </div>
+          {
+            surgeryReasons.map((reason) => (
+              <div
+                class:list={[
+                  "from-ziggurat/10 to-smokey-pink/10 flex items-center justify-center rounded-lg p-6 text-center",
+                  reason.bg,
+                ]}
+              >
+                <p class="text-brand-gray font-heading text-lg">
+                  {reason.text}
+                </p>
+              </div>
+            ))
+          }
         </div>
         <p class="text-brand-gray font-heading mt-10 text-center font-medium">
           No todos los miomas necesitan cirugía. Pero sí necesitan vigilancia y

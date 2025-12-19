@@ -24,7 +24,7 @@ const {
   duration = 0.5,
   delay = 0,
   from = "bottom",
-  offset = 20,
+  offset = 35,
   yOffset,
   class: className,
 } = Astro.props;
@@ -116,7 +116,7 @@ const finalFrom = yOffset !== undefined ? "top" : from;
         {
           delay: delay,
           duration: duration,
-          autoAlpha: 1,
+          opacity: 1,
           x: 0,
           y: 0,
           scale: 1,

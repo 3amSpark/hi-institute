@@ -1,0 +1,67 @@
+---
+import Heading from "@repo/ui/components/heading.astro";
+
+interface CardContent {
+  text: string;
+  bold?: boolean;
+}
+
+interface Props {
+  title: string;
+  bg?: string;
+  content: (string | CardContent)[];
+  isList?: boolean;
+  centered?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  bg = "bg-radial-[at_50%_50%]",
+  content,
+  isList = false,
+  centered = false,
+  class: className,
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "from-ziggurat/10 to-smokey-pink/10 text-brand-gray flex min-w-96 flex-1 flex-col gap-6 rounded-xl p-6 sm:p-10",
+    bg,
+    className,
+  ]}
+>
+  <Heading
+    level={4}
+    text={title}
+    className="text-center leading-tight font-medium"
+  />
+
+  {
+    isList ? (
+      <ul class="font-body flex list-inside list-disc flex-col gap-3 text-base leading-relaxed">
+        {content.map((item) => (
+          <li>{typeof item === "string" ? item : item.text}</li>
+        ))}
+      </ul>
+    ) : (
+      <div
+        class:list={[
+          "font-body flex flex-col gap-4 text-base leading-relaxed",
+          centered && "text-center",
+        ]}
+      >
+        {content.map((item) => (
+          <p
+            class:list={[
+              typeof item !== "string" && item.bold && "font-bold opacity-100",
+            ]}
+          >
+            {typeof item === "string" ? item : item.text}
+          </p>
+        ))}
+      </div>
+    )
+  }
+</div>

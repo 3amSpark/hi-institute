@@ -8,15 +8,30 @@ import RevealSlides from "@repo/ui/components/reveal-slides.astro";
 
 interface Props {
   title: string;
+  subtitle?: string;
   alt: string;
   images: {
     size: "sm" | "md" | "lg";
     src: string;
   }[];
+  buttonText?: string;
   revealSlides?: boolean;
 }
 
-const { title, alt, images, revealSlides = false } = Astro.props;
+const {
+  title,
+  subtitle,
+  alt,
+  images,
+  buttonText = "Agenda tu cita ahora",
+  revealSlides = false,
+} = Astro.props;
+
+const smImage = images.find((img) => img.size === "sm");
+const mdImage = images.find((img) => img.size === "md");
+const lgImage = images.find((img) => img.size === "lg");
+
+const fallbackImage = lgImage || mdImage || smImage;
 ---
 
 <section
@@ -31,27 +46,32 @@ const { title, alt, images, revealSlides = false } = Astro.props;
         className="max-w-3/4 font-medium text-balance text-white text-shadow-sm"
         level={1}
       />
+      {
+        subtitle && (
+          <Heading
+            text={subtitle}
+            className="max-w-3/4 text-balance text-white text-shadow-sm"
+            level={4}
+          />
+        )
+      }
     </FadeIn>
     <FadeIn duration={1} delay={0.1}>
       <ScheduleButton
         href="https://calendly.com/hi-fem-care/agenda-cita"
-        text="Agenda tu cita ahora"
+        text={buttonText}
       />
     </FadeIn>
   </div>
-  <ParallaxImage yPercent={20} start="middle top" end="bottom top">
+  <ParallaxImage yPercent={10} start="middle top" end="bottom top">
     <picture>
-      {
-        images.map((image) => (
-          <source
-            srcset={image.src}
-            media={`(max-width: ${image.size === "sm" ? "767px" : image.size === "md" ? "1023px" : "1920px"})`}
-          />
-        ))
-      }
+      {smImage && <source srcset={smImage.src} media="(max-width: 767px)" />}
+      {mdImage && <source srcset={mdImage.src} media="(max-width: 1023px)" />}
+      {lgImage && <source srcset={lgImage.src} media="(max-width: 1920px)" />}
       <img
+        src={fallbackImage?.src}
         alt={alt}
-        class="absolute inset-0 z-0 h-full w-full scale-110 object-cover object-center"
+        class="absolute inset-0 z-0 h-full w-full scale-105 object-cover object-center"
       />
     </picture>
   </ParallaxImage>

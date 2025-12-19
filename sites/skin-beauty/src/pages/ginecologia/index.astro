@@ -4,7 +4,7 @@ import Navbar from "src/components/navbar.astro";
 import Hero from "src/components/hero.astro";
 import Heading from "@repo/ui/components/heading.astro";
 import FadeIn from "@repo/ui/components/fade-in.astro";
-import ArrowRight from "@repo/ui/icons/arrow-right.astro";
+import ServiceGrid from "@repo/ui/components/service-grid.astro";
 import Footer from "src/components/footer.astro";
 import WhyUs from "src/components/why-us.astro";
 
@@ -12,26 +12,32 @@ const services = [
   {
     name: "Infecciones Vaginales",
     href: "/ginecologia/infecciones-vaginales",
+    image: "/gynaecology/infections/hero.webp",
   },
   {
     name: "Síndrome del Ovario Poliquístico",
     href: "/ginecologia/sindrome-ovario-poliquistico",
+    image: "/gynaecology/hero-sop.webp",
   },
   {
     name: "Liquen Vulvar",
     href: "/ginecologia/liquen-vulvar",
+    image: "/gynaecology/hero-liquen-vulvar.webp",
   },
   {
     name: "Perimenopausia y Menopausia",
     href: "/ginecologia/perimenopausia-menopausia",
+    image: "/gynaecology/hero-menopausia.webp",
   },
   {
     name: "Miomas Uterinos",
     href: "/ginecologia/miomas-uterinos",
+    image: "/gynaecology/hero-miomas.webp",
   },
   {
     name: "Ciclos Menstruales Irregulares",
     href: "/ginecologia/ciclos-irregulares",
+    image: "/gynaecology/hero-ciclos.webp",
   },
 ];
 ---
@@ -57,11 +63,11 @@ const services = [
     ]}
   />
   <section
-    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-8 px-4 py-20"
+    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-6 px-4 py-20"
   >
     <Heading
       level={2}
-      className="text-center font-medium text-balance text-neutral-700/90"
+      className="text-brand-gray font-medium text-pretty sm:text-center"
       text="Hi Fem Care: creada para tu salud íntima."
     />
     <FadeIn duration={1} delay={0.1}>
@@ -89,24 +95,10 @@ const services = [
   </section>
 
   <section class="mx-auto max-w-7xl px-4 pt-10 pb-40">
-    <div class="flex flex-wrap justify-center gap-6 sm:gap-4">
-      {
-        services.map((service) => (
-          <a
-            href={service.href}
-            class="from-ziggurat to-smokey-pink/40 group relative flex aspect-square flex-[0_0_100%] items-center justify-center rounded-lg border-[0.75px] border-white bg-radial-[at_50%_80%] p-10 text-center transition-all duration-300 hover:rounded-2xl sm:flex-[0_0_calc(50%-1rem)] lg:flex-[0_0_calc(33.333%-1rem)]"
-          >
-            <span class="font-heading text-xl font-medium text-balance text-white text-shadow-2xs">
-              {service.name}
-            </span>
-            <ArrowRight class="absolute right-4 size-5 text-white transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
-        ))
-      }
-    </div>
+    <ServiceGrid services={services} />
   </section>
   <WhyUs
-    backgroundImage="/why-femcare.webp"
+    backgroundImage="/hero/8.webp"
     backgroundImageAlt="Why Hi Fem Care"
     heading="¿Por qué Hi Fem Care es tu mejor opción?"
     valueCards={[
