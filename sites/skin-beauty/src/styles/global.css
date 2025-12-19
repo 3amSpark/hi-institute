@@ -45,7 +45,6 @@ html {
 }
 
 .highlight {
-  position: relative;
   &::after,
   &::before {
     content: "";
