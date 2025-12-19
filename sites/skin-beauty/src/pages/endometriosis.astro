@@ -80,15 +80,15 @@ const cards: Card[] = [
     images={[
       {
         size: "sm",
-        src: "/hero/13-sm.webp",
+        src: "/hero/17-sm.webp",
       },
       {
         size: "md",
-        src: "/hero/13-md.webp",
+        src: "/hero/17-md.webp",
       },
       {
         size: "lg",
-        src: "/hero/13.webp",
+        src: "/hero/17.webp",
       },
     ]}
   />
@@ -115,7 +115,7 @@ const cards: Card[] = [
     </p>
   </section>
   <section
-    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-12 px-4 py-4 sm:py-6"
+    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-12 px-4 py-20 sm:py-6"
   >
     <div class="flex flex-col flex-wrap gap-6 md:flex-row">
       {
@@ -135,7 +135,7 @@ const cards: Card[] = [
             />
 
             {card.isList ? (
-              <ul class="font-body flex list-inside list-disc flex-col gap-3 text-base leading-relaxed sm:text-lg">
+              <ul class="font-body flex list-inside list-disc flex-col gap-3 text-base leading-relaxed">
                 {card.content.map((item) => (
                   <li>{typeof item === "string" ? item : item.text}</li>
                 ))}
@@ -143,7 +143,7 @@ const cards: Card[] = [
             ) : (
               <div
                 class:list={[
-                  "font-body flex flex-col gap-4 text-base leading-relaxed sm:text-lg",
+                  "font-body flex flex-col gap-4 text-base leading-relaxed",
                   card.centered && "text-center",
                 ]}
               >
@@ -190,15 +190,15 @@ const cards: Card[] = [
     />
   </section>
   <ImageTextSection
-    imageSrc="/gynaecology/infections/need-to-know.webp"
-    imageAlt="Tratamiento de Endometriosis en HI FEM CARE"
+    imageSrc="/hero/12.webp"
+    imageAlt="Beneficios del tratamiento de endometriosis"
     imagePosition="right"
   >
     <div class="flex flex-col items-center gap-4 pb-10 sm:items-start">
       <Heading
         level={3}
         className="text-brand-gray font-heading font-medium"
-        text="Lo que necesitas saber"
+        text="Beneficios de nuestro enfoque"
       />
       <ul
         class="text-brand-gray font-heading list-inside list-disc space-y-4 text-lg"
@@ -211,6 +211,24 @@ const cards: Card[] = [
           El enfoque metabólico y hormonal detiene la progresión de la
           enfermedad, reduce el dolor y mejora la fertilidad.
         </li>
+      </ul>
+    </div>
+  </ImageTextSection>
+
+  <ImageTextSection
+    imageSrc="/hero/14.webp"
+    imageAlt="Información sobre la endometriosis"
+    imagePosition="left"
+  >
+    <div class="flex flex-col items-center gap-4 pb-10 sm:items-start">
+      <Heading
+        level={3}
+        className="text-brand-gray font-heading font-medium"
+        text="Información que debes saber"
+      />
+      <ul
+        class="text-brand-gray font-heading list-inside list-disc space-y-4 text-lg"
+      >
         <li>
           HI FEM CARE ha desarrollado un protocolo único con base en más de 14
           años de estudio clínico y evidencia funcional.

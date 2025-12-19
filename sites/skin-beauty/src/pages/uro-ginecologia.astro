@@ -1,0 +1,425 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import Hero from "src/components/hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import TreatmentGrid from "src/components/treatment-grid.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import WhyUs from "src/components/why-us.astro";
+import Footer from "src/components/footer.astro";
+
+interface CardContent {
+  text: string;
+  bold?: boolean;
+}
+
+interface Card {
+  title: string;
+  bg: string;
+  content: (string | CardContent)[];
+  isList?: boolean;
+  centered?: boolean;
+}
+
+const cards: Card[] = [
+  {
+    title: "¿Por qué ocurre la incontinencia urinaria?",
+    bg: "bg-radial-[at_100%_0%]",
+    content: [
+      {
+        text: "Aparece cuando los músculos del piso pélvico se debilitan, especialmente por embarazo, parto, envejecimiento u hormonales (como perimenopausia o menopausia).",
+      },
+      {
+        text: "Esto hace que la vejiga tenga menos soporte y ocasione escapes al toser, reír o ejercitarse.",
+      },
+    ],
+  },
+  {
+    title: "¿Cuáles son los síntomas?",
+    bg: "bg-radial-[at_50%_50%]",
+    content: [
+      "Escapes de orina al estornudar, toser o correr",
+      "Sensación de urgencia repentina",
+      "Limitación en la vida sexual o social",
+      "Evitación de actividades físicas por temor a pérdidas",
+    ],
+    isList: true,
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="Vuelve a moverte libremente, de nuevo."
+    alt="Incontinencia Urinaria"
+    images={[
+      {
+        size: "sm",
+        src: "/hero/16-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/hero/16-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/hero/16.webp",
+      },
+    ]}
+  />
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <Heading
+      level={2}
+      className="text-brand-gray font-medium text-pretty sm:text-center"
+      text="Incontinencia Urinaria"
+    />
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      La incontinencia urinaria por esfuerzo es una condición común que afecta
+      la calidad de vida de muchas mujeres.
+    </p>
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      En HI Fem Care ofrecemos un tratamiento no invasivo con láser ginecológico
+      que regenera los tejidos vaginales, mejora el soporte del piso pélvico y
+      reduce o elimina las fugas de orina, sin cirugía, sin anestesia y sin
+      tiempo de recuperación.
+    </p>
+  </section>
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-12 px-4 py-4 sm:py-6"
+  >
+    <div class="flex flex-col flex-wrap gap-6 md:flex-row">
+      {
+        cards.map((card, i) => (
+          <FadeIn
+            duration={1}
+            delay={i * 0.1}
+            class:list={[
+              "from-ziggurat/10 to-smokey-pink/10 text-brand-gray flex min-w-96 flex-1 flex-col gap-6 rounded-xl p-6 sm:p-10",
+              card.bg,
+            ]}
+          >
+            <Heading
+              level={4}
+              text={card.title}
+              className="text-center font-medium leading-tight"
+            />
+
+            {card.isList ? (
+              <ul class="font-body flex list-inside list-disc flex-col gap-3 text-base leading-relaxed">
+                {card.content.map((item) => (
+                  <li>{typeof item === "string" ? item : item.text}</li>
+                ))}
+              </ul>
+            ) : (
+              <div
+                class:list={[
+                  "font-body flex flex-col gap-4 text-base leading-relaxed",
+                  card.centered && "text-center",
+                ]}
+              >
+                {card.content.map((item) => (
+                  <p
+                    class:list={[
+                      typeof item !== "string" &&
+                        item.bold &&
+                        "font-bold opacity-100",
+                    ]}
+                  >
+                    {typeof item === "string" ? item : item.text}
+                  </p>
+                ))}
+              </div>
+            )}
+          </FadeIn>
+        ))
+      }
+    </div>
+  </section>
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-6 px-4 py-20"
+  >
+    <TreatmentGrid
+      heading="¿Cómo lo tratamos en HI FEM CARE?"
+      treatments={[
+        {
+          title: "Evaluación médica (opcional)",
+          description:
+            "Consulta ginecológica para determinar el grado de incontinencia y descartar otros factores.",
+        },
+        {
+          title: "Tratamiento con láser MonaLisa Touch",
+          description:
+            "Energía fraccionada que regenera colágeno, reafirma tejidos y fortalece la zona sin dolor ni recuperación.",
+        },
+        {
+          title: "Plan progresivo y seguimiento",
+          description:
+            "Se realizan de 3 a 6 sesiones, con refuerzos anuales según necesidad. Seguimiento clínico para asegurar resultados duraderos.",
+        },
+      ]}
+    />
+  </section>
+  <ImageTextSection
+    imageSrc="/gynaecology/infections/need-to-know.webp"
+    imageAlt="Tratamiento de Endometriosis en HI FEM CARE"
+    imagePosition="right"
+  >
+    <div class="flex flex-col items-center gap-4 pb-10 sm:items-start">
+      <Heading
+        level={3}
+        className="text-brand-gray font-heading font-medium"
+        text="Lo que necesitas saber"
+      />
+      <p
+        class="text-brand-gray font-heading list-inside list-disc space-y-4 text-lg"
+      >
+        En casos de incontinencia urinaria por esfuerzo, se puede combinar el
+        tratamiento con láser MonaLisa Touch y Pelvicenter con la técnica
+        quirúrgica de Luksenburg (uso de hilos). Esta combinación puede alcanzar
+        hasta un 90% de efectividad.
+
+        <b class="mt-4 block font-semibold"
+          >Tu bienestar íntimo sí importa. Comienza tu tratamiento sin dolor ni
+          pausas en tu vida.</b
+        >
+      </p>
+      <div class="mt-4">
+        <ScheduleButton
+          href="https://calendly.com/hi-fem-care/agenda-cita"
+          text="¡Agenda tu cita hoy!"
+        />
+      </div>
+    </div>
+  </ImageTextSection>
+  <!-- MonaLisa Touch -->
+  <section
+    class="from-ziggurat grain via-ziggurat/80 to-smokey-pink/20 font-heading relative bg-radial-[at_50%_0%] to-90% px-4 py-20"
+  >
+    <div
+      class="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 text-center"
+    >
+      <img src="/monalisa-touch-logo.png" alt="Monalisa Touch" class="h-16" />
+
+      <div class="flex max-w-4xl flex-col gap-6">
+        <Heading
+          level={2}
+          className="font-medium tracking-wider text-white uppercase"
+          text="NUEVA TERAPIA LÁSER PARA LA INCONTINENCIA URINARIA LEVE"
+        />
+        <p class="text-lg leading-relaxed text-white">
+          El tratamiento con láser mejora la calidad del tejido vaginal. Lo
+          vuelve más hidratado, firme y elástico, reduciendo la laxitud que
+          afecta el soporte natural de la vejiga.
+        </p>
+        <p class="text-lg leading-relaxed text-white">
+          Al fortalecer el piso pélvico, se recupera la tonicidad necesaria para
+          reducir las pérdidas de orina al toser, reír o hacer ejercicio.
+        </p>
+        <p class="text-lg leading-relaxed text-white">
+          Todo esto se logra en sesiones cortas, sin dolor, sin cirugía y sin
+          efectos secundarios. Mejora no solo la función urinaria, sino también
+          la calidad de vida y el bienestar íntimo.
+        </p>
+      </div>
+
+      <!-- Chart -->
+      <FadeIn
+        class="text-brand-gray w-full max-w-2xl rounded-xl bg-white p-8 shadow-xs sm:p-12"
+      >
+        <h4 class="mb-10 text-xl leading-tight font-medium sm:text-2xl">
+          Mejoría de los síntomas (%) después de 3 tratamientos Monalisa Touch
+        </h4>
+        <div class="flex flex-col gap-6">
+          {
+            [
+              { label: "ARDOR", value: 84 },
+              { label: "PICOR", value: 85 },
+              { label: "SEQUEDAD", value: 76 },
+              { label: "DISPAREUNIA", value: 72 },
+              { label: "LAXITUD", value: 90 },
+            ].map((item) => (
+              <div class="flex flex-col gap-2 text-left">
+                <div class="flex items-end justify-between font-medium">
+                  <span class="text-brand-gray/70 text-xs tracking-widest">
+                    {item.label}
+                  </span>
+                  <span class="text-lg">{item.value}%</span>
+                </div>
+                <div class="bg-ziggurat/20 h-8 w-full overflow-hidden rounded-full">
+                  <div
+                    class="bg-ziggurat h-full"
+                    style={`width: ${item.value}%`}
+                  />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <p class="mt-10 text-xs italic opacity-60">
+          Cortesía del Prof. S. Salvatore - Hospital San Raffael, Milán - Italia
+        </p>
+      </FadeIn>
+      <button
+        id="open-video"
+        class="group mx-auto flex cursor-pointer items-center gap-4 transition-all duration-300 ease-in-out hover:scale-101"
+      >
+        <Heading
+          level={3}
+          className="font-medium text-white"
+          text="Ver el tratamiento en acción"
+        />
+        <div
+          class="flex size-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all group-hover:bg-white/30"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="text-white"
+          >
+            <path d="M8 5v14l11-7z"></path>
+          </svg>
+        </div>
+      </button>
+
+      <dialog
+        id="video-modal"
+        class="video-dialog fixed inset-0 m-auto bg-transparent p-0 focus:outline-none"
+      >
+        <div class="relative flex max-w-5xl flex-col items-center px-4">
+          <button
+            id="close-video"
+            class="mb-4 self-end text-4xl text-white transition-colors hover:text-white/70"
+            aria-label="Cerrar video"
+          >
+            &times;
+          </button>
+          <video
+            src="/uro-ginecologia.mp4"
+            class="aspect-video w-full rounded-2xl shadow-2xl"
+            controls></video>
+        </div>
+      </dialog>
+
+      <style>
+        .video-dialog {
+          opacity: 0;
+          transition:
+            opacity 0.3s ease,
+            display 0.3s ease allow-discrete,
+            overlay 0.3s ease allow-discrete;
+        }
+
+        .video-dialog[open] {
+          opacity: 1;
+        }
+
+        @starting-style {
+          .video-dialog[open] {
+            opacity: 0;
+          }
+        }
+
+        .video-dialog::backdrop {
+          background: rgb(0 0 0 / 0);
+          backdrop-filter: blur(0);
+          transition:
+            background 0.3s ease,
+            backdrop-filter 0.3s ease,
+            display 0.3s ease allow-discrete,
+            overlay 0.3s ease allow-discrete;
+        }
+
+        .video-dialog[open]::backdrop {
+          background: rgb(0 0 0 / 0.8);
+          backdrop-filter: blur(4px);
+        }
+
+        @starting-style {
+          .video-dialog[open]::backdrop {
+            background: rgb(0 0 0 / 0);
+            backdrop-filter: blur(0);
+          }
+        }
+      </style>
+
+      <script>
+        const openBtn = document.getElementById("open-video");
+        const closeBtn = document.getElementById("close-video");
+        const dialog = document.getElementById(
+          "video-modal"
+        ) as HTMLDialogElement;
+        const video = dialog?.querySelector("video");
+
+        openBtn?.addEventListener("click", () => {
+          dialog?.showModal();
+          video?.play();
+        });
+
+        const closeModal = () => {
+          dialog?.close();
+          video?.pause();
+          if (video) video.currentTime = 0;
+        };
+
+        closeBtn?.addEventListener("click", closeModal);
+
+        dialog?.addEventListener("click", (e) => {
+          if (e.target === dialog) {
+            closeModal();
+          }
+        });
+
+        // Close on escape key is handled by default by <dialog>
+        // but we need to pause the video
+        dialog?.addEventListener("cancel", () => {
+          video?.pause();
+          if (video) video.currentTime = 0;
+        });
+      </script>
+    </div>
+  </section>
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

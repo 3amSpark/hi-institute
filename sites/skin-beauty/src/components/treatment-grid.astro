@@ -24,7 +24,7 @@ const gradientPositions = [
 const isOdd = treatments.length % 2 !== 0;
 ---
 
-<section class="mx-auto max-w-7xl px-4 py-10">
+<section class="mx-auto max-w-7xl px-2 py-10">
   <FadeIn duration={1} delay={0}>
     <Heading
       level={2}
@@ -32,7 +32,7 @@ const isOdd = treatments.length % 2 !== 0;
       text={heading}
     />
   </FadeIn>
-  <div class="grid gap-6 sm:grid-cols-2">
+  <div class="grid gap-4 sm:grid-cols-2">
     {
       treatments.map((treatment, i) => {
         const isLast = i === treatments.length - 1;
@@ -43,7 +43,7 @@ const isOdd = treatments.length % 2 !== 0;
             duration={1}
             delay={i * 0.1}
             class:list={[
-              "from-ziggurat to-smokey-pink/60 flex flex-col gap-4 rounded-lg border-[0.75px] border-white p-10",
+              "from-ziggurat to-smokey-pink/60 highlight white flex flex-col gap-4 rounded-lg p-10",
               gradientPositions[i % gradientPositions.length],
               shouldCenter &&
                 "sm:col-span-2 sm:mx-auto sm:max-w-[calc(50%-0.75rem)]",
@@ -51,10 +51,10 @@ const isOdd = treatments.length % 2 !== 0;
           >
             <Heading
               level={4}
-              className="text-balance text-white text-shadow-xs"
+              className=" font-medium text-pretty text-white text-shadow-xs"
               text={treatment.title}
             />
-            <p class="font-heading text-base text-white/90">
+            <p class="font-heading text-base text-white">
               {treatment.description}
             </p>
           </FadeIn>

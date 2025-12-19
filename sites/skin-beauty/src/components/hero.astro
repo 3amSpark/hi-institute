@@ -8,15 +8,24 @@ import RevealSlides from "@repo/ui/components/reveal-slides.astro";
 
 interface Props {
   title: string;
+  subtitle?: string;
   alt: string;
   images: {
     size: "sm" | "md" | "lg";
     src: string;
   }[];
+  buttonText?: string;
   revealSlides?: boolean;
 }
 
-const { title, alt, images, revealSlides = false } = Astro.props;
+const {
+  title,
+  subtitle,
+  alt,
+  images,
+  buttonText = "Agenda tu cita ahora",
+  revealSlides = false,
+} = Astro.props;
 
 const smImage = images.find((img) => img.size === "sm");
 const mdImage = images.find((img) => img.size === "md");
@@ -37,11 +46,20 @@ const fallbackImage = lgImage || mdImage || smImage;
         className="max-w-3/4 font-medium text-balance text-white text-shadow-sm"
         level={1}
       />
+      {
+        subtitle && (
+          <Heading
+            text={subtitle}
+            className="max-w-3/4 text-balance text-white text-shadow-sm"
+            level={4}
+          />
+        )
+      }
     </FadeIn>
     <FadeIn duration={1} delay={0.1}>
       <ScheduleButton
         href="https://calendly.com/hi-fem-care/agenda-cita"
-        text="Agenda tu cita ahora"
+        text={buttonText}
       />
     </FadeIn>
   </div>

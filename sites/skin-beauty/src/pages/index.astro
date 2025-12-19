@@ -1,21 +1,15 @@
 ---
-import RootLayout from "../layouts/root.astro";
-import Heading from "@repo/ui/components/heading.astro";
 import FadeIn from "@repo/ui/components/fade-in.astro";
-import RevealSlides from "@repo/ui/components/reveal-slides.astro";
+import Heading from "@repo/ui/components/heading.astro";
 import ServiceGrid from "@repo/ui/components/service-grid.astro";
-import ValueCard from "src/components/value-card.astro";
-import ParallaxImage from "src/components/parallax-image.astro";
-import ScheduleButton from "src/components/schedule-button.astro";
-import GrainTexture from "src/components/grain-texture.astro";
 import Footer from "src/components/footer.astro";
-import WhyUs from "src/components/why-us.astro";
-import Navbar from "src/components/navbar.astro";
 import Hero from "src/components/hero.astro";
+import Navbar from "src/components/navbar.astro";
+import WhyUs from "src/components/why-us.astro";
+import RootLayout from "../layouts/root.astro";
 ---
 
 <RootLayout>
-  <!-- Navbar -->
   <Navbar />
   <Hero
     title="Cuidamos tu salud íntima con precisión y ciencia."
@@ -64,22 +58,27 @@ import Hero from "src/components/hero.astro";
           {
             name: "Ginecología",
             image: "/ginecologia.webp",
+            href: "/ginecologia",
           },
           {
             name: "Virus del Papiloma Humano",
             image: "/virus-pailoma-humano.webp",
+            href: "/vph",
           },
           {
             name: "Endometriosis",
             image: "/endometriosis.webp",
+            href: "/endometriosis",
           },
           {
             name: "Uroginecología",
             image: "/uroginecologia.webp",
+            href: "/uro-ginecologia",
           },
           {
             name: "Fem Care Total",
             image: "/fem-care-total.webp",
+            href: "/fem-care-total",
           },
         ]}
       />

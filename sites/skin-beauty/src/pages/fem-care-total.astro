@@ -1,0 +1,269 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import Hero from "src/components/hero.astro";
+import Footer from "src/components/footer.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import TreatmentGrid from "src/components/treatment-grid.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import WhyUs from "src/components/why-us.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+const whoNeedsIt = [
+  "Quieres prevenir enfermedades ginecológicas antes de que aparezcan.",
+  "Has tenido diagnósticos previos como VPH, endometriosis o SOP y deseas mantenerte estable.",
+  "Notas resequedad, debilidad en el piso pélvico, molestias sexuales o cambios hormonales.",
+  "Buscas un acompañamiento real, no solo exámenes.",
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="Un programa que cuida tu cuerpo, tus ciclos y tu paz."
+    alt="Fem Care Total"
+    images={[
+      {
+        size: "sm",
+        src: "/hero/11-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/hero/11-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/hero/11.webp",
+      },
+    ]}
+  />
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <FadeIn duration={1}>
+      <Heading
+        level={4}
+        className="text-brand-gray/80 font-heading text-pretty sm:text-center"
+        text="Fem Care Total"
+      />
+      <Heading
+        level={2}
+        className="text-brand-gray font-medium text-balance sm:text-center"
+        text="Ginecología a otro nivel"
+      />
+    </FadeIn>
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      FEM CARE Total es un programa anual preventivo y regenerativo que cuida de
+      forma integral tu salud ginecológica, hormonal y sexual. Pensado para
+      mujeres que quieren mantenerse sanas, evitar cirugías futuras y sentirse
+      bien durante todo el año.
+    </p>
+  </section>
+  <section class="bg-neutral-100 px-4 py-20">
+    <div class="mx-auto max-w-4xl">
+      <FadeIn duration={1} delay={0}>
+        <Heading
+          level={3}
+          className="text-brand-gray mb-8 text-center font-medium"
+          text="¿Quiénes lo necesitan?"
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <Heading
+          level={5}
+          className="text-brand-gray mb-8 text-center"
+          text="Este programa es ideal si:"
+        />
+        <div class="mx-auto grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
+          {
+            whoNeedsIt.map((item) => (
+              <div class="grain from-ziggurat/10 to-smokey-pink/10 relative flex items-center justify-center overflow-hidden rounded-xl bg-radial-[at_100%_0%] p-6 text-center">
+                <p class="text-brand-gray font-heading relative z-10 text-lg">
+                  {item}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </FadeIn>
+    </div>
+  </section>
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-6 px-4 py-20"
+  >
+    <TreatmentGrid
+      heading="¿Qué incluye Fem Care Total?"
+      treatments={[
+        {
+          title: "Regeneración Vaginal & Vulvar",
+          description:
+            "4 sesiones de láser MonaLisa Touch. Se realiza cada 2 meses y regeneran la lubricación y acidez vaginal.",
+        },
+        {
+          title: "Prevención del VPH",
+          description:
+            "1 colposcopia de alta precisión y 1 papanicolaou con toma adecuada de muestra.",
+        },
+        {
+          title: "Diagnóstico Pélvico y Hormonal",
+          description:
+            "1 ultrasonido ginecológico o pélvico completo. Evaluación funcional del útero, matriz y ovarios.",
+        },
+        {
+          title: "Bienestar del Piso Pélvico",
+          description:
+            "8 sesiones de Silla Magnética Pelvicenter para la estimulación del piso pélvico muscular, ayudando a la incontinencia urinaria y bienestar sexual.",
+        },
+      ]}
+    />
+  </section>
+  <ImageTextSection
+    imageSrc="/hero/12-sm.webp"
+    imageAlt="Beneficios de Fem Care Total"
+    imagePosition="right"
+  >
+    <div class="flex flex-col items-center gap-4 pb-10 sm:items-start">
+      <Heading
+        level={3}
+        className="text-brand-gray font-heading font-medium"
+        text="Beneficios que lo hacen único"
+      />
+      <ul
+        class="text-brand-gray font-heading list-inside list-disc space-y-4 text-lg"
+      >
+        <li>Prevención + regeneración en un solo plan</li>
+        <li>Resultados visibles sin medicamentos ni cirugías</li>
+        <li>Tratamiento cómodo, ambulatorio y personalizado</li>
+        <li>Diagnóstico anual completo sin necesidad de múltiples citas</li>
+      </ul>
+    </div>
+  </ImageTextSection>
+
+  <ImageTextSection
+    imageSrc="/hero/14.webp"
+    imageAlt="Información sobre Fem Care Total"
+    imagePosition="left"
+  >
+    <div class="flex flex-col items-center gap-4 pb-10 sm:items-start">
+      <Heading
+        level={3}
+        className="text-brand-gray font-heading font-medium"
+        text="Información que debes saber"
+      />
+      <ul
+        class="text-brand-gray font-heading list-inside list-disc space-y-4 text-lg"
+      >
+        <li>
+          Contamos con más de 14 años de experiencia en salud funcional de la
+          mujer
+        </li>
+        <li>
+          Único centro en Guatemala que combina MonaLisa Touch y Pelvicenter en
+          un protocolo anual
+        </li>
+        <li>Resultados clínicos comprobados</li>
+        <li>
+          Equipo especializado en bienestar ginecológico, hormonal y sexual
+        </li>
+      </ul>
+    </div>
+  </ImageTextSection>
+
+  <!-- Program Options -->
+  <section class="bg-neutral-100 px-4 py-20">
+    <div class="mx-auto max-w-5xl">
+      <FadeIn duration={1} delay={0}>
+        <Heading
+          level={3}
+          className="text-brand-gray mb-16 text-center font-medium text-balance"
+          text="Este es el programa más completo para alcanzar el bienestar óptimo y cuidar de tu salud femenina"
+        />
+      </FadeIn>
+
+      <div class="flex flex-col items-center justify-center gap-8 md:flex-row">
+        <FadeIn duration={1} delay={0.1} class="w-full max-w-sm">
+          <div
+            class="grain from-ziggurat/10 to-smokey-pink/10 relative flex flex-col items-center justify-center overflow-hidden rounded-2xl bg-white bg-linear-to-br p-4 text-center"
+          >
+            <h4
+              class="text-brand-gray font-heading mb-2 text-xl font-medium tracking-widest uppercase"
+            >
+              Programa Completo
+            </h4>
+            <p class="text-brand-gray font-heading text-4xl font-bold">
+              Q8,900 <span class="text-lg font-normal opacity-60">/ año</span>
+            </p>
+            <p
+              class="text-brand-gray/60 invisible mt-2 text-sm font-medium tracking-tighter uppercase italic"
+            >
+              Mantenimiento
+            </p>
+          </div>
+        </FadeIn>
+
+        <FadeIn duration={1} delay={0.2} class="w-full max-w-sm">
+          <div
+            class="grain from-ziggurat/10 to-smokey-pink/10 relative flex flex-col items-center justify-center overflow-hidden rounded-2xl bg-white bg-linear-to-br p-4 text-center"
+          >
+            <h4
+              class="text-brand-gray font-heading mb-2 text-xl font-medium tracking-widest uppercase"
+            >
+              Medio Programa
+            </h4>
+            <p class="text-brand-gray font-heading text-4xl font-bold">
+              Q4,900 <span class="text-lg font-normal opacity-60">/ año</span>
+            </p>
+            <p
+              class="text-brand-gray/60 font-heading mt-2 text-sm font-medium tracking-tighter"
+            >
+              Mantenimiento
+            </p>
+          </div>
+        </FadeIn>
+      </div>
+
+      <div class="mt-16 flex justify-center">
+        <FadeIn duration={1} delay={0.3}>
+          <ScheduleButton
+            href="https://calendly.com/hi-fem-care/agenda-cita"
+            text="¡Adquiérelo hoy!"
+          />
+        </FadeIn>
+      </div>
+    </div>
+  </section>
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

@@ -1,3 +1,7 @@
+---
+import NavLink from "./nav-link.astro";
+---
+
 <nav class="fixed top-0 right-0 left-0 z-50 bg-white/90 backdrop-blur-sm">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between">
@@ -8,42 +12,12 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden items-center gap-8 lg:flex">
-        <a
-          href="/ginecologia/"
-          class="text-brand-gray hover:text-smokey-pink font-heading text-sm font-medium tracking-wide uppercase transition-colors"
-        >
-          Ginecología
-        </a>
-        <a
-          href="#vph"
-          class="text-brand-gray hover:text-smokey-pink font-heading text-sm font-medium tracking-wide uppercase transition-colors"
-        >
-          VPH
-        </a>
-        <a
-          href="/endometriosis"
-          class="text-brand-gray hover:text-smokey-pink font-heading text-sm font-medium tracking-wide uppercase transition-colors"
-        >
-          Endometriosis
-        </a>
-        <a
-          href="/uroginecologia"
-          class="text-brand-gray hover:text-smokey-pink font-heading text-sm font-medium tracking-wide uppercase transition-colors"
-        >
-          Uroginecología
-        </a>
-        <a
-          href="/femcare-total"
-          class="text-brand-gray hover:text-smokey-pink font-heading text-sm font-medium tracking-wide uppercase transition-colors"
-        >
-          Femcare Total
-        </a>
-        <a
-          href="/monalisa-touch"
-          class="text-brand-gray hover:text-smokey-pink font-heading text-sm font-medium tracking-wide uppercase transition-colors"
-        >
-          Monalisa Touch
-        </a>
+        <NavLink href="/ginecologia">Ginecología</NavLink>
+        <NavLink href="#vph">VPH</NavLink>
+        <NavLink href="/endometriosis" exact>Endometriosis</NavLink>
+        <NavLink href="/uro-ginecologia" exact>Uroginecología</NavLink>
+        <NavLink href="/fem-care-total" exact>Femcare Total</NavLink>
+        <NavLink href="/monalisa-touch" exact>Monalisa Touch</NavLink>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -67,42 +41,17 @@
   <!-- Mobile Menu (hidden by default) -->
   <div class="hidden lg:hidden">
     <div class="space-y-3 border-t border-gray-100 bg-white px-4 py-4">
-      <a
-        href="#ginecologia"
-        class="text-iroko hover:text-smokey-pink font-heading block text-sm tracking-wide uppercase transition-colors"
+      <NavLink href="/ginecologia" class="block">Ginecología</NavLink>
+      <NavLink href="#vph" class="block">VPH</NavLink>
+      <NavLink href="/endometriosis" class="block" exact>Endometriosis</NavLink>
+      <NavLink href="/uro-ginecologia" class="block" exact
+        >Uroginecología</NavLink
       >
-        Ginecología
-      </a>
-      <a
-        href="#vph"
-        class="text-iroko hover:text-smokey-pink font-heading block text-sm tracking-wide uppercase transition-colors"
+      <NavLink href="/fem-care-total" class="block" exact>Femcare Total</NavLink
       >
-        VPH
-      </a>
-      <a
-        href="#endometriosis"
-        class="text-iroko hover:text-smokey-pink font-heading block text-sm tracking-wide uppercase transition-colors"
+      <NavLink href="/monalisa-touch" class="block" exact
+        >Monalisa Touch</NavLink
       >
-        Endometriosis
-      </a>
-      <a
-        href="#uroginecologia"
-        class="text-iroko hover:text-smokey-pink font-heading block text-sm tracking-wide uppercase transition-colors"
-      >
-        Uroginecología
-      </a>
-      <a
-        href="#femcare-total"
-        class="text-iroko hover:text-smokey-pink font-heading block text-sm tracking-wide uppercase transition-colors"
-      >
-        Femcare Total
-      </a>
-      <a
-        href="#monalisa-touch"
-        class="text-iroko hover:text-smokey-pink font-heading block text-sm tracking-wide uppercase transition-colors"
-      >
-        Monalisa Touch
-      </a>
     </div>
   </div>
 </nav>

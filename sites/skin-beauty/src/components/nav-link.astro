@@ -1,0 +1,33 @@
+---
+interface Props {
+  href: string;
+  class?: string;
+  /** Match exact path only (default: false - also matches child routes) */
+  exact?: boolean;
+}
+
+const { href, class: className, exact = false, ...rest } = Astro.props;
+const pathname = Astro.url.pathname;
+
+// Normalize paths by removing trailing slashes for comparison
+const normalizedHref = href.replace(/\/$/, "") || "/";
+const normalizedPathname = pathname.replace(/\/$/, "") || "/";
+
+const isActive = exact
+  ? normalizedPathname === normalizedHref
+  : normalizedPathname === normalizedHref ||
+    normalizedPathname.startsWith(normalizedHref + "/");
+---
+
+<a
+  href={href}
+  class:list={[
+    "font-heading hover:text-smokey-pink text-sm font-medium tracking-wide uppercase transition-colors",
+    isActive ? "text-smokey-pink font-semibold" : "text-brand-gray/70",
+    className,
+  ]}
+  aria-current={isActive ? "page" : undefined}
+  {...rest}
+>
+  <slot />
+</a>
