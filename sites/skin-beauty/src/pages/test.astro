@@ -1,0 +1,15 @@
+---
+import RootLayout from "../layouts/root.astro";
+import ComparisonSlider from "../components/comparison-slider.astro";
+---
+
+<RootLayout>
+  <div class="grid place-items-center py-16">
+    <ComparisonSlider
+      beforeImage="/service.jpg"
+      afterImage="/hero.jpg"
+      containerClass="relative w-full max-w-4xl aspect-[4/3] rounded-xl shadow-xl bg-gray-200"
+      initialPosition={45}
+    />
+  </div>
+</RootLayout>
