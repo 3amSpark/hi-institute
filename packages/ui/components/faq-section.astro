@@ -34,30 +34,28 @@ const {
       set:html={subtitle}
     />
 
-    <div class="divide-brand-gray/20 divide-y">
+    <div class="">
       {
         faqs.map((faq, i) => (
-          <FadeIn duration={1} delay={i * 0.05}>
-            <div class="faq-item group hover:bg-brand/10 rounded-md">
-              <button
-                class="faq-trigger text-brand-gray font-heading group-hover:text-brand flex w-full cursor-pointer items-center justify-between px-4 py-6 text-left text-sm font-medium tracking-wide uppercase transition-colors duration-300"
-                aria-expanded="false"
-              >
-                <span>{faq.question}</span>
-                <span class="faq-icon text-brand-gray/60 group-hover:text-brand relative ml-4 flex h-6 w-6 shrink-0 items-center justify-center transition-colors duration-300">
-                  <span class="absolute h-px w-3 bg-current transition-colors duration-300" />
-                  <span class="faq-icon-vertical absolute h-3 w-px bg-current transition-all duration-300" />
-                </span>
-              </button>
-              <div class="faq-content grid grid-rows-[0fr] px-4 transition-[grid-template-rows] duration-300 ease-out">
-                <div class="overflow-hidden">
-                  <p class="text-brand-gray/80 font-body pb-6 leading-relaxed">
-                    {faq.answer}
-                  </p>
-                </div>
+          <div class="faq-item group hover:bg-brand/10 rounded-md">
+            <button
+              class="faq-trigger text-brand-gray font-heading group-hover:text-brand flex w-full cursor-pointer items-center justify-between px-4 py-6 text-left text-sm font-medium tracking-wide uppercase transition-colors duration-300"
+              aria-expanded="false"
+            >
+              <span>{faq.question}</span>
+              <span class="faq-icon text-brand-gray/60 group-hover:text-brand relative ml-4 flex h-6 w-6 shrink-0 items-center justify-center transition-colors duration-300">
+                <span class="absolute h-px w-3 bg-current transition-colors duration-300" />
+                <span class="faq-icon-vertical absolute h-3 w-px bg-current transition-all duration-300" />
+              </span>
+            </button>
+            <div class="faq-content grid grid-rows-[0fr] px-4 transition-[grid-template-rows] duration-300 ease-out">
+              <div class="overflow-hidden">
+                <p class="text-brand-gray/80 font-body pb-6 leading-relaxed">
+                  {faq.answer}
+                </p>
               </div>
             </div>
-          </FadeIn>
+          </div>
         ))
       }
     </div>
