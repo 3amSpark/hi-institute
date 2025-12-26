@@ -4,6 +4,8 @@ type Props = {
   afterImage: string;
   beforeAlt?: string;
   afterAlt?: string;
+  beforeLabel?: string;
+  afterLabel?: string;
   containerClass?: string;
   initialPosition?: number;
   sliderId?: string;
@@ -16,6 +18,8 @@ const {
   afterImage,
   beforeAlt = "Before image",
   afterAlt = "After image",
+  beforeLabel = "Antes",
+  afterLabel = "Después",
   containerClass = "",
   initialPosition = 50,
   sliderId = `comparison-${Math.random().toString(36).slice(2, 8)}`,
@@ -27,31 +31,47 @@ const startPosition = Math.min(100, Math.max(0, initialPosition));
 <div
   id={sliderId}
   data-comparison-slider
-  class={`comparison-root relative overflow-hidden select-none ${containerClass}`}
+  class={`comparison-root relative aspect-video overflow-hidden select-none ${containerClass}`}
   style={`--pos: ${startPosition}%`}
 >
   <div class="comparison-handle" style="left: var(--pos)">
     <div class="comparison-handle__knob">
+      <div class="comparison-handle__bar"></div>
+      <div class="comparison-handle__bar"></div>
       <div class="comparison-handle__bar"></div>
     </div>
   </div>
 
   <div class="absolute inset-0">
     <img
-      src={beforeImage}
-      alt={beforeAlt}
-      class="h-full w-full object-cover"
-      loading="lazy"
-    />
-  </div>
-
-  <div class="absolute inset-0 comparison-mask">
-    <img
       src={afterImage}
       alt={afterAlt}
       class="h-full w-full object-cover"
       loading="lazy"
     />
+    {
+      afterLabel && (
+        <div class="font-heading absolute right-4 bottom-4 z-10 rounded-full bg-black/40 px-3 py-1 text-[10px] font-bold tracking-widest whitespace-nowrap text-white uppercase backdrop-blur-sm">
+          {afterLabel}
+        </div>
+      )
+    }
+  </div>
+
+  <div class="comparison-mask absolute inset-0">
+    <img
+      src={beforeImage}
+      alt={beforeAlt}
+      class="h-full w-full object-cover"
+      loading="lazy"
+    />
+    {
+      beforeLabel && (
+        <div class="font-heading absolute bottom-4 left-4 z-10 rounded-full bg-white/40 px-3 py-1 text-[10px] font-bold tracking-widest whitespace-nowrap text-black uppercase backdrop-blur-sm">
+          {beforeLabel}
+        </div>
+      )
+    }
   </div>
 </div>
 
@@ -60,31 +80,44 @@ const startPosition = Math.min(100, Math.max(0, initialPosition));
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 0.25rem;
+    width: 2px;
     transform: translateX(-50%);
-    background: black;
+    background: white;
     z-index: 20;
     cursor: col-resize;
+    transition: opacity 0.3s ease;
+  }
+
+  .comparison-root[data-dragging] .comparison-handle {
+    opacity: 0;
   }
 
   .comparison-handle__knob {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     transform: translate(-50%, -50%);
     border-radius: 9999px;
     background: white;
-    display: grid;
-    place-items: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
   }
 
   .comparison-handle__bar {
-    width: 1rem;
-    height: 0.125rem;
-    background: #9ca3af;
+    width: 2px;
+    height: 12px;
+    background: #d1d5db;
+    border-radius: 1px;
+  }
+
+  .comparison-handle__bar:nth-child(2) {
+    height: 16px;
+    background: var(--color-brand, #000);
   }
 
   .comparison-mask {
@@ -127,6 +160,7 @@ const startPosition = Math.min(100, Math.max(0, initialPosition));
 
     const onPointerDown = (event) => {
       isDragging = true;
+      container.setAttribute("data-dragging", "");
       container.setPointerCapture(event.pointerId);
       updatePosition(event.clientX);
     };
@@ -140,6 +174,7 @@ const startPosition = Math.min(100, Math.max(0, initialPosition));
     const stopDragging = (event) => {
       if (!isDragging) return;
       isDragging = false;
+      container.removeAttribute("data-dragging");
       container.releasePointerCapture(event.pointerId);
     };
 

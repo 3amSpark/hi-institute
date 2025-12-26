@@ -10,6 +10,7 @@ import ScheduleButton from "src/components/schedule-button.astro";
 import WhyUs from "src/components/why-us.astro";
 import FadeIn from "@repo/ui/components/fade-in.astro";
 import ArrowRight from "@repo/ui/icons/arrow-right.astro";
+import FAQSection from "@repo/ui/components/faq-section.astro";
 const monalisaBenefits = [
   "Procedimiento rápido y sin dolor.",
   "No invasivo y sin tiempo de recuperación.",
@@ -280,117 +281,42 @@ const conditions = [
   </style>
 
   <!-- FAQ Section -->
-  <section class="px-4 py-20">
-    <div class="mx-auto max-w-4xl">
-      <FadeIn duration={1}>
-        <Heading
-          level={2}
-          className="text-brand-gray mb-4 text-center font-medium"
-          text="Preguntas Frecuentes"
-        />
-      </FadeIn>
-      <p class="text-brand-gray/90 font-body mb-12 text-center text-lg">
-        Si tienes dudas, revisa las preguntas frecuentes antes de agendar tu consulta.<br />
-        Si aún necesitas ayuda, contáctanos. Estaremos encantados de ayudarte.
-      </p>
-
-      <div class="divide-brand-gray/20 divide-y">
-        {[
-          {
-            question: "¿Para quién está indicado este tratamiento?",
-            answer: "Está recomendado para mujeres que experimentan síntomas relacionados con la disminución vaginal y la disminución de estrógeno, como resequedad vaginal, irritación, dolor durante las relaciones sexuales o incontinencia urinaria. Esto afecta a mujeres con ovario poliquístico, endometriosis, menopausia, posparto o aquellas que han recibido tratamientos oncológicos."
-          },
-          {
-            question: "¿Es doloroso el procedimiento?",
-            answer: "No, el tratamiento generalmente no requiere anestesia. Las pacientes suelen describir una ligera sensación de vibración o calor durante la sesión."
-          },
-          {
-            question: "¿Cuántas sesiones son necesarias?",
-            answer: "Por lo general, se recomiendan entre 1 y 3 sesiones, con intervalos de 40 a 60 días entre cada una. Posteriormente, se aconseja una sesión de mantenimiento anual."
-          },
-          {
-            question: "¿Cuándo se pueden reanudar las actividades sexuales?",
-            answer: "Se aconseja esperar entre 3 y 4 días después del tratamiento antes de retomar la actividad sexual regular."
-          },
-          {
-            question: "¿Existen efectos secundarios o riesgos asociados?",
-            answer: "Los efectos secundarios son mínimos. Algunas mujeres pueden experimentar un ligero enrojecimiento o hinchazón que desaparece en uno o dos días. No se han reportado complicaciones significativas en más de 20,000 mujeres tratadas en todo el mundo."
-          },
-          {
-            question: "¿Cuánto tiempo duran los efectos del tratamiento?",
-            answer: "Los resultados son casi inmediatos y continúan mejorando en los meses siguientes. Para mantener los beneficios, se recomienda una sesión de mantenimiento anual."
-          },
-          {
-            question: "¿Hay contraindicaciones para este tratamiento?",
-            answer: "No existen contraindicaciones absolutas, excepto en casos de enfermedades locales o sistémicas graves. Es esencial una evaluación médica previa para determinar la idoneidad del tratamiento en cada paciente."
-          },
-          {
-            question: "¿El tratamiento está aprobado por autoridades sanitarias?",
-            answer: "Sí, MonaLisa Touch® cuenta con la aprobación de la FDA de Estados Unidos y ha demostrado ser seguro y eficaz en múltiples estudios clínicos."
-          }
-        ].map((faq, i) => (
-          <FadeIn duration={1} delay={i * 0.05}>
-            <div class="faq-item">
-              <button
-                class="faq-trigger text-brand-gray font-heading flex w-full cursor-pointer items-center justify-between py-6 text-left text-sm font-medium uppercase tracking-wide"
-                aria-expanded="false"
-              >
-                <span>{faq.question}</span>
-                <span class="faq-icon text-brand-gray/60 relative ml-4 flex h-6 w-6 shrink-0 items-center justify-center">
-                  <span class="bg-brand-gray/60 absolute h-px w-3"></span>
-                  <span class="bg-brand-gray/60 faq-icon-vertical absolute h-3 w-px transition-transform duration-300"></span>
-                </span>
-              </button>
-              <div class="faq-content grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out">
-                <div class="overflow-hidden">
-                  <p class="text-brand-gray/80 font-body pb-6 leading-relaxed">
-                    {faq.answer}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <script>
-    document.querySelectorAll('.faq-trigger').forEach((trigger) => {
-      trigger.addEventListener('click', () => {
-        const item = trigger.closest('.faq-item');
-        const content = item?.querySelector('.faq-content');
-        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
-        
-        // Close all other FAQs
-        document.querySelectorAll('.faq-item').forEach((otherItem) => {
-          if (otherItem !== item) {
-            const otherTrigger = otherItem.querySelector('.faq-trigger');
-            const otherContent = otherItem.querySelector('.faq-content');
-            otherTrigger?.setAttribute('aria-expanded', 'false');
-            otherContent?.classList.remove('grid-rows-[1fr]');
-            otherContent?.classList.add('grid-rows-[0fr]');
-          }
-        });
-        
-        // Toggle current FAQ
-        trigger.setAttribute('aria-expanded', String(!isExpanded));
-        if (!isExpanded) {
-          content?.classList.remove('grid-rows-[0fr]');
-          content?.classList.add('grid-rows-[1fr]');
-        } else {
-          content?.classList.remove('grid-rows-[1fr]');
-          content?.classList.add('grid-rows-[0fr]');
-        }
-      });
-    });
-  </script>
-
-  <style>
-    .faq-trigger[aria-expanded="true"] .faq-icon-vertical {
-      transform: rotate(90deg);
-    }
-  </style>
+  <FAQSection
+    faqs={[
+      {
+        question: "¿Para quién está indicado este tratamiento?",
+        answer: "Está recomendado para mujeres que experimentan síntomas relacionados con la disminución vaginal y la disminución de estrógeno, como resequedad vaginal, irritación, dolor durante las relaciones sexuales o incontinencia urinaria. Esto afecta a mujeres con ovario poliquístico, endometriosis, menopausia, posparto o aquellas que han recibido tratamientos oncológicos."
+      },
+      {
+        question: "¿Es doloroso el procedimiento?",
+        answer: "No, el tratamiento generalmente no requiere anestesia. Las pacientes suelen describir una ligera sensación de vibración o calor durante la sesión."
+      },
+      {
+        question: "¿Cuántas sesiones son necesarias?",
+        answer: "Por lo general, se recomiendan entre 1 y 3 sesiones, con intervalos de 40 a 60 días entre cada una. Posteriormente, se aconseja una sesión de mantenimiento anual."
+      },
+      {
+        question: "¿Cuándo se pueden reanudar las actividades sexuales?",
+        answer: "Se aconseja esperar entre 3 y 4 días después del tratamiento antes de retomar la actividad sexual regular."
+      },
+      {
+        question: "¿Existen efectos secundarios o riesgos asociados?",
+        answer: "Los efectos secundarios son mínimos. Algunas mujeres pueden experimentar un ligero enrojecimiento o hinchazón que desaparece en uno o dos días. No se han reportado complicaciones significativas en más de 20,000 mujeres tratadas en todo el mundo."
+      },
+      {
+        question: "¿Cuánto tiempo duran los efectos del tratamiento?",
+        answer: "Los resultados son casi inmediatos y continúan mejorando en los meses siguientes. Para mantener los beneficios, se recomienda una sesión de mantenimiento anual."
+      },
+      {
+        question: "¿Hay contraindicaciones para este tratamiento?",
+        answer: "No existen contraindicaciones absolutas, excepto en casos de enfermedades locales o sistémicas graves. Es esencial una evaluación médica previa para determinar la idoneidad del tratamiento en cada paciente."
+      },
+      {
+        question: "¿El tratamiento está aprobado por autoridades sanitarias?",
+        answer: "Sí, MonaLisa Touch® cuenta con la aprobación de la FDA de Estados Unidos y ha demostrado ser seguro y eficaz en múltiples estudios clínicos."
+      }
+    ]}
+  />
 
   <section
     class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-6 px-4 py-20"
