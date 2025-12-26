@@ -12,18 +12,18 @@ const { href, text, class: className } = Astro.props as Props;
   target="_blank"
   rel="noopener noreferrer"
   class:list={[
-    "from-ziggurat to-smokey-pink font-heading group highlight relative inline-block w-fit cursor-pointer overflow-hidden rounded-full bg-radial-[at_50%_80%] px-7 py-2 text-lg font-medium text-white uppercase",
+    "font-heading group highlight relative inline-block w-fit cursor-pointer overflow-hidden rounded-full bg-white px-7 py-2 text-lg font-medium text-white uppercase",
     className,
   ]}
 >
   <span class="invisible">{text}</span>
   <span
-    class="absolute inset-0 flex -translate-y-full items-center justify-center font-medium transition-transform duration-300 group-hover:translate-y-0"
+    class="text-brand absolute inset-0 flex -translate-y-full items-center justify-center font-medium transition-transform duration-300 group-hover:translate-y-0"
   >
     {text}
   </span>
   <span
-    class="absolute inset-0 flex translate-y-0 items-center justify-center font-medium transition-transform duration-300 group-hover:translate-y-full"
+    class="text-brand absolute inset-0 flex translate-y-0 items-center justify-center font-medium transition-transform duration-300 group-hover:translate-y-full"
   >
     {text}
   </span>

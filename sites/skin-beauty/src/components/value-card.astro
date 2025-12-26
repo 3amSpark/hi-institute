@@ -25,7 +25,7 @@ const {
   duration={duration}
   delay={delay}
   yOffset={yOffset}
-  class="grid grid-rows-subgrid row-span-2"
+  class="row-span-2 grid grid-rows-subgrid"
 >
   <div
     class={`grid sm:hover:translate-y-[-10px] ${
@@ -34,10 +34,10 @@ const {
   >
     <Heading
       level={4}
-      className="text-brand-gray font-medium text-pretty text-xl"
+      className="text-brand text-xl font-medium text-pretty"
       text={title}
     />
-    <div class="flex flex-col gap-2 text-brand-gray">
+    <div class="text-brand-gray flex flex-col gap-2">
       {description.map((desc) => <p>{desc}</p>)}
     </div>
   </div>

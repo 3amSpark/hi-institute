@@ -5,48 +5,45 @@ import MobileNavLink from "./mobile-nav-link.astro";
 const dropdownLinkClass =
   "font-heading text-brand-gray/70 hover:bg-ziggurat/10 hover:text-smokey-pink block rounded px-3 py-2 text-sm font-medium uppercase transition-colors";
 
+// TODO: Use the old naming convention to keep Google Search Console happy
 const routes = [
   {
-    href: "/ginecologia",
-    label: "Ginecología",
+    href: "/dermatologia",
+    label: "DERMATOLOGÍA",
     children: [
-      { href: "/ginecologia", label: "Ginecología General" },
-      { href: "/ginecologia/ciclos-irregulares", label: "Ciclos Irregulares" },
+      { href: "/dermatologia/piel", label: "DERMATOLOGÍA DE LA PIEL" },
+      { href: "/dermatologia/cabello", label: "DERMATOLOGÍA DEL CABELLO" },
+    ],
+  },
+  { href: "/medicina-laser", label: "MEDICINA LÁSER", exact: true },
+  {
+    href: "/los-mas-solicitados",
+    label: "LOS MÁS SOLICITADOS",
+    children: [
+      { href: "/los-mas-solicitados/marcas-de-acne", label: "MARCAS DE ACNÉ" },
+      { href: "/los-mas-solicitados/rosacea", label: "ROSÁCEA" },
+      { href: "/los-mas-solicitados/manchas", label: "MANCHAS" },
       {
-        href: "/ginecologia/sindrome-ovario-poliquistico",
-        label: "Síndrome de Ovario Poliquístico",
-      },
-      { href: "/ginecologia/miomas-uterinos", label: "Miomas Uterinos" },
-      {
-        href: "/ginecologia/perimenopausia-menopausia",
-        label: "Perimenopausia y Menopausia",
-      },
-      { href: "/ginecologia/liquen-vulvar", label: "Liquen Vulvar" },
-      {
-        href: "/ginecologia/infecciones-vaginales",
-        label: "Infecciones Vaginales",
+        href: "/los-mas-solicitados/suavizado-de-arrugas",
+        label: "SUAVIZADO DE ARRUGAS",
       },
     ],
   },
   {
-    href: "/virus-del-papiloma-humano",
-    label: "VPH",
+    href: "/rejuvenecimiento",
+    label: "REJUVENECIMIENTO",
     children: [
-      { href: "/virus-del-papiloma-humano", label: "VPH General" },
-      {
-        href: "/virus-del-papiloma-humano/prevencion-y-deteccion-temprana",
-        label: "Prevención y Detección Temprana",
-      },
-      {
-        href: "/virus-del-papiloma-humano/tratamientos-curativos",
-        label: "Tratamientos Curativos",
-      },
+      { href: "/rejuvenecimiento/inyectables", label: "INYECTABLES" },
+      { href: "/rejuvenecimiento/ultra-clear", label: "ULTRA CLEAR" },
     ],
   },
-  { href: "/endometriosis", label: "Endometriosis", exact: true },
-  { href: "/uro-ginecologia", label: "Uroginecología", exact: true },
-  { href: "/fem-care-total", label: "Femcare Total", exact: true },
-  { href: "/monalisa-touch", label: "Monalisa Touch", exact: true },
+  { href: "/hidrafaciales", label: "HIDRAFACIALES", exact: true },
+  { href: "/depilacion-laser", label: "DEPILACIÓN LÁSER", exact: true },
+  {
+    href: "/analisis-3d-del-rostro",
+    label: "ANÁLISIS 3D DEL ROSTRO",
+    exact: true,
+  },
 ];
 ---
 
@@ -60,7 +57,7 @@ const routes = [
 <!-- Mobile Menu -->
 <div
   id="mobile-menu"
-  class="pointer-events-none fixed inset-x-0 top-20 z-40 h-[calc(100dvh-5rem)] -translate-y-2 overflow-y-auto bg-white opacity-0 transition-all duration-200 lg:hidden"
+  class="pointer-events-none fixed inset-x-0 top-20 z-40 h-[calc(100dvh-5rem)] -translate-y-2 overflow-y-auto bg-white opacity-0 transition-all duration-200 xl:hidden"
 >
   <div class="flex h-full flex-col">
     {
@@ -81,15 +78,16 @@ const routes = [
 <nav
   class="border-brand-gray/10 fixed top-0 right-0 left-0 z-50 border-b bg-white/85 backdrop-blur-sm"
 >
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between">
       <!-- Logo -->
       <a href="/" class="shrink-0">
-        <img src="/logo.svg" alt="Hi Fem Care" class="h-8 w-auto" />
+        <!-- TODO: Replace with proper logo-->
+        <img src="/logo.webp" alt="Skin Beauty" class="h-8 w-auto" />
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden items-center gap-8 lg:flex">
+      <div class="hidden items-center gap-8 xl:flex">
         {
           routes.map((route) =>
             route.children ? (
@@ -115,7 +113,7 @@ const routes = [
       <!-- Mobile Menu Button -->
       <button
         id="open-mobile-menu"
-        class="group relative flex size-10 cursor-pointer flex-col items-center justify-center gap-1.5 lg:hidden"
+        class="group relative flex size-10 cursor-pointer flex-col items-center justify-center gap-1.5 xl:hidden"
         aria-label="Abrir menú"
       >
         <span

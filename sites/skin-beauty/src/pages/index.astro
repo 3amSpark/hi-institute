@@ -54,6 +54,7 @@ import RootLayout from "../layouts/root.astro";
     </div>
     <div class="mx-auto w-full max-w-7xl">
       <ServiceGrid
+        disableGradient={true}
         services={[
           {
             name: "Ginecología",
@@ -86,7 +87,7 @@ import RootLayout from "../layouts/root.astro";
   </section>
 
   <WhyUs
-    backgroundImage="/why-femcare.webp"
+    backgroundImage="/why-us.webp"
     backgroundImageAlt="Why Hi Fem Care"
     heading="¿Por qué Hi Fem Care es tu mejor opción?"
     valueCards={[

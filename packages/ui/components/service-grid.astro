@@ -9,9 +9,10 @@ interface Service {
 
 interface Props {
   services: Service[];
+  disableGradient?: boolean;
 }
 
-const { services } = Astro.props;
+const { services, disableGradient = false } = Astro.props;
 ---
 
 <div
@@ -24,6 +25,7 @@ const { services } = Astro.props;
         image={service.image}
         index={idx}
         href={service.href}
+        disableGradient={disableGradient}
       />
     ))
   }

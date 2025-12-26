@@ -1,5 +1,9 @@
 @import "@repo/ui/theme.css";
 
+@theme {
+  --color-brand: var(--color-skin);
+}
+
 html {
   background-color: var(--color-eggshell);
 }
@@ -14,12 +18,7 @@ html {
   --spring-duration: 1s;
 
   --grain-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
-  --brand-gradient: linear-gradient(
-    to bottom right,
-    var(--color-ziggurat),
-    var(--color-smokey-pink)
-  );
-
+  --brand-gradient: var(--color-skin);
   @supports (animation-timing-function: linear(0, 1)) {
     --spring-easing: linear(
       0,
