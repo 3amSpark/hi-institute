@@ -21,18 +21,19 @@ const isActive = exact
     normalizedPathname.startsWith(normalizedHref + "/");
 
 const hasDropdown = Astro.slots.has("dropdown");
+const baseLinkClasses =
+  "font-heading hover:text-brand text-smaller inline-flex items-center font-medium tracking-wide uppercase transition-colors";
+const activeClasses = isActive
+  ? "text-brand font-semibold"
+  : "text-brand-gray/90";
 ---
 
 {
   hasDropdown ? (
-    <div class="group relative" data-dropdown>
+    <div class="group relative flex h-full items-center" data-dropdown>
       <a
         href={href}
-        class:list={[
-          "font-heading hover:text-brand inline-flex items-center gap-1 text-sm font-medium tracking-wide uppercase transition-colors",
-          isActive ? "text-brand font-semibold" : "text-brand-gray/70",
-          className,
-        ]}
+        class:list={[baseLinkClasses, "gap-1", activeClasses, className]}
         aria-current={isActive ? "page" : undefined}
         {...rest}
       >
@@ -48,11 +49,7 @@ const hasDropdown = Astro.slots.has("dropdown");
   ) : (
     <a
       href={href}
-      class:list={[
-        "font-heading hover:text-brand text-sm font-medium tracking-wide uppercase transition-colors",
-        isActive ? "text-brand font-semibold" : "text-brand-gray/70",
-        className,
-      ]}
+      class:list={[baseLinkClasses, activeClasses, className]}
       aria-current={isActive ? "page" : undefined}
       {...rest}
     >

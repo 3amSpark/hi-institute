@@ -92,7 +92,7 @@ const {
             otherTrigger.setAttribute("aria-expanded", "false");
             otherContent.classList.remove("grid-rows-[1fr]");
             otherContent.classList.add("grid-rows-[0fr]");
-            otherIconVertical.classList.remove("rotate-90");
+            otherIconVertical.classList.remove("rotate-45");
           }
         });
 
@@ -102,11 +102,11 @@ const {
         if (!isExpanded) {
           content.classList.remove("grid-rows-[0fr]");
           content.classList.add("grid-rows-[1fr]");
-          iconVertical.classList.add("rotate-90");
+          iconVertical.classList.add("rotate-0");
         } else {
           content.classList.remove("grid-rows-[1fr]");
           content.classList.add("grid-rows-[0fr]");
-          iconVertical.classList.remove("rotate-90");
+          iconVertical.classList.remove("rotate-45");
         }
       });
     });

@@ -3,7 +3,7 @@ import NavLink from "./nav-link.astro";
 import MobileNavLink from "./mobile-nav-link.astro";
 
 const dropdownLinkClass =
-  "font-heading text-brand-gray/70 hover:bg-ziggurat/10 hover:text-smokey-pink block rounded px-3 py-2 text-sm font-medium uppercase transition-colors";
+  "font-heading text-brand-gray/90 hover:bg-brand/10 hover:text-brand block rounded px-3 py-2 text-smaller font-medium uppercase transition-colors";
 
 // TODO: Use the old naming convention to keep Google Search Console happy
 const routes = [
@@ -80,14 +80,13 @@ const routes = [
 </div>
 
 <nav
-  class="border-brand-gray/10 fixed top-0 right-0 left-0 z-50 border-b bg-white/85 backdrop-blur-sm"
+  class="border-brand-gray/10 fixed top-0 right-0 left-0 z-50 border-b bg-white/90 backdrop-blur-sm"
 >
   <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between">
       <!-- Logo -->
       <a href="/" class="shrink-0">
-        <!-- TODO: Replace with proper logo-->
-        <img src="/logo.webp" alt="Skin Beauty" class="h-8 w-auto" />
+        <img src="/logo.svg" alt="Skin Beauty" class="h-8 w-auto" />
       </a>
 
       <!-- Desktop Navigation -->
