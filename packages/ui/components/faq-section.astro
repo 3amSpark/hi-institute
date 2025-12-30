@@ -24,7 +24,7 @@ const {
   <div class="mx-auto max-w-4xl">
     <FadeIn duration={1}>
       <Heading
-        level={2}
+        level={3}
         className="text-brand-gray mb-4 text-center font-medium"
         text={title}
       />
@@ -43,9 +43,9 @@ const {
               aria-expanded="false"
             >
               <span>{faq.question}</span>
-              <span class="faq-icon text-brand-gray/60 group-hover:text-brand relative ml-4 flex h-6 w-6 shrink-0 items-center justify-center transition-colors duration-300">
-                <span class="absolute h-px w-3 bg-current transition-colors duration-300" />
-                <span class="faq-icon-vertical absolute h-3 w-px bg-current transition-all duration-300" />
+              <span class="faq-icon text-brand group-hover:text-brand relative ml-4 flex h-6 w-6 shrink-0 items-center justify-center transition-colors duration-300">
+                <span class="absolute h-0.5 w-3 bg-current transition-colors duration-300" />
+                <span class="faq-icon-vertical absolute h-3 w-0.5 bg-current transition-all duration-300" />
               </span>
             </button>
             <div class="faq-content grid grid-rows-[0fr] px-4 transition-[grid-template-rows] duration-300 ease-out">

@@ -9,8 +9,8 @@ import ImageTextSection from "src/components/image-text-section.astro";
 import ScheduleButton from "src/components/schedule-button.astro";
 import WhyUs from "src/components/why-us.astro";
 import FadeIn from "@repo/ui/components/fade-in.astro";
-import ArrowRight from "@repo/ui/icons/arrow-right.astro";
 import FAQSection from "@repo/ui/components/faq-section.astro";
+import RevealCarousel from "@repo/ui/components/reveal-carousel.astro";
 const monalisaBenefits = [
   "Procedimiento rápido y sin dolor.",
   "No invasivo y sin tiempo de recuperación.",
@@ -119,7 +119,7 @@ const conditions = [
       muted
       controls
       loop
-      class="mx-auto aspect-video h-auto md:w-2/5 rounded-xl"></video>
+      class="mx-auto aspect-video h-auto rounded-xl md:w-2/5"></video>
     <p
       class="text-brand-gray font-body text-lg leading-relaxed font-medium sm:max-w-3/5 sm:text-center"
     >
@@ -129,192 +129,54 @@ const conditions = [
   </section>
 
   <!-- Conditions Carousel -->
-  <section class="bg-neutral-100 px-4 py-20 shadow-inner">
-    <div class="mx-auto max-w-6xl">
-      <FadeIn duration={1} delay={0}>
-        <Heading
-          level={3}
-          className="text-brand-gray mb-12 text-center font-medium"
-          text="¿Qué condiciones trata MonaLisa Touch®?"
-        />
-      </FadeIn>
-
-      <div class="relative">
-        <!-- Navigation Arrows -->
-        <button
-          id="carousel-prev"
-          class="text-brand-gray/40 bg-white rounded-full p-2 hover:text-brand-gray absolute top-1/2 -left-4 z-10 hidden -translate-y-1/2 cursor-pointer text-4xl transition-colors md:block"
-          aria-label="Anterior"
-        >
-          <ArrowRight class="text-brand-gray size-6 -scale-x-100" />
-        </button>
-        <button
-          id="carousel-next"
-          class="text-brand-gray/40 bg-white rounded-full p-2 hover:text-brand-gray absolute top-1/2 -right-4 z-10 hidden -translate-y-1/2 cursor-pointer text-4xl transition-colors md:block"
-          aria-label="Siguiente"
-        >
-          <ArrowRight class="text-brand-gray size-6" />
-        </button>
-
-        <!-- Carousel Container -->
-        <div
-          id="carousel-container"
-          class="scrollbar-hide flex gap-4 overflow-x-auto pb-4"
-        >
-          {
-            conditions.map((condition, i) => (
-              <FadeIn
-                duration={1}
-                delay={i * 0.1}
-                class="w-[190px] shrink-0 md:w-[calc(25%-12px)]"
-              >
-                <div class="condition-card group relative h-96 cursor-pointer overflow-hidden rounded-2xl transition-all duration-500 ease-out hover:rounded-3xl">
-                  <img
-                    src={condition.image}
-                    alt={condition.title}
-                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-
-                  <!-- Content container -->
-                  <div class="absolute inset-x-0 bottom-0 z-10 overflow-hidden p-6">
-                    <h4 class="font-heading text-xl font-medium text-white text-shadow-sm">
-                      {condition.title}
-                    </h4>
-                    <div class="grid grid-rows-[0fr] transition-all duration-500 ease-out group-hover:grid-rows-[1fr]">
-                      <p class="font-heading overflow-hidden pt-0 text-sm leading-relaxed text-white/90 opacity-0 transition-all duration-500 ease-out group-hover:pt-2 group-hover:opacity-100">
-                        {condition.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </FadeIn>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    import { gsap } from "gsap";
-    import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
-    gsap.registerPlugin(ScrollToPlugin);
-
-    const container = document.getElementById("carousel-container");
-    const prevBtn = document.getElementById("carousel-prev");
-    const nextBtn = document.getElementById("carousel-next");
-
-    const getScrollAmount = () => {
-      const card = container?.querySelector("fade-in") as HTMLElement;
-      return card ? card.offsetWidth + 16 : 300; // card width + gap
-    };
-
-    const getMaxScroll = () => {
-      if (!container) return 0;
-      return container.scrollWidth - container.clientWidth;
-    };
-
-    prevBtn?.addEventListener("click", () => {
-      if (!container) return;
-      const scrollAmount = getScrollAmount();
-      const targetScroll = Math.max(0, container.scrollLeft - scrollAmount);
-      gsap.to(container, {
-        scrollTo: { x: targetScroll },
-        duration: 1.2,
-        ease: "power3.out",
-      });
-    });
-
-    nextBtn?.addEventListener("click", () => {
-      if (!container) return;
-      const scrollAmount = getScrollAmount();
-      const maxScroll = getMaxScroll();
-      const targetScroll = Math.min(maxScroll, container.scrollLeft + scrollAmount);
-      gsap.to(container, {
-        scrollTo: { x: targetScroll },
-        duration: 0.8,
-        ease: "power3.out",
-      });
-    });
-  </script>
-
-  <style>
-    .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-    }
-
-    .condition-card {
-      &::before,
-      &::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-      }
-
-      /* Gradient Wipe (on hover) */
-      &::before {
-        background: var(--brand-gradient);
-        transform: scaleY(0);
-        transform-origin: top;
-        transition: transform var(--spring-duration) var(--spring-easing);
-        z-index: 2;
-      }
-
-      /* Blend Mode Overlay (always visible) */
-      &::after {
-        background: var(--brand-gradient);
-        mix-blend-mode: multiply;
-        z-index: 1;
-      }
-
-      &:hover::before {
-        transform: scaleY(1);
-        transform-origin: bottom;
-      }
-    }
-  </style>
+  <RevealCarousel
+    title="¿Qué condiciones trata MonaLisa Touch®?"
+    items={conditions}
+  />
 
   <!-- FAQ Section -->
   <FAQSection
     faqs={[
       {
         question: "¿Para quién está indicado este tratamiento?",
-        answer: "Está recomendado para mujeres que experimentan síntomas relacionados con la disminución vaginal y la disminución de estrógeno, como resequedad vaginal, irritación, dolor durante las relaciones sexuales o incontinencia urinaria. Esto afecta a mujeres con ovario poliquístico, endometriosis, menopausia, posparto o aquellas que han recibido tratamientos oncológicos."
+        answer:
+          "Está recomendado para mujeres que experimentan síntomas relacionados con la disminución vaginal y la disminución de estrógeno, como resequedad vaginal, irritación, dolor durante las relaciones sexuales o incontinencia urinaria. Esto afecta a mujeres con ovario poliquístico, endometriosis, menopausia, posparto o aquellas que han recibido tratamientos oncológicos.",
       },
       {
         question: "¿Es doloroso el procedimiento?",
-        answer: "No, el tratamiento generalmente no requiere anestesia. Las pacientes suelen describir una ligera sensación de vibración o calor durante la sesión."
+        answer:
+          "No, el tratamiento generalmente no requiere anestesia. Las pacientes suelen describir una ligera sensación de vibración o calor durante la sesión.",
       },
       {
         question: "¿Cuántas sesiones son necesarias?",
-        answer: "Por lo general, se recomiendan entre 1 y 3 sesiones, con intervalos de 40 a 60 días entre cada una. Posteriormente, se aconseja una sesión de mantenimiento anual."
+        answer:
+          "Por lo general, se recomiendan entre 1 y 3 sesiones, con intervalos de 40 a 60 días entre cada una. Posteriormente, se aconseja una sesión de mantenimiento anual.",
       },
       {
         question: "¿Cuándo se pueden reanudar las actividades sexuales?",
-        answer: "Se aconseja esperar entre 3 y 4 días después del tratamiento antes de retomar la actividad sexual regular."
+        answer:
+          "Se aconseja esperar entre 3 y 4 días después del tratamiento antes de retomar la actividad sexual regular.",
       },
       {
         question: "¿Existen efectos secundarios o riesgos asociados?",
-        answer: "Los efectos secundarios son mínimos. Algunas mujeres pueden experimentar un ligero enrojecimiento o hinchazón que desaparece en uno o dos días. No se han reportado complicaciones significativas en más de 20,000 mujeres tratadas en todo el mundo."
+        answer:
+          "Los efectos secundarios son mínimos. Algunas mujeres pueden experimentar un ligero enrojecimiento o hinchazón que desaparece en uno o dos días. No se han reportado complicaciones significativas en más de 20,000 mujeres tratadas en todo el mundo.",
       },
       {
         question: "¿Cuánto tiempo duran los efectos del tratamiento?",
-        answer: "Los resultados son casi inmediatos y continúan mejorando en los meses siguientes. Para mantener los beneficios, se recomienda una sesión de mantenimiento anual."
+        answer:
+          "Los resultados son casi inmediatos y continúan mejorando en los meses siguientes. Para mantener los beneficios, se recomienda una sesión de mantenimiento anual.",
       },
       {
         question: "¿Hay contraindicaciones para este tratamiento?",
-        answer: "No existen contraindicaciones absolutas, excepto en casos de enfermedades locales o sistémicas graves. Es esencial una evaluación médica previa para determinar la idoneidad del tratamiento en cada paciente."
+        answer:
+          "No existen contraindicaciones absolutas, excepto en casos de enfermedades locales o sistémicas graves. Es esencial una evaluación médica previa para determinar la idoneidad del tratamiento en cada paciente.",
       },
       {
         question: "¿El tratamiento está aprobado por autoridades sanitarias?",
-        answer: "Sí, MonaLisa Touch® cuenta con la aprobación de la FDA de Estados Unidos y ha demostrado ser seguro y eficaz en múltiples estudios clínicos."
-      }
+        answer:
+          "Sí, MonaLisa Touch® cuenta con la aprobación de la FDA de Estados Unidos y ha demostrado ser seguro y eficaz en múltiples estudios clínicos.",
+      },
     ]}
   />
 
@@ -347,7 +209,6 @@ const conditions = [
       ]}
     />
   </section>
- 
 
   <WhyUs
     backgroundImage="/why-femcare.webp"

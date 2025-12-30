@@ -8,9 +8,10 @@ import RevealSlides from "@repo/ui/components/reveal-slides.astro";
 
 interface Props {
   title: string;
+  video?: string;
   subtitle?: string;
   alt: string;
-  images: {
+  images?: {
     size: "sm" | "md" | "lg";
     src: string;
   }[];
@@ -25,11 +26,12 @@ const {
   images,
   buttonText = "Agenda tu cita ahora",
   revealSlides = false,
+  video,
 } = Astro.props;
 
-const smImage = images.find((img) => img.size === "sm");
-const mdImage = images.find((img) => img.size === "md");
-const lgImage = images.find((img) => img.size === "lg");
+const smImage = images?.find((img) => img.size === "sm");
+const mdImage = images?.find((img) => img.size === "md");
+const lgImage = images?.find((img) => img.size === "lg");
 
 const fallbackImage = lgImage || mdImage || smImage;
 ---
@@ -63,18 +65,40 @@ const fallbackImage = lgImage || mdImage || smImage;
       />
     </FadeIn>
   </div>
-  <ParallaxImage yPercent={10} start="middle top" end="bottom top">
-    <picture>
-      {smImage && <source srcset={smImage.src} media="(max-width: 767px)" />}
-      {mdImage && <source srcset={mdImage.src} media="(max-width: 1023px)" />}
-      {lgImage && <source srcset={lgImage.src} media="(max-width: 1920px)" />}
-      <img
-        src={fallbackImage?.src}
-        alt={alt}
-        class="absolute inset-0 z-0 h-full w-full scale-105 object-cover object-center"
-      />
-    </picture>
-  </ParallaxImage>
+
+  {
+    video ? (
+      <ParallaxImage yPercent={10} start="middle top" end="bottom top">
+        <video
+          src={video}
+          autoplay
+          muted
+          loop
+          playsinline
+          class="absolute inset-0 z-0 h-full w-full scale-105 object-cover"
+        />
+      </ParallaxImage>
+    ) : (
+      <ParallaxImage yPercent={10} start="middle top" end="bottom top">
+        <picture>
+          {smImage && (
+            <source srcset={smImage.src} media="(max-width: 767px)" />
+          )}
+          {mdImage && (
+            <source srcset={mdImage.src} media="(max-width: 1023px)" />
+          )}
+          {lgImage && (
+            <source srcset={lgImage.src} media="(max-width: 1920px)" />
+          )}
+          <img
+            src={fallbackImage?.src}
+            alt={alt}
+            class="absolute inset-0 z-0 h-full w-full scale-105 object-cover object-center"
+          />
+        </picture>
+      </ParallaxImage>
+    )
+  }
   <!-- <GrainTexture /> -->
   {
     revealSlides && (

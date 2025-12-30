@@ -8,6 +8,7 @@ interface Props {
   imageAlt: string;
   imagePosition?: "left" | "right";
   class?: string;
+  grainEffect?: boolean;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   imageAlt,
   imagePosition = "left",
   class: className,
+  grainEffect = true,
 } = Astro.props;
 ---
 
@@ -28,7 +30,7 @@ const {
         imagePosition === "right" && "md:order-2",
       ]}
     >
-      <GrainTexture />
+      {grainEffect && <GrainTexture />}
       <ParallaxImage yPercent={13} start="top 80%" disable={true}>
         <img
           src={imageSrc}
