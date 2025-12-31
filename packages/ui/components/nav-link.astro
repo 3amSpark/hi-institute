@@ -6,9 +6,18 @@ interface Props {
   class?: string;
   /** Match exact path only (default: false - also matches child routes) */
   exact?: boolean;
+  activeClass?: string;
+  baseClass?: string;
 }
 
-const { href, class: className, exact = false, ...rest } = Astro.props;
+const {
+  href,
+  class: className,
+  exact = false,
+  activeClass = "text-brand font-semibold",
+  baseClass = "font-heading hover:text-brand text-smaller inline-flex items-center font-medium tracking-wide uppercase transition-colors",
+  ...rest
+} = Astro.props;
 const pathname = Astro.url.pathname;
 
 // Normalize paths by removing trailing slashes for comparison
@@ -25,12 +34,13 @@ const hasDropdown = Astro.slots.has("dropdown");
 
 {
   hasDropdown ? (
-    <div class="group relative" data-dropdown>
+    <div class="group relative flex h-full items-center" data-dropdown>
       <a
         href={href}
         class:list={[
-          "font-heading hover:text-smokey-pink inline-flex items-center gap-1 text-sm font-medium tracking-wide uppercase transition-colors",
-          isActive ? "text-smokey-pink font-semibold" : "text-brand-gray/90",
+          baseClass,
+          "gap-1",
+          isActive ? activeClass : "text-brand-gray/90",
           className,
         ]}
         aria-current={isActive ? "page" : undefined}
@@ -49,8 +59,8 @@ const hasDropdown = Astro.slots.has("dropdown");
     <a
       href={href}
       class:list={[
-        "font-heading hover:text-smokey-pink text-sm font-medium tracking-wide uppercase transition-colors",
-        isActive ? "text-smokey-pink font-semibold" : "text-brand-gray/90",
+        baseClass,
+        isActive ? activeClass : "text-brand-gray/90",
         className,
       ]}
       aria-current={isActive ? "page" : undefined}

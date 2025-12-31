@@ -2,18 +2,20 @@
 interface Props {
   href: string;
   isChild?: boolean;
+  class?: string;
 }
 
-const { href, isChild = false } = Astro.props;
+const { href, isChild = false, class: className } = Astro.props;
 ---
 
 <a
   href={href}
   class:list={[
-    "font-heading hover:text-smokey-pink border-brand-gray/10 block border-b font-medium uppercase transition-colors",
+    "font-heading hover:text-brand border-brand-gray/10 block border-b font-medium uppercase transition-colors",
     isChild
       ? "text-brand-gray/50 px-6 py-3 text-sm"
       : "text-brand-gray/70 px-6 py-4 text-base",
+    className,
   ]}
 >
   <slot />

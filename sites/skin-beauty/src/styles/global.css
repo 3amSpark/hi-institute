@@ -2,7 +2,6 @@
 
 @theme {
   --color-brand: var(--color-skin);
-  --text-smaller: 0.8125rem; /* Between xs and sm... */
 }
 
 html {
