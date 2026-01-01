@@ -1,0 +1,128 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import Footer from "src/components/footer.astro";
+import Hero from "src/components/hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import ServiceInfoGrid from "@repo/ui/components/service-info-grid.astro";
+
+const conditions = [
+  {
+    name: "ACNÉ",
+    description:
+      "Tratamos el acné en todas las etapas de la vida, desde la adolescencia hasta la adultez. Evaluamos la causa real para indicar un tratamiento personalizado y prevenir cicatrices, logrando una piel más sana y uniforme.",
+    image: "/dermatologia/condiciones/acne.webp",
+  },
+  {
+    name: "MANCHAS EN LA PIEL",
+    description:
+      "Las manchas pueden aparecer por sol, edad, hormonas u otros factores. Realizamos una evaluación médica para identificar su origen y tratarlas con protocolos y tecnología adecuados, mejorando el tono y la uniformidad de la piel.",
+    image: "/dermatologia/condiciones/manchas.webp",
+  },
+  {
+    name: "ROSÁCEA",
+    description:
+      "La rosácea es una condición inflamatoria crónica que causa enrojecimiento, sensibilidad y brotes. Ofrecemos un manejo médico integral que puede incluir tratamiento tópico, oral y tecnología láser para controlar los síntomas y reducir recurrencias.",
+    image: "/dermatologia/condiciones/rosacea.webp",
+  },
+  {
+    name: "LUNARES / PREVENCIÓN DE CÁNCER DE PIEL",
+    description:
+      "El control regular de lunares es clave para detectar cambios a tiempo. Realizamos revisiones dermatológicas preventivas con tecnología de diagnóstico avanzado para identificar lesiones sospechosas y actuar de forma temprana.",
+    image: "/dermatologia/condiciones/lunares.webp",
+  },
+  {
+    name: "DERMATITIS",
+    description:
+      "La dermatitis es una afección inflamatoria crónica que puede afectar significativamente la calidad de vida. Tratamos cada caso con diagnóstico preciso, tratamientos actualizados y seguimiento médico para controlar brotes y aliviar síntomas.",
+    image: "/dermatologia/condiciones/dermatitis.webp",
+  },
+  {
+    name: "PSORIASIS",
+    description:
+      "La psoriasis es una enfermedad inflamatoria que causa placas, enrojecimiento y descamación. Diseñamos tratamientos personalizados para reducir brotes, controlar síntomas y mejorar el bienestar general del paciente.",
+    image: "/dermatologia/condiciones/psoroasis.webp",
+  },
+  {
+    name: "HONGOS Y ONICOMICOSIS",
+    description:
+      "Las infecciones por hongos pueden afectar piel, cuero cabelludo y uñas. En el caso de las uñas (onicomicosis), realizamos diagnóstico clínico y estudios complementarios para indicar el tratamiento más efectivo.",
+    image: "/dermatologia/condiciones/hongos-onicomicosis.webp",
+  },
+  {
+    name: "SIRINGOMAS",
+    description:
+      "Los siringomas son lesiones benignas que suelen aparecer alrededor de los ojos. Aunque no representan un riesgo para la salud, pueden tratarse por motivos estéticos con técnicas adaptadas al tipo de piel y localización.",
+    image: "/dermatologia/condiciones/siringomas.webp",
+  },
+  {
+    name: "HERPES",
+    description:
+      "El herpes es una infección viral crónica que puede presentar brotes recurrentes. Un diagnóstico oportuno y tratamiento médico adecuado ayudan a reducir la duración, intensidad y frecuencia de los episodios.",
+    image: "/dermatologia/condiciones/herpes.webp",
+  },
+  {
+    name: "URTICARIA",
+    description:
+      "La urticaria provoca ronchas, picazón intensa e inflamación. Puede ser aguda o crónica, y su origen no siempre es evidente. Un diagnóstico médico adecuado permite controlar los brotes y mejorar la calidad de vida.",
+    image: "/dermatologia/condiciones/urticaria.webp",
+  },
+  {
+    name: "PITIRIASIS",
+    description:
+      "La pitiriasis se manifiesta como manchas escamosas claras u oscuras en la piel. Existen distintos tipos, y cada uno requiere un tratamiento específico. El diagnóstico dermatológico es clave para diferenciarla y tratarla correctamente.",
+    image: "/dermatologia/condiciones/ptriasis.webp",
+  },
+  {
+    name: "LIPOMAS",
+    description:
+      "Los lipomas son tumores benignos de tejido graso que suelen crecer lentamente. Evaluamos cada caso para confirmar el diagnóstico y, si es necesario, indicar el tratamiento adecuado.",
+    image: "/dermatologia/condiciones/lipomas.webp",
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    align="right"
+    title="Dermatología Médica de la Piel"
+    alt="Dermatología Médica de la Piel"
+    images={[
+      {
+        size: "sm",
+        src: "/dermatologia/piel/hero-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/dermatologia/piel/hero-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/dermatologia/piel/hero.webp",
+      },
+    ]}
+  />
+
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <Heading
+      level={2}
+      className="text-brand-gray font-medium text-balance sm:text-center"
+      text="Acompañamiento experto para cada condición de la piel."
+    />
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      Combinamos experiencia médica, diagnóstico preciso y tecnología avanzada
+      para ofrecer tratamientos pensados para resolver la causa y ayudarte a
+      avanzar con claridad, seguridad y resultados reales.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-20">
+    <ServiceInfoGrid services={conditions} />
+  </section>
+  <Footer />
+</RootLayout>

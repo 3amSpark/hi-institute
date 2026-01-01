@@ -12,11 +12,18 @@ interface ImageSource {
 interface Props {
   title: string;
   serviceName: string;
+  showGrainTexture?: boolean;
   images: ImageSource[];
   mainImageAlt: string;
 }
 
-const { title, serviceName, images, mainImageAlt } = Astro.props;
+const {
+  title,
+  serviceName,
+  images,
+  mainImageAlt,
+  showGrainTexture = true,
+} = Astro.props;
 
 // The last image or one without media is used for the <img> tag
 const mainImage = images.find((img) => !img.media) || images[images.length - 1];
@@ -67,5 +74,5 @@ const mainImage = images.find((img) => !img.media) || images[images.length - 1];
       />
     </picture>
   </ParallaxImage>
-  <GrainTexture />
+  {showGrainTexture && <GrainTexture />}
 </section>

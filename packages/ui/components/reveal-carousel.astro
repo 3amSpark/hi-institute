@@ -62,7 +62,7 @@ const { title, items, overlayOpacity = 1 } = Astro.props;
               delay={i * 0.1}
               class="w-[calc(100%-32px)] shrink-0 sm:w-[calc(50%-8px)] md:w-[calc(33.333%-10.667px)] lg:w-[calc(25%-12px)]"
             >
-              <div class="condition-card group relative h-96 cursor-pointer overflow-hidden rounded-2xl transition-all duration-500 ease-out hover:rounded-3xl">
+              <div class="condition-card group relative aspect-square md:aspect-auto md:h-96 cursor-pointer overflow-hidden rounded-2xl transition-all duration-500 ease-out hover:rounded-3xl">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -74,8 +74,8 @@ const { title, items, overlayOpacity = 1 } = Astro.props;
                   <h4 class="font-heading text-xl font-medium text-white text-shadow-sm">
                     {item.title}
                   </h4>
-                  <div class="grid grid-rows-[0fr] transition-all duration-500 ease-out group-hover:grid-rows-[1fr]">
-                    <p class="font-heading overflow-hidden pt-0 text-sm leading-relaxed text-white/90 opacity-0 transition-all duration-500 ease-out group-hover:pt-2 group-hover:opacity-100">
+                  <div class="grid grid-rows-[1fr] transition-all duration-500 ease-out md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr]">
+                    <p class="font-heading overflow-hidden pt-2 text-sm leading-relaxed text-white/90 opacity-100 transition-all duration-500 ease-out md:pt-0 md:opacity-0 md:group-hover:pt-2 md:group-hover:opacity-100">
                       {item.description}
                     </p>
                   </div>
@@ -159,11 +159,12 @@ const { title, items, overlayOpacity = 1 } = Astro.props;
       pointer-events: none;
     }
 
-    /* Gradient Wipe (on hover) */
+    /* Gradient Wipe - always visible with mask on mobile */
     &::before {
       background: var(--brand-gradient);
-      transform: scaleY(0);
-      transform-origin: top;
+      mask: linear-gradient(to bottom, transparent 0%, black 100%);
+      transform: scaleY(1);
+      transform-origin: bottom;
       transition: transform var(--spring-duration) var(--spring-easing);
       z-index: 2;
     }
@@ -176,9 +177,18 @@ const { title, items, overlayOpacity = 1 } = Astro.props;
       z-index: 1;
     }
 
-    &:hover::before {
-      transform: scaleY(1);
-      transform-origin: bottom;
+    /* Desktop: no mask, wipe on hover */
+    @media (min-width: 768px) {
+      &::before {
+        mask: none;
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+
+      &:hover::before {
+        transform: scaleY(1);
+        transform-origin: bottom;
+      }
     }
   }
 </style>

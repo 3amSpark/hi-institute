@@ -4,11 +4,17 @@ import NavbarShared from "@repo/ui/components/navbar.astro";
 // TODO: Use the old naming convention to keep Google Search Console happy
 const routes = [
   {
-    href: "/dermatologia",
+    href: "/dermatologia-medica",
     label: "DERMATOLOGÍA",
     children: [
-      { href: "/dermatologia/piel", label: "DERMATOLOGÍA DE LA PIEL" },
-      { href: "/dermatologia/cabello", label: "DERMATOLOGÍA DEL CABELLO" },
+      {
+        href: "/dermatologia-medica-de-la-piel",
+        label: "DERMATOLOGÍA DE LA PIEL",
+      },
+      {
+        href: "/dermatologia-medica-del-cabello",
+        label: "DERMATOLOGÍA DEL CABELLO",
+      },
     ],
   },
   { href: "/medicina-laser", label: "MEDICINA LÁSER", exact: true },

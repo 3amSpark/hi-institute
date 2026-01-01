@@ -17,6 +17,7 @@ interface Props {
   }[];
   buttonText?: string;
   revealSlides?: boolean;
+  align?: "left" | "right";
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   buttonText = "Agenda tu cita ahora",
   revealSlides = false,
   video,
+  align = "left",
 } = Astro.props;
 
 const smImage = images?.find((img) => img.size === "sm");
@@ -40,25 +42,41 @@ const fallbackImage = lgImage || mdImage || smImage;
   class="relative flex h-svh w-full flex-col items-center justify-end overflow-hidden bg-white md:justify-center"
 >
   <div
-    class="z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 p-4 md:pt-30 md:pb-0"
+    class:list={[
+      "z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 p-4 md:pt-30 md:pb-0",
+      align === "right" ? "items-end" : "items-start",
+    ]}
   >
-    <FadeIn duration={1}>
+    <FadeIn
+      duration={1}
+      class:list={[
+        "flex w-full flex-col gap-6",
+        align === "right" ? "items-end" : "items-start",
+      ]}
+    >
       <Heading
         text={title}
-        className="max-w-3/4 font-medium text-balance text-white text-shadow-sm"
+        className={`max-w-3/4 font-medium text-balance text-white text-shadow-sm ${align === "right" ? "ml-auto text-right" : "text-left"}`}
         level={1}
       />
       {
         subtitle && (
           <Heading
             text={subtitle}
-            className="max-w-3/4 text-balance text-white text-shadow-sm"
+            className={`max-w-3/4 text-balance text-white text-shadow-sm ${align === "right" ? "ml-auto text-right" : "text-left"}`}
             level={4}
           />
         )
       }
     </FadeIn>
-    <FadeIn duration={1} delay={0.1}>
+    <FadeIn
+      duration={1}
+      delay={0.1}
+      class:list={[
+        "flex flex-col",
+        align === "right" ? "items-end" : "items-start",
+      ]}
+    >
       <ScheduleButton
         href="https://calendly.com/hi-fem-care/agenda-cita"
         text={buttonText}

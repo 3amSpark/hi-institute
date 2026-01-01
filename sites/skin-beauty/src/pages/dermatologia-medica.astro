@@ -1,0 +1,151 @@
+---
+import ServiceHero from "src/components/service-hero.astro";
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import ParallaxImage from "src/components/parallax-image.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import Paragraph from "@repo/ui/components/paragraph.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import Footer from "src/components/footer.astro";
+
+const images = [
+  {
+    src: "/dermatologia/hero-sm.webp",
+    media: "(max-width: 767px)",
+  },
+  {
+    src: "/dermatologia/hero-md.webp",
+    media: "(max-width: 1023px) and (min-width: 768px)",
+  },
+  {
+    src: "/dermatologia/hero.webp",
+    media: "(min-width: 1024px)",
+  },
+];
+
+const mainImage = images[2];
+const mainImageAlt = "Dermatología Médica";
+---
+
+<RootLayout>
+  <Navbar />
+  <!-- Hero: full height, image fills all, text overlays bottom half -->
+  <section class="relative h-svh w-full">
+    <!-- Full-height image with parallax -->
+    <ParallaxImage yPercent={-20} start="top top" end="bottom top">
+      <picture class="absolute inset-0 z-0">
+        {images.map((img) => <source srcset={img.src} media={img.media} />)}
+        <img
+          src={mainImage.src}
+          alt={mainImageAlt}
+          class="h-full w-full object-cover object-top"
+        />
+      </picture>
+    </ParallaxImage>
+
+    <!-- Text overlay - positioned at bottom half -->
+    <div
+      class="absolute inset-x-0 top-1/2 bottom-0 z-10 flex items-center justify-center bg-white px-6"
+    >
+      <div class="mx-auto max-w-4xl text-center">
+        <FadeIn duration={1} delay={0.1} offset={20}>
+          <Heading
+            level={2}
+            text="Cuidado médico real para tu piel y cabello"
+            className="text-brand-gray mb-6 text-balance md:mb-8"
+          />
+        </FadeIn>
+        <FadeIn duration={1} delay={0.3} offset={20}>
+          <Paragraph
+            text="En HI Skin & Beauty abordamos la piel y el cabello con criterio clínico, diagnóstico preciso y tratamientos pensados para cada caso. Atendemos desde condiciones comunes hasta patologías complejas, siempre con un enfoque médico claro y responsable."
+            className="text-brand-gray mx-auto max-w-2xl"
+          />
+        </FadeIn>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-32">
+    <!-- Background split - mobile: 20% white / 80% skin, desktop: 55% white / 45% skin -->
+    <div class="absolute top-0 left-0 z-0 h-[20%] w-full bg-white md:h-[55%]">
+    </div>
+    <div
+      class="bg-skin grain absolute bottom-0 left-0 z-0 h-[80%] w-full md:h-[45%]"
+    >
+    </div>
+
+    <div class="relative z-10 mx-auto max-w-7xl px-6">
+      <div class="mb-12 text-center md:mb-16">
+        <FadeIn duration={1} delay={0.1}>
+          <Heading
+            level={2}
+            text="Buscamos soluciones que funcionen hoy y que prevengan problemas mañana."
+            className="text-brand-gray mx-auto max-w-3xl text-balance"
+          />
+        </FadeIn>
+      </div>
+
+      <div
+        class="grid grid-cols-1 place-items-center gap-16 md:grid-cols-2 lg:gap-24"
+      >
+        <!-- Skin Card -->
+        <FadeIn
+          duration={1}
+          delay={0.2}
+          offset={10}
+          class="flex flex-col items-center text-center"
+        >
+          <div class="mb-6 overflow-hidden rounded-2xl shadow-xl md:mb-8">
+            <img
+              src="/dermatologia/piel.webp"
+              alt="Dermatología de la piel"
+              class="aspect-4/3 w-full max-w-md object-cover"
+            />
+          </div>
+          <Heading
+            level={5}
+            text="DERMATOLOGÍA MÉDICA DE LA PIEL"
+            className="mb-2 font-medium text-white uppercase"
+          />
+          <p class="font-heading mb-6 max-w-sm text-lg text-white/90 md:mb-8">
+            Diagnóstico y tratamiento médico de enfermedades y alteraciones
+            cutáneas.
+          </p>
+          <ScheduleButton
+            text="VER MÁS"
+            href="/dermatologia-medica-de-la-piel"
+            target="_self"
+          />
+        </FadeIn>
+
+        <!-- Hair Card -->
+        <FadeIn
+          duration={1}
+          delay={0.4}
+          offset={10}
+          class="flex flex-col items-center text-center"
+        >
+          <div class="mb-6 overflow-hidden rounded-2xl shadow-xl md:mb-8">
+            <img
+              src="/dermatologia/alopecia.webp"
+              alt="Dermatología del cabello"
+              class="aspect-4/3 w-full max-w-md object-cover"
+            />
+          </div>
+          <Heading
+            level={5}
+            text="DERMATOLOGÍA MÉDICA DEL CABELLO"
+            className="mb-2 font-medium text-white uppercase"
+          />
+          <p class="font-heading mb-6 max-w-sm text-lg text-white/90 md:mb-8">
+            Evaluación especializada de caída capilar y afecciones del cuero
+            cabelludo.
+          </p>
+          <ScheduleButton text="VER MÁS" href="/dermatologia-medica/cabello" />
+        </FadeIn>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</RootLayout>

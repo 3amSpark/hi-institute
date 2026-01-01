@@ -1,0 +1,102 @@
+---
+import Heading from "./heading.astro";
+import ArrowRight from "../icons/arrow-right.astro";
+
+interface Props {
+  name: string;
+  description: string;
+  image: string;
+  index: number;
+}
+
+const { name, description, image, index } = Astro.props;
+---
+
+<a
+  href="https://calendly.com/hi-fem-care/agenda-cita"
+  target="_blank"
+  class="service relative group grid place-items-center aspect-square w-full flex-[0_0_calc(100%-var(--spacing)*4)] md:flex-[0_0_calc(50%-2rem)] lg:flex-[0_0_calc(33.333%-0.5rem)] overflow-hidden cursor-pointer rounded-lg"
+>
+  <img
+    src={image}
+    alt={name}
+    loading="lazy"
+    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+  />
+
+  <!-- Overlay (Wipe effect) -->
+  <div class="overlay absolute inset-0 bg-skin z-10"></div>
+
+  <!-- Default Content -->
+  <div
+    class="absolute inset-0 flex items-center justify-center p-4 z-20 transition-opacity duration-300 group-hover:opacity-0"
+  >
+    <Heading
+      level={4}
+      className="text-white text-center font-medium text-shadow-md uppercase"
+      text={name}
+    />
+  </div>
+
+  <!-- Hover Content -->
+  <div
+    class="absolute inset-0 flex flex-col items-start p-6 z-20 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+  >
+    <Heading
+      level={5}
+      className="text-white font-medium mb-4 uppercase text-left"
+      text={name}
+    />
+    <p
+      class="text-white text-lg font-body text-left leading-relaxed text-balance"
+    >
+      {description}
+    </p>
+  </div>
+
+  <!-- CTA -->
+  <div
+    class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 transition-transform duration-500 translate-y-0 md:translate-y-16 md:group-hover:translate-y-0 text-white"
+  >
+    <span class="font-heading text-lg font-medium whitespace-nowrap">
+      Agendar consulta
+    </span>
+    <ArrowRight class="size-5" />
+  </div>
+</a>
+
+<style>
+  @media (width > 768px) {
+    :global(.service-grid:hover) .service {
+      opacity: 0.87;
+      scale: 0.99;
+    }
+    :global(.service-grid:hover) .service:hover {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  .service {
+    transition:
+      opacity var(--spring-duration) var(--spring-easing),
+      border-radius 0.7s var(--spring-easing),
+      scale 0.7s var(--spring-easing);
+
+    .overlay {
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform var(--spring-duration) var(--spring-easing);
+      mix-blend-mode: normal; /* Solid color */
+    }
+
+    &:hover {
+      border-radius: 1.1rem;
+
+      .overlay {
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+    }
+  }
+</style>

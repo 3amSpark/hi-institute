@@ -3,13 +3,19 @@ interface Props {
   text: string;
   href: string;
   class?: string;
+  target?: "_blank" | "_self" | "_parent" | "_top";
 }
-const { href, text, class: className } = Astro.props as Props;
+const {
+  href,
+  text,
+  class: className,
+  target = "_blank",
+} = Astro.props as Props;
 ---
 
 <a
   href={href}
-  target="_blank"
+  target={target}
   rel="noopener noreferrer"
   class:list={[
     "font-heading group highlight relative inline-block w-fit cursor-pointer overflow-hidden rounded-full bg-white px-7 py-2 text-lg font-medium text-white uppercase",
