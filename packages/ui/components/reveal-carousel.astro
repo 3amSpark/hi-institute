@@ -37,14 +37,14 @@ const { title, items, overlayOpacity = 1 } = Astro.props;
       <!-- Navigation Arrows -->
       <button
         data-carousel-prev
-        class="text-brand-gray/40 bg-white rounded-full p-2 hover:text-brand-gray absolute top-1/2 -left-4 z-10 hidden -translate-y-1/2 cursor-pointer text-4xl transition-colors md:block border border-brand-gray/20"
+        class="text-brand-gray/40 bg-white rounded-full p-2 hover:text-brand-gray absolute top-1/2 -left-4 z-10 hidden -translate-y-1/2 cursor-pointer text-4xl transition-opacity duration-300 md:block border border-brand-gray/20 opacity-0 pointer-events-none"
         aria-label="Anterior"
       >
         <ArrowRight class="text-brand-gray size-6 -scale-x-100" />
       </button>
       <button
         data-carousel-next
-        class="text-brand-gray/40 bg-white rounded-full p-2 hover:text-brand-gray absolute top-1/2 -right-4 z-10 hidden -translate-y-1/2 cursor-pointer text-4xl transition-colors md:block border border-brand-gray/20"
+        class="text-brand-gray/40 bg-white rounded-full p-2 hover:text-brand-gray absolute top-1/2 -right-4 z-10 hidden -translate-y-1/2 cursor-pointer text-4xl transition-opacity duration-300 md:block border border-brand-gray/20 opacity-0 pointer-events-none"
         aria-label="Siguiente"
       >
         <ArrowRight class="text-brand-gray size-6" />
@@ -98,8 +98,8 @@ const { title, items, overlayOpacity = 1 } = Astro.props;
   class RevealCarousel extends HTMLElement {
     connectedCallback() {
       const container = this.querySelector('[data-carousel-container]') as HTMLElement;
-      const prevBtn = this.querySelector('[data-carousel-prev]');
-      const nextBtn = this.querySelector('[data-carousel-next]');
+      const prevBtn = this.querySelector('[data-carousel-prev]') as HTMLElement;
+      const nextBtn = this.querySelector('[data-carousel-next]') as HTMLElement;
 
       if (!container) return;
 
@@ -112,6 +112,50 @@ const { title, items, overlayOpacity = 1 } = Astro.props;
         return container.scrollWidth - container.clientWidth;
       };
 
+      const updateArrowVisibility = () => {
+        const maxScroll = getMaxScroll();
+        const canScroll = maxScroll > 1; // Use 1px threshold to account for rounding
+
+        if (!canScroll) {
+          // Hide both arrows if content fits
+          prevBtn?.classList.add("opacity-0", "pointer-events-none");
+          nextBtn?.classList.add("opacity-0", "pointer-events-none");
+          return;
+        }
+
+        // Show arrows if content overflows
+        prevBtn?.classList.remove("opacity-0", "pointer-events-none");
+        nextBtn?.classList.remove("opacity-0", "pointer-events-none");
+
+        // Update individual arrow visibility based on scroll position
+        if (container.scrollLeft <= 1) {
+          prevBtn?.classList.add("opacity-0", "pointer-events-none");
+        } else {
+          prevBtn?.classList.remove("opacity-0", "pointer-events-none");
+        }
+
+        if (container.scrollLeft >= maxScroll - 1) {
+          nextBtn?.classList.add("opacity-0", "pointer-events-none");
+        } else {
+          nextBtn?.classList.remove("opacity-0", "pointer-events-none");
+        }
+      };
+
+      // Initial check
+      // Use setTimeout to ensure layout is complete
+      setTimeout(() => {
+        updateArrowVisibility();
+      }, 100);
+
+      // Update on scroll
+      container.addEventListener("scroll", updateArrowVisibility);
+
+      // Update on resize
+      const resizeObserver = new ResizeObserver(() => {
+        updateArrowVisibility();
+      });
+      resizeObserver.observe(container);
+
       prevBtn?.addEventListener("click", () => {
         const scrollAmount = getScrollAmount();
         const targetScroll = Math.max(0, container.scrollLeft - scrollAmount);
@@ -119,6 +163,7 @@ const { title, items, overlayOpacity = 1 } = Astro.props;
           scrollTo: { x: targetScroll },
           duration: 1.2,
           ease: "power3.out",
+          onComplete: updateArrowVisibility,
         });
       });
 
@@ -133,6 +178,7 @@ const { title, items, overlayOpacity = 1 } = Astro.props;
           scrollTo: { x: targetScroll },
           duration: 0.8,
           ease: "power3.out",
+          onComplete: updateArrowVisibility,
         });
       });
     }

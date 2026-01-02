@@ -10,6 +10,7 @@ import TreatmentAreas from "../components/treatment-areas.astro";
 import GrainTexture from "../components/grain-texture.astro";
 import ComparisonSlider from "../components/comparison-slider.astro";
 import FAQSection from "@repo/ui/components/faq-section.astro";
+import RevealCarousel from "@repo/ui/components/reveal-carousel.astro";
 
 const benefits = [
   {
@@ -58,131 +59,159 @@ const benefits = [
   <section
     class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
   >
-    <Heading
-      level={2}
-      className="text-brand-gray font-medium text-pretty sm:text-center"
-      text="Piel suave y sin vello. Sin dolor. Sin gel pegajoso."
-    />
-    <p
-      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
-    >
-      En Hi Skin & Beauty, ofrecemos una solución duradera para eliminar el
-      vello no deseado con resultados rápidos, precisos y duraderos. Nuestros
-      tratamientos están diseñados para mujeres y hombres que buscan una piel
-      suave y libre de vello en cualquier área del cuerpo o rostro.
-    </p>
-    <p
-      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
-    >
-      Comenzamos con una valoración personalizada realizada por especialistas,
-      quienes analizan las características del vello y el estado de la piel.
-      Utilizamos nuestra exclusiva tecnología Splendor X para garantizar
-      resultados óptimos en el menor tiempo posible, en un entorno diseñado para
-      tu comodidad y satisfacción.
-    </p>
+    <FadeIn duration={0.8}>
+      <Heading
+        level={2}
+        className="text-brand-gray font-medium text-pretty sm:text-center"
+        text="UltraClear® - La revolución en rejuvenecimiento láser"
+      />
+    </FadeIn>
+    <FadeIn duration={0.8}>
+      <Heading
+        level={4}
+        text="Resultados Visibles. Mínimo Tiempo de Recuperación. Sin Cirugías."
+        className="text-brand font-heading text-lg font-medium sm:text-center"
+      />
+    </FadeIn>
+    <FadeIn duration={0.8} class="sm:max-w-3/5 sm:text-center">
+      <p class="text-brand-gray font-body text-lg leading-relaxed">
+        UltraClear® es la tecnología láser más avanzada para el rejuvenecimiento
+        facial. Gracias a su innovador <strong class="text-brand-gray"
+          >láser de fibra fría</strong
+        >, aprobado por la FDA de Estados Unidos, actúa en <strong
+          class="text-brand-gray">todas las capas de la piel</strong
+        >, corrigiendo múltiples signos de envejecimiento en un solo
+        tratamiento.
+      </p>
+    </FadeIn>
   </section>
-
-  <!-- Splendor X Feature & Benefits -->
-  <section class="mx-auto max-w-6xl px-4 py-12">
-    <div class="grid grid-cols-1 gap-4 lg:grid-cols-4">
-      <!-- Main Feature: Spans all 4 columns -->
-      <FadeIn duration={0.8} class="lg:col-span-4">
-        <div
-          class="bg-brand/5 border-brand/5 relative overflow-hidden rounded-3xl border p-4 sm:p-6"
-        >
-          <GrainTexture grainOpacity={0.03} gradientOpacity={0.02} />
-
-          <div class="relative z-10 flex flex-col items-center">
-            <!-- Centered Text -->
-            <div class="max-w-3xl py-10 text-center sm:py-16">
-              <Heading
-                level={3}
-                className="text-brand-gray mb-6 text-3xl leading-tight font-medium sm:text-4xl"
-                text="Piel impecable con Splendor X"
-              />
-              <p class="text-brand-gray/80 font-body text-lg">
-                Nuestra tecnología de <strong class="text-brand-gray"
-                  >doble longitud de onda</strong
-                > combina Alexandrita y Nd:YAG para tratar todo tipo de piel con máxima
-                seguridad y resultados visibles desde la primera sesión.
-              </p>
-            </div>
-            <!-- Video Container -->
-            <div
-              class="group relative w-full overflow-hidden rounded-2xl bg-gray-100"
+  <section class="mx-auto flex max-w-6xl flex-col gap-12 px-2 py-12">
+    <FadeIn duration={0.8}>
+      <div
+        class="bg-brand/5 border-brand/5 relative overflow-hidden rounded-3xl border p-4 sm:p-6"
+      >
+        <div class="relative z-10 flex flex-col items-center">
+          <!-- Video Container -->
+          <div
+            class="group relative w-full overflow-hidden rounded-2xl bg-gray-100"
+          >
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              class="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-105"
             >
-              <video
-                autoplay
-                muted
-                loop
-                playsinline
-                class="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              >
-                <source
-                  src="/videos/depilacion-laser-con-splendor-x/Depilación Láser con Splendor X ｜ HI Skin & Beauty (1).mp4"
-                  type="video/mp4"
-                />
-              </video>
-              <div
-                class="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-              >
-              </div>
-              <span
-                class="bg-brand/90 font-heading absolute bottom-6 left-6 z-10 rounded-full px-5 py-2 text-sm font-medium text-white backdrop-blur-sm"
-              >
-                Solo en Hi Skin & Beauty
-              </span>
+              <source
+                src="/videos/tratamiento-para-suavizado-de-arrugas/ultra-clear.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div
+              class="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            >
             </div>
+            <span
+              class="bg-brand/90 font-heading absolute bottom-6 left-6 z-10 rounded-full px-5 py-2 text-sm font-medium text-white backdrop-blur-sm"
+            >
+              Solo en Hi Skin & Beauty
+            </span>
           </div>
         </div>
-      </FadeIn>
+      </div>
+    </FadeIn>
+    <FadeIn duration={0.8}>
+      <Heading
+        level={3}
+        className="text-brand-gray text-center font-medium"
+        text="Conoce nuestros tratamientos"
+      />
+    </FadeIn>
 
-      <!-- 4 Benefits: 1 column each -->
-      {
-        benefits.map((benefit, i) => (
-          <FadeIn duration={0.8} delay={0.2 + i * 0.1}>
-            <div class="bg-brand/5 border-brand/5 group hover:bg-brand/10 relative flex h-full flex-col justify-start overflow-hidden rounded-2xl border p-6 transition-all duration-300">
-              <GrainTexture
-                grainOpacity={0.02}
-                gradientOpacity={0}
-                class="opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-              <div class="relative z-10">
-                <h3 class="text-brand-gray font-heading group-hover:text-brand mb-3 text-lg leading-snug font-medium transition-colors duration-300">
-                  {benefit.title}
-                </h3>
-                <p class="text-brand-gray/70 font-body text-sm leading-relaxed">
-                  {benefit.description}
-                </p>
-              </div>
+    <!-- Main Feature: Spans all 4 columns -->
+    <FadeIn duration={0.8}>
+      <div
+        class="bg-brand/5 border-brand/5 relative overflow-hidden rounded-3xl border p-4 sm:p-6"
+      >
+        <div class="relative z-10 flex flex-col items-center">
+          <!-- Video Container -->
+          <div
+            class="group relative w-full overflow-hidden rounded-2xl bg-gray-100"
+          >
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              class="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            >
+              <source src="/videos/suavizado.mp4" type="video/mp4" />
+            </video>
+            <div
+              class="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            >
             </div>
-          </FadeIn>
-        ))
-      }
-    </div>
+            <span
+              class="bg-brand/90 font-heading absolute bottom-6 left-6 z-10 rounded-full px-5 py-2 text-sm font-medium text-white backdrop-blur-sm"
+            >
+              Solo en Hi Skin & Beauty
+            </span>
+          </div>
+        </div>
+      </div>
+    </FadeIn>
   </section>
 
-  <TreatmentAreas />
-  <!-- Spot Cuadrado Section -->
+  <!-- Treatment Panels Carousel -->
+  <RevealCarousel
+    title="Tratamientos de Rejuvenecimiento"
+    overlayOpacity={0.4}
+    items={[
+      {
+        title: "Flacidez de la Piel",
+        description:
+          "Disponemos de tratamientos médico-estéticos y procedimientos mínimamente invasivos para tratar la flacidez desde sus primeras fases. Actuamos en distintas zonas del rostro y cuerpo, ayudando a frenar uno de los signos más visibles del envejecimiento.",
+        image: "/rejuvenecimiento/flacidez-de-la-piel.webp",
+      },
+      {
+        title: "Suavizado de Arrugas",
+        description:
+          "Reduce líneas de expresión con láser avanzado que activa el colágeno desde el interior. Mejora visiblemente la textura de la piel y devuelve al rostro un aspecto más fresco, natural y rejuvenecido, sin necesidad de cirugía.",
+        image: "/rejuvenecimiento/suavizado-de-arrugas.webp",
+      },
+      {
+        title: "Glow Facial (Luminosidad)",
+        description:
+          "Devuélvele vida a tu piel con un tratamiento que elimina células muertas, unifica el tono y estimula el colágeno. Potencia la luminosidad sin tiempo de recuperación, dándole a tu piel ese glowing que buscas.",
+        image: "/rejuvenecimiento/Glow-Facial-luminosidad.webp",
+      },
+      {
+        title: "Ojeras",
+        description:
+          "Las ojeras aparecen por el adelgazamiento de la piel y la visibilidad de los vasos sanguíneos en la zona. Con láser médico estimulamos el colágeno, mejoramos la circulación y armonizamos la mirada sin dañar la piel ni dejar marcas.",
+        image: "/rejuvenecimiento/Ojeras.webp",
+      },
+    ]}
+  />
+
   <section class="bg-brand/10 px-4 py-20">
     <div class="mx-auto mb-12 max-w-7xl text-center">
       <FadeIn duration={0.8}>
         <Heading
           level={2}
           className="text-brand mb-6 leading-tight font-medium"
-          text="Tecnología exclusiva con Spot Cuadrado para una cobertura uniforme en menos sesiones"
+          text="Descubre resultados reales"
         />
         <p
           class="text-brand-gray/70 font-body mx-auto max-w-4xl text-lg leading-relaxed"
         >
-          A diferencia de otros láseres tradicionales con <strong
-            class="text-brand-gray">spots circulares</strong
-          > que dejan pequeños espacios entre cada aplicación, <strong
-            class="text-brand-gray">Splendor X</strong
-          > es el primer láser en utilizar un <strong class="text-brand-gray"
-            >Spot Cuadrado</strong
-          >, garantizando una cobertura homogénea sin superposiciones ni áreas
-          sin tratar.
+          Explora la increíble transformación lograda con <strong
+            class="text-brand-gray">UltraClear®</strong
+          >. Ve por ti mismo cómo nuestra tecnología láser de vanguardia mejora
+          la <strong class="text-brand-gray">textura</strong>, <strong
+            class="text-brand-gray">firmeza</strong
+          > y <strong class="text-brand-gray">luminosidad</strong> de la piel en menos
+          sesiones.
         </p>
       </FadeIn>
     </div>
@@ -194,50 +223,36 @@ const benefits = [
         <ComparisonSlider
           beforeImage="/hero/3.webp"
           afterImage="/landing/hero-md.webp"
-          beforeLabel="Otras tecnologías"
-          afterLabel="Splendor X"
+          beforeLabel="Antes"
+          afterLabel="Después"
         />
       </div>
     </FadeIn>
   </section>
-  <FAQSection
-    title="Resuelve tus dudas sobre la depilación láser"
-    subtitle="Encuentra respuestas a las preguntas más comunes sobre Splendor X y la depilación láser. Descubre cómo funciona, cuántas sesiones necesitas y qué cuidados tomar para obtener los mejores resultados."
-    faqs={[
-      {
-        question: "¿CÓMO FUNCIONA LA DEPILACIÓN LÁSER?",
-        answer:
-          "La depilación láser utiliza pulsos de luz que se dirigen al folículo piloso, calentándolo y destruyéndolo para impedir el crecimiento futuro del vello.",
-      },
-      {
-        question: "¿ES LA DEPILACIÓN LÁSER UN MÉTODO SEGURO?",
-        answer:
-          "Sí, es un procedimiento seguro cuando es realizado por profesionales calificados y con equipos adecuados como el Splendor X®",
-      },
-      {
-        question:
-          "¿CUÁNTAS SESIONES SE NECESITAN PARA OBTENER RESULTADOS ÓPTIMOS?",
-        answer:
-          "Generalmente, se requieren entre 6 y 8 sesiones, dependiendo de factores como el tipo de piel, color y grosor del vello, y el área a tratar.",
-      },
-      {
-        question: "¿ES DOLOROSA LA DEPILACIÓN LÁSER?",
-        answer:
-          "Gracias a su sistema de enfriamiento integrado, Splendor X® minimiza las molestias, haciendo que el procedimiento sea muy cómodo para la mayoría de las personas.",
-      },
-      {
-        question:
-          "¿SE PUEDE REALIZAR LA DEPILACIÓN LÁSER EN CUALQUIER TIPO DE PIEL?",
-        answer:
-          "Sí, con nuestra tecnología avanzada Splendor X®, la depilación láser es segura y efectiva en todo tipo de piel, incluyendo pieles más oscuras.",
-      },
-      {
-        question: "¿QUÉ CUIDADOS DEBO TENER ANTES Y DESPUÉS DEL TRATAMIENTO?",
-        answer:
-          "Antes del tratamiento, se recomienda evitar la exposición solar y no utilizar métodos de depilación que arranquen el vello. Después, es importante hidratar la piel y protegerla del sol.",
-      },
-    ]}
-  />
+
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <FadeIn duration={0.8}>
+      <Heading
+        level={2}
+        className="text-brand-gray font-medium text-pretty sm:text-center"
+        text="Tu piel en su mejor versión"
+      />
+    </FadeIn>
+
+    <FadeIn duration={0.8} class="sm:max-w-3/5 sm:text-center">
+      <p class="text-brand-gray font-body text-lg leading-relaxed">
+        Combinamos ciencia, experiencia y tecnología de vanguardia con un
+        enfoque personalizado para ofrecerte tratamientos seguros y altamente
+        efectivos. Nuestro compromiso es rejuvenecer tu piel con soluciones
+        innovadoras que <strong>
+          reducen arrugas, mejoran la textura y realzan su luminosidad,
+          devolviéndote una apariencia fresca y renovada. <strong></strong>
+        </strong>
+      </p>
+    </FadeIn>
+  </section>
 
   <WhyUs
     backgroundImage="/why-us.webp"
