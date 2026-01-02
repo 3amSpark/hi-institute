@@ -1,0 +1,324 @@
+---
+import RootLayout from "../layouts/root.astro";
+import Navbar from "../components/navbar.astro";
+import Hero from "../components/hero.astro";
+import Footer from "../components/footer.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import WhyUs from "../components/why-us.astro";
+import ComparisonSlider from "../components/comparison-slider.astro";
+import ScheduleButton from "../components/schedule-button.astro";
+import Check from "@repo/ui/icons/check.astro";
+
+const botoxBenefits = [
+  {
+    title: "Elimina Arrugas de Expresión",
+    description:
+      "Reduce las arrugas profundas en áreas de expresión como frente y entrecejo.",
+  },
+  {
+    title: "Mejora la Simetría Facial",
+    description:
+      "Ajusta y mejora la simetría del rostro al reducir asimetrías por arrugas.",
+  },
+  {
+    title: "Relajación Muscular",
+    description:
+      "Relaja los músculos faciales, evitando la aparición de nuevas líneas de expresión.",
+  },
+  {
+    title: "Prevención del Envejecimiento",
+    description:
+      "Es ideal para prevenir la formación de arrugas y líneas de expresión.",
+  },
+];
+
+const enzymeAreas = [
+  {
+    title: "Perfilamiento Facial",
+    image: "/medicina-laser/tratamientos/box-tratamiento-marcas-de-acne.webp",
+  },
+  {
+    title: "Doble Mentón",
+    image: "/medicina-laser/tratamientos/tratamiento-manchas-box.webp",
+  },
+  {
+    title: "Grasa Localizada",
+    image: "/medicina-laser/tratamientos/tratamiento-estrias-box.webp",
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="Belleza natural con bótox y enzimas"
+    alt="Tratamiento de inyectables - Belleza natural con bótox y enzimas"
+    images={[
+      {
+        size: "lg",
+        src: "/rejuvenecimiento/hero.webp",
+      },
+    ]}
+  />
+
+  <!-- Botox Section -->
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <FadeIn duration={0.8}>
+      <Heading
+        level={2}
+        className="text-brand-gray font-medium text-balance sm:text-center"
+        text="Rejuvenecimiento Facial con Bótox"
+      />
+    </FadeIn>
+    <FadeIn duration={0.8} delay={0.1} class="sm:max-w-4xl sm:text-center">
+      <p class="text-brand-gray font-body text-lg leading-relaxed">
+        Tratamiento inyectable que suaviza arrugas y líneas de expresión,
+        logrando un resultado natural y armonioso. En HI Skin & Beauty, cada
+        aplicación se realiza bajo la supervisión de médicos expertos,
+        asegurando seguridad, precisión y un enfoque personalizado para cada
+        paciente.
+      </p>
+    </FadeIn>
+  </section>
+
+  <!-- Duration & Recovery Cards -->
+  <section class="px-4 pb-16">
+    <div
+      class="mx-auto flex max-w-3xl flex-col justify-center gap-4 sm:flex-row sm:gap-6"
+    >
+      <FadeIn
+        duration={0.5}
+        delay={0.1}
+        class="border-brand/10 bg-brand/5 flex flex-1 flex-col gap-4 rounded-xl border-[0.75px] p-6"
+      >
+        <Heading
+          level={4}
+          className="text-brand-gray font-semibold"
+          text="Duración:"
+        />
+        <ul class="space-y-2">
+          {
+            ["30-45 minutos", "Procedimiento", "No quirúrgico"].map((item) => (
+              <li class="flex items-center gap-3">
+                <Check class="text-brand size-4 shrink-0" />
+                <span class="text-brand-gray/80 font-body text-sm">{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </FadeIn>
+
+      <FadeIn
+        duration={0.5}
+        delay={0.2}
+        class="border-brand/10 bg-brand/5 flex flex-1 flex-col gap-4 rounded-xl border-[0.75px] p-6"
+      >
+        <Heading
+          level={4}
+          className="text-brand-gray font-semibold"
+          text="Recuperación:"
+        />
+        <ul class="space-y-2">
+          {
+            ["Sin especificaciones médicas", "Recomendaciones 24-48h"].map(
+              (item) => (
+                <li class="flex items-center gap-3">
+                  <Check class="text-brand size-4 shrink-0" />
+                  <span class="text-brand-gray/80 font-body text-sm">
+                    {item}
+                  </span>
+                </li>
+              )
+            )
+          }
+        </ul>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="bg-brand/10 py-20">
+    <div class="mx-auto max-w-7xl px-4">
+      <FadeIn duration={0.8}>
+        <Heading
+          level={2}
+          className="text-brand mb-12 text-center font-medium"
+          text="Algunos de los beneficios del Bótox"
+        />
+      </FadeIn>
+
+      <div class="flex flex-col flex-wrap justify-center gap-4 sm:flex-row">
+        {
+          botoxBenefits.map((benefit, i) => (
+            <FadeIn duration={0.4} delay={0.1 + i * 0.1}>
+              <div class="bg-brand/5 border-brand/10 flex flex-1 flex-col gap-2 rounded-xl border-[0.75px] p-5 sm:max-w-[320px] sm:min-w-[280px]">
+                <p class="text-brand font-heading font-medium">
+                  {benefit.title}
+                </p>
+                <p class="text-brand-gray/80 font-body text-sm">
+                  {benefit.description}
+                </p>
+              </div>
+            </FadeIn>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Before/After Section -->
+  <section class="bg-brand/10 px-4 py-20">
+    <div class="mx-auto mb-12 max-w-7xl text-center">
+      <FadeIn duration={0.8}>
+        <Heading
+          level={2}
+          className="text-brand-gray mb-6 font-medium"
+          text="Resultados reales"
+        />
+        <p
+          class="font-body text-brand-gray/80 mx-auto max-w-2xl text-lg leading-relaxed"
+        >
+          Descubre la transformación que puedes lograr con nuestros tratamientos
+          de rejuvenecimiento facial.
+        </p>
+      </FadeIn>
+    </div>
+
+    <FadeIn duration={1} delay={0.2}>
+      <div
+        class="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8"
+      >
+        <div class="overflow-hidden rounded-2xl bg-gray-100 shadow-sm">
+          <ComparisonSlider
+            beforeImage="/rejuvenecimiento/hero.webp"
+            afterImage="/landing/hero-md.webp"
+            beforeLabel="Antes"
+            afterLabel="Después"
+          />
+        </div>
+        <div class="overflow-hidden rounded-2xl bg-gray-100 shadow-sm">
+          <ComparisonSlider
+            beforeImage="/landing/hero-md.webp"
+            afterImage="/rejuvenecimiento/hero.webp"
+            beforeLabel="Antes"
+            afterLabel="Después"
+          />
+        </div>
+      </div>
+    </FadeIn>
+  </section>
+
+  <!-- Enzymes Section -->
+  <section class="px-4 py-20">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-16 text-center">
+        <FadeIn duration={0.8}>
+          <Heading
+            level={2}
+            className="text-brand-gray mb-6 font-medium"
+            text="Descubre el poder de las enzimas"
+          />
+        </FadeIn>
+        <FadeIn duration={0.8} delay={0.1}>
+          <p
+            class="text-brand-gray/80 font-body mx-auto max-w-4xl text-lg leading-relaxed"
+          >
+            Las enzimas son proteínas que ayudan a transformar y mejorar la
+            piel. Las enzimas recombinantes de pbserum, desarrolladas en Europa,
+            se aplican en tratamientos estéticos para reducir grasa localizada y
+            favorecer el moldeo facial.
+          </p>
+        </FadeIn>
+        <FadeIn duration={0.8} delay={0.2}>
+          <p
+            class="text-brand-gray/80 font-body mx-auto mt-4 max-w-4xl text-lg leading-relaxed"
+          >
+            Actúan de manera precisa en las áreas deseadas, afinando el contorno
+            y mejorando la definición del rostro de forma segura y progresiva.
+          </p>
+        </FadeIn>
+      </div>
+
+      <!-- Enzyme Areas Grid -->
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
+        {
+          enzymeAreas.map((area, i) => (
+            <FadeIn duration={0.6} delay={0.15 * i}>
+              <div class="group relative aspect-4/5 overflow-hidden rounded-2xl">
+                <img
+                  src={area.image}
+                  alt={area.title}
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div class="from-brand/60 absolute inset-0 bg-linear-to-t via-transparent to-transparent" />
+                <div class="absolute inset-x-0 bottom-0 p-6">
+                  <Heading
+                    level={4}
+                    className="font-semibold text-white drop-shadow-md"
+                    text={area.title}
+                  />
+                </div>
+              </div>
+            </FadeIn>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-skin grain relative px-4 py-20">
+    <div class="relative z-20 mx-auto max-w-4xl text-center">
+      <FadeIn duration={0.8}>
+        <p class="font-body text-xl leading-relaxed text-white">
+          Contamos con <strong class="font-semibold text-white"
+            >paquetes de 3 sesiones</strong
+          >, realizadas cada 15 días, para que veas los resultados que esperas.
+        </p>
+        <p class="font-body mt-4 text-xl leading-relaxed text-white">
+          Los efectos son progresivos y duraderos, ofreciendo un contorno más
+          definido y una apariencia más armoniosa.
+        </p>
+      </FadeIn>
+      <FadeIn duration={0.8} delay={0.2}>
+        <div class="mt-10">
+          <ScheduleButton
+            text="AGENDAR MI CITA"
+            href="https://wa.me/your-number"
+          />
+        </div>
+      </FadeIn>
+    </div>
+  </section>
+
+  <WhyUs
+    backgroundImage="/why-us.webp"
+    backgroundImageAlt="Why Skin & Beauty"
+    heading="¿Por qué Skin & Beauty es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Protocolo integral para el cuidado de tu piel",
+        description: [
+          "En HI Skin & Beauty desarrollamos un enfoque que une medicina dermatológica y estética para cuidar tu piel de forma completa y responsable.",
+          "Cada protocolo está diseñado para ofrecer resultados visibles, seguros y alineados con lo que tu piel realmente necesita.",
+        ],
+      },
+      {
+        title: "Dermatología + Estética, en manos expertas",
+        description: [
+          "Nuestro equipo está conformado por médicos dermatólogos y médicos estéticos especializados, que trabajan de forma conjunta para diagnosticar, tratar y mejorar la salud de tu piel, sin improvisaciones ni soluciones temporales.",
+        ],
+      },
+      {
+        title: "Tecnología médica de última generación",
+        description: [
+          "Utilizamos equipos avanzados de diagnóstico y tratamiento que nos permiten evaluar tu piel con precisión clínica y aplicar terapias efectivas, seguras y personalizadas.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

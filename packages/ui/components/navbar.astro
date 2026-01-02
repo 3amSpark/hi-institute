@@ -71,7 +71,7 @@ const currentBreakpoint = breakpointClasses[mobileBreakpoint];
           <div class="route-children grid transition-all group-data-[is-collapsed=true]:grid-rows-[0fr] group-data-[is-collapsed=false]:grid-rows-[1fr]">
             <div class="overflow-hidden">
               <div class="transform transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-data-[is-collapsed=true]:-translate-y-4 group-data-[is-collapsed=true]:opacity-0 group-data-[is-collapsed=false]:translate-y-0 group-data-[is-collapsed=false]:opacity-100">
-                {route.children?.slice(1).map((child) => (
+                {route.children?.map((child) => (
                   <MobileNavLink href={child.href} isChild>
                     {child.label}
                   </MobileNavLink>
