@@ -1,22 +1,40 @@
 ---
+import ChevronDown from "../icons/chevron-down.astro";
+
 interface Props {
   href: string;
   isChild?: boolean;
+  childCount?: number;
   class?: string;
 }
 
-const { href, isChild = false, class: className } = Astro.props;
+const {
+  href,
+  isChild = false,
+  childCount = 0,
+  class: className,
+} = Astro.props as Props;
 ---
 
-<a
-  href={href}
-  class:list={[
-    "font-heading hover:text-brand border-brand-gray/10 block border-b font-medium uppercase transition-colors",
-    isChild
-      ? "text-brand-gray/50 px-6 py-3 text-sm"
-      : "text-brand-gray/70 px-6 py-4 text-base",
-    className,
-  ]}
->
-  <slot />
-</a>
+<div class="relative">
+  <a
+    href={href}
+    class:list={[
+      "font-heading hover:text-brand text-brand-gray tracking-wide border-brand/20  h-20 pl-4 flex items-center  border-b font-medium  transition-colors relative",
+      isChild ? " bg-brand/5 " : "",
+      className,
+    ]}
+  >
+    <slot />
+  </a>
+  {
+    !isChild && childCount > 1 && (
+      <div class="absolute collapse-button  right-3 top-1/2  p-2 z-10 -translate-y-1/2">
+        <ChevronDown
+          class="size-8 text-brand transition-transform duration-300 group-data-[is-collapsed=false]:rotate-180"
+          strokeWidth={1.5}
+        />
+      </div>
+    )
+  }
+</div>

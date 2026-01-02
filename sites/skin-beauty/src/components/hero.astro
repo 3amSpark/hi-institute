@@ -43,27 +43,29 @@ const fallbackImage = lgImage || mdImage || smImage;
 >
   <div
     class:list={[
-      "z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 p-4 md:pt-30 md:pb-0",
-      align === "right" ? "items-end" : "items-start",
+      "z-10 mx-auto flex w-full max-w-7xl flex-col gap-4 p-4 pb-6 md:pt-30 md:pb-0",
+      "items-start",
+      align === "right" ? "md:items-end" : "",
     ]}
   >
     <FadeIn
       duration={1}
       class:list={[
         "flex w-full flex-col gap-6",
-        align === "right" ? "items-end" : "items-start",
+        "items-start",
+        align === "right" ? "md:items-end" : "",
       ]}
     >
       <Heading
         text={title}
-        className={`max-w-3/4 font-medium text-balance text-white text-shadow-sm ${align === "right" ? "ml-auto text-right" : "text-left"}`}
+        className={`max-w-3/4 text-left font-medium text-balance text-white text-shadow-sm ${align === "right" ? "md:ml-auto md:text-right" : ""}`}
         level={1}
       />
       {
         subtitle && (
           <Heading
             text={subtitle}
-            className={`max-w-3/4 text-balance text-white text-shadow-sm ${align === "right" ? "ml-auto text-right" : "text-left"}`}
+            className={`max-w-3/4 text-left text-balance text-white text-shadow-sm ${align === "right" ? "md:ml-auto md:text-right" : ""}`}
             level={4}
           />
         )
@@ -74,7 +76,8 @@ const fallbackImage = lgImage || mdImage || smImage;
       delay={0.1}
       class:list={[
         "flex flex-col",
-        align === "right" ? "items-end" : "items-start",
+        "items-start",
+        align === "right" ? "md:items-end" : "",
       ]}
     >
       <ScheduleButton

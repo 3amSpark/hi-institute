@@ -54,21 +54,32 @@ const currentBreakpoint = breakpointClasses[mobileBreakpoint];
 <div
   id="mobile-menu"
   class:list={[
-    "pointer-events-none fixed inset-x-0 top-20 z-40 h-[calc(100dvh-5rem)] -translate-y-2 overflow-y-auto bg-white opacity-0 transition-all duration-200",
+    "pointer-events-none fixed inset-x-0 top-20 z-40 h-[calc(100dvh-5rem)] -translate-y-2 overflow-y-auto bg-linear-to-t from-neutral-100 to-white opacity-0 transition-all duration-200",
     currentBreakpoint.mobile,
   ]}
 >
   <div class="flex h-full flex-col">
     {
       routes.map((route) => (
-        <>
-          <MobileNavLink href={route.href}>{route.label}</MobileNavLink>
-          {route.children?.slice(1).map((child) => (
-            <MobileNavLink href={child.href} isChild>
-              {child.label}
-            </MobileNavLink>
-          ))}
-        </>
+        <div class="child-routes group" data-is-collapsed={true}>
+          <MobileNavLink
+            childCount={route.children?.length ?? 0}
+            href={route.href}
+          >
+            {route.label}
+          </MobileNavLink>
+          <div class="route-children grid transition-all group-data-[is-collapsed=true]:grid-rows-[0fr] group-data-[is-collapsed=false]:grid-rows-[1fr]">
+            <div class="overflow-hidden">
+              <div class="transform transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-data-[is-collapsed=true]:-translate-y-4 group-data-[is-collapsed=true]:opacity-0 group-data-[is-collapsed=false]:translate-y-0 group-data-[is-collapsed=false]:opacity-100">
+                {route.children?.slice(1).map((child) => (
+                  <MobileNavLink href={child.href} isChild>
+                    {child.label}
+                  </MobileNavLink>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       ))
     }
   </div>
@@ -120,23 +131,46 @@ const currentBreakpoint = breakpointClasses[mobileBreakpoint];
         aria-label="Abrir menú"
       >
         <span
-          class="bg-brand-gray/70 h-0.5 w-6 origin-center transition-all duration-300 group-[.menu-open]:translate-y-[8px] group-[.menu-open]:rotate-45"
+          class="bg-brand h-0.5 w-6 origin-center transition-all duration-300 group-[.menu-open]:translate-y-[8px] group-[.menu-open]:rotate-45"
         ></span>
         <span
-          class="bg-brand-gray/70 h-0.5 w-6 transition-all duration-300 group-[.menu-open]:scale-0 group-[.menu-open]:opacity-0"
+          class="bg-brand h-0.5 w-6 transition-all duration-300 group-[.menu-open]:scale-0 group-[.menu-open]:opacity-0"
         ></span>
         <span
-          class="bg-brand-gray/70 h-0.5 w-6 origin-center transition-all duration-300 group-[.menu-open]:-translate-y-[8px] group-[.menu-open]:-rotate-45"
+          class="bg-brand h-0.5 w-6 origin-center transition-all duration-300 group-[.menu-open]:-translate-y-[8px] group-[.menu-open]:-rotate-45"
         ></span>
       </button>
     </div>
   </div>
 </nav>
 
+<style>
+  .route-children {
+    transition:
+      grid-template-rows 300ms cubic-bezier(0.19, 1, 0.22, 1),
+      opacity 300ms cubic-bezier(0.19, 1, 0.22, 1);
+  }
+</style>
+
 <script>
   const openBtn = document.getElementById("open-mobile-menu");
   const menu = document.getElementById("mobile-menu");
   const overlay = document.getElementById("mobile-menu-overlay");
+
+  const mobileNavLinks = document.querySelectorAll(".collapse-button");
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      // get the closest route-children container.
+      const parentContainer = link.closest(".child-routes") as HTMLElement;
+      if (!parentContainer) return;
+
+      if (parentContainer.dataset.isCollapsed === "true") {
+        parentContainer.dataset.isCollapsed = "false";
+      } else {
+        parentContainer.dataset.isCollapsed = "true";
+      }
+    });
+  });
 
   function openMenu() {
     menu?.classList.remove(
