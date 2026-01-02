@@ -6,30 +6,30 @@ import Heading from "@repo/ui/components/heading.astro";
 interface Testimonial {
   name: string;
   text: string;
-  initials: string;
+  avatar: string;
 }
 
 const featured: Testimonial = {
   name: "Lupita Banman",
   text: "Professional, detailed, painless. Excellent service. I had laser sessions in Mexico and USA but these were the best by far. The staff is incredibly attentive and the results exceeded all my expectations. Highly recommend!",
-  initials: "LB",
+  avatar: "/rejuvenecimiento/ultraclear/testimonials/lupita.png",
 };
 
 const testimonials: Testimonial[] = [
   {
     name: "Carmen de León",
     text: "Excelente!! Además la atención es lo máximo.",
-    initials: "C",
+    avatar: "/rejuvenecimiento/ultraclear/testimonials/carmen.png",
   },
   {
     name: "Dorly Gálvez",
     text: "Excelente servicio y el personal 10 de 10. Me encantó la atención personalizada.",
-    initials: "D",
+    avatar: "/rejuvenecimiento/ultraclear/testimonials/dorly.png",
   },
   {
     name: "Wilson Urizar",
     text: "Excelente Servicio, muy contento con los resultados. El equipo es muy profesional.",
-    initials: "W",
+    avatar: "/rejuvenecimiento/ultraclear/testimonials/wilson.png",
   },
 ];
 
@@ -60,11 +60,11 @@ const googleReviewUrl =
             </p>
           </div>
           <div class="flex items-center gap-3 md:flex-col md:items-center">
-            <div
-              class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/20 font-bold"
-            >
-              {featured.initials}
-            </div>
+            <img
+              src={featured.avatar}
+              alt={featured.name}
+              class="h-14 w-14 shrink-0 rounded-full object-cover"
+            />
             <span class="font-heading font-semibold">{featured.name}</span>
           </div>
         </div>
@@ -84,9 +84,11 @@ const googleReviewUrl =
               </div>
               <p class="font-body text-brand-gray/80 flex-1">"{t.text}"</p>
               <div class="mt-4 flex items-center gap-3">
-                <div class="bg-brand/15 text-brand flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold">
-                  {t.initials}
-                </div>
+                <img
+                  src={t.avatar}
+                  alt={t.name}
+                  class="h-9 w-9 shrink-0 rounded-full object-cover"
+                />
                 <span class="font-heading text-brand-gray text-sm font-semibold">
                   {t.name}
                 </span>
