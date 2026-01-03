@@ -11,13 +11,14 @@ interface Props {
     image: string;
   }[];
   overlayOpacity?: number;
+  class?: string;
 }
 
-const { title, items, overlayOpacity = 1 } = Astro.props;
+const { title, items, overlayOpacity = 1, class: className } = Astro.props;
 ---
 
 <reveal-carousel
-  class="block bg-brand-gray/5 px-4 py-20"
+  class:list={["block px-4 py-20", className]}
   style={`--overlay-opacity: ${overlayOpacity}`}
 >
   <div class="mx-auto max-w-6xl">

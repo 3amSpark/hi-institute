@@ -9,6 +9,7 @@ type Props = {
   containerClass?: string;
   initialPosition?: number;
   sliderId?: string;
+  aspectRatio?: "video" | "vertical" | "square" | string;
 };
 
 const props = Astro.props as Props;
@@ -23,15 +24,33 @@ const {
   containerClass = "",
   initialPosition = 50,
   sliderId = `comparison-${Math.random().toString(36).slice(2, 8)}`,
+  aspectRatio = "video",
 } = Astro.props;
 
 const startPosition = Math.min(100, Math.max(0, initialPosition));
+
+// Map aspect ratio values to Tailwind classes
+const getAspectRatioClass = (ratio: string): string => {
+  switch (ratio) {
+    case "video":
+      return "aspect-video";
+    case "vertical":
+      return "aspect-[12/16]";
+    case "square":
+      return "aspect-square";
+    default:
+      // Allow custom aspect ratios like "aspect-[3/4]"
+      return ratio.startsWith("aspect-") ? ratio : `aspect-[${ratio}]`;
+  }
+};
+
+const aspectRatioClass = getAspectRatioClass(aspectRatio);
 ---
 
 <div
   id={sliderId}
   data-comparison-slider
-  class={`comparison-root relative aspect-video overflow-hidden select-none ${containerClass}`}
+  class={`comparison-root relative ${aspectRatioClass} overflow-hidden select-none ${containerClass}`}
   style={`--pos: ${startPosition}%`}
 >
   <div class="comparison-handle" style="left: var(--pos)">
