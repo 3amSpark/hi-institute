@@ -1,0 +1,177 @@
+---
+import RootLayout from "../layouts/root.astro";
+import Navbar from "../components/navbar.astro";
+import Hero from "../components/hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import ImageTextSection from "../components/image-text-section.astro";
+import RevealCarousel from "@repo/ui/components/reveal-carousel.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import WhyUs from "../components/why-us.astro";
+import Footer from "../components/footer.astro";
+
+const analysisSlides = [
+  {
+    title: "Manchas",
+    description:
+      "Marcas marrones o rojas visibles a simple vista, que contrastan con el tono natural de la piel y varían en tamaño y forma.",
+    image: "/analisis-avanzado-del-rostro/manchas.webp",
+  },
+  {
+    title: "Arrugas",
+    description:
+      "Surcos o pliegues en la piel que aumentan con la exposición al sol y la pérdida de elasticidad.",
+    image: "/analisis-avanzado-del-rostro/arrugas.webp",
+  },
+  {
+    title: "Textura",
+    description:
+      "Zonas elevadas o hundidas que generan irregularidades en la superficie de la piel, afectando su suavidad.",
+    image: "/analisis-avanzado-del-rostro/textura.webp",
+  },
+  {
+    title: "Poros",
+    description:
+      "Aberturas circulares en la piel que, al agrandarse, pueden verse más oscuras debido a las sombras y el contraste con el tono circundante.",
+    image: "/analisis-avanzado-del-rostro/poros.webp",
+  },
+  {
+    title: "Manchas UV",
+    description:
+      "Zonas de acumulación de melanin bajo la piel, visibles por la absorción de luz UV, causadas por daño solar.",
+    image: "/analisis-avanzado-del-rostro/uv-manchas.webp",
+  },
+  {
+    title: "Manchas marrones",
+    description:
+      "Hiperpigmentación y decoloración en la superficie y debajo de la piel.",
+    image: "/analisis-avanzado-del-rostro/machas marrones.webp",
+  },
+  {
+    title: "Areas rojas",
+    description:
+      "Áreas rojizas concentradas, asociadas con inflamación o venas dilatadas.",
+    image: "/analisis-avanzado-del-rostro/areas rojas.webp",
+  },
+  {
+    title: "Porfirinas",
+    description: "Secreciones bacterianas que pueden acumularse en los poros.",
+    image: "/analisis-avanzado-del-rostro/porfirinas.webp",
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="Análisis Avanzado del Rostro"
+    alt="Análisis Avanzado del Rostro"
+    video="/videos/analisis-avanzado-del-rostro/Evaluación Facial ｜ HI Skin & Beauty (1).mp4"
+  />
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <Heading
+      level={2}
+      className="text-brand-gray font-medium text-pretty sm:text-center"
+      text="Conoce tu piel como nunca antes"
+    />
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      VISIA® es un sistema de diagnóstico de última generación que escanea tu
+      piel con precisión clínica, analizando manchas, poros, arrugas y más.
+    </p>
+  </section>
+
+  <RevealCarousel
+    title="Descubre las 8 dimensiones de tu piel"
+    items={analysisSlides}
+    overlayOpacity={0.65}
+  />
+
+  <ImageTextSection
+    imageSrc="/analisis-avanzado-del-rostro/foto-paciente-visia.webp"
+    imageAlt="Análisis avanzado de la piel"
+    imagePosition="left"
+    grainEffect={false}
+  >
+    <Heading
+      level={4}
+      className="text-brand-gray font-medium text-balance"
+      text="Tu piel, analizada con precisión clínica"
+    />
+    <Heading
+      level={6}
+      className="text-brand-gray"
+      text="El sistema VISIA® nos permite ver lo que el ojo humano no alcanza a percibir, identificando problemas latentes antes de que sean visibles."
+    />
+    <p class="text-brand-gray font-heading leading-relaxed font-medium">
+      A través de este análisis profundo, podemos diseñar un plan de tratamiento
+      totalmente personalizado, basado en datos reales y no en suposiciones.
+    </p>
+  </ImageTextSection>
+
+  <section class="bg-brand/10 px-4 py-20">
+    <div
+      class="mx-auto mb-12 flex max-w-7xl flex-col items-center justify-center gap-8 text-center"
+    >
+      <FadeIn duration={0.8}>
+        <Heading
+          level={2}
+          className="text-brand mb-2 leading-tight font-medium"
+          text="Comparaciones Significativas"
+        />
+        <p
+          class="text-brand-gray/90 font-body mx-auto max-w-4xl text-lg leading-relaxed"
+        >
+          Análisis cuantitativo y evaluación visual, que permite conocer la edad
+          de la piel, proporcionando una nueva y revolucionaria métrica para las
+          opciones de tratamiento.
+        </p>
+      </FadeIn>
+
+      <FadeIn duration={1} delay={0.2}>
+        <img
+          src="/analisis-avanzado-del-rostro/true-skin-age.png"
+          alt="Comparaciones Significativas"
+          class="h-auto w-full rounded-2xl"
+        />
+      </FadeIn>
+
+      <p
+        class="text-brand-gray/90 font-body mx-auto max-w-4xl text-lg leading-relaxed"
+      >
+        En <strong class="text-brand">Hi Skin & Beauty</strong>, nos
+        comprometemos a brindarte los resultados que deseas, combinando la mejor
+        tecnología láser, experiencia y ciencia.
+      </p>
+    </div>
+  </section>
+  <WhyUs
+    backgroundImage="/why-us.webp"
+    backgroundImageAlt="Why Skin & Beauty"
+    heading="¿Por qué Skin & Beauty es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Protocolo integral para el cuidado de tu piel",
+        description: [
+          "En HI Skin & Beauty desarrollamos un enfoque que une medicina dermatológica y estética para cuidar tu piel de forma completa y responsable.",
+          "Cada protocolo está diseñado para ofrecer resultados visibles, seguros y alineados con lo que tu piel realmente necesita.",
+        ],
+      },
+      {
+        title: "Dermatología + Estética, en manos expertas",
+        description: [
+          "Nuestro equipo está conformado por médicos dermatólogos y médicos estéticos especializados, que trabajan de forma conjunta para diagnosticar, tratar y mejorar la salud de tu piel, sin improvisaciones ni soluciones temporales.",
+        ],
+      },
+      {
+        title: "Tecnología médica de última generación",
+        description: [
+          "Utilizamos equipos avanzados de diagnóstico y tratamiento que nos permiten evaluar tu piel con precisión clínica y aplicar terapias efectivas, seguras y personalizadas.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

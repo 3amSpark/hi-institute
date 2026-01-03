@@ -1,0 +1,141 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import Facebook from "@repo/ui/icons/facebook.astro";
+import Instagram from "@repo/ui/icons/instagram.astro";
+import TikTok from "@repo/ui/icons/tiktok.astro";
+---
+
+<footer>
+  <div
+    class="from-ziggurat to-smokey-pink grain relative w-full overflow-hidden bg-radial-[at_0%_75%] py-20 text-center"
+  >
+    <div
+      class="relative z-20 mx-auto flex max-w-7xl flex-col items-center justify-center gap-4"
+    >
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          className="text-balance text-white text-shadow-sm"
+          text="No tienes que tener todas las respuestas. Solo necesitas el primer paso."
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <p class="font-body text-white sm:text-lg">
+          Tu bienestar íntimo empieza cuando te sientes acompañada. <br /> Agenda
+          tu cita y da el primer paso hacia tu mejor versión.
+        </p>
+      </FadeIn>
+      <FadeIn duration={1} delay={0.2}>
+        <button
+          class="text-ziggurat font-heading group relative cursor-pointer overflow-hidden rounded-full bg-white px-6 py-2 uppercase"
+        >
+          <span class="invisible">¡Agenda tu cita ahora!</span>
+          <!-- Revealed text -->
+          <span
+            class="text-smokey-pink absolute inset-0 flex -translate-y-full items-center justify-center transition-transform duration-300 group-hover:translate-y-0"
+          >
+            ¡Agenda tu cita ahora!
+          </span>
+          <!-- Initial text -->
+          <span
+            class="absolute inset-0 flex translate-y-0 items-center justify-center transition-transform duration-300 group-hover:translate-y-full"
+          >
+            ¡Agenda tu cita ahora!
+          </span>
+        </button>
+      </FadeIn>
+    </div>
+  </div>
+  <div class="w-full bg-white py-10 text-center">
+    <div
+      class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-4"
+    >
+      <Heading
+        level={6}
+        className="text-brand-gray text-xl font-medium"
+        text="Horario de atención"
+      />
+      {
+        [
+          {
+            day: "Lunes",
+            start: "7:00 am",
+            end: "4:00 pm",
+          },
+          {
+            day: "Martes a Jueves",
+            start: "6:30 am",
+            end: "3:30 pm",
+          },
+          {
+            day: "Viernes",
+            start: "6:30 am",
+            end: "2:30 pm",
+          },
+          {
+            day: "Sábado",
+            start: "7:00 am",
+            end: "12:00 pm",
+          },
+        ].map((schedule) => (
+          <div class="font-heading text-brand-gray border-brand-gray/20 flex flex-col items-center border-b pb-2">
+            <span class="font-semibold">{schedule.day}</span>
+            <span class="font-light">
+              {schedule.start} - {schedule.end}
+            </span>
+          </div>
+        ))
+      }
+      <p class="text-brand-gray font-heading font-light">
+        Avenida La Reforma 9-55, Edif. Reforma 10 <br /> Zona 10, 6to. nivel, Clínica
+        606,<br />
+        Ciudad de Guatemala, Guatemala
+      </p>
+    </div>
+  </div>
+  <div
+    class="from-smokey-pink to-ziggurat grain relative w-full overflow-hidden bg-radial-[at_0%_75%] py-20 text-center"
+  >
+    <div
+      class="relative z-20 mx-auto flex max-w-7xl flex-col items-center justify-center gap-16 sm:flex-row"
+    >
+      <img
+        src="/logo-white.svg"
+        alt="Hi Fem Care"
+        class="h-auto w-56 object-contain"
+      />
+      <p class="font-heading font-light text-white">
+        HI Fem Care forma parte de A Tu Origen, Sociedad Anónima. © {
+          new Date().getFullYear()
+        }. Todos los derechos reservados
+      </p>
+      <div class="flex items-center gap-4">
+        <a
+          href="https://www.facebook.com/HI.FemCare/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <Facebook class="text-white" />
+        </a>
+        <a
+          href="https://www.instagram.com/hi.femcare/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <Instagram class="text-white" />
+        </a>
+        <a
+          href="https://www.tiktok.com/@hi.femcare"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+        >
+          <TikTok class="text-white" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

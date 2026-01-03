@@ -1,0 +1,65 @@
+---
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+
+interface Treatment {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  heading: string;
+  treatments: Treatment[];
+}
+
+const { heading, treatments } = Astro.props;
+
+const gradientPositions = [
+  "bg-radial-[at_0%_0%]",
+  "bg-radial-[at_100%_0%]",
+  "bg-radial-[at_0%_100%]",
+  "bg-radial-[at_100%_100%]",
+];
+
+const isOdd = treatments.length % 2 !== 0;
+---
+
+<section class="mx-auto max-w-7xl px-2 py-10">
+  <FadeIn duration={1} delay={0}>
+    <Heading
+      level={3}
+      className="text-brand-gray/80 mb-20 text-center font-medium text-pretty"
+      text={heading}
+    />
+  </FadeIn>
+  <div class="grid gap-4 sm:grid-cols-2">
+    {
+      treatments.map((treatment, i) => {
+        const isLast = i === treatments.length - 1;
+        const shouldCenter = isOdd && isLast;
+
+        return (
+          <FadeIn
+            duration={1}
+            delay={i * 0.1}
+            class:list={[
+              "from-ziggurat to-smokey-pink/60 highlight white flex flex-col gap-4 rounded-lg p-10",
+              gradientPositions[i % gradientPositions.length],
+              shouldCenter &&
+                "sm:col-span-2 sm:mx-auto sm:max-w-[calc(50%-0.75rem)]",
+            ]}
+          >
+            <Heading
+              level={4}
+              className=" font-medium text-pretty text-white text-shadow-xs"
+              text={treatment.title}
+            />
+            <p class="font-heading text-base text-white">
+              {treatment.description}
+            </p>
+          </FadeIn>
+        );
+      })
+    }
+  </div>
+</section>

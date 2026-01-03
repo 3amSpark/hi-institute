@@ -8,14 +8,16 @@ import RevealSlides from "@repo/ui/components/reveal-slides.astro";
 
 interface Props {
   title: string;
+  video?: string;
   subtitle?: string;
   alt: string;
-  images: {
+  images?: {
     size: "sm" | "md" | "lg";
     src: string;
   }[];
   buttonText?: string;
   revealSlides?: boolean;
+  align?: "left" | "right";
 }
 
 const {
@@ -25,11 +27,13 @@ const {
   images,
   buttonText = "Agenda tu cita ahora",
   revealSlides = false,
+  video,
+  align = "left",
 } = Astro.props;
 
-const smImage = images.find((img) => img.size === "sm");
-const mdImage = images.find((img) => img.size === "md");
-const lgImage = images.find((img) => img.size === "lg");
+const smImage = images?.find((img) => img.size === "sm");
+const mdImage = images?.find((img) => img.size === "md");
+const lgImage = images?.find((img) => img.size === "lg");
 
 const fallbackImage = lgImage || mdImage || smImage;
 ---
@@ -38,49 +42,90 @@ const fallbackImage = lgImage || mdImage || smImage;
   class="relative flex h-svh w-full flex-col items-center justify-end overflow-hidden bg-white md:justify-center"
 >
   <div
-    class="z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 p-4 md:pt-30 md:pb-0"
+    class:list={[
+      "z-10 mx-auto flex w-full max-w-7xl flex-col gap-4 p-4 pb-6 md:pt-30 md:pb-0",
+      "items-start",
+      align === "right" ? "md:items-end" : "",
+    ]}
   >
-    <FadeIn duration={1}>
+    <FadeIn
+      duration={1}
+      class:list={[
+        "flex w-full flex-col gap-6",
+        "items-start",
+        align === "right" ? "md:items-end" : "",
+      ]}
+    >
       <Heading
         text={title}
-        className="max-w-3/4 font-medium text-balance text-white text-shadow-sm"
+        className={`max-w-3/4 text-left font-medium text-balance text-white text-shadow-sm ${align === "right" ? "md:ml-auto md:text-right" : ""}`}
         level={1}
       />
       {
         subtitle && (
           <Heading
             text={subtitle}
-            className="max-w-3/4 text-balance text-white text-shadow-sm"
+            className={`max-w-3/4 text-left text-balance text-white text-shadow-sm ${align === "right" ? "md:ml-auto md:text-right" : ""}`}
             level={4}
           />
         )
       }
     </FadeIn>
-    <FadeIn duration={1} delay={0.1}>
+    <FadeIn
+      duration={1}
+      delay={0.1}
+      class:list={[
+        "flex flex-col",
+        "items-start",
+        align === "right" ? "md:items-end" : "",
+      ]}
+    >
       <ScheduleButton
         href="https://calendly.com/hi-fem-care/agenda-cita"
         text={buttonText}
       />
     </FadeIn>
   </div>
-  <ParallaxImage yPercent={10} start="middle top" end="bottom top">
-    <picture>
-      {smImage && <source srcset={smImage.src} media="(max-width: 767px)" />}
-      {mdImage && <source srcset={mdImage.src} media="(max-width: 1023px)" />}
-      {lgImage && <source srcset={lgImage.src} media="(max-width: 1920px)" />}
-      <img
-        src={fallbackImage?.src}
-        alt={alt}
-        class="absolute inset-0 z-0 h-full w-full scale-105 object-cover object-center"
-      />
-    </picture>
-  </ParallaxImage>
-  <GrainTexture />
+
+  {
+    video ? (
+      <ParallaxImage yPercent={10} start="middle top" end="bottom top">
+        <video
+          src={video}
+          autoplay
+          muted
+          loop
+          playsinline
+          class="absolute inset-0 z-0 h-full w-full scale-105 object-cover"
+        />
+      </ParallaxImage>
+    ) : (
+      <ParallaxImage yPercent={10} start="middle top" end="bottom top">
+        <picture>
+          {smImage && (
+            <source srcset={smImage.src} media="(max-width: 767px)" />
+          )}
+          {mdImage && (
+            <source srcset={mdImage.src} media="(max-width: 1023px)" />
+          )}
+          {lgImage && (
+            <source srcset={lgImage.src} media="(max-width: 1920px)" />
+          )}
+          <img
+            src={fallbackImage?.src}
+            alt={alt}
+            class="absolute inset-0 z-0 h-full w-full scale-105 object-cover object-center"
+          />
+        </picture>
+      </ParallaxImage>
+    )
+  }
+  <!-- <GrainTexture /> -->
   {
     revealSlides && (
       <RevealSlides
         duration={0.75}
-        colors={["bg-black", "bg-brand-gray", "bg-smokey-pink"]}
+        colors={["bg-black", "bg-neutral-800", "bg-skin"]}
       />
     )
   }

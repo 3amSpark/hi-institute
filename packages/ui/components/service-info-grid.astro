@@ -1,0 +1,30 @@
+---
+import ServiceInfoCard from "./service-info-card.astro";
+
+interface ServiceInfo {
+  name: string;
+  description: string;
+  image: string;
+}
+
+interface Props {
+  services: ServiceInfo[];
+}
+
+const { services } = Astro.props;
+---
+
+<div
+  class="service-grid flex flex-wrap justify-center gap-6 duration-700 sm:gap-2"
+>
+  {
+    services.map((service, idx) => (
+      <ServiceInfoCard
+        name={service.name}
+        description={service.description}
+        image={service.image}
+        index={idx}
+      />
+    ))
+  }
+</div>

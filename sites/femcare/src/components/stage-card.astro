@@ -1,0 +1,130 @@
+---
+import Heading from "@repo/ui/components/heading.astro";
+
+interface ListItem {
+  bold: string;
+  text: string;
+}
+
+interface CardContent {
+  title: string;
+  intro?: string;
+  items: (string | ListItem)[];
+  footer?: string;
+}
+
+interface Props {
+  phase: number;
+  title: string;
+  description: string;
+  leftCard: CardContent;
+  rightCard: CardContent;
+  class?: string;
+}
+
+const {
+  phase,
+  title,
+  description,
+  leftCard,
+  rightCard,
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={["flex flex-col items-center gap-4", className]}>
+  <!-- Phase Badge -->
+  <div
+    class="from-ziggurat to-smokey-pink font-heading highlight relative rounded-full border-2 bg-radial-[at_0%_100%] px-6 py-1.5 text-base font-medium text-white uppercase"
+  >
+    Fase {phase}
+  </div>
+
+  <!-- Title -->
+  <Heading
+    level={3}
+    text={title}
+    className="text-brand-gray text-center font-medium"
+  />
+
+  <!-- Description -->
+  <p
+    class="text-brand-gray font-body mb-6 max-w-4xl text-center text-lg leading-relaxed"
+  >
+    {description}
+  </p>
+
+  <!-- Cards Container -->
+  <div class="flex w-full flex-col gap-6 md:flex-row">
+    <!-- Left Card -->
+    <div
+      class="from-ziggurat/10 to-smokey-pink/10 text-brand-gray flex flex-1 flex-col gap-4 rounded-2xl bg-radial-[at_100%_0%] p-8"
+    >
+      <h4 class="font-heading text-2xl font-bold">{leftCard.title}</h4>
+
+      {leftCard.intro && <p class="font-body text-base">{leftCard.intro}</p>}
+
+      <ul class="font-body flex list-inside list-disc flex-col gap-2 text-base">
+        {
+          leftCard.items.map((item) => (
+            <li>
+              {typeof item === "string" ? (
+                item
+              ) : (
+                <>
+                  <span class="font-bold">{item.bold}</span>
+                  {item.text && ` ${item.text}`}
+                </>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+
+      {
+        leftCard.footer && (
+          <>
+            <div class="border-brand-gray/30 border-t" />
+            <p class="font-body text-base italic">{leftCard.footer}</p>
+          </>
+        )
+      }
+    </div>
+
+    <!-- Right Card -->
+    <div
+      class="from-ziggurat/10 to-smokey-pink/10 text-brand-gray flex flex-1 flex-col gap-4 rounded-2xl bg-radial-[at_0%_100%] p-8"
+    >
+      <h4 class="font-heading text-2xl font-bold">{rightCard.title}</h4>
+
+      {rightCard.intro && <p class="font-body text-base">{rightCard.intro}</p>}
+
+      <div class="font-body flex flex-col gap-3 text-base">
+        {
+          rightCard.items.map((item, index) => (
+            <p>
+              {typeof item === "string" ? (
+                <>
+                  <span class="font-bold">{index + 1}.</span> {item}
+                </>
+              ) : (
+                <>
+                  <span class="font-bold">
+                    {index + 1}. {item.bold}
+                  </span>
+                  {item.text && ` ${item.text}`}
+                </>
+              )}
+            </p>
+          ))
+        }
+      </div>
+
+      {
+        rightCard.footer && (
+          <p class="font-body mt-2 text-base italic">{rightCard.footer}</p>
+        )
+      }
+    </div>
+  </div>
+</div>

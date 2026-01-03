@@ -1,172 +1,59 @@
 ---
-import NavLink from "./nav-link.astro";
-import MobileNavLink from "./mobile-nav-link.astro";
+import NavbarShared from "@repo/ui/components/navbar.astro";
 
-const dropdownLinkClass =
-  "font-heading text-brand-gray/70 hover:bg-ziggurat/10 hover:text-smokey-pink block rounded px-3 py-2 text-sm font-medium uppercase transition-colors";
-
+// TODO: Use the old naming convention to keep Google Search Console happy
 const routes = [
   {
-    href: "/ginecologia",
-    label: "Ginecología",
+    href: "/dermatologia-medica",
+    label: "DERMATOLOGÍA",
     children: [
-      { href: "/ginecologia", label: "Ginecología General" },
-      { href: "/ginecologia/ciclos-irregulares", label: "Ciclos Irregulares" },
       {
-        href: "/ginecologia/sindrome-ovario-poliquistico",
-        label: "Síndrome de Ovario Poliquístico",
+        href: "/dermatologia-medica-de-la-piel",
+        label: "DERMATOLOGÍA DE LA PIEL",
       },
-      { href: "/ginecologia/miomas-uterinos", label: "Miomas Uterinos" },
       {
-        href: "/ginecologia/perimenopausia-menopausia",
-        label: "Perimenopausia y Menopausia",
-      },
-      { href: "/ginecologia/liquen-vulvar", label: "Liquen Vulvar" },
-      {
-        href: "/ginecologia/infecciones-vaginales",
-        label: "Infecciones Vaginales",
+        href: "/dermatologia-medica-del-cabello",
+        label: "DERMATOLOGÍA DEL CABELLO",
       },
     ],
   },
   {
-    href: "/virus-del-papiloma-humano",
-    label: "VPH",
+    href: "/medicina-laser-de-precision",
+    label: "MEDICINA LÁSER",
+    exact: true,
+  },
+  {
+    label: "LOS MÁS SOLICITADOS",
     children: [
-      { href: "/virus-del-papiloma-humano", label: "VPH General" },
+      { href: "/tratamiento-para-marcas-de-acne", label: "MARCAS DE ACNÉ" },
+      { href: "/tratamiento-para-rosacea", label: "ROSÁCEA" },
+      { href: "/tratamiento-para-manchas", label: "MANCHAS" },
       {
-        href: "/virus-del-papiloma-humano/prevencion-y-deteccion-temprana",
-        label: "Prevención y Detección Temprana",
-      },
-      {
-        href: "/virus-del-papiloma-humano/tratamientos-curativos",
-        label: "Tratamientos Curativos",
+        href: "/tratamiento-para-suavizado-de-arrugas",
+        label: "SUAVIZADO DE ARRUGAS",
       },
     ],
   },
-  { href: "/endometriosis", label: "Endometriosis", exact: true },
-  { href: "/uro-ginecologia", label: "Uroginecología", exact: true },
-  { href: "/fem-care-total", label: "Femcare Total", exact: true },
-  { href: "/monalisa-touch", label: "Monalisa Touch", exact: true },
+  {
+    href: "/rejuvenece-tu-piel",
+    label: "REJUVENECIMIENTO",
+    children: [
+      { href: "/tratamiento-de-inyectables", label: "INYECTABLES" },
+      { href: "/ultra-clear-es-lo-que-tu-piel-necesita", label: "ULTRA CLEAR" },
+    ],
+  },
+  { href: "/hidrafaciales", label: "HIDRAFACIALES", exact: true },
+  {
+    href: "/depilacion-laser-con-splendor-x",
+    label: "DEPILACIÓN LÁSER",
+    exact: true,
+  },
+  {
+    href: "/analisis-avanzado-del-rostro",
+    label: "ANÁLISIS 3D DEL ROSTRO",
+    exact: true,
+  },
 ];
 ---
 
-<!-- Mobile Menu Overlay -->
-<div
-  id="mobile-menu-overlay"
-  class="pointer-events-none fixed inset-0 top-20 z-40 bg-black/0 transition-all duration-200 lg:hidden"
->
-</div>
-
-<!-- Mobile Menu -->
-<div
-  id="mobile-menu"
-  class="fixed inset-x-0 top-20 z-40 h-[calc(100dvh-5rem)] -translate-y-2 overflow-y-auto bg-white opacity-0 transition-all duration-200 lg:hidden"
->
-  <div class="flex h-full flex-col">
-    {
-      routes.map((route, i) => (
-        <>
-          <MobileNavLink href={route.href}>{route.label}</MobileNavLink>
-          {route.children?.slice(1).map((child) => (
-            <MobileNavLink href={child.href} isChild>
-              {child.label}
-            </MobileNavLink>
-          ))}
-        </>
-      ))
-    }
-  </div>
-</div>
-
-<nav
-  class="border-brand-gray/10 fixed top-0 right-0 left-0 z-50 border-b bg-white/85 backdrop-blur-sm"
->
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex h-20 items-center justify-between">
-      <!-- Logo -->
-      <a href="/" class="shrink-0">
-        <img src="/logo.svg" alt="Hi Fem Care" class="h-8 w-auto" />
-      </a>
-
-      <!-- Desktop Navigation -->
-      <div class="hidden items-center gap-8 lg:flex">
-        {
-          routes.map((route) =>
-            route.children ? (
-              <NavLink href={route.href}>
-                {route.label}
-                <Fragment slot="dropdown">
-                  {route.children.map((child) => (
-                    <a href={child.href} class={dropdownLinkClass}>
-                      {child.label}
-                    </a>
-                  ))}
-                </Fragment>
-              </NavLink>
-            ) : (
-              <NavLink href={route.href} exact={route.exact}>
-                {route.label}
-              </NavLink>
-            )
-          )
-        }
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <button
-        id="open-mobile-menu"
-        class="group relative flex size-10 cursor-pointer flex-col items-center justify-center gap-1.5 lg:hidden"
-        aria-label="Abrir menú"
-      >
-        <span
-          class="bg-brand-gray h-0.5 w-6 origin-center transition-transform duration-300 group-[.menu-open]:translate-y-2 group-[.menu-open]:rotate-45"
-        ></span>
-        <span
-          class="bg-brand-gray h-0.5 w-6 transition-opacity duration-300 group-[.menu-open]:opacity-0"
-        ></span>
-        <span
-          class="bg-brand-gray h-0.5 w-6 origin-center transition-transform duration-300 group-[.menu-open]:-translate-y-2 group-[.menu-open]:-rotate-45"
-        ></span>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<script>
-  const openBtn = document.getElementById("open-mobile-menu");
-  const menu = document.getElementById("mobile-menu");
-  const overlay = document.getElementById("mobile-menu-overlay");
-
-  function openMenu() {
-    menu?.classList.remove(
-      "opacity-0",
-      "-translate-y-2",
-      "pointer-events-none"
-    );
-    menu?.classList.add("opacity-100", "translate-y-0");
-    overlay?.classList.remove("bg-black/0", "pointer-events-none");
-    overlay?.classList.add("bg-black/30", "pointer-events-auto");
-    openBtn?.classList.add("menu-open");
-    document.body.classList.add("overflow-hidden");
-  }
-
-  function closeMenu() {
-    menu?.classList.add("opacity-0", "-translate-y-2", "pointer-events-none");
-    menu?.classList.remove("opacity-100", "translate-y-0");
-    overlay?.classList.add("bg-black/0", "pointer-events-none");
-    overlay?.classList.remove("bg-black/30", "pointer-events-auto");
-    openBtn?.classList.remove("menu-open");
-    document.body.classList.remove("overflow-hidden");
-  }
-
-  openBtn?.addEventListener("click", () => {
-    const isOpen = menu?.classList.contains("opacity-100");
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  overlay?.addEventListener("click", closeMenu);
-</script>
+<NavbarShared routes={routes} logoAlt="Skin Beauty" mobileBreakpoint="xl" />

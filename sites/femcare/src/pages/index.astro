@@ -1,0 +1,120 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import ServiceGrid from "@repo/ui/components/service-grid.astro";
+import Footer from "src/components/footer.astro";
+import Hero from "src/components/hero.astro";
+import Navbar from "src/components/navbar.astro";
+import WhyUs from "src/components/why-us.astro";
+import RootLayout from "../layouts/root.astro";
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="Cuidamos tu salud íntima con precisión y ciencia."
+    alt="Hi Fem Care Hero Image"
+    images={[
+      {
+        size: "sm",
+        src: "/landing/hero-sm.webp",
+      },
+      {
+        size: "lg",
+        src: "/landing/hero-lg.webp",
+      },
+    ]}
+    revealSlides={true}
+  />
+  <section
+    class="flex flex-col items-center justify-center gap-20 bg-linear-to-b from-white to-neutral-200 px-4 py-20 sm:px-6"
+  >
+    <div class="mx-auto flex max-w-7xl flex-col gap-6">
+      <FadeIn duration={1}>
+        <Heading
+          level={3}
+          className="text-brand-gray/80 font-heading text-pretty sm:text-center"
+          text="Cuidada. Precisa. Personal."
+        />
+        <Heading
+          level={2}
+          className="text-brand-gray font-medium text-balance sm:text-center"
+          text="En Hi Fem Care redefinimos la salud de la mujer"
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <p
+          class="text-brand-gray font-heading mx-auto text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+        >
+          Somos la única clínica creada exclusivamente para acompañar cada etapa
+          de tu vida como mujer: tu bienestar hormonal, tu fertilidad, tu piso
+          pélvico, tus cambios y los retos de la edad.
+        </p>
+      </FadeIn>
+    </div>
+    <div class="mx-auto w-full max-w-7xl">
+      <ServiceGrid
+        services={[
+          {
+            name: "Ginecología",
+            image: "/ginecologia.webp",
+            href: "/ginecologia",
+          },
+          {
+            name: "Virus del Papiloma Humano",
+            image: "/virus-pailoma-humano.webp",
+            href: "/vph",
+          },
+          {
+            name: "Endometriosis",
+            image: "/endometriosis.webp",
+            href: "/endometriosis",
+          },
+          {
+            name: "Uroginecología",
+            image: "/uroginecologia.webp",
+            href: "/uro-ginecologia",
+          },
+          {
+            name: "Fem Care Total",
+            image: "/fem-care-total.webp",
+            href: "/fem-care-total",
+          },
+        ]}
+      />
+    </div>
+  </section>
+
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

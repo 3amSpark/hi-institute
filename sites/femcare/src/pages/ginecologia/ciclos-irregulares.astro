@@ -1,0 +1,200 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import ServiceHero from "src/components/service-hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import WhyUs from "src/components/why-us.astro";
+import Footer from "src/components/footer.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import TreatmentGrid from "src/components/treatment-grid.astro";
+
+const causes = [
+  {
+    title: "SOP / PECO (Síndrome de Ovario Poliquístico)",
+    description:
+      "Ciclos largos o ausentes, provocados por resistencia a la insulina y un desbalance hormonal.",
+    bg: "bg-linear-to-br",
+  },
+  {
+    title: "Endometriosis o Adenomiosis",
+    description: "Sangrados abundantes, dolor pélvico, inflamación y fatiga.",
+    bg: "bg-linear-to-bl",
+  },
+  {
+    title: "Perimenopausia (35–50 años)",
+    description:
+      "Cambios hormonales que generan ciclos irregulares, sangrados variables y síntomas emocionales y físicos.",
+    bg: "bg-linear-to-t",
+    className: "sm:col-span-2 sm:mx-auto sm:max-w-[calc(50%-0.5rem)]",
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <ServiceHero
+    title="Sí hay solución para periodos ausentes, abundantes o irregulares."
+    serviceName="Ciclos Menstruales Irregulares"
+    mainImageAlt="Ciclos Menstruales Irregulares"
+    images={[
+      {
+        src: "/gynaecology/hero-ciclos-sm.webp",
+        media: "(max-width: 767px)",
+      },
+      {
+        src: "/gynaecology/hero-ciclos-md.webp",
+        media: "(max-width: 1023px) and (min-width: 768px)",
+      },
+      {
+        src: "/gynaecology/hero-ciclos.webp",
+        media: "(min-width: 1024px)",
+      },
+    ]}
+  >
+    <p>
+      Un ciclo irregular no es "normal" ni algo que debas soportar en silencio.
+    </p>
+    <p>
+      Si tus periodos aparecen tarde, muy seguido, duran demasiado, sangran más
+      de lo usual o duelen más de lo que deberían, tu cuerpo está pidiendo
+      equilibrio.
+    </p>
+    <p>
+      Los ciclos irregulares son una señal. En Hi Fem Care nos enfocamos en
+      descubrir por qué suceden, no solo en aliviar los síntomas.
+    </p>
+  </ServiceHero>
+
+  <!-- ¿Por qué ocurren? -->
+  <section class="bg-neutral-100 px-4 py-20">
+    <div class="mx-auto max-w-4xl">
+      <FadeIn duration={1} delay={0}>
+        <Heading
+          level={3}
+          className="text-brand-gray mb-4 text-center font-medium"
+          text="¿Por qué ocurren?"
+        />
+        <Heading
+          level={5}
+          className="text-brand-gray mb-8 text-center"
+          text="Las causas pueden ser diferentes en cada mujer. Estas son algunas de las más frecuentes:"
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <div class="mx-auto grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
+          {
+            causes.map((cause) => (
+              <div
+                class:list={[
+                  "from-ziggurat/10 to-smokey-pink/10 flex flex-col items-center justify-center gap-2 rounded-lg p-6 text-center",
+                  cause.bg,
+                  cause.className,
+                ]}
+              >
+                <Heading
+                  level={5}
+                  text={cause.title}
+                  className="text-brand-gray font-medium"
+                />
+                <p class="text-brand-gray font-heading">{cause.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Tratamiento -->
+  <TreatmentGrid
+    heading="¿Cómo lo tratamos en Hi Fem Care?"
+    treatments={[
+      {
+        title: "Diagnóstico personalizado",
+        description:
+          "Evaluamos tus hormonas, metabolismo e inflamación, según tu historia y tus síntomas.",
+      },
+      {
+        title: "Plan metabólico personalizado",
+        description:
+          "Nutrición funcional, regulación del azúcar y manejo del estrés para estabilizar tu eje hormonal.",
+      },
+      {
+        title: "Suplementos y regulación hormonal personalizada",
+        description:
+          "Apoyo con suplementos, reguladores hormonales naturales o terapia bioidéntica, según tu caso.",
+      },
+    ]}
+  />
+
+  <!-- Inspiring -->
+  <div class="mx-auto max-w-4xl px-4 py-20">
+    <FadeIn duration={1}>
+      <p class="text-brand-gray font-heading text-xl sm:text-center">
+        <span class="font-medium">Recupera el control de tu ciclo.</span>
+        Podemos ayudarte a regularlo, reducir síntomas y mejorar tu energía, fertilidad
+        y bienestar.
+      </p>
+      <p
+        class="text-brand-gray font-heading mt-4 text-xl font-medium sm:text-center"
+      >
+        Tu cuerpo no está fallando. Solo necesita ser escuchado.
+      </p>
+    </FadeIn>
+  </div>
+
+  <!-- CTA -->
+  <section class="px-4 pb-20">
+    <div class="mx-auto max-w-3xl text-center">
+      <FadeIn duration={1} delay={0}>
+        <Heading
+          level={3}
+          className="text-brand-gray mb-6 font-medium"
+          text="No tienes que vivir con ciclos impredecibles."
+        />
+        <p class="text-brand-gray font-heading mb-8 text-xl">
+          Podemos ayudarte a encontrar el equilibrio.
+        </p>
+        <ScheduleButton
+          href="https://calendly.com/hi-fem-care/agenda-cita"
+          text="¡Agenda tu cita hoy!"
+        />
+      </FadeIn>
+    </div>
+  </section>
+
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

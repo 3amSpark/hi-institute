@@ -1,0 +1,49 @@
+---
+import NavbarShared from "@repo/ui/components/navbar.astro";
+
+const routes = [
+  {
+    href: "/ginecologia",
+    label: "Ginecología",
+    children: [
+      { href: "/ginecologia", label: "Ginecología General" },
+      { href: "/ginecologia/ciclos-irregulares", label: "Ciclos Irregulares" },
+      {
+        href: "/ginecologia/sindrome-ovario-poliquistico",
+        label: "Síndrome de Ovario Poliquístico",
+      },
+      { href: "/ginecologia/miomas-uterinos", label: "Miomas Uterinos" },
+      {
+        href: "/ginecologia/perimenopausia-menopausia",
+        label: "Perimenopausia y Menopausia",
+      },
+      { href: "/ginecologia/liquen-vulvar", label: "Liquen Vulvar" },
+      {
+        href: "/ginecologia/infecciones-vaginales",
+        label: "Infecciones Vaginales",
+      },
+    ],
+  },
+  {
+    href: "/virus-del-papiloma-humano",
+    label: "VPH",
+    children: [
+      { href: "/virus-del-papiloma-humano", label: "VPH General" },
+      {
+        href: "/virus-del-papiloma-humano/prevencion-y-deteccion-temprana",
+        label: "Prevención y Detección Temprana",
+      },
+      {
+        href: "/virus-del-papiloma-humano/tratamientos-curativos",
+        label: "Tratamientos Curativos",
+      },
+    ],
+  },
+  { href: "/endometriosis", label: "Endometriosis", exact: true },
+  { href: "/uro-ginecologia", label: "Uroginecología", exact: true },
+  { href: "/fem-care-total", label: "Femcare Total", exact: true },
+  { href: "/monalisa-touch", label: "Monalisa Touch", exact: true },
+];
+---
+
+<NavbarShared routes={routes} logoAlt="Hi Fem Care" mobileBreakpoint="lg" />

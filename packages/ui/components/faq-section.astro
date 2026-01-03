@@ -1,0 +1,131 @@
+---
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  faqs: FAQ[];
+}
+
+const {
+  title = "Preguntas Frecuentes",
+  subtitle = "Si tienes dudas, revisa las preguntas frecuentes antes de agendar tu consulta.<br />Si aún necesitas ayuda, contáctanos. Estaremos encantados de ayudarte.",
+  faqs,
+} = Astro.props;
+---
+
+<section class="px-4 py-20">
+  <div class="mx-auto max-w-4xl">
+    <FadeIn duration={1}>
+      <Heading
+        level={3}
+        className="text-brand-gray mb-4 text-center font-medium"
+        text={title}
+      />
+    </FadeIn>
+    <p
+      class="text-brand-gray/90 font-body mb-12 text-center text-lg"
+      set:html={subtitle}
+    />
+
+    <div class="">
+      {
+        faqs.map((faq, i) => (
+          <div class="faq-item group hover:bg-brand/10 rounded-md">
+            <button
+              class="faq-trigger text-brand-gray font-heading group-hover:text-brand flex w-full cursor-pointer items-center justify-between px-4 py-6 text-left text-sm font-medium tracking-wide uppercase transition-colors duration-300"
+              aria-expanded="false"
+            >
+              <span>{faq.question}</span>
+              <span class="faq-icon text-brand group-hover:text-brand relative ml-4 flex h-6 w-6 shrink-0 items-center justify-center transition-colors duration-300">
+                <span class="absolute h-0.5 w-3 bg-current transition-colors duration-300" />
+                <span class="faq-icon-vertical absolute h-3 w-0.5 bg-current transition-all duration-300" />
+              </span>
+            </button>
+            <div class="faq-content grid grid-rows-[0fr] px-4 transition-[grid-template-rows] duration-300 ease-out">
+              <div class="overflow-hidden">
+                <p class="text-brand-gray/80 font-body pb-6 leading-relaxed">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupFAQ() {
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach((item) => {
+      const trigger = item.querySelector(".faq-trigger");
+      const content = item.querySelector(".faq-content");
+      const iconVertical = item.querySelector(".faq-icon-vertical");
+
+      if (!trigger || !content || !iconVertical) return;
+
+      trigger.addEventListener("click", () => {
+        const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+
+        // Close all other items
+        faqItems.forEach((otherItem) => {
+          const otherTrigger = otherItem.querySelector(".faq-trigger");
+          const otherContent = otherItem.querySelector(".faq-content");
+          const otherIconVertical =
+            otherItem.querySelector(".faq-icon-vertical");
+
+          if (
+            otherItem !== item &&
+            otherTrigger &&
+            otherContent &&
+            otherIconVertical
+          ) {
+            otherTrigger.setAttribute("aria-expanded", "false");
+            otherContent.classList.remove("grid-rows-[1fr]");
+            otherContent.classList.add("grid-rows-[0fr]");
+            otherIconVertical.classList.remove("rotate-45");
+          }
+        });
+
+        // Toggle current item
+        trigger.setAttribute("aria-expanded", String(!isExpanded));
+
+        if (!isExpanded) {
+          content.classList.remove("grid-rows-[0fr]");
+          content.classList.add("grid-rows-[1fr]");
+          iconVertical.classList.add("rotate-0");
+        } else {
+          content.classList.remove("grid-rows-[1fr]");
+          content.classList.add("grid-rows-[0fr]");
+          iconVertical.classList.remove("rotate-45");
+        }
+      });
+    });
+  }
+
+  setupFAQ();
+  document.addEventListener("astro:after-swap", setupFAQ);
+</script>
+
+<style>
+  .faq-item {
+    transition: background-color 0.3s ease;
+  }
+
+  .faq-trigger span:first-child {
+    transition: transform 0.3s ease;
+  }
+
+  .faq-trigger[aria-expanded="true"] .faq-icon-vertical {
+    transform: rotate(90deg);
+  }
+</style>

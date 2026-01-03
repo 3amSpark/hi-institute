@@ -1,0 +1,195 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import Hero from "src/components/hero.astro";
+import Footer from "src/components/footer.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import TreatmentGrid from "src/components/treatment-grid.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import WhyUs from "src/components/why-us.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import InfoCard from "src/components/info-card.astro";
+
+const cards = [
+  {
+    title: "¿Por qué es importante hablar del VPH?",
+    bg: "bg-radial-[at_100%_0%]",
+    content: [
+      "Puede permanecer latente hasta 30 años sin síntomas.",
+      "Es la principal causa del cáncer de cuello uterino, pero puede prevenirse en más del 70% de los casos.",
+      "Su impacto emocional y en la vida íntima de las mujeres es profundo, y muchas no reciben el acompañamiento adecuado.",
+    ],
+    isList: true,
+  },
+  {
+    title: "¿Qué síntomas puede causar el VPH?",
+    bg: "bg-radial-[at_50%_50%]",
+    content: [
+      {
+        text: "Algunos tipos de VPH pueden provocar verrugas genitales (condilomas), visibles y molestas.",
+      },
+      {
+        text: "Sin embargo, los tipos de alto riesgo, que pueden derivar en cáncer de cuello uterino, generalmente no presentan síntomas hasta que ya existen lesiones graves.",
+      },
+      {
+        text: "A medida que el VPH avanza, pueden aparecer signos como:",
+        bold: true,
+      },
+      "Sangrado vaginal después de relaciones, entre periodos o tras la menopausia.",
+      "Secreción vaginal acuosa o con sangre.",
+      "Dolor pélvico o molestias durante las relaciones sexuales.",
+    ],
+  },
+  {
+    title: "¿Cómo me infecté del VPH? ¿Es contagioso?",
+    bg: "bg-radial-[at_0%_100%]",
+    content: [
+      {
+        text: "Cualquier persona que tenga contacto sexual con otra persona puede infectarse del VPH. Puedes estar en riesgo aunque sólo tengas una pareja, porque tu pareja puede haber tenido a otras parejas sexuales en el pasado.",
+      },
+      {
+        text: "La mayoría de transmisiones se producen con el contacto piel con piel, con el pene, escroto, vagina, vulva o ano de una persona infectada, incluso sin penetración. Besar o practicar sexo oral a una persona infectada también puede ser una vía de transmisión del virus.",
+      },
+    ],
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="Volver a sentirte tú misma, otra vez, sí es posible."
+    alt="Endometriosis"
+    images={[
+      {
+        size: "sm",
+        src: "/hero/13-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/hero/13-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/hero/13.webp",
+      },
+    ]}
+  />
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <Heading
+      level={2}
+      className="text-brand-gray font-medium text-pretty sm:text-center"
+      text="Virus del Papiloma Humano (VPH)"
+    />
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      La infección más común, pero también una de las más prevenibles. El VPH
+      afecta al 70% de la población en algún momento de su vida. Muchas veces
+      pasa desapercibido, pero puede convertirse en un problema serio si no se
+      detecta y se maneja a tiempo. En HI FEM CARE te ayudamos a entenderlo,
+      prevenirlo y tratarlo, con un enfoque que protege tu cuerpo, tu
+      tranquilidad y tu futuro.
+    </p>
+  </section>
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-12 px-4 py-20 sm:py-6"
+  >
+    <div class="flex flex-col flex-wrap gap-6 md:flex-row">
+      {
+        cards.map((card, i) => (
+          <FadeIn duration={1} delay={i * 0.1} class="flex flex-1">
+            <InfoCard {...card} />
+          </FadeIn>
+        ))
+      }
+    </div>
+  </section>
+  <section class="mx-auto max-w-7xl px-2 py-10">
+    <FadeIn duration={1} delay={0}>
+      <Heading
+        level={3}
+        className="text-brand-gray/80 mb-20 text-center font-medium text-pretty"
+        text="¿Qué opciones tienes si te preocupa el VPH?"
+      />
+    </FadeIn>
+    <div class="grid gap-4 sm:grid-cols-2">
+      <FadeIn duration={1} delay={0.1}>
+        <a
+          href="/virus-del-papiloma-humano/prevencion-y-deteccion-temprana"
+          class="from-ziggurat to-smokey-pink/60 highlight flex h-full flex-col gap-4 rounded-lg bg-radial-[at_0%_0%] p-10 transition-transform hover:scale-[1.02]"
+        >
+          <Heading
+            level={4}
+            className="font-medium text-pretty text-white text-shadow-xs"
+            text="Prevención y Detección Temprana"
+          />
+          <p class="font-heading text-base text-white">
+            Para mujeres sin diagnóstico, pero con deseo de proteger su salud
+            íntima.
+          </p>
+          <span
+            class="font-heading mt-auto inline-flex items-center gap-2 text-sm font-semibold text-white"
+          >
+            Conoce más →
+          </span>
+        </a>
+      </FadeIn>
+      <FadeIn duration={1} delay={0.2}>
+        <a
+          href="/virus-del-papiloma-humano/tratamientos-curativos"
+          class="from-ziggurat to-smokey-pink/60 highlight flex h-full flex-col gap-4 rounded-lg bg-radial-[at_100%_0%] p-10 transition-transform hover:scale-[1.02]"
+        >
+          <Heading
+            level={4}
+            className="font-medium text-pretty text-white text-shadow-xs"
+            text="Tratamiento Curativo por Fases"
+          />
+          <p class="font-heading text-base text-white">
+            Para mujeres con lesiones, verrugas o diagnóstico confirmado.
+          </p>
+          <span
+            class="font-heading mt-auto inline-flex items-center gap-2 text-sm font-semibold text-white"
+          >
+            Conoce más →
+          </span>
+        </a>
+      </FadeIn>
+    </div>
+  </section>
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

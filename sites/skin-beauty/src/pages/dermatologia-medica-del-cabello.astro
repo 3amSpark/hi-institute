@@ -1,0 +1,316 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import Footer from "src/components/footer.astro";
+import Hero from "src/components/hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import GrainTexture from "src/components/grain-texture.astro";
+
+const alopeciaCauses = [
+  {
+    title: "Antecedentes Familiares",
+    description:
+      "La alopecia también puede ser hereditaria y de hecho, esta es la causa más común de pérdida del pelo. Se trata de alopecia androgenética, es decir, que la pérdida de pelo se da de forma natural dado el proceso de envejecimiento.",
+  },
+  {
+    title: "Cambios Hormonales",
+    description:
+      "Los cambios hormonales pueden producir una pérdida de cabello de forma temporal. Cuando hablamos de cambios hormonales nos referimos a etapas como el embarazo, la menopausia o cambios relacionados con el hipertiroidismo.",
+  },
+  {
+    title: "Medicación",
+    description:
+      "Ingerir ciertos medicamentos puede ser determinante en la pérdida del pelo. Sobre todo la medicación para enfermedades como artritis, cáncer o problemas de corazón. Nuestros especialistas revisan la medicación del paciente para determinar esta causa.",
+  },
+  {
+    title: "Estrés",
+    description:
+      "Otra de las causas más comunes en la pérdida de cabello es padecer un cuadro de estrés o ansiedad. Se trata de una alopecia de carácter temporal en la que se debe llevar un control, pero no debe generarnos más ansiedad ya que se puede recuperar.",
+  },
+];
+
+const dermatitisCauses = [
+  "Actividad excesiva de las glándulas sebáceas",
+  "Proliferación del hongo Malassezia en la piel",
+  "Cambios hormonales",
+  "Estrés o falta de descanso",
+  "Clima frío y seco",
+  "Predisposición genética",
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    align="left"
+    title="Expertos en el cuidado real de tu cabello"
+    alt="Expertos en el cuidado real de tu cabello"
+    images={[
+      {
+        size: "sm",
+        src: "/dermatologia/cabello/hero-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/dermatologia/cabello/hero-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/dermatologia/cabello/hero.webp",
+      },
+    ]}
+  />
+
+  <!-- Intro Section -->
+  <section class="bg-brand-cream/30 px-6 py-20">
+    <div class="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          text="Tratamientos Médicos para la Caída del Cabello y Caspa"
+          className="text-brand-gray font-heading mb-6 font-medium text-balance"
+        />
+      </FadeIn>
+      <p
+        class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-5/6 sm:text-center"
+      >
+        La caída capilar y la caspa no son solo problemas estéticos. Son señales
+        de un desequilibrio en el cuero cabelludo que merece atención médica. En
+        HI Skin & Beauty, tratamos estas afecciones con un enfoque dermatológico
+        personalizado para recuperar la salud capilar de forma segura y
+        efectiva.
+      </p>
+    </div>
+  </section>
+
+  <!-- Alopecia Section -->
+  <section class="bg-brand/10">
+    <div class="mx-auto max-w-7xl px-6 py-20">
+      <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+        <FadeIn duration={1} delay={0.2}>
+          <div class="overflow-hidden rounded-2xl shadow-xl">
+            <img
+              src="/dermatologia/alopecia.webp"
+              alt="Alopecia"
+              class="aspect-square w-full object-cover"
+            />
+          </div>
+        </FadeIn>
+        <FadeIn duration={1} delay={0.4}>
+          <div>
+            <Heading
+              level={2}
+              text="Alopecia"
+              className="text-brand font-heading mb-8 font-medium"
+            />
+            <p class="text-brand-gray font-heading mb-8">
+              La alopecia es la pérdida parcial o total del cabello, causada por
+              factores hormonales, genéticos o el envejecimiento. Puede ser
+              temporal o permanente y afecta con mayor frecuencia a los hombres.
+              Hoy existen tratamientos médicos que permiten frenar su avance y
+              recuperar la densidad capilar de forma efectiva.
+            </p>
+            <p class="text-brand-gray font-heading mb-8">
+              Existen dos tipos de alopecia:
+            </p>
+
+            <div class="space-y-6">
+              <div class="border-brand-gray/10 border-b-2 pb-6">
+                <p
+                  class="text-brand-gray font-heading mb-1 text-xl font-medium"
+                >
+                  Alopecias cicatriciales
+                </p>
+                <p class="text-brand-gray font-heading">
+                  Se producen cuando el folículo del pelo se destruye de forma
+                  irreversible, generalmente por causas inflamatorias,
+                  inmunológicas o desconocidas. Su tratamiento requiere
+                  diagnóstico temprano, constancia y tiempo para obtener buenos
+                  resultados.
+                </p>
+              </div>
+              <div>
+                <p
+                  class="text-brand-gray font-heading mb-1 text-xl font-medium"
+                >
+                  Alopecias no cicatriciales
+                </p>
+                <p class="text-brand-gray font-heading">
+                  En estos casos el folículo no se destruye, pero entra en fase
+                  de reposo. Incluyen tipos como la alopecia androgenética,
+                  areata y los efluvios telógeno y anágeno. Con el tratamiento
+                  adecuado, es posible recuperar el crecimiento del cabello.
+                </p>
+              </div>
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+    </div>
+  </section>
+
+  <!-- Causes Section -->
+  <section class="mx-auto max-w-7xl px-6 py-20">
+    <FadeIn duration={1}>
+      <Heading
+        level={4}
+        text="Las principales causas de la alopecia son:"
+        className="text-brand-gray font-heading mb-16 text-center font-medium"
+      />
+    </FadeIn>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {
+        alopeciaCauses.map((cause, i) => (
+          <FadeIn duration={0.4} delay={i * 0.1}>
+            <div class="bg-brand/5 border-brand/15 hover:bg-brand/10 relative h-full rounded-xl border-[0.5px] p-6 transition-colors duration-300">
+              <span class="text-brand/20 font-heading absolute top-2.5 right-4 text-5xl font-medium">
+                {i + 1}
+              </span>
+              <Heading
+                level={4}
+                text={cause.title}
+                className="text-brand mb-4 font-heading font-medium "
+              />
+              <p class="text-brand-gray/80 font-heading">{cause.description}</p>
+            </div>
+          </FadeIn>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- CTA Alopecia -->
+  <section
+    class="bg-brand grain relative overflow-hidden px-6 py-24 text-center"
+  >
+    <div class="relative z-10 mx-auto max-w-3xl">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          text="¿No sabes qué tipo de alopecia tienes?"
+          className="font-heading mb-6 font-medium text-white"
+        />
+        <p class="font-heading mb-10 text-xl font-light text-white">
+          Agenda una consulta y obtén un diagnóstico claro y personalizado.
+        </p>
+        <ScheduleButton
+          text="EMPIEZA AQUÍ"
+          href="https://wa.me/your-number"
+          class="text-brand bg-white hover:bg-white/90"
+        />
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Dermatitis Section -->
+  <section class="mx-auto max-w-7xl px-6 py-24">
+    <div class="mb-16 text-center">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          text="Dermatitis Seborreica"
+          className="text-brand-gray font-heading mb-12 font-medium"
+        />
+      </FadeIn>
+    </div>
+
+    <div class="mb-24 grid grid-cols-1 items-center gap-16 md:grid-cols-2">
+      <FadeIn duration={1} delay={0.2}>
+        <div class="overflow-hidden rounded-2xl shadow-xl">
+          <img
+            src="/dermatologia/cabello/hero-md.webp"
+            alt="Dermatitis Seborreica"
+            class="aspect-4/3 w-full object-cover"
+          />
+        </div>
+      </FadeIn>
+      <FadeIn duration={1} delay={0.4}>
+        <p
+          class="text-brand-gray font-heading mb-8 text-lg leading-relaxed font-light"
+        >
+          La dermatitis seborreica es una afección inflamatoria crónica de la
+          piel que provoca descamación, enrojecimiento, irritación y picor.
+          Afecta principalmente al cuero cabelludo, rostro (aletas nasales,
+          cejas, entrecejo), pecho y otras zonas ricas en glándulas sebáceas.
+          Aunque muchas veces se confunde con caspa o sensibilidad cutánea, esta
+          condición requiere un diagnóstico médico para diferenciarla de otras
+          patologías como la psoriasis o las infecciones por hongos.
+        </p>
+      </FadeIn>
+    </div>
+
+    <div class="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
+      <FadeIn duration={1} delay={0.2}>
+        <div>
+          <Heading
+            level={3}
+            text="¿Qué causa la dermatitis seborreica?"
+            className="text-brand-gray font-heading mb-6 font-medium"
+          />
+          <p class="text-brand-gray font-heading mb-8 text-lg font-light">
+            No existe una única causa, pero los principales factores asociados
+            son:
+          </p>
+          <ul class="space-y-4">
+            {
+              dermatitisCauses.map((cause) => (
+                <li class="text-brand-gray font-heading flex items-center gap-3 font-medium">
+                  <span class="bg-brand h-2 w-2 shrink-0 rounded-full" />
+                  {cause}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </FadeIn>
+      <FadeIn duration={1} delay={0.4}>
+        <div class="grid grid-cols-1 gap-4">
+          <img
+            src="/dermatologia/cabello/hero.webp"
+            alt="Dermatitis Detail 1"
+            class="h-40 w-full rounded-xl object-cover"
+          />
+          <img
+            src="/dermatologia/piel.webp"
+            alt="Dermatitis Detail 2"
+            class="h-40 w-full rounded-xl object-cover"
+          />
+          <img
+            src="/dermatologia/cabello/hero-md.webp"
+            alt="Dermatitis Detail 3"
+            class="h-40 w-full rounded-xl object-cover"
+          />
+        </div>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section
+    class="bg-brand grain relative overflow-hidden px-6 py-24 text-center"
+  >
+    <div class="relative z-10 mx-auto max-w-3xl">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          text="¿Tienes síntomas como picor o descamación persistente?"
+          className="font-heading mb-6 font-medium text-white"
+        />
+        <p class="font-heading mb-10 text-xl font-light text-white">
+          Podemos ayudarte con un diagnóstico preciso y un plan de tratamiento
+          adaptado a tu piel.
+        </p>
+        <ScheduleButton
+          text="EMPIEZA AQUÍ"
+          href="https://wa.me/your-number"
+          class="text-brand bg-white hover:bg-white/90"
+        />
+      </FadeIn>
+    </div>
+  </section>
+
+  <Footer skipCTA />
+</RootLayout>

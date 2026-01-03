@@ -1,0 +1,151 @@
+---
+type Props = {
+  beforeImage: string;
+  afterImage: string;
+  beforeAlt?: string;
+  afterAlt?: string;
+  containerClass?: string;
+  initialPosition?: number;
+  sliderId?: string;
+};
+
+const props = Astro.props as Props;
+
+const {
+  beforeImage,
+  afterImage,
+  beforeAlt = "Before image",
+  afterAlt = "After image",
+  containerClass = "",
+  initialPosition = 50,
+  sliderId = `comparison-${Math.random().toString(36).slice(2, 8)}`,
+} = Astro.props;
+
+const startPosition = Math.min(100, Math.max(0, initialPosition));
+---
+
+<div
+  id={sliderId}
+  data-comparison-slider
+  class={`comparison-root relative overflow-hidden select-none ${containerClass}`}
+  style={`--pos: ${startPosition}%`}
+>
+  <div class="comparison-handle" style="left: var(--pos)">
+    <div class="comparison-handle__knob">
+      <div class="comparison-handle__bar"></div>
+    </div>
+  </div>
+
+  <div class="absolute inset-0">
+    <img
+      src={beforeImage}
+      alt={beforeAlt}
+      class="h-full w-full object-cover"
+      loading="lazy"
+    />
+  </div>
+
+  <div class="absolute inset-0 comparison-mask">
+    <img
+      src={afterImage}
+      alt={afterAlt}
+      class="h-full w-full object-cover"
+      loading="lazy"
+    />
+  </div>
+</div>
+
+<style>
+  .comparison-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0.25rem;
+    transform: translateX(-50%);
+    background: black;
+    z-index: 20;
+    cursor: col-resize;
+  }
+
+  .comparison-handle__knob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2rem;
+    height: 2rem;
+    transform: translate(-50%, -50%);
+    border-radius: 9999px;
+    background: white;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .comparison-handle__bar {
+    width: 1rem;
+    height: 0.125rem;
+    background: #9ca3af;
+  }
+
+  .comparison-mask {
+    mask-image: linear-gradient(
+      to right,
+      black 0%,
+      black var(--pos),
+      transparent var(--pos),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      black 0%,
+      black var(--pos),
+      transparent var(--pos),
+      transparent 100%
+    );
+  }
+
+  .comparison-root {
+    touch-action: none;
+  }
+</style>
+
+<script define:vars={{ sliderId }}>
+  (() => {
+    const container = document.getElementById(sliderId);
+    if (!container) return;
+
+    let isDragging = false;
+
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+    const updatePosition = (clientX) => {
+      const rect = container.getBoundingClientRect();
+      const x = clamp(clientX - rect.left, 0, rect.width);
+      const percent = (x / rect.width) * 100;
+      container.style.setProperty("--pos", `${percent}%`);
+    };
+
+    const onPointerDown = (event) => {
+      isDragging = true;
+      container.setPointerCapture(event.pointerId);
+      updatePosition(event.clientX);
+    };
+
+    const onPointerMove = (event) => {
+      if (!isDragging) return;
+      event.preventDefault();
+      updatePosition(event.clientX);
+    };
+
+    const stopDragging = (event) => {
+      if (!isDragging) return;
+      isDragging = false;
+      container.releasePointerCapture(event.pointerId);
+    };
+
+    container.addEventListener("pointerdown", onPointerDown);
+    container.addEventListener("pointermove", onPointerMove);
+    container.addEventListener("pointerup", stopDragging);
+    container.addEventListener("pointercancel", stopDragging);
+  })();
+</script>

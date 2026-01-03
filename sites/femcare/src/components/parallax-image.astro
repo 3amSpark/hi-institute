@@ -1,0 +1,90 @@
+---
+interface Props {
+  yPercent?: number;
+  scrub?: number;
+  start?: string;
+  end?: string;
+  disable?: boolean;
+}
+
+const {
+  yPercent = -15,
+  scrub = 0.5,
+  start = "top bottom",
+  end = "bottom top",
+  disable = false,
+} = Astro.props;
+---
+
+<parallax-image
+  data-y-percent={yPercent}
+  data-scrub={scrub}
+  data-start={start}
+  data-end={end}
+  data-disable={disable}
+  style="display: contents;"
+  class="parallax-image"
+>
+  <slot />
+</parallax-image>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  class ParallaxImage extends HTMLElement {
+    private scrollTrigger: ScrollTrigger | null = null;
+
+    connectedCallback() {
+      if (this.dataset.disable === "true") return;
+      const yPercent = parseFloat(this.dataset.yPercent || "-15");
+      const scrub = parseFloat(this.dataset.scrub || "0.5");
+      const start = this.dataset.start || "top bottom";
+      const end = this.dataset.end || "bottom top";
+
+      const firstChild = this.children[0];
+      if (!firstChild) return;
+
+      const img =
+        firstChild.tagName === "PICTURE"
+          ? firstChild.querySelector("img")
+          : firstChild.tagName === "IMG"
+            ? firstChild
+            : null;
+
+      if (!img) return;
+
+      const tween = gsap.to(img, {
+        yPercent,
+        ease: "none",
+        force3D: true,
+        scrollTrigger: {
+          trigger: this.parentElement,
+          start,
+          end,
+          scrub,
+        },
+      });
+
+      this.scrollTrigger = tween.scrollTrigger || null;
+    }
+
+    disconnectedCallback() {
+      this.scrollTrigger?.kill();
+    }
+  }
+  if (!customElements.get("parallax-image")) {
+    customElements.define("parallax-image", ParallaxImage);
+  }
+</script>
+
+<style>
+  /* Optimization */
+  .parallax-image {
+    img {
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+  }
+</style>

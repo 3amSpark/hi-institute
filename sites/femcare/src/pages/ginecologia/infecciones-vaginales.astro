@@ -1,0 +1,209 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import ServiceHero from "src/components/service-hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import WhyUs from "src/components/why-us.astro";
+import Footer from "src/components/footer.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+
+const treatments = [
+  {
+    title: "Evaluación Ginecológica Completa",
+    description:
+      "Para entender lo que te está pasando, primero escuchamos tu historia y analizamos tus síntomas con calma. Un buen diagnóstico no es una lista de exámenes: es comprender qué está causando la molestia y descartar otras condiciones que puedan pasar desapercibidas.",
+    bg: "bg-radial-[at_100%_0%]",
+    from: "left",
+    delay: 0,
+  },
+  {
+    title: "Tratamiento Láser CO₂ MonaLisa Touch",
+    description:
+      "Usamos un láser ginecológico fraccionado, seguro y no invasivo, diseñado para regenerar el tejido, equilibrar la flora vaginal y reducir síntomas de forma real y sostenible. No duele, no requiere cirugía y te ayuda a recuperar tu bienestar íntimo sin complicaciones.",
+    bg: "bg-radial-[at_0%_100%]",
+    from: "right",
+    delay: 0.2,
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <ServiceHero
+    title="Porque tu bienestar íntimo merece soluciones reales."
+    serviceName="Infecciones Vaginales"
+    mainImageAlt="Infecciones Vaginales"
+    images={[
+      {
+        src: "/gynaecology/infections/hero-sm.webp",
+        media: "(max-width: 767px)",
+      },
+      {
+        src: "/gynaecology/infections/hero-md.webp",
+        media: "(max-width: 1023px) and (min-width: 768px)",
+      },
+      {
+        src: "/gynaecology/infections/hero.webp",
+        media: "(min-width: 1024px)",
+      },
+    ]}
+  >
+    <p>
+      En Hi Fem Care sabemos lo incómodo, desgastante y frustrante que pueden
+      ser las infecciones vaginales recurrentes.
+    </p>
+    <p>No solo afectan tu cuerpo, también tu tranquilidad y tu día a día.</p>
+    <p>
+      Por eso unimos diagnóstico preciso con tecnología regenerativa —como el
+      láser MonaLisa Touch— para tratar no solo los síntomas, sino la causa.
+    </p>
+    <p>
+      Ayudamos a restaurar el tejido, equilibrar la flora vaginal y prevenir que
+      la infección regrese, con un tratamiento suave, no invasivo y sin dolor.
+    </p>
+  </ServiceHero>
+  <!-- Sintomas -->
+  <ImageTextSection
+    imageSrc="/gynaecology/infections/symptoms.webp"
+    imageAlt="Sintoma 1"
+    imagePosition="left"
+  >
+    <Heading
+      level={3}
+      className="text-brand-gray font-medium text-balance"
+      text="Síntomas comunes"
+    />
+    <Heading
+      level={5}
+      className="text-brand-gray"
+      text="Cada cuerpo es distinto, pero muchas mujeres comparten síntomas como:"
+    />
+    <ul class="text-brand-gray font-heading list-inside list-disc">
+      <li>Resequedad vaginal que genera molestia o irritación.</li>
+      <li>
+        Sensación de fricción al moverte o durante las relaciones sexuales.
+      </li>
+      <li>Falta de lubricación natural.</li>
+      <li>Incomodidad o ardor incluso sin actividad sexual.</li>
+      <li>Sensación constante de resequedad que altera tu día a día.</li>
+    </ul>
+    <Heading
+      level={5}
+      className="text-brand-gray text-balance"
+      text="Si te identificas con uno o varios de estos síntomas, no tienes que normalizarlos. En Hi Fem Care podemos ayudarte a recuperar comodidad, bienestar y confianza en tu cuerpo."
+    />
+  </ImageTextSection>
+
+  <div class="mx-auto max-w-4xl py-20">
+    <FadeIn duration={1} delay={0} yOffset={-20}>
+      <blockquote class="relative">
+        <p
+          class="text-brand-gray before:text-brand-gray/50 after:text-brand-gray/50 font-heading text-center text-3xl font-medium md:text-5xl"
+        >
+          En Hi Fem Care tratamos de raíz lo que en otras clínicas solo alivian
+          momentáneamente.
+        </p>
+      </blockquote>
+    </FadeIn>
+  </div>
+  <!-- Tratamiento -->
+  <section class="overflow-hidden px-2 py-4 sm:py-20">
+    <div
+      class="mx-auto grid max-w-7xl grid-cols-1 grid-rows-[auto_1fr] gap-2 sm:gap-4 lg:grid-cols-2"
+    >
+      {
+        treatments.map((treatment) => (
+          <FadeIn
+            duration={1}
+            delay={treatment.delay}
+            from={treatment.from as any}
+            offset={75}
+            class:list={[
+              "from-ziggurat to-smokey-pink/70 row-span-2 grid grid-rows-subgrid items-center gap-1 rounded-lg p-6 text-center text-white sm:p-10",
+              treatment.bg,
+            ]}
+          >
+            <Heading
+              level={4}
+              className="self-center text-balance text-white uppercase text-shadow-xs"
+              text={treatment.title}
+            />
+            <p class="font-heading self-start text-base text-white">
+              {treatment.description}
+            </p>
+          </FadeIn>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Lo que necesitas saber -->
+  <ImageTextSection
+    imageSrc="/gynaecology/infections/need-to-know.webp"
+    imageAlt="MonaLisa Touch tratamiento"
+    imagePosition="right"
+  >
+    <div class="flex flex-col items-center gap-4 pb-10 sm:items-start">
+      <p class="text-brand-gray font-heading text-lg font-medium">
+        Nuestro objetivo es simple: ayudarte a recuperar comodidad, hidratación
+        y equilibrio vaginal sin dolor y sin procesos complicados.
+      </p>
+      <p class="text-brand-gray font-heading text-lg font-medium">
+        Monalisa Touch es un tratamiento pensado para que vuelvas a sentirte
+        bien contigo misma.
+      </p>
+      <Heading
+        level={3}
+        className="text-brand-gray font-heading font-medium"
+        text="Lo que necesitas saber"
+      />
+      <ul class="text-brand-gray font-heading list-inside list-disc space-y-2">
+        <li>Es un tratamiento seguro, comprobado y sin cirugía.</li>
+        <li>No requiere reposo: puedes volver a tu rutina de inmediato.</li>
+        <li>
+          Usamos tecnología MonaLisa Touch con un aplicador diseñado para
+          trabajar de forma suave y precisa en la zona íntima.
+        </li>
+      </ul>
+      <ScheduleButton
+        href="https://calendly.com/hi-fem-care/agenda-cita"
+        text="¡Agenda tu cita hoy!"
+      />
+    </div>
+  </ImageTextSection>
+
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

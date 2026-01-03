@@ -1,0 +1,145 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import Footer from "src/components/footer.astro";
+import Hero from "src/components/hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import ServiceInfoGrid from "@repo/ui/components/service-info-grid.astro";
+import WhyUs from "src/components/why-us.astro";
+
+const conditions = [
+  {
+    name: "Tratamiento Marcas de Acné",
+    description:
+      "Todo tratamiento comienza con una evaluación dermatológica, clave para entender el estado de tu piel. Es un paso previo al láser que permite tratar alteraciones у preparar la piel de forma segura. A partir de ahí, diseñamos un protocolo integral para lograr resultados visibles y duraderos.",
+    image: "/medicina-laser/tratamientos/box-tratamiento-marcas-de-acne.webp",
+  },
+  {
+    name: "Tratamiento Manchas",
+    description:
+      "La hiperpigmentación se evalúa primero con el dermatólogo para identificar su origen. Este paso es clave antes de aplicar el láser, ya que permite tratar la piel de forma segura y personalizada. Luego, el protocolo ayuda a reducir el exceso de pigmento y mejorar visiblemente el tono. Así logramos una piel más uniforme, luminosa y saludable.",
+    image: "/medicina-laser/tratamientos/tratamiento-manchas-box.webp",
+  },
+  {
+    name: "Tratamiento Rosácea",
+    description:
+      "El enrojecimiento facial se evalúa primero con el dermatólogo para identificar su causa y tipo. Este paso es esencial antes de aplicar el láser, ya que permite personalizar el tratamiento según la sensibilidad de la piel. Luego, el protocolo ayuda a reducir la visibilidad de los vasos y mejorar el tono del rostro. Así logramos una piel más uniforme, calmada y saludable.",
+    image: "/medicina-laser/tratamientos/box-dermatologia-imagen-rosacea.webp",
+  },
+  {
+    name: "Eliminación Cicatrices / Queloides",
+    description:
+      "Las cicatrices y queloides se evalúan primero con el dermatólogo para definir su origen y tipo. Luego, aplicamos láser médico para suavizar la textura, reducir el volumen y mejorar el tono de la piel de forma progresiva y segura.",
+    image:
+      "/medicina-laser/tratamientos/eliminacion-cicatrices-queloides-box.webp",
+  },
+  {
+    name: "Eliminación Verrugas",
+    description:
+      "Es muy importante acudir a un especialista cuando se sufre de verrugas grandes, en cantidad o si afectan áreas delicadas. Somos especialistas en el tratamiento y extirpación de verrugas víricas. Normalmente, solemos tratar como papiloma las verrugas de origen viral, pero en muchos casos no es así. Existen diversos tipos de verrugas víricas y es necesario saber cuáles son y cómo tratarlas.",
+    image: "/medicina-laser/tratamientos/Eliminacion-verrugas-box.webp",
+  },
+  {
+    name: "Eliminación Lunares",
+    description:
+      "Antes de eliminar un lunar, es fundamental una valoración dermatológica para descartar riesgos. Una vez confirmado que es benigno, se puede realizar la extracción con láser o cirugía menor, según el caso. El objetivo es lograr resultados estéticos seguros, sin comprometer la salud de la piel.",
+    image:
+      "/medicina-laser/tratamientos/box-dermatologia-imagen-lunares-cancer-de-piel-preventivo.webp",
+  },
+  {
+    name: "Tratamiento Estrías",
+    description:
+      "Las estrías son marcas en la piel causadas por cambios bruscos de volumen o estiramiento. Aunque no representan un problema médico, muchas personas buscan tratarlas por razones estéticas. En nuestra clínica utilizamos tecnología láser para estimular el colágeno y mejorar visiblemente la textura y el tono de la piel.",
+    image: "/medicina-laser/tratamientos/tratamiento-estrias-box.webp",
+  },
+  {
+    name: "Tratamiento Queratosis",
+    description:
+      "Las queratosis son lesiones cutáneas que pueden ser benignas, como la seborreica, o precancerosas, como la actínica. Es clave un diagnóstico dermatológico para identificar el tipo y definir el tratamiento adecuado. En muchos casos, utilizamos tecnología láser para eliminarlas de forma segura, precisa y con buen resultado estético.",
+    image: "/medicina-laser/tratamientos/tratamiento-queratosis-box.webp",
+  },
+  {
+    name: "Tratamiento Fibromas Cutáneos",
+    description:
+      "Los fibromas cutáneos, también conocidos como acrocordones, son pequeñas lesiones benignas que suelen aparecer en cuello, axilas o párpados. Aunque no representan un riesgo médico, pueden causar molestias o preocupación estética. Se eliminan de forma rápida y segura con tecnología láser o procedimientos dermatológicos mínimamente invasivos",
+    image: "/medicina-laser/tratamientos/tratamiento-fibromzas-cutaneos.webp",
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    align="left"
+    title="Medicina Láser de Precision"
+    alt="Medicina Láser de Precision"
+    images={[
+      {
+        size: "sm",
+        src: "/medicina-laser/hero-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/medicina-laser/hero-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/medicina-laser/hero.webp",
+      },
+    ]}
+  />
+
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <Heading
+      level={2}
+      className="text-brand-gray font-medium text-balance sm:text-center"
+      text="Tratamientos reales. Resultados visibles."
+    />
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      En HI Skin & Beauty, combinamos medicina con tecnología láser de última
+      generación para darte resultados visibles, seguros y duraderos. Nuestro
+      equipo médico usa protocolos basados en ciencia, enfocados en tratar la
+      causa, no solo los síntomas.
+    </p>
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      Diseñamos tratamientos reales, personalizados, y con base médica. Ya sea
+      un caso leve o complejo, te escuchamos y te cuidamos.
+    </p>
+  </section>
+  <section class="mx-auto max-w-7xl px-4 py-20">
+    <ServiceInfoGrid services={conditions} />
+  </section>
+  <WhyUs
+    backgroundImage="/why-us.webp"
+    backgroundImageAlt="Why Skin & Beauty"
+    heading="¿Por qué Skin & Beauty es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Protocolo integral para el cuidado de tu piel",
+        description: [
+          "En HI Skin & Beauty desarrollamos un enfoque que une medicina dermatológica y estética para cuidar tu piel de forma completa y responsable.",
+          "Cada protocolo está diseñado para ofrecer resultados visibles, seguros y alineados con lo que tu piel realmente necesita.",
+        ],
+      },
+      {
+        title: "Dermatología + Estética, en manos expertas",
+        description: [
+          "Nuestro equipo está conformado por médicos dermatólogos y médicos estéticos especializados, que trabajan de forma conjunta para diagnosticar, tratar y mejorar la salud de tu piel, sin improvisaciones ni soluciones temporales.",
+        ],
+      },
+      {
+        title: "Tecnología médica de última generación",
+        description: [
+          "Utilizamos equipos avanzados de diagnóstico y tratamiento que nos permiten evaluar tu piel con precisión clínica y aplicar terapias efectivas, seguras y personalizadas.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

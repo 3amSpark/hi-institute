@@ -46,16 +46,16 @@ const {
       const firstChild = this.children[0];
       if (!firstChild) return;
 
-      const img =
+      const media =
         firstChild.tagName === "PICTURE"
           ? firstChild.querySelector("img")
-          : firstChild.tagName === "IMG"
+          : firstChild.tagName === "IMG" || firstChild.tagName === "VIDEO"
             ? firstChild
             : null;
 
-      if (!img) return;
+      if (!media) return;
 
-      const tween = gsap.to(img, {
+      const tween = gsap.to(media, {
         yPercent,
         ease: "none",
         force3D: true,
@@ -82,7 +82,8 @@ const {
 <style>
   /* Optimization */
   .parallax-image {
-    img {
+    img,
+    video {
       will-change: transform;
       backface-visibility: hidden;
     }

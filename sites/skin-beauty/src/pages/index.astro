@@ -5,6 +5,7 @@ import ServiceGrid from "@repo/ui/components/service-grid.astro";
 import Footer from "src/components/footer.astro";
 import Hero from "src/components/hero.astro";
 import Navbar from "src/components/navbar.astro";
+import Testimonials from "src/components/testimonials.astro";
 import WhyUs from "src/components/why-us.astro";
 import RootLayout from "../layouts/root.astro";
 ---
@@ -12,8 +13,8 @@ import RootLayout from "../layouts/root.astro";
 <RootLayout>
   <Navbar />
   <Hero
-    title="Cuidamos tu salud íntima con precisión y ciencia."
-    alt="Hi Fem Care Hero Image"
+    title="La salud de tu piel, en manos de expertos."
+    alt="Hi Skin & Beauty Hero Image"
     images={[
       {
         size: "sm",
@@ -29,56 +30,63 @@ import RootLayout from "../layouts/root.astro";
   <section
     class="flex flex-col items-center justify-center gap-20 bg-linear-to-b from-white to-neutral-200 px-4 py-20 sm:px-6"
   >
-    <div class="mx-auto flex max-w-7xl flex-col gap-6">
+    <div class="mx-auto flex max-w-6xl flex-col gap-6">
       <FadeIn duration={1}>
-        <Heading
-          level={3}
-          className="text-brand-gray/80 font-heading text-pretty sm:text-center"
-          text="Cuidada. Precisa. Personal."
-        />
         <Heading
           level={2}
           className="text-brand-gray font-medium text-balance sm:text-center"
-          text="En Hi Fem Care redefinimos la salud de la mujer"
+          text="Dermatología y estética, al mismo nivel de exigencia."
         />
       </FadeIn>
       <FadeIn duration={1} delay={0.1}>
         <p
-          class="text-brand-gray font-heading mx-auto text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+          class="text-brand-gray font-heading mx-auto text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
         >
-          Somos la única clínica creada exclusivamente para acompañar cada etapa
-          de tu vida como mujer: tu bienestar hormonal, tu fertilidad, tu piso
-          pélvico, tus cambios y los retos de la edad.
+          Ofrecemos soluciones médicas y estéticas basadas en ciencia,
+          experiencia y tecnología avanzada.
+        </p>
+        <p
+          class="text-brand-gray font-heading mx-auto mt-4 text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          Nuestro equipo se mantiene en constante formación e investigación para
+          brindarte tratamientos seguros, precisos y personalizados, siempre con
+          un enfoque integral en la salud y belleza de tu piel.
         </p>
       </FadeIn>
     </div>
     <div class="mx-auto w-full max-w-7xl">
       <ServiceGrid
+        disableGradient={true}
         services={[
           {
-            name: "Ginecología",
-            image: "/ginecologia.webp",
-            href: "/ginecologia",
+            name: "Dermatología Médica",
+            image: "/services/dermatologia-medica.webp",
+            href: "/dermatologia-medica",
           },
           {
-            name: "Virus del Papiloma Humano",
-            image: "/virus-pailoma-humano.webp",
-            href: "/vph",
+            name: "Rejuvenecimiento Facial",
+            image: "/services/rejuvenecimiento-facial.webp",
+            href: "/rejuvenece-tu-piel",
           },
           {
-            name: "Endometriosis",
-            image: "/endometriosis.webp",
-            href: "/endometriosis",
+            name: "Medicina Láser de la Piel",
+            image: "/services/medicina-laser.webp",
+            href: "/medicina-laser-de-precision",
           },
           {
-            name: "Uroginecología",
-            image: "/uroginecologia.webp",
-            href: "/uro-ginecologia",
+            name: "Hidrafaciales",
+            image: "/services/hidrafaciales.webp",
+            href: "/hidrafaciales",
           },
           {
-            name: "Fem Care Total",
-            image: "/fem-care-total.webp",
-            href: "/fem-care-total",
+            name: "Depilación Láser",
+            image: "/services/depilacion-laser.webp",
+            href: "/depilacion-laser-con-splendor-x",
+          },
+          {
+            name: "Inyectables",
+            image: "/services/inyectables.webp",
+            href: "/tratamiento-de-inyectables",
           },
         ]}
       />
@@ -86,35 +94,31 @@ import RootLayout from "../layouts/root.astro";
   </section>
 
   <WhyUs
-    backgroundImage="/why-femcare.webp"
-    backgroundImageAlt="Why Hi Fem Care"
-    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    backgroundImage="/why-us.webp"
+    backgroundImageAlt="Why Skin & Beauty"
+    heading="¿Por qué Skin & Beauty es tu mejor opción?"
     valueCards={[
       {
-        title: "Medicina moderna que realmente funciona.",
+        title: "Protocolo integral para el cuidado de tu piel",
         description: [
-          "No tratamos síntomas.",
-          "Tratamos causas.",
-          'En Hi Fem Care no damos "soluciones rápidas".',
-          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
-          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+          "En HI Skin & Beauty desarrollamos un enfoque que une medicina dermatológica y estética para cuidar tu piel de forma completa y responsable.",
+          "Cada protocolo está diseñado para ofrecer resultados visibles, seguros y alineados con lo que tu piel realmente necesita.",
         ],
       },
       {
-        title: "Médicos y especialistas que saben cómo cuidarte.",
+        title: "Dermatología + Estética, en manos expertas",
         description: [
-          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
-          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+          "Nuestro equipo está conformado por médicos dermatólogos y médicos estéticos especializados, que trabajan de forma conjunta para diagnosticar, tratar y mejorar la salud de tu piel, sin improvisaciones ni soluciones temporales.",
         ],
       },
       {
-        title: "Tecnología moderna, precisa y no invasiva.",
+        title: "Tecnología médica de última generación",
         description: [
-          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
-          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+          "Utilizamos equipos avanzados de diagnóstico y tratamiento que nos permiten evaluar tu piel con precisión clínica y aplicar terapias efectivas, seguras y personalizadas.",
         ],
       },
     ]}
   />
+  <Testimonials />
   <Footer />
 </RootLayout>

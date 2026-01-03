@@ -1,0 +1,66 @@
+---
+import ChevronDown from "../icons/chevron-down.astro";
+
+interface Props {
+  href?: string;
+  isChild?: boolean;
+  childCount?: number;
+  class?: string;
+}
+
+const {
+  href,
+  isChild = false,
+  childCount = 0,
+  class: className,
+} = Astro.props as Props;
+
+const hasHref = href && href !== "#";
+---
+
+<div class="relative">
+  {
+    hasHref ? (
+      <a
+        href={href}
+        class:list={[
+          "font-heading hover:text-brand text-brand-gray tracking-wide border-brand/20 h-20 pl-4 flex items-center border-b font-medium transition-colors relative",
+          isChild ? "bg-brand/5" : "",
+          className,
+        ]}
+      >
+        <slot />
+      </a>
+    ) : (
+      <button
+        type="button"
+        class:list={[
+          "font-heading text-brand-gray tracking-wide border-brand/20 h-20 pl-4 flex items-center border-b font-medium transition-colors relative w-full text-left collapse-button",
+          className,
+        ]}
+      >
+        <slot />
+      </button>
+    )
+  }
+  {
+    !isChild && childCount > 1 && hasHref && (
+      <div class="absolute collapse-button right-3 top-1/2 p-2 z-10 -translate-y-1/2">
+        <ChevronDown
+          class="size-8 text-brand transition-transform duration-300 group-data-[is-collapsed=false]:rotate-180"
+          strokeWidth={1.5}
+        />
+      </div>
+    )
+  }
+  {
+    !isChild && childCount > 1 && !hasHref && (
+      <div class="absolute right-3 top-1/2 p-2 z-10 -translate-y-1/2 pointer-events-none">
+        <ChevronDown
+          class="size-8 text-brand transition-transform duration-300 group-data-[is-collapsed=false]:rotate-180"
+          strokeWidth={1.5}
+        />
+      </div>
+    )
+  }
+</div>
