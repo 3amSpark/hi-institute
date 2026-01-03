@@ -1,0 +1,271 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import Hero from "src/components/hero.astro";
+import Footer from "src/components/footer.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import TreatmentGrid from "src/components/treatment-grid.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import WhyUs from "src/components/why-us.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import StageCard from "src/components/stage-card.astro";
+
+const stages = [
+  {
+    phase: 1,
+    title: "Tratamiento de verrugas genitales y lesiones leves",
+    description:
+      "Esta fase es para mujeres diagnosticadas con verrugas genitales causadas por VPH tipo 6 y 11, lesiones de bajo grado o infecciones persistentes sin cambios estructurales mayores.",
+    leftCard: {
+      title: "¿Qué tratamos en esta fase?",
+      intro: "Este tratamiento está indicado para mujeres diagnosticadas con:",
+      items: [
+        {
+          bold: "Verrugas genitales externas",
+          text: "causadas por VPH tipo 6 y 11",
+        },
+        {
+          bold: "Lesiones de bajo grado",
+          text: "visibles en colposcopia o citología",
+        },
+        {
+          bold: "Infecciones persistentes",
+          text: "que no han provocado cambios estructurales graves en el cuello uterino, vagina o vulva",
+        },
+      ],
+      footer:
+        "Es la primera línea de acción para detener el avance del virus y restaurar tu salud íntima de forma segura.",
+    },
+    rightCard: {
+      title: "¿Cómo lo tratamos?",
+      items: [
+        "Fulguración con láser ginecológico (preferente) o radiofrecuencia, según disponibilidad.",
+        "Procedimiento ambulatorio, indoloro, con mínima recuperación.",
+        "Refuerzo inmunológico con plan nutricional, suplementos y cuidado del sistema hormonal.",
+        "Regeneración del tejido vaginal y cervical para recuperar la salud epitelial.",
+      ],
+    },
+    objective:
+      "Eliminar de forma segura las lesiones superficiales causadas por el VPH y reforzar tanto la inmunidad local (en los tejidos íntimos) como sistémica (en todo el cuerpo), reduciendo al máximo el riesgo de recurrencias a futuro.",
+  },
+  {
+    phase: 2,
+    title: "Lesiones precancerosas del cuello del útero (CIN I)",
+    description:
+      "Esta fase es para mujeres diagnosticadas con lesiones intraepiteliales de bajo grado (CIN I), persistencia de VPH de alto riesgo y cambios celulares visibles en colposcopia.",
+    leftCard: {
+      title: "¿Qué tratamos en esta fase?",
+      intro: "Este tratamiento está indicado para mujeres con:",
+      items: [
+        {
+          bold: "Lesiones intraepiteliales de bajo grado (CIN I)",
+          text: "detectadas por colposcopia y citología.",
+        },
+        {
+          bold: "Persistencia de VPH de alto riesgo",
+          text: "sin lesiones profundas.",
+        },
+        {
+          bold: "Cambios celulares leves",
+          text: "en el cuello uterino.",
+        },
+      ],
+      footer:
+        "Es la oportunidad ideal para actuar antes de que la lesión progrese.",
+    },
+    rightCard: {
+      title: "¿Cómo lo tratamos?",
+      items: [
+        {
+          bold: "Resección tipo 1",
+          text: "(remoción superficial del área afectada).",
+        },
+        {
+          bold: "Procedimiento ambulatorio",
+          text: ", indoloro, con recuperación en 7 días.",
+        },
+        {
+          bold: "Evaluación hormonal postoperatoria",
+          text: "para reforzar el equilibrio sistémico.",
+        },
+        {
+          bold: "Refuerzo inmunológico y regeneración epitelial",
+          text: "para evitar progresión o recurrencia.",
+        },
+      ],
+    },
+    objective:
+      "Eliminar de forma segura las lesiones precancerosas antes de que avancen, proteger el cuello uterino y reforzar el sistema inmune y hormonal para preservar la salud íntima y reproductiva.",
+  },
+  {
+    phase: 3,
+    title: "Tratamiento de lesiones avanzadas o riesgo alto de cáncer",
+    description:
+      "Esta fase es para mujeres que han sido diagnosticadas con lesiones cervicales de alto grado (CIN II o III), causadas por VPH de alto riesgo.",
+    leftCard: {
+      title: "¿Qué tratamos en esta fase?",
+      intro:
+        "Esta etapa está indicada para mujeres con lesiones más profundas causadas por el VPH de alto riesgo (tipos 16 y 18), que presentan cambios severos en el cuello uterino.",
+      items: [
+        "Lesiones de alto grado (CIN II y III)",
+        "Cambios invisibles en colposcopia, detectados por genotipificación y citología",
+        "Mayor riesgo de progresión si no se trata a tiempo",
+      ],
+    },
+    rightCard: {
+      title: "¿Cómo lo tratamos?",
+      items: [
+        "Resección tipo 2 o conización del área afectada (si la lesión no es visible).",
+        "Procedimiento ambulatorio, recuperación estimada de 7 a 14 días.",
+        "Seguimiento estrecho con colposcopia y test de cura a los 9 meses.",
+        "Programa de regeneración intensiva para fortalecer el epitelio y la inmunidad vaginal.",
+      ],
+    },
+    objective:
+      "Evitar cirugías radicales como la histerectomía innecesaria. Nuestro objetivo es eliminar las lesiones de raíz, restaurar la salud del cuello uterino y proteger tu fertilidad, calidad de vida y salud íntima.",
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="Si hay tratamiento y podemos curarlo"
+    alt="Endometriosis"
+    images={[
+      {
+        size: "sm",
+        src: "/hero/18-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/hero/18-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/hero/18.webp",
+      },
+    ]}
+  />
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <Heading
+      level={2}
+      className="text-brand-gray font-medium text-pretty sm:text-center"
+      text="Tratamientos Curativos del VPH"
+    />
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      En HI FEM CARE tratamos el Virus del Papiloma Humano (VPH) con tecnología
+      avanzada y un enfoque integral que combina mínima intervención,
+      regeneración de tejidos, fortalecimiento inmune y acompañamiento humano.
+    </p>
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed font-semibold sm:max-w-3/5 sm:text-center"
+    >
+      No solo eliminamos la lesión; restauramos tu equilibrio.
+    </p>
+  </section>
+  <ImageTextSection
+    imageSrc="/hero/14.webp"
+    imageAlt="Beneficios del tratamiento de endometriosis"
+    imagePosition="right"
+    class="bg-neutral-50 shadow-inner"
+  >
+    <div class="flex flex-col items-center gap-4 pb-10 sm:items-start">
+      <Heading
+        level={4}
+        className="text-brand-gray font-heading font-medium"
+        text="¿A quiénes podemos ayudar en esta etapa?"
+      />
+      <p class="text-brand-gray font-body text-lg leading-relaxed">
+        Esta fase es para mujeres que:
+      </p>
+      <ul
+        class="text-brand-gray font-heading list-inside list-disc space-y-4 text-lg"
+      >
+        <li>
+          Han sido diagnosticadas con verrugas genitales, CIN I, II o III, o
+          alteraciones en colposcopia.
+        </li>
+        <li>Quieren un tratamiento efectivo y respetuoso con su cuerpo.</li>
+        <li>Buscan evitar una cirugía radical o preservar su fertilidad.</li>
+        <li>
+          Necesitan una segunda opinión o han tenido tratamientos fallidos.
+        </li>
+      </ul>
+      <div class="mt-4">
+        <ScheduleButton
+          href="https://calendly.com/hi-fem-care/agenda-cita"
+          text="¡Agenda tu cita hoy!"
+        />
+      </div>
+    </div>
+  </ImageTextSection>
+  {
+    stages.map((stage, i) => (
+      <>
+        <section class="mx-auto flex max-w-7xl flex-col items-center justify-center px-4 py-16">
+          <FadeIn duration={1} delay={i * 0.1}>
+            <StageCard {...stage} />
+          </FadeIn>
+        </section>
+        {stage.objective && (
+          <section class="from-ziggurat grain via-smokey-pink/80 to-smokey-pink/20 relative w-full bg-radial-[at_50%_100%] px-4 py-12">
+            <div class="mx-auto flex max-w-4xl flex-col items-center gap-4 text-center">
+              <Heading
+                level={4}
+                text="Objetivo del tratamiento"
+                className="text-white font-bold"
+              />
+              <p class="font-body text-lg leading-relaxed text-white">
+                {stage.objective}
+              </p>
+              <ScheduleButton
+                href="https://calendly.com/hi-fem-care/agenda-cita"
+                text="Agenda tu cita"
+                class="z-10"
+              />
+            </div>
+          </section>
+        )}
+      </>
+    ))
+  }
+
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

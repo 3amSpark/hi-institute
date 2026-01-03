@@ -13,8 +13,12 @@
   /* HI Skin & Beauty Brand Colors */
   --color-eggshell: oklch(0.9761 0 0);
   --color-iroko: oklch(0.3316 0.0445 58.5);
-  --color-skin: oklch(0.8147 0.0565 71.34);
+  --color-skin: oklch(0.6197 0.082 65.95);
+
+  --text-smaller: 0.8425rem;
 
   --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Space Grotesk", sans-serif;
+
+  --container-8xl: 100rem; /* 1600px */
 }

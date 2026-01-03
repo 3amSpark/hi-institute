@@ -1,0 +1,458 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import Hero from "src/components/hero.astro";
+import Footer from "src/components/footer.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import TreatmentGrid from "src/components/treatment-grid.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import WhyUs from "src/components/why-us.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import ArrowRight from "@repo/ui/icons/arrow-right.astro";
+const monalisaBenefits = [
+  "Procedimiento rápido y sin dolor.",
+  "No invasivo y sin tiempo de recuperación.",
+  "Resultados visibles desde la segunda sesión.",
+];
+
+const conditions = [
+  {
+    title: "Resequedad vaginal",
+    description:
+      "Aumenta la hidratación natural y alivia la incomodidad. La resequedad vaginal puede ser causada por la menopausia, cambios hormonales o tratamientos médicos.",
+    image: "/hero/3.webp",
+  },
+  {
+    title: "Atrofia vaginal",
+    description:
+      "Restaura la firmeza y elasticidad del tejido. La pérdida de colágeno y elastina adelgaza las paredes vaginales, causando molestias que MonaLisa Touch ayuda a revertir.",
+    image: "/hero/4.webp",
+  },
+  {
+    title: "Dolor durante las relaciones sexuales",
+    description:
+      "Mejora la elasticidad y lubricación del tejido vaginal. Esto permite recuperar el confort y el placer en la intimidad de manera natural.",
+    image: "/hero/5.webp",
+  },
+  {
+    title: "Síntomas de la menopausia",
+    description:
+      "Reduce ardor, picazón y molestias al orinar. Este tratamiento mejora la calidad de vida sin necesidad de hormonas, restaurando la salud vaginal y urinaria.",
+    image: "/hero/6.webp",
+  },
+  {
+    title: "Incontinencia urinaria leve",
+    description:
+      "Fortalece el suelo pélvico y reduce escapes involuntarios. Si hay pequeñas pérdidas al toser, reír o hacer ejercicio, MonaLisa Touch es una solución efectiva.",
+    image: "/hero/7.webp",
+  },
+  {
+    title: "Ovario Poliquístico y Endometriosis",
+    description:
+      "En ambas enfermedades, el tejido vaginal es delgado desde edades tempranas. Fortalecerlo puede ayudar a reducir el virus del papiloma humano, responsable de las verrugas genitales.",
+    image: "/hero/8.webp",
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="MonaLisa Touch®"
+    subtitle="La Nueva Terapia Láser"
+    alt="Fem Care Total"
+    images={[
+      {
+        size: "sm",
+        src: "/hero/7-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/hero/7-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/hero/7.webp",
+      },
+    ]}
+    buttonText="Más información"
+  />
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <FadeIn duration={1}>
+      <Heading
+        level={2}
+        className="text-brand-gray font-medium text-balance sm:text-center"
+        text="La Nueva Terapia Láser"
+      />
+    </FadeIn>
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      MonaLisa Touch® es un tratamiento láser innovador que estimula la
+      regeneración del tejido vaginal mediante tecnología de CO₂ fraccionado.
+    </p>
+  </section>
+
+  <section class="flex flex-col items-center justify-center gap-20 px-4 pb-20">
+    <div class="mx-auto">
+      <FadeIn duration={1} delay={0.1}>
+        <div class="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-3">
+          {
+            monalisaBenefits.map((item) => (
+              <div class="grain from-ziggurat/5 to-smokey-pink/5 relative flex items-center justify-center overflow-hidden rounded-xl bg-radial-[at_100%_0%] p-6 text-center">
+                <p class="text-brand-gray font-heading relative z-10 text-lg">
+                  {item}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </FadeIn>
+    </div>
+    <video
+      src="/monalisa-touch.mp4"
+      autoplay
+      muted
+      controls
+      loop
+      class="mx-auto aspect-video h-auto md:w-2/5 rounded-xl"></video>
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed font-medium sm:max-w-3/5 sm:text-center"
+    >
+      Aprobado por la FDA de Estados Unidos para mejorar la salud vaginal sin
+      cirugía.
+    </p>
+  </section>
+
+  <!-- Conditions Carousel -->
+  <section class="bg-neutral-100 px-4 py-20 shadow-inner">
+    <div class="mx-auto max-w-6xl">
+      <FadeIn duration={1} delay={0}>
+        <Heading
+          level={3}
+          className="text-brand-gray mb-12 text-center font-medium"
+          text="¿Qué condiciones trata MonaLisa Touch®?"
+        />
+      </FadeIn>
+
+      <div class="relative">
+        <!-- Navigation Arrows -->
+        <button
+          id="carousel-prev"
+          class="text-brand-gray/40 bg-white rounded-full p-2 hover:text-brand-gray absolute top-1/2 -left-4 z-10 hidden -translate-y-1/2 cursor-pointer text-4xl transition-colors md:block"
+          aria-label="Anterior"
+        >
+          <ArrowRight class="text-brand-gray size-6 -scale-x-100" />
+        </button>
+        <button
+          id="carousel-next"
+          class="text-brand-gray/40 bg-white rounded-full p-2 hover:text-brand-gray absolute top-1/2 -right-4 z-10 hidden -translate-y-1/2 cursor-pointer text-4xl transition-colors md:block"
+          aria-label="Siguiente"
+        >
+          <ArrowRight class="text-brand-gray size-6" />
+        </button>
+
+        <!-- Carousel Container -->
+        <div
+          id="carousel-container"
+          class="scrollbar-hide flex gap-4 overflow-x-auto pb-4"
+        >
+          {
+            conditions.map((condition, i) => (
+              <FadeIn
+                duration={1}
+                delay={i * 0.1}
+                class="w-[190px] shrink-0 md:w-[calc(25%-12px)]"
+              >
+                <div class="condition-card group relative h-96 cursor-pointer overflow-hidden rounded-2xl transition-all duration-500 ease-out hover:rounded-3xl">
+                  <img
+                    src={condition.image}
+                    alt={condition.title}
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+
+                  <!-- Content container -->
+                  <div class="absolute inset-x-0 bottom-0 z-10 overflow-hidden p-6">
+                    <h4 class="font-heading text-xl font-medium text-white text-shadow-sm">
+                      {condition.title}
+                    </h4>
+                    <div class="grid grid-rows-[0fr] transition-all duration-500 ease-out group-hover:grid-rows-[1fr]">
+                      <p class="font-heading overflow-hidden pt-0 text-sm leading-relaxed text-white/90 opacity-0 transition-all duration-500 ease-out group-hover:pt-2 group-hover:opacity-100">
+                        {condition.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+    gsap.registerPlugin(ScrollToPlugin);
+
+    const container = document.getElementById("carousel-container");
+    const prevBtn = document.getElementById("carousel-prev");
+    const nextBtn = document.getElementById("carousel-next");
+
+    const getScrollAmount = () => {
+      const card = container?.querySelector("fade-in") as HTMLElement;
+      return card ? card.offsetWidth + 16 : 300; // card width + gap
+    };
+
+    const getMaxScroll = () => {
+      if (!container) return 0;
+      return container.scrollWidth - container.clientWidth;
+    };
+
+    prevBtn?.addEventListener("click", () => {
+      if (!container) return;
+      const scrollAmount = getScrollAmount();
+      const targetScroll = Math.max(0, container.scrollLeft - scrollAmount);
+      gsap.to(container, {
+        scrollTo: { x: targetScroll },
+        duration: 1.2,
+        ease: "power3.out",
+      });
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      if (!container) return;
+      const scrollAmount = getScrollAmount();
+      const maxScroll = getMaxScroll();
+      const targetScroll = Math.min(maxScroll, container.scrollLeft + scrollAmount);
+      gsap.to(container, {
+        scrollTo: { x: targetScroll },
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    });
+  </script>
+
+  <style>
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .condition-card {
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      /* Gradient Wipe (on hover) */
+      &::before {
+        background: var(--brand-gradient);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform var(--spring-duration) var(--spring-easing);
+        z-index: 2;
+      }
+
+      /* Blend Mode Overlay (always visible) */
+      &::after {
+        background: var(--brand-gradient);
+        mix-blend-mode: multiply;
+        z-index: 1;
+      }
+
+      &:hover::before {
+        transform: scaleY(1);
+        transform-origin: bottom;
+      }
+    }
+  </style>
+
+  <!-- FAQ Section -->
+  <section class="px-4 py-20">
+    <div class="mx-auto max-w-4xl">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          className="text-brand-gray mb-4 text-center font-medium"
+          text="Preguntas Frecuentes"
+        />
+      </FadeIn>
+      <p class="text-brand-gray/90 font-body mb-12 text-center text-lg">
+        Si tienes dudas, revisa las preguntas frecuentes antes de agendar tu consulta.<br />
+        Si aún necesitas ayuda, contáctanos. Estaremos encantados de ayudarte.
+      </p>
+
+      <div class="divide-brand-gray/20 divide-y">
+        {[
+          {
+            question: "¿Para quién está indicado este tratamiento?",
+            answer: "Está recomendado para mujeres que experimentan síntomas relacionados con la disminución vaginal y la disminución de estrógeno, como resequedad vaginal, irritación, dolor durante las relaciones sexuales o incontinencia urinaria. Esto afecta a mujeres con ovario poliquístico, endometriosis, menopausia, posparto o aquellas que han recibido tratamientos oncológicos."
+          },
+          {
+            question: "¿Es doloroso el procedimiento?",
+            answer: "No, el tratamiento generalmente no requiere anestesia. Las pacientes suelen describir una ligera sensación de vibración o calor durante la sesión."
+          },
+          {
+            question: "¿Cuántas sesiones son necesarias?",
+            answer: "Por lo general, se recomiendan entre 1 y 3 sesiones, con intervalos de 40 a 60 días entre cada una. Posteriormente, se aconseja una sesión de mantenimiento anual."
+          },
+          {
+            question: "¿Cuándo se pueden reanudar las actividades sexuales?",
+            answer: "Se aconseja esperar entre 3 y 4 días después del tratamiento antes de retomar la actividad sexual regular."
+          },
+          {
+            question: "¿Existen efectos secundarios o riesgos asociados?",
+            answer: "Los efectos secundarios son mínimos. Algunas mujeres pueden experimentar un ligero enrojecimiento o hinchazón que desaparece en uno o dos días. No se han reportado complicaciones significativas en más de 20,000 mujeres tratadas en todo el mundo."
+          },
+          {
+            question: "¿Cuánto tiempo duran los efectos del tratamiento?",
+            answer: "Los resultados son casi inmediatos y continúan mejorando en los meses siguientes. Para mantener los beneficios, se recomienda una sesión de mantenimiento anual."
+          },
+          {
+            question: "¿Hay contraindicaciones para este tratamiento?",
+            answer: "No existen contraindicaciones absolutas, excepto en casos de enfermedades locales o sistémicas graves. Es esencial una evaluación médica previa para determinar la idoneidad del tratamiento en cada paciente."
+          },
+          {
+            question: "¿El tratamiento está aprobado por autoridades sanitarias?",
+            answer: "Sí, MonaLisa Touch® cuenta con la aprobación de la FDA de Estados Unidos y ha demostrado ser seguro y eficaz en múltiples estudios clínicos."
+          }
+        ].map((faq, i) => (
+          <FadeIn duration={1} delay={i * 0.05}>
+            <div class="faq-item">
+              <button
+                class="faq-trigger text-brand-gray font-heading flex w-full cursor-pointer items-center justify-between py-6 text-left text-sm font-medium uppercase tracking-wide"
+                aria-expanded="false"
+              >
+                <span>{faq.question}</span>
+                <span class="faq-icon text-brand-gray/60 relative ml-4 flex h-6 w-6 shrink-0 items-center justify-center">
+                  <span class="bg-brand-gray/60 absolute h-px w-3"></span>
+                  <span class="bg-brand-gray/60 faq-icon-vertical absolute h-3 w-px transition-transform duration-300"></span>
+                </span>
+              </button>
+              <div class="faq-content grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out">
+                <div class="overflow-hidden">
+                  <p class="text-brand-gray/80 font-body pb-6 leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll('.faq-trigger').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.faq-item');
+        const content = item?.querySelector('.faq-content');
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-item').forEach((otherItem) => {
+          if (otherItem !== item) {
+            const otherTrigger = otherItem.querySelector('.faq-trigger');
+            const otherContent = otherItem.querySelector('.faq-content');
+            otherTrigger?.setAttribute('aria-expanded', 'false');
+            otherContent?.classList.remove('grid-rows-[1fr]');
+            otherContent?.classList.add('grid-rows-[0fr]');
+          }
+        });
+        
+        // Toggle current FAQ
+        trigger.setAttribute('aria-expanded', String(!isExpanded));
+        if (!isExpanded) {
+          content?.classList.remove('grid-rows-[0fr]');
+          content?.classList.add('grid-rows-[1fr]');
+        } else {
+          content?.classList.remove('grid-rows-[1fr]');
+          content?.classList.add('grid-rows-[0fr]');
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .faq-trigger[aria-expanded="true"] .faq-icon-vertical {
+      transform: rotate(90deg);
+    }
+  </style>
+
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-6 px-4 py-20"
+  >
+    <TreatmentGrid
+      heading="Resultados que Transforman tu Bienestar"
+      treatments={[
+        {
+          title: "Desde las primeras sesiones:",
+          description:
+            "Aumenta en la hidratación y mejora en el confort íntimo.",
+        },
+        {
+          title: "Desde la segunda sesión:",
+          description:
+            "Mayor elasticidad y reducción de síntomas como resequedad, irritación o molestias.",
+        },
+        {
+          title: "Resultados óptimos y duraderos:",
+          description:
+            "La regeneración del tejido se mantiene por más de 12 meses.",
+        },
+        {
+          title: "Con mínimo tiempo de recuperación:",
+          description:
+            "Puedes retomar tus actividades diarias de inmediato y sentirte mejor desde el primer día.",
+        },
+      ]}
+    />
+  </section>
+ 
+
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

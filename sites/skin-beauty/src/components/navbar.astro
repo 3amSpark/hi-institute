@@ -1,0 +1,59 @@
+---
+import NavbarShared from "@repo/ui/components/navbar.astro";
+
+// TODO: Use the old naming convention to keep Google Search Console happy
+const routes = [
+  {
+    href: "/dermatologia-medica",
+    label: "DERMATOLOGÍA",
+    children: [
+      {
+        href: "/dermatologia-medica-de-la-piel",
+        label: "DERMATOLOGÍA DE LA PIEL",
+      },
+      {
+        href: "/dermatologia-medica-del-cabello",
+        label: "DERMATOLOGÍA DEL CABELLO",
+      },
+    ],
+  },
+  {
+    href: "/medicina-laser-de-precision",
+    label: "MEDICINA LÁSER",
+    exact: true,
+  },
+  {
+    label: "LOS MÁS SOLICITADOS",
+    children: [
+      { href: "/tratamiento-para-marcas-de-acne", label: "MARCAS DE ACNÉ" },
+      { href: "/tratamiento-para-rosacea", label: "ROSÁCEA" },
+      { href: "/tratamiento-para-manchas", label: "MANCHAS" },
+      {
+        href: "/tratamiento-para-suavizado-de-arrugas",
+        label: "SUAVIZADO DE ARRUGAS",
+      },
+    ],
+  },
+  {
+    href: "/rejuvenece-tu-piel",
+    label: "REJUVENECIMIENTO",
+    children: [
+      { href: "/tratamiento-de-inyectables", label: "INYECTABLES" },
+      { href: "/ultra-clear-es-lo-que-tu-piel-necesita", label: "ULTRA CLEAR" },
+    ],
+  },
+  { href: "/hidrafaciales", label: "HIDRAFACIALES", exact: true },
+  {
+    href: "/depilacion-laser-con-splendor-x",
+    label: "DEPILACIÓN LÁSER",
+    exact: true,
+  },
+  {
+    href: "/analisis-avanzado-del-rostro",
+    label: "ANÁLISIS 3D DEL ROSTRO",
+    exact: true,
+  },
+];
+---
+
+<NavbarShared routes={routes} logoAlt="Skin Beauty" mobileBreakpoint="xl" />

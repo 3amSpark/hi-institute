@@ -1,0 +1,60 @@
+---
+import ParallaxImage from "src/components/parallax-image.astro";
+import GrainTexture from "src/components/grain-texture.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import ValueCard from "src/components/value-card.astro";
+
+interface Props {
+  backgroundImage: string;
+  backgroundImageAlt?: string;
+  heading: string;
+  valueCards: Array<{
+    title: string;
+    description: string[];
+  }>;
+}
+
+const {
+  backgroundImage,
+  backgroundImageAlt = "Background image",
+  heading,
+  valueCards,
+} = Astro.props;
+---
+
+<section class="relative w-full overflow-hidden px-2 py-40">
+  <div class="absolute inset-0 z-0 scale-130">
+    <ParallaxImage yPercent={20} start="top top" end="bottom top">
+      <img
+        src={backgroundImage}
+        alt={backgroundImageAlt}
+        class="h-full w-full object-cover object-center"
+      />
+    </ParallaxImage>
+    <GrainTexture />
+  </div>
+
+  <div class="relative z-10 flex flex-col gap-20">
+    <Heading
+      level={2}
+      className="text-center font-medium text-balance text-white text-shadow-sm"
+      text={heading}
+    />
+    <div
+      class="mx-auto grid max-w-6xl grid-cols-1 grid-rows-[auto_1fr] gap-x-4 gap-y-3 sm:w-full md:grid-cols-3"
+    >
+      {
+        valueCards.map((item, idx) => (
+          <ValueCard
+            title={item.title}
+            description={item.description}
+            index={idx}
+            duration={1}
+            delay={idx * 0.1}
+            yOffset={-20}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

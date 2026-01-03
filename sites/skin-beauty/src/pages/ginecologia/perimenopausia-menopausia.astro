@@ -1,0 +1,288 @@
+---
+import RootLayout from "src/layouts/root.astro";
+import Navbar from "src/components/navbar.astro";
+import ServiceHero from "src/components/service-hero.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import WhyUs from "src/components/why-us.astro";
+import Footer from "src/components/footer.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import TreatmentGrid from "src/components/treatment-grid.astro";
+
+const stages = [
+  {
+    age: "40–50 años",
+    title: "Perimenopausia",
+    description:
+      "Cambios hormonales irregulares que generan síntomas intermitentes.",
+    bg: "bg-radial-[at_100%_0%]",
+    delay: 0,
+    offset: 30,
+  },
+  {
+    age: "45–55 años",
+    title: "Menopausia",
+    description:
+      "Los ovarios dejan de liberar óvulos y los síntomas pueden intensificarse.",
+    bg: "bg-radial-[at_50%_50%]",
+    delay: 0.1,
+    offset: 0,
+  },
+  {
+    age: "55+ años",
+    title: "Postmenopausia",
+    description:
+      "La etapa que sigue al último periodo, donde el cuerpo sigue ajustándose.",
+    bg: "bg-radial-[at_0%_100%]",
+    delay: 0.2,
+    offset: 30,
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <ServiceHero
+    title="Una nueva etapa. No un motivo para sentirte mal."
+    serviceName="Perimenopausia y Menopausia"
+    mainImageAlt="Perimenopausia y Menopausia"
+    images={[
+      {
+        src: "/gynaecology/hero-menopausia-sm.webp",
+        media: "(max-width: 767px)",
+      },
+      {
+        src: "/gynaecology/hero-menopausia-md.webp",
+        media: "(max-width: 1023px) and (min-width: 768px)",
+      },
+      {
+        src: "/gynaecology/hero-menopausia.webp",
+        media: "(min-width: 1024px)",
+      },
+    ]}
+  >
+    <p>
+      La perimenopausia es la transición previa a la menopausia. Tus hormonas
+      empiezan a fluctuar y eso puede afectar tu energía, tu ánimo, tu sueño y
+      tu cuerpo durante varios años.
+    </p>
+    <p>
+      La menopausia es cuando la menstruación se detiene por 12 meses o más. No
+      es una enfermedad, pero sí puede traer cambios que impactan tu bienestar.
+    </p>
+    <p>Y no tienes por qué vivirlos sola, ni normalizar la incomodidad.</p>
+  </ServiceHero>
+
+  <!-- Etapas de esta transición -->
+  <section class="px-4 py-20">
+    <div class="mx-auto max-w-7xl">
+      <FadeIn duration={1} delay={0}>
+        <Heading
+          level={3}
+          className="text-brand-gray mb-12 text-center font-medium"
+          text="Etapas de esta transición"
+        />
+      </FadeIn>
+      <div
+        class="grid grid-cols-1 items-stretch gap-4 sm:gap-1 md:grid-cols-[1fr_auto_1fr_auto_1fr]"
+      >
+        {
+          stages.map((stage, index) => (
+            <>
+              <FadeIn
+                duration={1}
+                delay={stage.delay}
+                from="left"
+                offset={stage.offset}
+              >
+                <div
+                  class:list={[
+                    "from-ziggurat to-smokey-pink/70 flex h-full flex-col rounded-lg p-6 text-center text-white",
+                    stage.bg,
+                  ]}
+                >
+                  <Heading
+                    level={3}
+                    text={stage.age}
+                    className="font-semibold text-white text-shadow-xs"
+                  />
+                  <Heading
+                    level={4}
+                    text={stage.title}
+                    className="mt-1 text-xl font-medium tracking-wide uppercase text-white text-shadow-xs"
+                  />
+                  <p class="font-heading mt-4 text-lg leading-relaxed opacity-95">
+                    {stage.description}
+                  </p>
+                </div>
+              </FadeIn>
+
+              {index < stages.length - 1 && (
+                <div class="hidden items-center justify-center px-1 md:flex">
+                  <svg
+                    class:list={[
+                      "h-5 w-5",
+                      index === 0 ? "text-neutral-400" : "text-ziggurat",
+                    ]}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    />
+                  </svg>
+                </div>
+              )}
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Síntomas -->
+  <ImageTextSection
+    imageSrc="/gynaecology/infections/symptoms.webp"
+    imageAlt="Síntomas de la Perimenopausia y Menopausia"
+    imagePosition="left"
+  >
+    <Heading
+      level={3}
+      className="text-brand-gray font-medium text-balance"
+      text="Síntomas más frecuentes"
+    />
+    <Heading
+      level={5}
+      className="text-brand-gray"
+      text="Puedes presentar uno o varios de estos cambios:"
+    />
+    <ul class="text-brand-gray font-heading list-inside list-disc">
+      <li>Ciclos irregulares o ausencia de menstruación</li>
+      <li>Bochornos, sudoración nocturna</li>
+      <li>Insomnio, ansiedad, irritabilidad</li>
+      <li>Resequedad vaginal o molestias al tener relaciones</li>
+      <li>Fatiga, baja libido</li>
+      <li>Aumento de peso inexplicable</li>
+    </ul>
+  </ImageTextSection>
+
+  <!-- ¿Qué ocurre en cada etapa? -->
+  <ImageTextSection
+    imageSrc="/gynaecology/infections/need-to-know.webp"
+    imageAlt="¿Qué ocurre en cada etapa?"
+    imagePosition="right"
+  >
+    <Heading
+      level={3}
+      className="text-brand-gray font-medium text-balance"
+      text="¿Qué ocurre en cada etapa?"
+    />
+    <div class="space-y-4">
+      <div>
+        <p class="text-brand-gray font-heading font-medium">Perimenopausia</p>
+        <p class="text-brand-gray font-heading">
+          Los ovarios funcionan de manera irregular y el estrógeno sube y baja
+          constantemente. Esto puede generar ciclos irregulares, bochornos,
+          cambios de humor, ansiedad y dificultades para dormir.
+        </p>
+      </div>
+      <div>
+        <p class="text-brand-gray font-heading font-medium">Menopausia</p>
+        <p class="text-brand-gray font-heading">
+          Los ovarios dejan de liberar óvulos y los niveles de estrógeno caen.
+          Esto puede provocar resequedad vaginal, disminución del deseo sexual,
+          aumento de peso, fatiga y cambios en la memoria o concentración.
+        </p>
+      </div>
+    </div>
+  </ImageTextSection>
+
+  <!-- ¿Por qué le pasa esto a tu cuerpo? -->
+  <div class="mx-auto max-w-4xl px-4 py-16">
+    <FadeIn duration={1}>
+      <Heading
+        level={4}
+        className="text-brand-gray mb-4 text-center font-medium"
+        text="¿Por qué le pasa esto a tu cuerpo?"
+      />
+      <p class="text-brand-gray font-heading text-center text-lg">
+        La perimenopausia y la menopausia son etapas naturales que marcan el
+        cierre de la vida reproductiva. Ocurren porque los ovarios comienzan a
+        producir menos hormonas, y esos cambios —aunque normales— pueden
+        sentirse intensos en tu cuerpo, tu energía y tus emociones.
+      </p>
+    </FadeIn>
+  </div>
+
+  <!-- Inspiring -->
+  <div class="mx-auto max-w-4xl px-4 pb-20">
+    <FadeIn duration={1}>
+      <p
+        class="text-brand-gray font-heading text-center text-xl sm:text-center"
+      >
+        <span class="font-medium">
+          En Hi Fem Care entendemos esta transición y podemos ayudarte a
+          atravesarla con bienestar.
+        </span>
+      </p>
+    </FadeIn>
+  </div>
+
+  <!-- CTA -->
+  <section class="px-4 pb-20">
+    <div class="mx-auto max-w-3xl text-center">
+      <FadeIn duration={1} delay={0}>
+        <Heading
+          level={3}
+          className="text-brand-gray mb-6 font-medium"
+          text="No tienes que vivir incómoda."
+        />
+        <p class="text-brand-gray font-heading mb-8 text-xl">
+          Podemos acompañarte en esta etapa.
+        </p>
+        <ScheduleButton
+          href="https://calendly.com/hi-fem-care/agenda-cita"
+          text="¡Agenda tu cita hoy!"
+        />
+      </FadeIn>
+    </div>
+  </section>
+
+  <WhyUs
+    backgroundImage="/why-femcare.webp"
+    backgroundImageAlt="Why Hi Fem Care"
+    heading="¿Por qué Hi Fem Care es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Medicina moderna que realmente funciona.",
+        description: [
+          "No tratamos síntomas.",
+          "Tratamos causas.",
+          'En Hi Fem Care no damos "soluciones rápidas".',
+          "Te escuchamos, entendemos tu historial y trabajamos desde el origen del problema: hormonal, funcional o emocional.",
+          "Nuestro objetivo es ayudarte a recuperar tu equilibrio de forma real y sostenible.",
+        ],
+      },
+      {
+        title: "Médicos y especialistas que saben cómo cuidarte.",
+        description: [
+          "Nuestro equipo tiene décadas de experiencia en salud femenina, ginecología avanzada y regeneración íntima.",
+          "Sabemos lo que tu cuerpo atraviesa y cómo acompañarte para que te sientas bien otra vez.",
+        ],
+      },
+      {
+        title: "Tecnología moderna, precisa y no invasiva.",
+        description: [
+          "Somos pioneros en Guatemala en el uso de tratamientos como MonaLisa Touch®, UltraClear® y Pelvicenter®.",
+          "Tecnología diseñada para prevenir, regenerar y mejorar tu salud íntima sin dolor, sin cirugía y con resultados naturales.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

@@ -1,0 +1,19 @@
+---
+import MessageCircle from "@repo/ui/icons/message-circle.astro";
+
+interface Props {
+  href?: string;
+}
+
+const { href = "https://wa.me/message/XXXXXXX" } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Enviar mensaje"
+  class="from-brand to-brand/80 highlight fixed right-6 bottom-6 z-50 flex size-16 cursor-pointer items-center justify-center rounded-full bg-radial-[at_50%_80%] text-white shadow-lg transition-transform hover:scale-110"
+>
+  <MessageCircle class="size-6" />
+</a>

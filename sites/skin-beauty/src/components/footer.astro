@@ -1,0 +1,134 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import Facebook from "@repo/ui/icons/facebook.astro";
+import Instagram from "@repo/ui/icons/instagram.astro";
+import TikTok from "@repo/ui/icons/tiktok.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+
+interface Props {
+  skipCTA?: boolean;
+}
+
+const { skipCTA = false } = Astro.props;
+---
+
+<footer>
+  {
+    !skipCTA && (
+      <div class="bg-brand grain relative w-full overflow-hidden py-20 text-center">
+        <div class="relative z-20 mx-auto flex max-w-7xl flex-col items-center justify-center gap-4">
+          <FadeIn duration={1}>
+            <Heading
+              level={2}
+              className="text-balance text-white text-shadow-sm"
+              text="Tu piel merece atención experta. Solo necesitas dar el primer paso."
+            />
+          </FadeIn>
+          <FadeIn duration={1} delay={0.1}>
+            <p class="font-body text-white sm:text-lg">
+              Tu piel merece el cuidado de expertos. <br /> Agenda tu cita y
+              descubre una versión más saludable y radiante de ti.
+            </p>
+          </FadeIn>
+          <FadeIn duration={1} delay={0.2}>
+            <ScheduleButton
+              text="AGENDA TU CITA AHORA"
+              href="https://calendly.com/hi-fem-care/agenda-cita"
+            />
+          </FadeIn>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="w-full bg-white py-10 text-center">
+    <div
+      class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-4"
+    >
+      <Heading
+        level={6}
+        className="text-brand-gray text-xl font-medium"
+        text="Horario de atención"
+      />
+      {
+        [
+          {
+            day: "Lunes",
+            start: "7:00 am",
+            end: "4:00 pm",
+          },
+          {
+            day: "Martes a Jueves",
+            start: "6:30 am",
+            end: "3:30 pm",
+          },
+          {
+            day: "Viernes",
+            start: "6:30 am",
+            end: "2:30 pm",
+          },
+          {
+            day: "Sábado",
+            start: "7:00 am",
+            end: "12:00 pm",
+          },
+        ].map((schedule) => (
+          <div class="font-heading text-brand-gray border-brand-gray/20 flex flex-col items-center border-b pb-2">
+            <span class="font-semibold">{schedule.day}</span>
+            <span class="font-light">
+              {schedule.start} - {schedule.end}
+            </span>
+          </div>
+        ))
+      }
+      <p class="text-brand-gray font-heading font-light">
+        Avenida La Reforma 9-55, Edif. Reforma 10 <br /> Zona 10, 7o. nivel, Clínica
+        704,<br />
+        Ciudad de Guatemala, Guatemala
+      </p>
+    </div>
+  </div>
+  <div class="bg-brand grain relative w-full overflow-hidden py-20 text-center">
+    <div
+      class="relative z-20 mx-auto flex max-w-7xl flex-col items-center justify-center gap-16 sm:flex-row"
+    >
+      <img
+        src="/logo-white.svg"
+        alt="Hi Skin & Beauty"
+        class="h-auto w-56 object-contain"
+      />
+      <p class="font-heading font-light text-white">
+        HI Skin & Beauty forma parte de A Tu Origen, Sociedad Anónima. © {
+          new Date().getFullYear()
+        }. Todos los derechos reservados
+      </p>
+      <div class="flex items-center gap-4">
+        <a
+          href="https://www.facebook.com/HI.FemCare/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <Facebook class="text-white" />
+        </a>
+        <a
+          href="https://www.instagram.com/hi.femcare/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <Instagram class="text-white" />
+        </a>
+        <a
+          href="https://www.tiktok.com/@hi.femcare"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+        >
+          <TikTok class="text-white" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

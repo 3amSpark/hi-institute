@@ -1,0 +1,369 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import FAQSection from "@repo/ui/components/faq-section.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import Check from "@repo/ui/icons/check.astro";
+import Footer from "../components/footer.astro";
+import Hero from "../components/hero.astro";
+import Navbar from "../components/navbar.astro";
+import ScheduleButton from "../components/schedule-button.astro";
+import WhyUs from "../components/why-us.astro";
+import RootLayout from "../layouts/root.astro";
+
+const questions = [
+  {
+    title:
+      "¿Te molestan las líneas de expresión, patas de gallo, daño solar, tono desigual o cicatrices?",
+    description: "",
+  },
+  {
+    title:
+      "¿Quieres lucir una piel más joven en reuniones virtuales o presenciales?",
+    description: "",
+  },
+  {
+    title:
+      "¿Tienes poco tiempo y no puedes permitirte tratamientos largos ni tiempos de recuperación?",
+    description: "",
+  },
+  {
+    title: "¿Buscas resultados visibles pero sin dolor?",
+    description: "",
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="Ultra Clear® Es lo que tu piel necesita"
+    alt="Ultra Clear® Es lo que tu piel necesita"
+    images={[
+      {
+        size: "sm",
+        src: "/rejuvenecimiento/ultraclear/hero-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/rejuvenecimiento/ultraclear/hero-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/rejuvenecimiento/ultraclear/hero.webp",
+      },
+    ]}
+  />
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <Heading
+      level={2}
+      className="text-brand-gray font-medium text-pretty sm:text-center"
+      text="Resta años a tu rostro rápido y cómodamente"
+    />
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      Con el paso del tiempo, la exposición al sol, la contaminación y la
+      gravedad dejan huellas visibles como arrugas, manchas, cicatrices, tono
+      apagado y textura irregular. Sin apoyo profesional, la piel pierde su
+      capacidad natural para renovarse y eliminar células muertas.
+    </p>
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      Recupera una piel más lisa, luminosa y joven con solo una sesión de
+      UltraClear®.
+    </p>
+  </section>
+
+  <section class="bg-brand/5 py-20">
+    <div
+      class="mx-auto flex max-w-7xl flex-col items-center gap-10 text-center"
+    >
+      <FadeIn duration={0.8}>
+        <Heading
+          level={2}
+          className="text-brand mb-6 font-medium"
+          text="¿Por qué UltraClear® es diferente?"
+        />
+        <p
+          class="text-brand-gray/90 font-body mb-20 max-w-3xl text-lg leading-relaxed"
+        >
+          UltraClear® representa una nueva generación en láseres dermatológicos,
+          más preciso, más potente y con una experiencia mucho más cómoda para
+          el paciente. A diferencia del láser CO₂ tradicional, no quema la
+          superficie de la piel ni provoca hiperpigmentación post-tratamiento.
+          Ofrece resultados iguales o incluso superiores, pero con mucho menos
+          riesgo.
+        </p>
+      </FadeIn>
+
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="aspect-video w-full rounded-xl object-cover transition-transform duration-700 group-hover:scale-105 sm:max-w-3xl"
+      >
+        <source
+          src="/videos/depilacion-laser-con-splendor-x/Depilación Láser con Splendor X ｜ HI Skin & Beauty (1).mp4"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+
+    <!-- What Makes Us Different Section -->
+  </section>
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <Heading
+      level={2}
+      className="text-brand-gray font-medium text-pretty sm:text-center"
+      text="Resultados que hablan por sí solos"
+    />
+    <p
+      class="text-brand-gray font-body text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+    >
+      Los efectos pueden variar según el tipo de piel, su textura, profundidad
+      de las capas tratadas y otros factores individuales. Cada tratamiento es
+      personalizado para lograr el mejor resultado posible según las necesidades
+      reales de tu piel.
+    </p>
+  </section>
+
+  <!-- Before/After Carousel -->
+  <section class="relative pb-20">
+    <div class="mx-auto max-w-3xl px-4">
+      <div class="relative">
+        <!-- Slides Container -->
+        <div id="results-carousel" class="relative overflow-hidden rounded-2xl">
+          {
+            [
+              {
+                src: "/rejuvenecimiento/ultraclear/arrugas-antes-y-despues.webp",
+                label: "Reducción de arrugas",
+              },
+              {
+                src: "/rejuvenecimiento/ultraclear/Antes-Despues-de-2-sesiones.webp",
+                label: "Después de 2 sesiones",
+              },
+              {
+                src: "/rejuvenecimiento/ultraclear/arrugas-antes-despues-2.webp",
+                label: "Rejuvenecimiento facial",
+              },
+              {
+                src: "/rejuvenecimiento/ultraclear/Antes-y-despues-de-linea.webp",
+                label: "Líneas de expresión",
+              },
+            ].map((slide, i) => (
+              <div
+                class="carousel-slide absolute inset-0"
+                data-slide={i}
+                style={i === 0 ? "opacity: 1" : "opacity: 0"}
+              >
+                <img
+                  src={slide.src}
+                  alt={slide.label}
+                  class="h-full w-full object-cover"
+                />
+                <div class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/60 to-transparent p-6 pt-16">
+                  <p class="font-heading text-lg font-medium text-white">
+                    {slide.label}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+          <!-- Aspect ratio placeholder -->
+          <div class="pointer-events-none invisible">
+            <img
+              src="/rejuvenecimiento/ultraclear/arrugas-antes-y-despues.webp"
+              alt=""
+              class="w-full"
+            />
+          </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button
+          id="carousel-prev"
+          class="absolute top-1/2 left-3 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg transition-all hover:scale-110 hover:bg-white active:scale-95"
+          aria-label="Anterior"
+        >
+          <svg
+            class="text-brand-gray size-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <button
+          id="carousel-next"
+          class="absolute top-1/2 right-3 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg transition-all hover:scale-110 hover:bg-white active:scale-95"
+          aria-label="Siguiente"
+        >
+          <svg
+            class="text-brand-gray size-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Dots -->
+      <div class="mt-6 flex justify-center gap-2">
+        {
+          [0, 1, 2, 3].map((i) => (
+            <button
+              class="carousel-dot size-2.5 rounded-full transition-all duration-300"
+              data-dot={i}
+              style={
+                i === 0
+                  ? "background-color: var(--color-brand); transform: scale(1.2)"
+                  : "background-color: color-mix(in srgb, var(--color-brand) 20%, transparent)"
+              }
+              aria-label={`Ir a slide ${i + 1}`}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .carousel-slide {
+      transition: opacity 500ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .carousel-dot {
+      transition:
+        background-color 300ms cubic-bezier(0.19, 1, 0.22, 1),
+        transform 300ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+  </style>
+
+  <script>
+    const slides = document.querySelectorAll(".carousel-slide");
+    const dots = document.querySelectorAll(".carousel-dot");
+    const prevBtn = document.getElementById("carousel-prev");
+    const nextBtn = document.getElementById("carousel-next");
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function goToSlide(index: number) {
+      slides.forEach((slide, i) => {
+        const el = slide as HTMLElement;
+        el.style.opacity = i === index ? "1" : "0";
+      });
+
+      dots.forEach((dot, i) => {
+        const el = dot as HTMLElement;
+        if (i === index) {
+          el.style.backgroundColor = "var(--color-brand)";
+          el.style.transform = "scale(1.2)";
+        } else {
+          el.style.backgroundColor =
+            "color-mix(in srgb, var(--color-brand) 20%, transparent)";
+          el.style.transform = "scale(1)";
+        }
+      });
+
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      goToSlide((currentIndex + 1) % totalSlides);
+    }
+
+    function prevSlide() {
+      goToSlide((currentIndex - 1 + totalSlides) % totalSlides);
+    }
+
+    prevBtn?.addEventListener("click", prevSlide);
+    nextBtn?.addEventListener("click", nextSlide);
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => goToSlide(i));
+    });
+
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") prevSlide();
+      if (e.key === "ArrowRight") nextSlide();
+    });
+  </script>
+  <section class="bg-brand/10 py-20">
+    <div class="mx-auto flex max-w-5xl flex-col gap-20 px-4">
+      <FadeIn duration={0.8}>
+        <Heading
+          level={2}
+          className="text-brand text-center font-medium"
+          text="Descubre si UltraClear® es lo que tu piel necesita"
+        />
+      </FadeIn>
+
+      <div class="flex flex-col flex-wrap justify-center gap-4 sm:flex-row">
+        {
+          questions.map((benefit, i) => (
+            <FadeIn duration={0.4} delay={0.1 + i * 0.1}>
+              <div class="bg-brand/5 border-brand/10 flex h-full flex-1 flex-col items-center justify-center gap-2 rounded-xl border-[0.75px] p-5 sm:max-w-[320px] sm:min-w-[280px]">
+                <p class="text-brand-gray font-heading font-medium">
+                  {benefit.title}
+                </p>
+              </div>
+            </FadeIn>
+          ))
+        }
+      </div>
+      <Heading
+        level={4}
+        className="text-brand-gray font-medium text-pretty sm:text-center"
+        text="Si te identificaste, UltraClear® puede ser justo lo que estabas buscando."
+      />
+    </div>
+  </section>
+
+  <WhyUs
+    backgroundImage="/why-us.webp"
+    backgroundImageAlt="Why Skin & Beauty"
+    heading="¿Por qué Skin & Beauty es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Protocolo integral para el cuidado de tu piel",
+        description: [
+          "En HI Skin & Beauty desarrollamos un enfoque que une medicina dermatológica y estética para cuidar tu piel de forma completa y responsable.",
+          "Cada protocolo está diseñado para ofrecer resultados visibles, seguros y alineados con lo que tu piel realmente necesita.",
+        ],
+      },
+      {
+        title: "Dermatología + Estética, en manos expertas",
+        description: [
+          "Nuestro equipo está conformado por médicos dermatólogos y médicos estéticos especializados, que trabajan de forma conjunta para diagnosticar, tratar y mejorar la salud de tu piel, sin improvisaciones ni soluciones temporales.",
+        ],
+      },
+      {
+        title: "Tecnología médica de última generación",
+        description: [
+          "Utilizamos equipos avanzados de diagnóstico y tratamiento que nos permiten evaluar tu piel con precisión clínica y aplicar terapias efectivas, seguras y personalizadas.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

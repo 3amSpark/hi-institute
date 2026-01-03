@@ -7,14 +7,16 @@ interface Props {
   image: string;
   index: number;
   href?: string;
+  disableGradient?: boolean;
 }
 
-const { name, image, index, href = "#" } = Astro.props;
+const { name, image, index, href = "#", disableGradient = false } = Astro.props;
 ---
 
 <a
   href={href}
   class="relative group grid place-items-center aspect-square w-full flex-[0_0_calc(100%-var(--spacing)*4)] md:flex-[0_0_calc(50%-2rem)] lg:flex-[0_0_calc(33.333%-0.5rem)] overflow-hidden cursor-pointer service rounded-lg"
+  data-no-gradient={disableGradient ? "" : undefined}
 >
   <span
     class="absolute left-3 top-2 z-10 text-white text-xl font-medium font-heading"
@@ -25,18 +27,20 @@ const { name, image, index, href = "#" } = Astro.props;
     src={image}
     alt={name}
     loading="lazy"
-    class="absolute inset-0 w-full h-full object-cover"
+    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
   />
   <Heading
     level={4}
-    className="text-white text-center z-10  font-medium text-shadow-2xs "
+    className="text-white text-center z-10 font-medium text-shadow-sm px-4"
     text={name}
   />
   <div
-    class="translate-y-16 group-hover:translate-y-0 transition-transform duration-500 absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1"
+    class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 transition-transform duration-500 translate-y-0 md:translate-y-16 md:group-hover:translate-y-0 text-white"
   >
-    <Heading level={5} className="text-white font-medium" text={"Ver más"} />
-    <ArrowRight class="text-white size-4" />
+    <span class="font-heading text-lg font-medium whitespace-nowrap">
+      Ver más
+    </span>
+    <ArrowRight class="size-5" />
   </div>
 </a>
 
@@ -76,20 +80,29 @@ const { name, image, index, href = "#" } = Astro.props;
       z-index: 1;
     }
 
-    /* Hover State */
-    &:hover {
-      opacity: 1;
-      scale: 1;
-      border-radius: 1.1rem;
-      /* box-shadow:
-        rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
-      z-index: 3;
+    &[data-no-gradient]::after {
+      display: none;
+    }
 
-      &::before {
-        transform: scaleY(1);
-        transform-origin: top;
+    /* Hover State */
+    @media (hover: hover) {
+      &:hover {
+        opacity: 1;
+        scale: 1;
+        border-radius: 1.1rem;
+        z-index: 3;
+
+        &::before {
+          transform: scaleY(1);
+          transform-origin: top;
+        }
       }
+    }
+
+    /* Active State for Mobile feedback */
+    &:active {
+      scale: 0.98;
+      transition: scale 0.1s ease;
     }
   }
 </style>

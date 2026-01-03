@@ -1,5 +1,9 @@
 @import "@repo/ui/theme.css";
 
+@theme {
+  --color-brand: var(--color-smokey-pink);
+}
+
 html {
   background-color: var(--color-eggshell);
 }

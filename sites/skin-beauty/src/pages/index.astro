@@ -1,0 +1,124 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import ServiceGrid from "@repo/ui/components/service-grid.astro";
+import Footer from "src/components/footer.astro";
+import Hero from "src/components/hero.astro";
+import Navbar from "src/components/navbar.astro";
+import Testimonials from "src/components/testimonials.astro";
+import WhyUs from "src/components/why-us.astro";
+import RootLayout from "../layouts/root.astro";
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="La salud de tu piel, en manos de expertos."
+    alt="Hi Skin & Beauty Hero Image"
+    images={[
+      {
+        size: "sm",
+        src: "/landing/hero-sm.webp",
+      },
+      {
+        size: "lg",
+        src: "/landing/hero-lg.webp",
+      },
+    ]}
+    revealSlides={true}
+  />
+  <section
+    class="flex flex-col items-center justify-center gap-20 bg-linear-to-b from-white to-neutral-200 px-4 py-20 sm:px-6"
+  >
+    <div class="mx-auto flex max-w-6xl flex-col gap-6">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          className="text-brand-gray font-medium text-balance sm:text-center"
+          text="Dermatología y estética, al mismo nivel de exigencia."
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <p
+          class="text-brand-gray font-heading mx-auto text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          Ofrecemos soluciones médicas y estéticas basadas en ciencia,
+          experiencia y tecnología avanzada.
+        </p>
+        <p
+          class="text-brand-gray font-heading mx-auto mt-4 text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          Nuestro equipo se mantiene en constante formación e investigación para
+          brindarte tratamientos seguros, precisos y personalizados, siempre con
+          un enfoque integral en la salud y belleza de tu piel.
+        </p>
+      </FadeIn>
+    </div>
+    <div class="mx-auto w-full max-w-7xl">
+      <ServiceGrid
+        disableGradient={true}
+        services={[
+          {
+            name: "Dermatología Médica",
+            image: "/services/dermatologia-medica.webp",
+            href: "/dermatologia-medica",
+          },
+          {
+            name: "Rejuvenecimiento Facial",
+            image: "/services/rejuvenecimiento-facial.webp",
+            href: "/rejuvenece-tu-piel",
+          },
+          {
+            name: "Medicina Láser de la Piel",
+            image: "/services/medicina-laser.webp",
+            href: "/medicina-laser-de-precision",
+          },
+          {
+            name: "Hidrafaciales",
+            image: "/services/hidrafaciales.webp",
+            href: "/hidrafaciales",
+          },
+          {
+            name: "Depilación Láser",
+            image: "/services/depilacion-laser.webp",
+            href: "/depilacion-laser-con-splendor-x",
+          },
+          {
+            name: "Inyectables",
+            image: "/services/inyectables.webp",
+            href: "/tratamiento-de-inyectables",
+          },
+        ]}
+      />
+    </div>
+  </section>
+
+  <WhyUs
+    backgroundImage="/why-us.webp"
+    backgroundImageAlt="Why Skin & Beauty"
+    heading="¿Por qué Skin & Beauty es tu mejor opción?"
+    valueCards={[
+      {
+        title: "Protocolo integral para el cuidado de tu piel",
+        description: [
+          "En HI Skin & Beauty desarrollamos un enfoque que une medicina dermatológica y estética para cuidar tu piel de forma completa y responsable.",
+          "Cada protocolo está diseñado para ofrecer resultados visibles, seguros y alineados con lo que tu piel realmente necesita.",
+        ],
+      },
+      {
+        title: "Dermatología + Estética, en manos expertas",
+        description: [
+          "Nuestro equipo está conformado por médicos dermatólogos y médicos estéticos especializados, que trabajan de forma conjunta para diagnosticar, tratar y mejorar la salud de tu piel, sin improvisaciones ni soluciones temporales.",
+        ],
+      },
+      {
+        title: "Tecnología médica de última generación",
+        description: [
+          "Utilizamos equipos avanzados de diagnóstico y tratamiento que nos permiten evaluar tu piel con precisión clínica y aplicar terapias efectivas, seguras y personalizadas.",
+        ],
+      },
+    ]}
+  />
+  <Testimonials />
+  <Footer />
+</RootLayout>
