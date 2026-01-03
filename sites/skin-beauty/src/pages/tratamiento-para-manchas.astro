@@ -1,0 +1,416 @@
+---
+import RootLayout from "../layouts/root.astro";
+import Navbar from "../components/navbar.astro";
+import Hero from "../components/hero.astro";
+import Footer from "../components/footer.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import ComparisonSlider from "../components/comparison-slider.astro";
+import GrainTexture from "../components/grain-texture.astro";
+import RevealCarousel from "@repo/ui/components/reveal-carousel.astro";
+
+const benefits = [
+  {
+    title: "Eliminación efectiva de manchas",
+    description:
+      "Su avanzada tecnología fragmenta el exceso de pigmento para que el cuerpo lo elimine de manera natural, dejando la piel más uniforme y luminosa.",
+  },
+  {
+    title: "Máxima precisión y seguridad",
+    description:
+      "Actúa únicamente sobre las manchas sin afectar la piel sana, garantizando un tratamiento seguro y efectivo.",
+  },
+  {
+    title: "Tratamiento adaptado a tu piel",
+    description:
+      "Se ajusta según tu tipo de piel y el nivel de manchas para lograr resultados óptimos y personalizados.",
+  },
+];
+
+const analysisSlides = [
+  {
+    title: "Manchas",
+    description:
+      "Marcas marrones o rojas visibles a simple vista, que contrastan con el tono natural de la piel y varían en tamaño y forma.",
+    image: "/analisis-avanzado-del-rostro/manchas.webp",
+  },
+  {
+    title: "Arrugas",
+    description:
+      "Surcos o pliegues en la piel que aumentan con la exposición al sol y la pérdida de elasticidad.",
+    image: "/analisis-avanzado-del-rostro/arrugas.webp",
+  },
+  {
+    title: "Textura",
+    description:
+      "Zonas elevadas o hundidas que generan irregularidades en la superficie de la piel, afectando su suavidad.",
+    image: "/analisis-avanzado-del-rostro/textura.webp",
+  },
+  {
+    title: "Poros",
+    description:
+      "Aberturas circulares en la piel que, al agrandarse, pueden verse más oscuras debido a las sombras y el contraste con el tono circundante.",
+    image: "/analisis-avanzado-del-rostro/poros.webp",
+  },
+  {
+    title: "Manchas UV",
+    description:
+      "Zonas de acumulación de melanin bajo la piel, visibles por la absorción de luz UV, causadas por daño solar.",
+    image: "/analisis-avanzado-del-rostro/uv-manchas.webp",
+  },
+  {
+    title: "Manchas marrones",
+    description:
+      "Hiperpigmentación y decoloración en la superficie y debajo de la piel.",
+    image: "/analisis-avanzado-del-rostro/machas marrones.webp",
+  },
+  {
+    title: "Areas rojas",
+    description:
+      "Áreas rojizas concentradas, asociadas con inflamación o venas dilatadas.",
+    image: "/analisis-avanzado-del-rostro/areas rojas.webp",
+  },
+  {
+    title: "Porfirinas",
+    description: "Secreciones bacterianas que pueden acumularse en los poros.",
+    image: "/analisis-avanzado-del-rostro/porfirinas.webp",
+  },
+];
+---
+
+<RootLayout>
+  <Navbar />
+  <!-- TODO: Change image. -->
+  <Hero
+    title="Tratamiento para manchas"
+    alt="Tratamiento para manchas"
+    images={[
+      {
+        size: "sm",
+        src: "/dermatologia/piel/hero-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/dermatologia/piel/hero-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/dermatologia/piel/hero.webp",
+      },
+    ]}
+  />
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <FadeIn duration={0.8}>
+      <Heading
+        level={2}
+        className="text-brand-gray font-medium text-balance sm:text-center"
+        text="Un rostro sin manchas."
+      />
+    </FadeIn>
+    <FadeIn duration={0.8} delay={0.1} class="sm:max-w-4xl sm:text-center">
+      <p class="text-brand-gray font-body text-lg leading-relaxed">
+        En Hi Skin & Beauty eliminamos manchas con láser médico avanzado, seguro
+        y eficaz. Tratamos melasma, lentigos y daño solar con resultados
+        visibles desde la primera sesión. Sin dañar tu piel, logramos un tono
+        uniforme y luminoso. Confía en nuestros expertos y agenda tu evaluación
+        hoy.
+      </p>
+    </FadeIn>
+  </section>
+  <section class="bg-brand/10">
+    <div
+      class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+    >
+      <FadeIn duration={0.8}>
+        <Heading
+          level={2}
+          className="text-brand font-medium text-balance sm:text-center"
+          text="¿Cómo trabajamos en Hi Skin & Beauty?"
+        />
+      </FadeIn>
+      <!-- <FadeIn duration={0.8} delay={0.1} class="sm:max-w-4xl sm:text-center">
+        <p class="text-brand-gray font-body text-lg leading-relaxed">
+          Analizamos tu piel con la tecnología VISIA® para identificar el origen
+          del enrojecimiento, ya sea por rosácea, vasos capilares dilatados o
+          sensibilidad crónica
+        </p>
+      </FadeIn> -->
+    </div>
+  </section>
+  <!-- Phase 1 -->
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <FadeIn duration={0.8} class="flex flex-col items-center">
+      <div
+        class="from-iroko/50 to-skin font-heading relative flex size-14 items-center justify-center self-center rounded-full border-2 bg-radial-[at_0%_100%] text-xl font-medium text-white uppercase"
+      >
+        1
+      </div>
+      <Heading
+        level={3}
+        text="Diagnóstico Profesional"
+        className="text-brand mt-6 self-center text-center font-medium"
+      />
+    </FadeIn>
+    <FadeIn duration={0.8} delay={0.1} class="sm:max-w-4xl sm:text-center">
+      <p
+        class="text-brand-gray font-body mb-6 text-left text-lg leading-relaxed sm:text-center"
+      >
+        Analizamos tu piel con la tecnología VISIA® para detectar a fondo
+        manchas solares, melasma y pigmentación oculta.
+      </p>
+      <p
+        class="text-brand-gray font-body mb-6 text-lg leading-relaxed sm:text-center"
+      >
+        Este diagnóstico preciso revela el origen del problema, como daño solar,
+        inflamación o desequilibrios hormonales. Con base en los resultados,
+        diseñamos un plan 100% personalizado para recuperar una piel clara,
+        uniforme y luminosa.
+      </p>
+    </FadeIn>
+    <FadeIn duration={0.8} delay={0.2} class="flex w-full justify-center">
+      <img
+        src="los-mas-solicitados/booth-rotation-visia.gif"
+        alt="Diagnóstico Profesional"
+        class="w-1/2 max-w-md self-center rounded-xl object-cover"
+      />
+    </FadeIn>
+  </section>
+  <RevealCarousel
+    items={analysisSlides}
+    title="Obtén una evaluación detallada de tu piel"
+    overlayOpacity={0.65}
+  />
+  <!-- Phase 2 -->
+  <section class="bg-brand/10">
+    <div
+      class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+    >
+      <FadeIn duration={0.8} class="flex flex-col items-center">
+        <div
+          class="from-iroko/50 to-skin font-heading relative flex size-14 items-center justify-center self-center rounded-full border-2 bg-radial-[at_0%_100%] text-xl font-medium text-white uppercase"
+        >
+          2
+        </div>
+        <Heading
+          level={3}
+          text="Recomendación médica personalizada"
+          className="text-brand mt-6 self-center text-center font-medium"
+        />
+      </FadeIn>
+      <FadeIn duration={0.8} delay={0.1} class="sm:max-w-4xl sm:text-center">
+        <p
+          class="text-brand-gray font-body mb-6 text-lg leading-relaxed sm:text-center"
+        >
+          Tras analizar tu piel con VISIA®, uno de nuestros médicos revisa los
+          resultados contigo. Te explicará cuántas sesiones necesitarás, qué
+          tipo de láser es ideal para tus manchas y qué mejoras puedes esperar.
+        </p>
+        <p
+          class="text-brand-gray font-body mb-6 text-lg leading-relaxed sm:text-center"
+        >
+          En esta etapa trazamos tu camino hacia una piel uniforme y luminosa,
+          con tiempos reales y objetivos claros.
+        </p>
+      </FadeIn>
+    </div>
+  </section>
+  <!-- Phase 3 -->
+  <section
+    class="mx-auto flex max-w-7xl flex-col items-start justify-center gap-6 px-4 py-20 sm:items-center"
+  >
+    <FadeIn duration={0.8} class="flex flex-col items-center">
+      <div
+        class="from-iroko/50 to-skin font-heading relative flex size-14 items-center justify-center self-center rounded-full border-2 bg-radial-[at_0%_100%] text-xl font-medium text-white uppercase"
+      >
+        3
+      </div>
+      <Heading
+        level={3}
+        text="Resultados Visibles"
+        className="text-brand mt-6 self-center text-center font-medium"
+      />
+    </FadeIn>
+    <FadeIn duration={0.8} delay={0.1} class="sm:max-w-4xl sm:text-center">
+      <p
+        class="text-brand-gray font-body mb-6 text-lg leading-relaxed sm:text-center"
+      >
+        Desde las primeras sesiones verás cambios notables en tu piel. Seguimos
+        tu progreso y ajustamos el tratamiento según evolución. Tu satisfacción
+        es nuestra prioridad.
+      </p>
+    </FadeIn>
+    <div class="grid w-full grid-cols-1 gap-6 md:grid-cols-3">
+      <FadeIn duration={0.8} delay={0.2}>
+        <ComparisonSlider
+          beforeImage="/los-mas-solicitados/manchas-antes-1.webp"
+          afterImage="/los-mas-solicitados/manchas-despues-1.webp"
+          beforeAlt="Antes del tratamiento"
+          afterAlt="Después del tratamiento"
+          beforeLabel="Antes"
+          afterLabel="Después"
+          aspectRatio="vertical"
+        />
+      </FadeIn>
+      <FadeIn duration={0.8} delay={0.3}>
+        <ComparisonSlider
+          beforeImage="/los-mas-solicitados/manchas-antes-2.webp"
+          afterImage="/los-mas-solicitados/manchas-despues-2.webp"
+          beforeAlt="Antes del tratamiento"
+          afterAlt="Después del tratamiento"
+          beforeLabel="Antes"
+          afterLabel="Después"
+          aspectRatio="vertical"
+        />
+      </FadeIn>
+      <FadeIn duration={0.8} delay={0.3}>
+        <ComparisonSlider
+          beforeImage="/los-mas-solicitados/manchas-antes-3.webp"
+          afterImage="/los-mas-solicitados/manchas-despues-3.webp"
+          beforeAlt="Antes del tratamiento"
+          afterAlt="Después del tratamiento"
+          beforeLabel="Antes"
+          afterLabel="Después"
+          aspectRatio="vertical"
+        />
+      </FadeIn>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <FadeIn duration={0.8}>
+      <div class="mb-12 text-center">
+        <Heading
+          level={2}
+          text="Helios 785 Pico® es la solución más avanzada para eliminar manchas y unificar el tono de tu piel"
+          className="text-brand-gray mb-6 text-3xl leading-tight font-medium sm:text-4xl"
+        />
+        <p class="text-brand-gray/80 font-body mx-auto max-w-5xl text-lg">
+          La hiperpigmentación, el melasma y las manchas causadas por el sol, el
+          embarazo o el envejecimiento pueden afectar la uniformidad y
+          luminosidad de tu piel. En <strong class="text-brand-gray"
+            >Hi Skin & Beauty</strong
+          >, utilizamos <strong class="text-brand-gray">Helios 785 Pico®</strong
+          >, la última innovación en tecnología láser, diseñada para descomponer
+          el exceso de pigmento con máxima precisión y sin dañar la piel sana.
+        </p>
+      </div>
+    </FadeIn>
+
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-6">
+      <!-- Main Feature: Spans 4 columns -->
+      <FadeIn duration={0.8} class="lg:col-span-4">
+        <div
+          class="bg-brand/5 border-brand/5 relative flex h-full items-center justify-center overflow-hidden rounded-3xl border p-4 sm:p-6"
+        >
+          <GrainTexture grainOpacity={0.03} gradientOpacity={0.02} />
+
+          <!-- Video Container -->
+          <div
+            class="group relative w-full overflow-hidden rounded-2xl bg-gray-100"
+          >
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              class="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            >
+              <source
+                src="videos/tratamiento-para-manchas/Tratamiento para Manchas ｜   HI Skin & Beauty (1).mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div
+              class="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            >
+            </div>
+            <span
+              class="bg-brand/90 font-heading absolute bottom-6 left-6 z-10 rounded-full px-5 py-2 text-sm font-medium text-white backdrop-blur-sm"
+            >
+              Solo en Hi Skin & Beauty
+            </span>
+          </div>
+        </div>
+      </FadeIn>
+
+      <!-- Side Card: Spans 2 columns -->
+      <FadeIn duration={0.8} delay={0.1} class="lg:col-span-2">
+        <div
+          class="bg-brand/5 border-brand/5 relative flex h-full flex-col justify-center rounded-3xl border p-8"
+        >
+          <GrainTexture grainOpacity={0.03} gradientOpacity={0.02} />
+          <div class="relative z-10">
+            <h3
+              class="text-brand-gray font-heading mb-6 text-2xl leading-tight font-medium"
+            >
+              ¿Cómo funciona Helios 785 Pico® en el tratamiento de manchas?
+            </h3>
+            <p class="text-brand-gray/80 font-body text-lg leading-relaxed">
+              Helios 785 Pico® combina <strong class="text-brand-gray"
+                >tecnología pico y nano</strong
+              > para actuar en <strong class="text-brand-gray"
+                >diferentes profundidades de la piel</strong
+              >, permitiendo tratar una amplia variedad de manchas con precisión
+              y seguridad.
+            </p>
+          </div>
+        </div>
+      </FadeIn>
+
+      <!-- 3 Benefits: 2 columns each -->
+      {
+        benefits.map((benefit, i) => (
+          <FadeIn duration={0.8} delay={0.2 + i * 0.1} class="lg:col-span-2">
+            <div class="bg-brand/5 border-brand/5 group hover:bg-brand/10 relative flex h-full flex-col justify-start overflow-hidden rounded-2xl border p-6 transition-all duration-300">
+              <GrainTexture
+                grainOpacity={0.02}
+                gradientOpacity={0}
+                class="opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
+              <div class="relative z-10">
+                <h3 class="text-brand-gray font-heading group-hover:text-brand mb-3 flex items-start gap-2 text-lg leading-snug font-medium transition-colors duration-300">
+                  <span class="text-brand mt-1">✔</span>
+                  {benefit.title}
+                </h3>
+                <p class="text-brand-gray/70 font-body text-sm leading-relaxed">
+                  {benefit.description}
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+        ))
+      }
+
+      <!-- Bottom Note: Spans all 6 columns -->
+      <FadeIn duration={0.8} delay={0.5} class="lg:col-span-6">
+        <div
+          class="bg-brand/5 border-brand/5 relative overflow-hidden rounded-2xl border p-6 sm:p-8"
+        >
+          <GrainTexture grainOpacity={0.02} gradientOpacity={0} />
+          <div class="relative z-10">
+            <p class="text-brand-gray/80 font-body text-base leading-relaxed">
+              Aunque Helios 785 Pico® es uno de nuestros láseres estrella, en
+              algunos casos combinamos tecnologías en un enfoque llamado <strong
+                class="text-brand-gray">Láser Mix</strong
+              >. Esta técnica nos permite tratar manchas, rojeces e
+              imperfecciones con mayor precisión, utilizando equipos como <strong
+                class="text-brand-gray">DenaVe</strong
+              > (vascular) y <strong class="text-brand-gray">UltraClear®</strong
+              > (textura).
+            </p>
+            <p class="text-brand-gray/80 font-body mt-4 text-base">
+              Todo con un solo objetivo, dejar tu piel como nueva y sin
+              imperfecciones.
+            </p>
+          </div>
+        </div>
+      </FadeIn>
+    </div>
+  </section>
+
+  <Footer />
+</RootLayout>
