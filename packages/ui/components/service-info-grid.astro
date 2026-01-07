@@ -5,6 +5,7 @@ interface ServiceInfo {
   name: string;
   description: string;
   image: string;
+  href: string;
 }
 
 interface Props {
@@ -23,6 +24,7 @@ const { services } = Astro.props;
         name={service.name}
         description={service.description}
         image={service.image}
+        href={service.href}
         index={idx}
       />
     ))

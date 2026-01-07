@@ -1,18 +1,58 @@
 ---
 import "../styles/global.css";
 import ChatFab from "../components/chat-fab.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: string;
+}
+
+const {
+  title = "HI Skin & Beauty - Dermatología y Estética Médica en Guatemala",
+  description = "Ofrecemos soluciones médicas y estéticas basadas en ciencia, experiencia y tecnología avanzada. Dermatología médica, rejuvenecimiento facial, medicina láser y más.",
+  image = "/landing/hero-lg.webp",
+  type = "website",
+} = Astro.props;
+
+const siteName = "HI Skin & Beauty";
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : Astro.url.href;
+const imageURL = Astro.site ? new URL(image, Astro.site).href : image;
 ---
 
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <meta name="generator" content={Astro.generator} />
-    <title>HI Skin & Beauty</title>
+
+    <!-- SEO Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:site_name" content={siteName} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageURL} />
   </head>
   <body class="selection:bg-skin/30 relative bg-white">
     <ChatFab />

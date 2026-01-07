@@ -1,16 +1,21 @@
 ---
+import { buildWhatsAppUrl } from "../constants";
+
 interface Props {
   text: string;
-  href: string;
+  topic?: string;
+  href?: string;
   class?: string;
   target?: "_blank" | "_self" | "_parent" | "_top";
 }
 const {
-  href,
   text,
+  topic,
+  href: customHref,
   class: className,
   target = "_blank",
 } = Astro.props as Props;
+const href = customHref ?? buildWhatsAppUrl(topic);
 ---
 
 <a

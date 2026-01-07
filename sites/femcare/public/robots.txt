@@ -1,0 +1,7 @@
+# robots.txt for HI Fem Care
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://femcare.hiinstitute.com/sitemap-index.xml
+
