@@ -1,11 +1,12 @@
 ---
 import MessageCircle from "@repo/ui/icons/message-circle.astro";
+import { buildWhatsAppUrl } from "../constants";
 
 interface Props {
   href?: string;
 }
 
-const { href = "https://wa.me/message/XXXXXXX" } = Astro.props;
+const { href = buildWhatsAppUrl() } = Astro.props;
 ---
 
 <a

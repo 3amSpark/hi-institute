@@ -5,6 +5,7 @@ import Footer from "src/components/footer.astro";
 import Hero from "src/components/hero.astro";
 import Heading from "@repo/ui/components/heading.astro";
 import ServiceInfoGrid from "@repo/ui/components/service-info-grid.astro";
+import { buildWhatsAppUrl } from "src/constants";
 
 const conditions = [
   {
@@ -79,7 +80,7 @@ const conditions = [
       "Los lipomas son tumores benignos de tejido graso que suelen crecer lentamente. Evaluamos cada caso para confirmar el diagnóstico y, si es necesario, indicar el tratamiento adecuado.",
     image: "/dermatologia/condiciones/lipomas.webp",
   },
-];
+].map((c) => ({ ...c, href: buildWhatsAppUrl(c.name) }));
 ---
 
 <RootLayout>

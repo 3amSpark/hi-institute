@@ -7,13 +7,14 @@ interface Props {
   description: string;
   image: string;
   index: number;
+  href: string;
 }
 
-const { name, description, image, index } = Astro.props;
+const { name, description, image, index, href } = Astro.props;
 ---
 
 <a
-  href="https://calendly.com/hi-fem-care/agenda-cita"
+  href={href}
   target="_blank"
   class="service relative group grid place-items-center aspect-square w-full flex-[0_0_calc(100%-var(--spacing)*4)] md:flex-[0_0_calc(50%-2rem)] lg:flex-[0_0_calc(33.333%-0.5rem)] overflow-hidden cursor-pointer rounded-lg"
 >

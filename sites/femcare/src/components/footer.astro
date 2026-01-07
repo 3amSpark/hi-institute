@@ -4,6 +4,7 @@ import Heading from "@repo/ui/components/heading.astro";
 import Facebook from "@repo/ui/icons/facebook.astro";
 import Instagram from "@repo/ui/icons/instagram.astro";
 import TikTok from "@repo/ui/icons/tiktok.astro";
+import ScheduleButton from "./schedule-button.astro";
 ---
 
 <footer>
@@ -27,23 +28,10 @@ import TikTok from "@repo/ui/icons/tiktok.astro";
         </p>
       </FadeIn>
       <FadeIn duration={1} delay={0.2}>
-        <button
-          class="text-ziggurat font-heading group relative cursor-pointer overflow-hidden rounded-full bg-white px-6 py-2 uppercase"
-        >
-          <span class="invisible">¡Agenda tu cita ahora!</span>
-          <!-- Revealed text -->
-          <span
-            class="text-smokey-pink absolute inset-0 flex -translate-y-full items-center justify-center transition-transform duration-300 group-hover:translate-y-0"
-          >
-            ¡Agenda tu cita ahora!
-          </span>
-          <!-- Initial text -->
-          <span
-            class="absolute inset-0 flex translate-y-0 items-center justify-center transition-transform duration-300 group-hover:translate-y-full"
-          >
-            ¡Agenda tu cita ahora!
-          </span>
-        </button>
+        <ScheduleButton
+          text="¡Agenda tu cita ahora!"
+          class="text-ziggurat !from-white !to-white px-6"
+        />
       </FadeIn>
     </div>
   </div>

@@ -6,6 +6,7 @@ import Hero from "src/components/hero.astro";
 import Heading from "@repo/ui/components/heading.astro";
 import ServiceInfoGrid from "@repo/ui/components/service-info-grid.astro";
 import WhyUs from "src/components/why-us.astro";
+import { buildWhatsAppUrl } from "src/constants";
 
 const conditions = [
   {
@@ -64,7 +65,7 @@ const conditions = [
       "Los fibromas cutáneos, también conocidos como acrocordones, son pequeñas lesiones benignas que suelen aparecer en cuello, axilas o párpados. Aunque no representan un riesgo médico, pueden causar molestias o preocupación estética. Se eliminan de forma rápida y segura con tecnología láser o procedimientos dermatológicos mínimamente invasivos",
     image: "/medicina-laser/tratamientos/tratamiento-fibromzas-cutaneos.webp",
   },
-];
+].map((c) => ({ ...c, href: buildWhatsAppUrl(c.name) }));
 ---
 
 <RootLayout>
