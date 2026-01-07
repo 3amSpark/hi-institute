@@ -1,0 +1,7 @@
+# robots.txt for HI Skin & Beauty
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://beauty.hiinstitute.com/sitemap-index.xml
+
