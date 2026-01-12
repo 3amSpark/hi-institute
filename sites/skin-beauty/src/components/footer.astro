@@ -48,40 +48,49 @@ const { skipCTA = false } = Astro.props;
         className="text-brand-gray text-xl font-medium"
         text="Horario de atención"
       />
-      {
-        [
+
+      <div class="flex flex-col gap-6 sm:flex-row sm:gap-16">
+        <!-- Derma-Estética -->
+        <div class="flex flex-col items-center gap-2">
+          <span class="font-heading text-brand-gray text-lg font-semibold"
+            >Derma-Estética</span
+          >
           {
-            day: "Lunes",
-            start: "7:00 am",
-            end: "4:00 pm",
-          },
+            [
+              { day: "Lunes a Jueves", hours: "7am - 4pm" },
+              { day: "Viernes", hours: "7am - 6pm" },
+              { day: "Sábado", hours: "7am - 4pm" },
+            ].map((schedule) => (
+              <div class="font-heading text-brand-gray border-brand-gray/20 flex flex-col items-center border-b pb-2">
+                <span class="font-semibold">{schedule.day}</span>
+                <span class="font-light">{schedule.hours}</span>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Depilación Láser -->
+        <div class="flex flex-col items-center gap-2">
+          <span class="font-heading text-brand-gray text-lg font-semibold"
+            >Depilación Láser</span
+          >
           {
-            day: "Martes a Jueves",
-            start: "6:30 am",
-            end: "3:30 pm",
-          },
-          {
-            day: "Viernes",
-            start: "6:30 am",
-            end: "2:30 pm",
-          },
-          {
-            day: "Sábado",
-            start: "7:00 am",
-            end: "12:00 pm",
-          },
-        ].map((schedule) => (
-          <div class="font-heading text-brand-gray border-brand-gray/20 flex flex-col items-center border-b pb-2">
-            <span class="font-semibold">{schedule.day}</span>
-            <span class="font-light">
-              {schedule.start} - {schedule.end}
-            </span>
-          </div>
-        ))
-      }
+            [
+              { day: "Martes a Jueves", hours: "7am - 4pm" },
+              { day: "Viernes y Sábado", hours: "7am - 6pm" },
+              { day: "Domingo", hours: "Cerrados" },
+            ].map((schedule) => (
+              <div class="font-heading text-brand-gray border-brand-gray/20 flex flex-col items-center border-b pb-2">
+                <span class="font-semibold">{schedule.day}</span>
+                <span class="font-light">{schedule.hours}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
       <p class="text-brand-gray font-heading font-light">
         Avenida La Reforma 9-55, Edif. Reforma 10 <br /> Zona 10, 7o. nivel, Clínica
-        704,<br />
+        709,<br />
         Ciudad de Guatemala, Guatemala
       </p>
     </div>

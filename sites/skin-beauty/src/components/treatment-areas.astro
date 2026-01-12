@@ -3,55 +3,57 @@ import Heading from "@repo/ui/components/heading.astro";
 import FadeIn from "@repo/ui/components/fade-in.astro";
 import ArrowRight from "@repo/ui/icons/arrow-right.astro";
 
+const basePath = "/depilacion-laser/treatment-areas";
+
 const categories = [
   {
     id: "cara",
     label: "Cara y Cuello",
     areas: [
-      { name: "Patillas", price: "Q400", icon: "👤" },
-      { name: "Barbilla", price: "Q400", icon: "👤" },
-      { name: "Bigote", price: "Q400", icon: "👤" },
-      { name: "Orejas", price: "Q400", icon: "👂" },
-      { name: "Nuca", price: "Q800", icon: "👤" },
-      { name: "Delineado de barba", price: "Q800", icon: "🧔" },
-      { name: "Rostro completo", price: "Q1,200", icon: "👤" },
+      { name: "Patillas", price: "Q400", image: `${basePath}/patillas-1.png` },
+      { name: "Barbilla", price: "Q400", image: `${basePath}/barbilla.png` },
+      { name: "Bigote", price: "Q400", image: `${basePath}/bigote.png` },
+      { name: "Orejas", price: "Q400", image: `${basePath}/orejas.png` },
+      { name: "Nuca", price: "Q800", image: `${basePath}/nuca.png` },
+      { name: "Delineado de barba", price: "Q800", image: `${basePath}/delineado barba.png` },
+      { name: "Rostro completo", price: "Q1,200", image: `${basePath}/rostro completo.png` },
     ],
   },
   {
     id: "superior",
     label: "Parte superior del cuerpo",
     areas: [
-      { name: "Pezones", price: "Q400", icon: "👕" },
-      { name: "Dedos de la mano", price: "Q400", icon: "👋" },
-      { name: "Abdomen", price: "Q800", icon: "👕" },
-      { name: "Pecho", price: "Q800", icon: "👕" },
-      { name: "Axilas", price: "Q800", icon: "👕" },
-      { name: "Brazos completos", price: "Q2,000", icon: "💪" },
-      { name: "Antebrazo y Mano", price: "Q1,200", icon: "💪" },
-      { name: "Brazo con Hombro", price: "Q1,200", icon: "💪" },
-      { name: "Espalda", price: "Q1,200", icon: "👕" },
-      { name: "Espalda extra velluda", price: "Q1,400", icon: "👕" },
+      { name: "Pezones", price: "Q400", image: `${basePath}/pezones.png` },
+      { name: "Dedos de la mano", price: "Q400", image: `${basePath}/dedos de la mano.png` },
+      { name: "Abdomen", price: "Q800", image: `${basePath}/abdomen.png` },
+      { name: "Pecho", price: "Q800", image: `${basePath}/pecho.png` },
+      { name: "Axilas", price: "Q800", image: `${basePath}/axilas.png` },
+      { name: "Brazos completos", price: "Q2,000", image: `${basePath}/brazos completos.png` },
+      { name: "Antebrazo y Mano", price: "Q1,200", image: `${basePath}/antebrazo y mano.png` },
+      { name: "Brazo con Hombro", price: "Q1,200", image: `${basePath}/brazo hombro.png` },
+      { name: "Espalda", price: "Q1,200", image: `${basePath}/espalda.png` },
+      { name: "Espalda extra velluda", price: "Q1,400", image: `${basePath}/espalda velluda.png` },
     ],
   },
   {
     id: "inferior",
     label: "Parte inferior del cuerpo",
     areas: [
-      { name: "Dedos de los pies", price: "Q400", icon: "🦶" },
-      { name: "Glúteos", price: "Q800", icon: "🦵" },
-      { name: "Piernas completas", price: "Q2,000", icon: "🦵" },
-      { name: "Rodilla a Dedos del pie", price: "Q1,200", icon: "🦵" },
-      { name: "Muslo", price: "Q1,200", icon: "🦵" },
-      { name: "Bikini", price: "Q1,200", icon: "👙" },
-      { name: "Bikini Brasileño", price: "Q1,300", icon: "👙" },
+      { name: "Dedos de los pies", price: "Q400", image: `${basePath}/dedos de pie.png` },
+      { name: "Glúteos", price: "Q800", image: `${basePath}/gluteos.png` },
+      { name: "Piernas completas", price: "Q2,000", image: `${basePath}/piernas completas.png` },
+      { name: "Rodilla a Dedos del pie", price: "Q1,200", image: `${basePath}/rodillas a dedos de pie.png` },
+      { name: "Muslo", price: "Q1,200", image: `${basePath}/muslos.png` },
+      { name: "Bikini", price: "Q1,200", image: `${basePath}/bikini.png` },
+      { name: "Bikini Brasileño", price: "Q1,300", image: `${basePath}/brasileño.png` },
     ],
   },
   {
     id: "completas",
     label: "Áreas completas",
     areas: [
-      { name: "Cuerpo completo", price: "Q5,500", icon: "✨" },
-      { name: "Cuerpo y Rostro completo", price: "Q6,000", icon: "✨" },
+      { name: "Cuerpo completo", price: "Q5,500", image: `${basePath}/cuerpo completo.png` },
+      { name: "Cuerpo y Rostro completo", price: "Q6,000", image: `${basePath}/cuerpo completo cara.png` },
     ],
   },
 ];
@@ -107,19 +109,23 @@ const categories = [
         >
           {cat.areas.map((area, areaIdx) => (
             <FadeIn duration={0.5} delay={areaIdx * 0.05} class="h-full">
-              <div class="group bg-brand/10 relative flex aspect-3/4 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl p-6 transition-all duration-500 hover:scale-[1.02]">
-                <!-- Icon Placeholder -->
-                <div class="mb-6 flex size-20 items-center justify-center rounded-full bg-white/50 text-4xl transition-transform duration-500 group-hover:scale-110">
-                  {area.icon}
+              <div class="group bg-[#DABD9B] relative flex aspect-3/4 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl p-6 transition-all duration-500 hover:scale-[1.02]">
+                <!-- Area Image -->
+                <div class="flex h-64 w-full items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                  <img
+                    src={area.image}
+                    alt={area.name}
+                    class="h-full w-auto object-contain"
+                  />
                 </div>
 
                 <!-- Name -->
-                <span class="font-heading text-brand-gray text-center text-lg font-medium transition-opacity duration-300 group-hover:opacity-0">
+                <span class="font-heading text-white text-center text-lg font-medium transition-opacity duration-300 group-hover:opacity-0">
                   {area.name}
                 </span>
 
                 <!-- Price Overlay -->
-                <div class="absolute inset-0 flex flex-col items-center justify-center bg-white/95 px-4 text-center opacity-0 backdrop-blur-md transition-all duration-500 group-hover:opacity-100">
+                <div class="absolute inset-0 flex flex-col items-center justify-center bg-white/80 px-4 text-center opacity-0 transition-all duration-500 group-hover:opacity-100">
                   <div class="translate-y-4 transition-transform duration-500 group-hover:-translate-y-4">
                     <span class="text-brand-gray/60 block text-[10px] font-bold uppercase tracking-widest">
                       Precio desde
