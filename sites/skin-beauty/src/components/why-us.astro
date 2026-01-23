@@ -23,7 +23,7 @@ const {
 ---
 
 <section class="relative w-full overflow-hidden px-2 py-40">
-  <div class="absolute inset-0 z-0 scale-130">
+  <div class="absolute inset-0 z-0 scale-110">
     <ParallaxImage yPercent={20} start="top top" end="bottom top">
       <img
         src={backgroundImage}
@@ -31,7 +31,7 @@ const {
         class="h-full w-full object-cover object-center"
       />
     </ParallaxImage>
-    <GrainTexture />
+    <GrainTexture gradientOpacity={0.25} grainOpacity={0.5} />
   </div>
 
   <div class="relative z-10 flex flex-col gap-20">
