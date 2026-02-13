@@ -1,0 +1,95 @@
+---
+import Footer from "src/components/footer.astro";
+import Hero from "src/components/hero.astro";
+import Navbar from "src/components/navbar.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import FinalCta from "src/components/final-cta.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import RootLayout from "../layouts/root.astro";
+---
+
+<RootLayout title="Filosofía">
+  <Navbar />
+  <Hero
+    alt="Filosofía Initia"
+    images={[
+      { size: "sm", src: "/temp/filosofia-sm.webp" },
+      { size: "md", src: "/temp/filosofia-md.webp" },
+      { size: "lg", src: "/temp/filosofia.webp" },
+    ]}
+  >
+    Honestidad, ciencia y humanidad.
+  </Hero>
+
+  <!-- Main Content -->
+  <section class="bg-blobs px-4 py-20 md:py-28">
+    <div class="mx-auto flex max-w-4xl flex-col gap-6">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          className="text-brand font-medium tracking-normal text-balance sm:text-center"
+          text="Nuestra Filosofía"
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <p
+          class="text-brand-gray font-body mx-auto text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          Nadie puede garantizar un embarazo, ni siquiera con la mejor
+          tecnología. Incluso en los tratamientos más avanzados, como la
+          donación de óvulos, las tasas de éxito rondan el 70%. Eso significa que
+          aún así, 3 de cada 10 parejas no lo logran en el primer intento.
+        </p>
+        <p
+          class="text-brand-gray font-body mx-auto mt-6 text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          En Initia creemos en decir la verdad con respeto y empatía. Sabemos
+          que el camino hacia un hijo puede requerir dos o tres intentos antes de
+          lograr un bebé en casa. Y por eso, nuestro enfoque no es solo técnico,
+          es profundamente humano.
+        </p>
+      </FadeIn>
+      <FadeIn duration={1} delay={0.2}>
+        <p
+          class="text-brand font-heading mx-auto text-xl font-medium leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          Acompañamos cada proceso con preparación médica, emocional y
+          metabólica, porque entendemos que no se trata solo de un tratamiento,
+          sino de un sueño.
+        </p>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Image Section -->
+  <ImageTextSection
+    imageSrc="/photo-bank/72.webp"
+    imageAlt="Acompañamiento médico profesional"
+    imagePosition="right"
+    class="bg-brand/5"
+  >
+    <img
+      src="/icons/reproductive-health&wellness/005-stethoscope.svg"
+      alt=""
+      class="h-10 w-10 opacity-60"
+    />
+    <Heading
+      level={3}
+      className="text-brand font-medium tracking-normal"
+      text="Acompañamiento integral"
+    />
+    <p class="text-brand-gray font-body text-lg leading-relaxed">
+      Cada paciente recibe atención personalizada desde la primera consulta. No
+      solo evaluamos tu condición médica, sino que te preparamos física y
+      emocionalmente para el proceso.
+    </p>
+    <p class="text-brand-gray font-body mt-4 text-lg leading-relaxed">
+      Porque formar una familia es un camino que merece ser recorrido con
+      honestidad, ciencia y humanidad.
+    </p>
+  </ImageTextSection>
+
+  <FinalCta backgroundImage="/photo-bank/72.webp" />
+  <Footer />
+</RootLayout>

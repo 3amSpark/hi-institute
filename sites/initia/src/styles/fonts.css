@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "Halfre";
+  src:
+    url("/fonts/Halfre.woff2") format("woff2"),
+    url("/fonts/Halfre.woff") format("woff");
+  font-weight: normal;
+  font-display: swap;
+}

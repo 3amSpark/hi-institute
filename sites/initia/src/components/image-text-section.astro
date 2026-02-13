@@ -1,0 +1,41 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+
+interface Props {
+  imageSrc: string;
+  imageAlt: string;
+  imagePosition?: "left" | "right";
+  class?: string;
+}
+
+const {
+  imageSrc,
+  imageAlt,
+  imagePosition = "left",
+  class: className,
+} = Astro.props;
+---
+
+<section class:list={["px-4 py-16 md:py-24", className]}>
+  <div
+    class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12"
+  >
+    <div
+      class:list={[
+        "relative overflow-hidden rounded-lg",
+        imagePosition === "right" && "lg:order-2",
+      ]}
+    >
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        class="aspect-4/3 h-full w-full object-cover"
+      />
+    </div>
+    <FadeIn duration={0.8} delay={0.1} from="bottom" offset={20}>
+      <div class="flex flex-col gap-4">
+        <slot />
+      </div>
+    </FadeIn>
+  </div>
+</section>

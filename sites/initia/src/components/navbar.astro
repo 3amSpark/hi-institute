@@ -1,0 +1,25 @@
+---
+import NavbarShared from "@repo/ui/components/navbar.astro";
+
+const routes = [
+  { href: "/", label: "Qué es Initia", exact: true },
+  { href: "/para-quien-es", label: "Para quién es", exact: true },
+  { href: "/ivf", label: "IVF Accesible", exact: true },
+  {
+    label: "Conócenos",
+    children: [
+      { href: "/filosofia", label: "Filosofía" },
+      { href: "/enfoque", label: "Enfoque" },
+      { href: "/compromiso", label: "Compromiso" },
+    ],
+  },
+  { href: "/agenda", label: "Agenda tu cita", exact: true },
+];
+---
+
+<NavbarShared
+  largerLogo={true}
+  routes={routes}
+  logoAlt="Initia"
+  mobileBreakpoint="lg"
+/>

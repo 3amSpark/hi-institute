@@ -1,0 +1,101 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import Facebook from "@repo/ui/icons/facebook.astro";
+import Instagram from "@repo/ui/icons/instagram.astro";
+import TikTok from "@repo/ui/icons/tiktok.astro";
+import ScheduleButton from "./schedule-button.astro";
+---
+
+<footer>
+  <div
+    class="from-initia-blue to-initia grain relative w-full overflow-hidden bg-radial-[at_0%_75%] py-20 text-center"
+  >
+    <div
+      class="relative z-20 mx-auto flex max-w-7xl flex-col items-center justify-center gap-4"
+    >
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          className="text-balance text-white text-shadow-sm"
+          text="Conversemos sobre tus posibilidades."
+        />
+        <Heading
+          level={2}
+          className="text-balance text-white text-shadow-sm"
+          text="El primer paso hacia tu familia puede empezar hoy."
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <p class="font-body text-white sm:text-lg">
+          En Initia estamos para escucharte, orientarte y acompañarte desde el
+          inicio, con claridad y respeto por tu proceso.
+        </p>
+      </FadeIn>
+      <FadeIn duration={1} delay={0.2}>
+        <ScheduleButton
+          text="¡AGENDA TU CITA HOY!"
+          class="text-brand bg-white"
+          variant="secondary"
+        />
+      </FadeIn>
+    </div>
+  </div>
+
+  <div class="w-full bg-white py-10 text-center">
+    <div
+      class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-4"
+    >
+      <p class="text-brand-gray font-body font-light">
+        Avenida La Reforma 9-55, Edificio Reforma 10<br />
+        Zona 10, 7o. nivel, Clínica 704,<br />
+        Ciudad de Guatemala, Guatemala
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="from-initia-blue to-initia grain relative w-full overflow-hidden bg-radial-[at_0%_75%] py-20 text-center"
+  >
+    <div
+      class="relative z-20 mx-auto flex max-w-7xl flex-col items-center justify-center gap-16 sm:flex-row"
+    >
+      <img
+        src="/logo-white.svg"
+        alt="Initia"
+        class="h-auto w-36 object-contain"
+      />
+      <p class="font-body px-2 font-light text-white">
+        Initia forma parte de A Tu Origen, Sociedad Anónima. &copy; {
+          new Date().getFullYear()
+        }. Todos los derechos reservados
+      </p>
+      <div class="flex items-center gap-4">
+        <a
+          href="https://www.instagram.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <Instagram class="text-white" />
+        </a>
+        <a
+          href="https://www.facebook.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <Facebook class="text-white" />
+        </a>
+        <a
+          href="https://www.tiktok.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+        >
+          <TikTok class="text-white" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
