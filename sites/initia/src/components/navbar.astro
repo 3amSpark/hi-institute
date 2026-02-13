@@ -3,11 +3,16 @@ import NavbarShared from "@repo/ui/components/navbar.astro";
 
 const routes = [
   { href: "/", label: "Qué es Initia", exact: true },
-  { href: "/filosofia", label: "Filosofía", exact: true },
-  { href: "/enfoque", label: "Enfoque", exact: true },
-  { href: "/ivf", label: "IVF Accesible", exact: true },
-  { href: "/compromiso", label: "Compromiso", exact: true },
   { href: "/para-quien-es", label: "Para quién es", exact: true },
+  { href: "/ivf", label: "IVF Accesible", exact: true },
+  {
+    label: "Conócenos",
+    children: [
+      { href: "/filosofia", label: "Filosofía" },
+      { href: "/enfoque", label: "Enfoque" },
+      { href: "/compromiso", label: "Compromiso" },
+    ],
+  },
   { href: "/agenda", label: "Agenda tu cita", exact: true },
 ];
 ---

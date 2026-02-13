@@ -1,0 +1,100 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import Facebook from "@repo/ui/icons/facebook.astro";
+import Instagram from "@repo/ui/icons/instagram.astro";
+import TikTok from "@repo/ui/icons/tiktok.astro";
+import GrainTexture from "./grain-texture.astro";
+import ParallaxImage from "./parallax-image.astro";
+import ScheduleButton from "./schedule-button.astro";
+
+interface Props {
+  backgroundImage?: string;
+  backgroundImageAlt?: string;
+}
+
+const {
+  backgroundImage = "/temp/footer.webp",
+  backgroundImageAlt = "Pareja caminando",
+} = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden px-4 py-24 md:py-32">
+  <div class="absolute inset-0 z-0 scale-110">
+    <ParallaxImage yPercent={-8} start="top center" end="bottom top">
+      <img
+        src={backgroundImage}
+        alt={backgroundImageAlt}
+        class="h-full w-full object-cover object-center"
+      />
+    </ParallaxImage>
+    <GrainTexture gradientOpacity={1} grainOpacity={0.35} />
+  </div>
+
+  <div
+    class="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center text-white"
+  >
+    <FadeIn duration={0.9}>
+      <Heading
+        level={2}
+        className="font-medium tracking-normal text-balance text-white text-shadow-sm"
+        text="Cada historia de familia empieza con un primer paso."
+      />
+    </FadeIn>
+
+    <FadeIn duration={0.9} delay={0.1}>
+      <p class="font-body mt-8 leading-relaxed text-white/95 md:text-lg">
+        Si estás considerando la fertilización in vitro,<br />
+        queremos que sepas que no tienes que recorrer este camino sola.<br />
+        Da hoy el primer paso.<br />
+        Escríbenos para resolver tus dudas o agendar una evaluación inicial,<br
+        />
+        tu camino puede comenzar hoy.
+      </p>
+      <p
+        class="font-heading mt-8 text-3xl font-medium tracking-normal text-white md:text-4xl"
+      >
+        Estamos aquí para empezar contigo.
+      </p>
+    </FadeIn>
+
+    <FadeIn duration={0.9} delay={0.2}>
+      <div class="mt-10">
+        <ScheduleButton
+          text="AGENDA TU CITA"
+          class="text-brand bg-white px-12"
+          variant="secondary"
+        />
+      </div>
+    </FadeIn>
+
+    <FadeIn duration={0.9} delay={0.25}>
+      <div class="mt-8 flex items-center gap-6">
+        <a
+          href="https://www.instagram.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <Instagram class="size-11 text-white" />
+        </a>
+        <a
+          href="https://www.facebook.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <Facebook class="size-11 text-white" />
+        </a>
+        <a
+          href="https://www.tiktok.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+        >
+          <TikTok class="size-11 text-white" />
+        </a>
+      </div>
+    </FadeIn>
+  </div>
+</section>
