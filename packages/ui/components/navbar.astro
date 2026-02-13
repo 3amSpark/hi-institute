@@ -26,7 +26,7 @@ const {
 } = Astro.props;
 
 const dropdownLinkClass =
-  "font-heading text-brand-gray/90 hover:bg-brand/10 hover:text-brand block rounded px-3 py-2 text-smaller font-medium uppercase transition-colors";
+  "font-body text-brand-gray/90 hover:bg-brand/10 hover:text-brand block rounded px-3 py-2 text-smaller font-medium uppercase transition-colors";
 
 const breakpointClasses = {
   lg: {
@@ -97,7 +97,7 @@ const currentBreakpoint = breakpointClasses[mobileBreakpoint];
         <img
           src={logoSrc}
           alt={logoAlt}
-          class={largerLogo ? "h-10 w-auto" : "h-8 w-auto"}
+          class={largerLogo ? "h-12 w-auto" : "h-8 w-auto"}
         />
       </a>
 
