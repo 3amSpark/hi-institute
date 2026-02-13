@@ -1,0 +1,91 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import Footer from "src/components/footer.astro";
+import Hero from "src/components/hero.astro";
+import Navbar from "src/components/navbar.astro";
+import WhyUs from "src/components/why-us.astro";
+import RootLayout from "../layouts/root.astro";
+---
+
+<RootLayout>
+  <Navbar />
+  <Hero
+    title="Un comienzo posible.\nUna oportunidad real.\nUna familia en camino."
+    alt="Initia Hero Image"
+    images={[
+      {
+        size: "sm",
+        src: "/temp/landing-sm.webp",
+      },
+      {
+        size: "md",
+        src: "/temp/landing-md.webp",
+      },
+      {
+        size: "lg",
+        src: "/temp/landing.webp",
+      },
+    ]}
+    revealSlides={true}
+  />
+  <section
+    class="flex flex-col items-center justify-center gap-20 bg-linear-to-b from-white to-neutral-200 px-4 py-20 sm:px-6"
+  >
+    <div class="mx-auto flex max-w-7xl flex-col gap-6">
+      <FadeIn duration={1}>
+        <Heading
+          level={3}
+          className="text-brand-gray/80 font-heading text-pretty sm:text-center"
+          text="Ciencia. Esperanza. Vida."
+        />
+        <Heading
+          level={2}
+          className="text-brand-gray font-medium text-balance sm:text-center"
+          text="En Initia hacemos posible tu sueno de formar una familia"
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <p
+          class="text-brand-gray font-heading mx-auto text-lg leading-relaxed sm:max-w-3/5 sm:text-center"
+        >
+          Somos un centro de fertilidad especializado que combina la tecnologia
+          mas avanzada con un enfoque humano y personalizado. Te acompanamos en
+          cada paso de tu camino hacia la maternidad.
+        </p>
+      </FadeIn>
+    </div>
+    <div class="mx-auto w-full max-w-7xl"></div>
+  </section>
+
+  <WhyUs
+    backgroundImage="/why-initia.webp"
+    backgroundImageAlt="Por que elegir Initia"
+    heading="Por que elegir Initia?"
+    valueCards={[
+      {
+        title: "Tecnologia de ultima generacion",
+        description: [
+          "Contamos con laboratorios equipados con la tecnologia mas avanzada en reproduccion asistida.",
+          "Nuestros equipos de ultima generacion nos permiten ofrecer las tasas de exito mas altas de la region.",
+        ],
+      },
+      {
+        title: "Equipo medico especializado",
+        description: [
+          "Nuestros especialistas tienen amplia experiencia en medicina reproductiva.",
+          "Un equipo multidisciplinario te acompana en cada etapa del proceso.",
+        ],
+      },
+      {
+        title: "Atencion personalizada",
+        description: [
+          "Entendemos que cada caso es unico.",
+          "Disenamos planes de tratamiento individualizados basados en tu historia clinica y necesidades especificas.",
+          "Te brindamos apoyo emocional durante todo el proceso.",
+        ],
+      },
+    ]}
+  />
+  <Footer />
+</RootLayout>

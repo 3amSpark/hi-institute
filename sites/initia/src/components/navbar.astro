@@ -1,0 +1,16 @@
+---
+import NavbarShared from "@repo/ui/components/navbar.astro";
+
+const routes = [
+  { href: "/servicios", label: "Servicios", exact: true },
+  { href: "/nosotros", label: "Nosotros", exact: true },
+  { href: "/contacto", label: "Contacto", exact: true },
+];
+---
+
+<NavbarShared
+  largerLogo={true}
+  routes={routes}
+  logoAlt="Initia"
+  mobileBreakpoint="lg"
+/>

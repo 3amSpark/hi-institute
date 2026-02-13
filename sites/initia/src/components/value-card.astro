@@ -1,0 +1,23 @@
+---
+import Heading from "@repo/ui/components/heading.astro";
+
+interface Props {
+  title: string;
+  description: string[];
+}
+
+const { title, description } = Astro.props;
+---
+
+<div
+  class="border-initia/20 bg-initia/5 flex flex-col gap-4 rounded-2xl border p-6"
+>
+  <Heading
+    level={4}
+    className="text-initia font-medium"
+    text={title}
+  />
+  <div class="text-brand-gray font-heading space-y-2 text-sm leading-relaxed">
+    {description.map((line) => <p>{line}</p>)}
+  </div>
+</div>

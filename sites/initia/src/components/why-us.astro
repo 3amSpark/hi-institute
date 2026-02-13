@@ -1,0 +1,44 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import ValueCard from "./value-card.astro";
+
+interface Props {
+  backgroundImage: string;
+  backgroundImageAlt: string;
+  heading: string;
+  valueCards: {
+    title: string;
+    description: string[];
+  }[];
+}
+
+const { backgroundImage, backgroundImageAlt, heading, valueCards } =
+  Astro.props;
+---
+
+<section class="relative w-full overflow-hidden bg-white py-20">
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+    <FadeIn duration={1}>
+      <Heading
+        level={2}
+        className="text-brand-gray mb-12 text-balance font-medium sm:text-center"
+        text={heading}
+      />
+    </FadeIn>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        valueCards.map((card, index) => (
+          <FadeIn duration={1} delay={index * 0.1}>
+            <ValueCard title={card.title} description={card.description} />
+          </FadeIn>
+        ))
+      }
+    </div>
+  </div>
+  <img
+    src={backgroundImage}
+    alt={backgroundImageAlt}
+    class="absolute inset-0 z-0 h-full w-full object-cover opacity-10"
+  />
+</section>

@@ -1,0 +1,41 @@
+---
+import { buildWhatsAppUrl } from "../constants";
+
+interface Props {
+  text: string;
+  topic?: string;
+  href?: string;
+  class?: string;
+  target?: "_blank" | "_self" | "_parent" | "_top";
+}
+const {
+  text,
+  topic,
+  href: customHref,
+  class: className,
+  target = "_blank",
+} = Astro.props as Props;
+const href = customHref ?? buildWhatsAppUrl(topic);
+---
+
+<a
+  href={href}
+  target={target}
+  rel="noopener noreferrer"
+  class:list={[
+    "font-heading group highlight bg-brand relative inline-block w-fit cursor-pointer overflow-hidden rounded-full px-7 py-2 text-lg font-medium text-white uppercase",
+    className,
+  ]}
+>
+  <span class="invisible">{text}</span>
+  <span
+    class="absolute inset-0 flex -translate-y-full items-center justify-center font-medium text-white transition-transform duration-300 group-hover:translate-y-0"
+  >
+    {text}
+  </span>
+  <span
+    class="absolute inset-0 flex translate-y-0 items-center justify-center font-medium text-white transition-transform duration-300 group-hover:translate-y-full"
+  >
+    {text}
+  </span>
+</a>

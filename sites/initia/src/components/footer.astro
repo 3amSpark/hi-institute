@@ -1,0 +1,107 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import Facebook from "@repo/ui/icons/facebook.astro";
+import Instagram from "@repo/ui/icons/instagram.astro";
+import ScheduleButton from "./schedule-button.astro";
+---
+
+<footer>
+  <div
+    class="from-initia-blue to-initia grain relative w-full overflow-hidden bg-radial-[at_0%_75%] py-20 text-center"
+  >
+    <div
+      class="relative z-20 mx-auto flex max-w-7xl flex-col items-center justify-center gap-4"
+    >
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          className="text-balance text-white text-shadow-sm"
+          text="Tu camino hacia la maternidad comienza aqui."
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <p class="font-body text-white sm:text-lg">
+          Te acompanamos en cada paso con ciencia, calidez y esperanza. <br /> Agenda
+          tu consulta y da el primer paso hacia tu sueno.
+        </p>
+      </FadeIn>
+      <FadeIn duration={1} delay={0.2}>
+        <ScheduleButton
+          text="Agenda tu cita ahora"
+          class="text-initia from-white! to-white! px-6"
+        />
+      </FadeIn>
+    </div>
+  </div>
+  <div class="w-full bg-white py-10 text-center">
+    <div
+      class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-4"
+    >
+      <Heading
+        level={6}
+        className="text-brand-gray text-xl font-medium"
+        text="Horario de atencion"
+      />
+      {
+        [
+          {
+            day: "Lunes a Viernes",
+            start: "8:00 am",
+            end: "5:00 pm",
+          },
+          {
+            day: "Sabado",
+            start: "8:00 am",
+            end: "12:00 pm",
+          },
+        ].map((schedule) => (
+          <div class="font-heading text-brand-gray border-brand-gray/20 flex flex-col items-center border-b pb-2">
+            <span class="font-semibold">{schedule.day}</span>
+            <span class="font-light">
+              {schedule.start} - {schedule.end}
+            </span>
+          </div>
+        ))
+      }
+      <p class="text-brand-gray font-heading font-light">
+        Ciudad de Guatemala, Guatemala
+      </p>
+    </div>
+  </div>
+  <div
+    class="from-initia-blue to-initia grain relative w-full overflow-hidden bg-radial-[at_0%_75%] py-20 text-center"
+  >
+    <div
+      class="relative z-20 mx-auto flex max-w-7xl flex-col items-center justify-center gap-16 sm:flex-row"
+    >
+      <img
+        src="/logo-white.svg"
+        alt="Initia"
+        class="h-auto w-56 object-contain"
+      />
+      <p class="font-heading font-light text-white">
+        Initia Centro de Fertilidad. &copy; {new Date().getFullYear()}. Todos
+        los derechos reservados
+      </p>
+      <div class="flex items-center gap-4">
+        <a
+          href="https://www.facebook.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <Facebook class="text-white" />
+        </a>
+        <a
+          href="https://www.instagram.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <Instagram class="text-white" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

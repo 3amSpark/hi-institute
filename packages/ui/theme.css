@@ -15,6 +15,12 @@
   --color-iroko: oklch(0.3316 0.0445 58.5);
   --color-skin: oklch(0.6197 0.082 65.95);
 
+  /* Initia Fertility Center Brand Colors */
+  --color-initia: oklch(0.4823 0.0456 283.5); /* #68648F */
+  --color-initia-blue: #527eaa;
+  --color-initia-light: oklch(0.6023 0.0456 283.5);
+  --color-initia-dark: oklch(0.3823 0.0456 283.5);
+
   --text-smaller: 0.8425rem;
 
   --font-heading: "Space Grotesk", sans-serif;

@@ -1,0 +1,42 @@
+---
+interface Props {
+  yPercent?: number;
+  start?: string;
+  end?: string;
+}
+
+const { yPercent = 10, start = "middle top", end = "bottom top" } = Astro.props;
+---
+
+<div
+  class="parallax-image absolute inset-0 z-0"
+  data-y-percent={yPercent}
+  data-start={start}
+  data-end={end}
+>
+  <slot />
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll(".parallax-image").forEach((el) => {
+    const yPercent = Number(el.getAttribute("data-y-percent")) || 10;
+    const start = el.getAttribute("data-start") || "middle top";
+    const end = el.getAttribute("data-end") || "bottom top";
+
+    gsap.to(el, {
+      yPercent: -yPercent,
+      ease: "none",
+      scrollTrigger: {
+        trigger: el.parentElement,
+        start,
+        end,
+        scrub: true,
+      },
+    });
+  });
+</script>

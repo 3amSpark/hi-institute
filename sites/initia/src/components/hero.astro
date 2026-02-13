@@ -1,0 +1,91 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+import ParallaxImage from "src/components/parallax-image.astro";
+import GrainTexture from "src/components/grain-texture.astro";
+import RevealSlides from "@repo/ui/components/reveal-slides.astro";
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  alt: string;
+  images: {
+    size: "sm" | "md" | "lg";
+    src: string;
+  }[];
+  buttonText?: string;
+  revealSlides?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  alt,
+  images,
+  buttonText = "Agenda tu cita ahora",
+  revealSlides = false,
+} = Astro.props;
+
+const smImage = images.find((img) => img.size === "sm");
+const mdImage = images.find((img) => img.size === "md");
+const lgImage = images.find((img) => img.size === "lg");
+
+const fallbackImage = lgImage || mdImage || smImage;
+---
+
+<section
+  class="relative flex h-svh w-full flex-col items-center justify-end overflow-hidden bg-white md:justify-center"
+>
+  <div
+    class="z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 p-4 md:pt-30 md:pb-0"
+  >
+    <FadeIn duration={1}>
+      {
+        title
+          .split("\n")
+          .map((line, index) => (
+            <Heading
+              text={line}
+              className="max-w-3/4 font-medium text-balance text-white text-shadow-sm"
+              level={1}
+            />
+          ))
+      }
+
+      {
+        subtitle && (
+          <Heading
+            text={subtitle}
+            className="max-w-3/4 text-balance text-white text-shadow-sm"
+            level={4}
+          />
+        )
+      }
+    </FadeIn>
+    <FadeIn duration={1} delay={0.1}>
+      <ScheduleButton text={buttonText} />
+    </FadeIn>
+  </div>
+  <ParallaxImage yPercent={-10} start="middle top" end="bottom top">
+    <picture>
+      {smImage && <source srcset={smImage.src} media="(max-width: 767px)" />}
+      {mdImage && <source srcset={mdImage.src} media="(max-width: 1023px)" />}
+      {lgImage && <source srcset={lgImage.src} media="(max-width: 1920px)" />}
+      <img
+        src={fallbackImage?.src}
+        alt={alt}
+        class="absolute inset-0 z-0 h-full w-full scale-105 object-cover object-center"
+      />
+    </picture>
+  </ParallaxImage>
+  <GrainTexture gradientOpacity={0.5} />
+  {
+    revealSlides && (
+      <RevealSlides
+        duration={0.75}
+        colors={["bg-black", "bg-brand-gray", "bg-initia"]}
+      />
+    )
+  }
+</section>
