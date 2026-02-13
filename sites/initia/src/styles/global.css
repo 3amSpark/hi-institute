@@ -112,19 +112,6 @@ html {
     );
 }
 
-nav a,
-nav button,
-nav span {
-  font-family: var(--font-body) !important;
-  letter-spacing: normal !important;
-  font-weight: 400 !important;
-}
-
-nav a[aria-current="page"],
-nav a.font-semibold {
-  font-weight: 500 !important;
-}
-
 blockquote {
   quotes: auto;
 }
