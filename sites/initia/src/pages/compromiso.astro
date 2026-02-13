@@ -2,6 +2,10 @@
 import Footer from "src/components/footer.astro";
 import Hero from "src/components/hero.astro";
 import Navbar from "src/components/navbar.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import AgendaEvaluation from "src/components/agenda-evaluation.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
 import RootLayout from "../layouts/root.astro";
 ---
 
@@ -17,5 +21,137 @@ import RootLayout from "../layouts/root.astro";
   >
     El derecho de intentarlo.
   </Hero>
+
+  <!-- Main Content -->
+  <section class="bg-blobs px-4 py-20 md:py-28">
+    <div class="mx-auto flex max-w-4xl flex-col gap-6">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          className="text-brand font-medium tracking-normal text-balance sm:text-center"
+          text="Nuestro Compromiso"
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <p
+          class="text-brand-gray font-body mx-auto text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          En Initia trabajamos por algo mas grande que un tratamiento.
+          Trabajamos por el derecho de todas las parejas a tener acceso a las
+          tecnicas de fertilidad que antes eran inalcanzables.
+        </p>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="grain bg-brand relative overflow-hidden px-4 py-24">
+    <div class="relative z-10 mx-auto max-w-5xl">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          className="mb-16 text-center font-medium tracking-normal text-white"
+          text="Queremos ser"
+        />
+      </FadeIn>
+
+      <div class="grid gap-6 sm:grid-cols-2">
+        <FadeIn duration={1.2} delay={0.2}>
+          <div
+            class="relative overflow-hidden rounded-xl bg-white p-8 backdrop-blur-sm"
+          >
+            <img
+              src="/icons/reproductive-health&wellness/002-family.svg"
+              alt=""
+              class="absolute right-3 bottom-3 h-20 w-20 opacity-[0.08]"
+            />
+            <p
+              class="font-heading text-brand relative z-10 text-xl leading-relaxed font-medium"
+            >
+              Un centro de apoyo comunitario
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn duration={1.2} delay={0.3}>
+          <div
+            class="relative overflow-hidden rounded-xl bg-white p-8 backdrop-blur-sm"
+          >
+            <img
+              src="/icons/gynecology/022-heart.svg"
+              alt=""
+              class="absolute right-3 bottom-3 h-20 w-20 opacity-[0.08]"
+            />
+            <p
+              class="font-heading text-brand relative z-10 text-xl leading-relaxed font-medium"
+            >
+              Un espacio de esperanza real
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn duration={1.2} delay={0.4}>
+          <div
+            class="relative overflow-hidden rounded-xl bg-white p-8 backdrop-blur-sm"
+          >
+            <img
+              src="/icons/reproductive-health&wellness/005-stethoscope.svg"
+              alt=""
+              class="absolute right-3 bottom-3 h-20 w-20 opacity-[0.08]"
+            />
+            <p
+              class="font-heading text-brand relative z-10 text-xl leading-relaxed font-medium"
+            >
+              Un lugar donde la excelencia medica y la sensibilidad humana
+              conviven
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn duration={1.2} delay={0.5}>
+          <div
+            class="relative overflow-hidden rounded-xl bg-white p-8 backdrop-blur-sm"
+          >
+            <img
+              src="/icons/gynecology/003-fertilization.svg"
+              alt=""
+              class="absolute right-3 bottom-3 h-20 w-20 opacity-[0.08]"
+            />
+            <p
+              class="font-heading text-brand relative z-10 text-xl leading-relaxed font-medium"
+            >
+              Un lugar donde el sueno de una familia tenga una oportunidad justa
+            </p>
+          </div>
+        </FadeIn>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Section -->
+  <ImageTextSection
+    imageSrc="/photo-bank/20.webp"
+    imageAlt="Pareja feliz con prueba de embarazo"
+    imagePosition="left"
+  >
+    <img
+      src="/icons/reproductive-health&wellness/002-family.svg"
+      alt=""
+      class="h-10 w-10 opacity-60"
+    />
+    <Heading
+      level={3}
+      className="text-brand font-medium tracking-normal"
+      text="Cada familia merece una oportunidad"
+    />
+    <p class="text-brand-gray font-body text-lg leading-relaxed">
+      Creemos que el acceso a tratamientos de fertilidad no deberia ser un
+      privilegio. Por eso trabajamos para que mas parejas puedan cumplir su
+      sueno de formar una familia.
+    </p>
+    <p class="text-brand-gray font-body mt-4 text-lg leading-relaxed">
+      Nuestro compromiso es con la comunidad, con la ciencia y con cada historia
+      que llega a nuestras puertas.
+    </p>
+  </ImageTextSection>
+
+  <AgendaEvaluation />
   <Footer />
 </RootLayout>

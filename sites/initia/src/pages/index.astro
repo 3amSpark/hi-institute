@@ -4,6 +4,8 @@ import Footer from "src/components/footer.astro";
 import Hero from "src/components/hero.astro";
 import Navbar from "src/components/navbar.astro";
 import WhyUs from "src/components/why-us.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
 import RootLayout from "../layouts/root.astro";
 ---
 
@@ -22,33 +24,72 @@ import RootLayout from "../layouts/root.astro";
     Una oportunidad real.<br />
     Una famili<span class="alt">a</span> en camino.
   </Hero>
+
+  <!-- Intro Section -->
+  <section class="relative px-4 py-20 md:py-28">
+    <div class="mx-auto flex max-w-4xl flex-col gap-6">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          className="text-brand font-medium tracking-normal text-balance sm:text-center"
+          text="Un comienzo posible para mas familias"
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <p
+          class="text-brand-gray font-body mx-auto text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          En Initia creemos que el deseo de tener un hijo no deberia depender
+          unicamente del presupuesto. Creemos en el derecho de las parejas a
+          intentarlo, a tener opciones, a recibir apoyo y a encontrar un camino
+          real hacia su familia.
+        </p>
+        <p
+          class="text-brand-gray font-body mx-auto mt-6 text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          Por eso nacio Initia: un centro de fertilidad con la excelencia medica
+          de un instituto privado y el corazon de una fundacion.
+        </p>
+      </FadeIn>
+      <FadeIn duration={1} delay={0.2}>
+        <p
+          class="text-brand font-heading mx-auto text-xl leading-relaxed font-medium sm:max-w-4/5 sm:text-center"
+        >
+          Tratamientos de fertilizacion in vitro a costos accesibles, sin
+          comprometer la calidad ni la tecnologia. Porque cada familia merece
+          una oportunidad.
+        </p>
+      </FadeIn>
+    </div>
+  </section>
+
   <WhyUs
     backgroundImage="/temp/porque.webp"
-    backgroundImageAlt="¿Por qué Initia es tu mejor opción?"
-    heading="Por qué Initia es tu mejor opción"
+    backgroundImageAlt="Por que Initia es tu mejor opcion"
+    heading="Por que Initia es tu mejor opcion"
     valueCards={[
       {
-        title: "Honestidad desde el primer día.",
+        title: "Honestidad desde el primer dia.",
         description: [
-          "En fertilidad no hay garantías, y decir la verdad es respeto.",
-          "Te explicamos tus probabilidades, los intentos que podrías necesitar y tus opciones. Sin promesas irreales ni tratamientos innecesarios.",
-          "Información clara y acompañamiento humano para decidir con tranquilidad.",
+          "En fertilidad no hay garantias, y decir la verdad es respeto.",
+          "Te explicamos tus probabilidades, los intentos que podrias necesitar y tus opciones. Sin promesas irreales ni tratamientos innecesarios.",
+          "Informacion clara y acompanamiento humano para decidir con tranquilidad.",
         ],
       },
       {
-        title: "Tecnología de primer nivel, a un costo accesible.",
+        title: "Tecnologia de primer nivel, a un costo accesible.",
         description: [
-          "Creamos un laboratorio de fertilización in vitro con tecnología de última generación y estándares internacionales.",
-          "Además, reducimos hasta un 50% del costo profesional del tratamiento.",
-          "Así, más parejas acceden a la misma calidad sin que el precio sea la principal barrera.",
+          "Creamos un laboratorio de fertilizacion in vitro con tecnologia de ultima generacion y estandares internacionales.",
+          "Ademas, reducimos hasta un 50% del costo profesional del tratamiento.",
+          "Asi, mas parejas acceden a la misma calidad sin que el precio sea la principal barrera.",
         ],
       },
       {
         title: "Un enfoque que prioriza tu salud y tus posibilidades.",
         description: [
           "Tenemos experiencia logrando embarazos naturales, con tasas comparables a centros de in vitro.",
-          "Esto nos permite preparar mejor a cada paciente antes del tratamiento y aumentar las probabilidades de éxito.",
-          "Buscamos que tengas la mejor oportunidad de ser mamá.",
+          "Esto nos permite preparar mejor a cada paciente antes del tratamiento y aumentar las probabilidades de exito.",
+          "Buscamos que tengas la mejor oportunidad de ser mama.",
         ],
       },
     ]}

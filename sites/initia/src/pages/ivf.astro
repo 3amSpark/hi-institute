@@ -2,6 +2,10 @@
 import Footer from "src/components/footer.astro";
 import Hero from "src/components/hero.astro";
 import Navbar from "src/components/navbar.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import AgendaEvaluation from "src/components/agenda-evaluation.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
 import RootLayout from "../layouts/root.astro";
 ---
 
@@ -15,7 +19,170 @@ import RootLayout from "../layouts/root.astro";
       { size: "lg", src: "/temp/IVF.webp" },
     ]}
   >
-    Alta tecnología, costos con sentido humano.
+    Alta tecnologia, costos humanos.
   </Hero>
+
+  <!-- Main Content -->
+  <section class="bg-blobs px-4 py-20 md:py-28">
+    <div class="mx-auto flex max-w-4xl flex-col gap-6">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          className="text-brand font-medium tracking-normal text-balance sm:text-center"
+          text="IVF Accesible"
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <p
+          class="text-brand-gray font-body mx-auto text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          Creamos un laboratorio de fertilizacion in vitro con todo lo necesario:
+          tecnologia de ultima generacion, protocolos medicos avanzados y un
+          equipo humano altamente preparado.
+        </p>
+        <p
+          class="text-brand-gray font-body mx-auto mt-6 text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          Pero tambien tomamos una decision: donar a la sociedad el 50% del
+          costo profesional del tratamiento.
+        </p>
+        <p
+          class="text-brand-gray font-body mx-auto mt-6 text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          Sabemos que no podemos eliminar todos los gastos. Los medicamentos,
+          insumos y costos basicos siguen existiendo. Pero si podemos aportar
+          nuestro trabajo, nuestra infraestructura y nuestro conocimiento para
+          hacer el proceso mucho mas accesible.
+        </p>
+      </FadeIn>
+      <FadeIn duration={1} delay={0.2}>
+        <p
+          class="text-brand font-heading mx-auto text-xl font-medium leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          Porque cuando se trata de formar una familia, cada apoyo cuenta.
+        </p>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Highlight Section -->
+  <section class="bg-brand/10 px-4 py-20">
+    <div class="mx-auto max-w-4xl text-center">
+      <FadeIn duration={1}>
+        <p
+          class="text-brand font-heading text-5xl font-medium tracking-normal md:text-6xl"
+        >
+          50%
+        </p>
+        <p class="text-brand-gray font-body mt-6 text-xl">
+          de reduccion en el costo profesional del tratamiento
+        </p>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Image Section -->
+  <ImageTextSection
+    imageSrc="/photo-bank/19.webp"
+    imageAlt="Laboratorio de fertilizacion in vitro"
+    imagePosition="right"
+  >
+    <img
+      src="/icons/gynecology/025-microscope.svg"
+      alt=""
+      class="h-10 w-10 opacity-60"
+    />
+    <Heading
+      level={3}
+      className="text-brand font-medium tracking-normal"
+      text="Tecnologia de ultima generacion"
+    />
+    <p class="text-brand-gray font-body text-lg leading-relaxed">
+      Nuestro laboratorio cuenta con equipos de punta y protocolos
+      internacionales para maximizar las probabilidades de exito.
+    </p>
+    <p class="text-brand-gray font-body mt-4 text-lg leading-relaxed">
+      Todo esto sin comprometer la calidad, pero haciendo el proceso accesible
+      para mas familias.
+    </p>
+  </ImageTextSection>
+
+  <!-- What's included -->
+  <section class="bg-brand/5 px-4 py-20">
+    <div class="mx-auto max-w-4xl">
+      <FadeIn duration={1}>
+        <Heading
+          level={3}
+          className="text-brand mb-12 text-center font-medium tracking-normal"
+          text="Lo que incluye nuestro programa"
+        />
+      </FadeIn>
+
+      <div class="grid auto-rows-fr gap-8 md:grid-cols-2">
+        <FadeIn duration={1} delay={0.1}>
+          <div class="relative flex h-full flex-col items-start gap-4 overflow-hidden rounded-lg bg-white p-8 shadow-sm">
+            <img
+              src="/icons/gynecology/025-microscope.svg"
+              alt=""
+              class="absolute right-4 bottom-4 h-24 w-24 opacity-[0.06]"
+            />
+            <p class="text-brand font-heading text-xl font-medium">
+              Tecnologia avanzada
+            </p>
+            <p class="text-brand-gray font-body relative z-10 leading-relaxed">
+              Equipos de ultima generacion y protocolos internacionales
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn duration={1} delay={0.15}>
+          <div class="relative flex h-full flex-col items-start gap-4 overflow-hidden rounded-lg bg-white p-8 shadow-sm">
+            <img
+              src="/icons/reproductive-health&wellness/005-stethoscope.svg"
+              alt=""
+              class="absolute right-4 bottom-4 h-24 w-24 opacity-[0.06]"
+            />
+            <p class="text-brand font-heading text-xl font-medium">
+              Equipo especializado
+            </p>
+            <p class="text-brand-gray font-body relative z-10 leading-relaxed">
+              Profesionales altamente capacitados en fertilidad
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn duration={1} delay={0.2}>
+          <div class="relative flex h-full flex-col items-start gap-4 overflow-hidden rounded-lg bg-white p-8 shadow-sm">
+            <img
+              src="/icons/gynecology/022-heart.svg"
+              alt=""
+              class="absolute right-4 bottom-4 h-24 w-24 opacity-[0.06]"
+            />
+            <p class="text-brand font-heading text-xl font-medium">
+              Acompanamiento integral
+            </p>
+            <p class="text-brand-gray font-body relative z-10 leading-relaxed">
+              Soporte medico y emocional durante todo el proceso
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn duration={1} delay={0.25}>
+          <div class="relative flex h-full flex-col items-start gap-4 overflow-hidden rounded-lg bg-white p-8 shadow-sm">
+            <img
+              src="/icons/reproductive-health&wellness/047-health report.svg"
+              alt=""
+              class="absolute right-4 bottom-4 h-24 w-24 opacity-[0.06]"
+            />
+            <p class="text-brand font-heading text-xl font-medium">
+              Costos transparentes
+            </p>
+            <p class="text-brand-gray font-body relative z-10 leading-relaxed">
+              Sin sorpresas ni cargos ocultos en el tratamiento
+            </p>
+          </div>
+        </FadeIn>
+      </div>
+    </div>
+  </section>
+
+  <AgendaEvaluation />
   <Footer />
 </RootLayout>

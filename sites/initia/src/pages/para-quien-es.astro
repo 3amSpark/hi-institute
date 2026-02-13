@@ -2,13 +2,17 @@
 import Footer from "src/components/footer.astro";
 import Hero from "src/components/hero.astro";
 import Navbar from "src/components/navbar.astro";
+import ImageTextSection from "src/components/image-text-section.astro";
+import AgendaEvaluation from "src/components/agenda-evaluation.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
 import RootLayout from "../layouts/root.astro";
 ---
 
-<RootLayout title="¿Para quién es Initia?">
+<RootLayout title="Para quien es Initia">
   <Navbar />
   <Hero
-    alt="¿Para quién es Initia?"
+    alt="Para quien es Initia"
     images={[
       { size: "sm", src: "/temp/para-quien-es-sm.webp" },
       { size: "md", src: "/temp/para-quien-es-md.webp" },
@@ -17,5 +21,134 @@ import RootLayout from "../layouts/root.astro";
   >
     Un programa pensado para familias reales.
   </Hero>
+
+  <!-- Main Content -->
+  <section class="bg-blobs px-4 py-20 md:py-28">
+    <div class="mx-auto flex max-w-4xl flex-col gap-6">
+      <FadeIn duration={1}>
+        <Heading
+          level={2}
+          className="text-brand font-medium tracking-normal text-balance sm:text-center"
+          text="Para quien es Initia"
+        />
+      </FadeIn>
+      <FadeIn duration={1} delay={0.1}>
+        <p
+          class="text-brand-gray font-body mx-auto text-lg leading-relaxed sm:max-w-4/5 sm:text-center"
+        >
+          Initia esta disenado para parejas que buscan un camino real hacia la
+          maternidad, con apoyo profesional y costos accesibles.
+        </p>
+      </FadeIn>
+    </div>
+  </section>
+
+  <!-- Criteria Section -->
+  <section class="bg-brand-blue/15 px-4 py-20">
+    <div class="mx-auto max-w-3xl">
+      <FadeIn duration={1}>
+        <Heading
+          level={3}
+          className="text-brand mb-14 text-center font-medium tracking-normal"
+          text="Initia esta disenado para parejas que"
+        />
+      </FadeIn>
+
+      <div class="grid gap-6 sm:grid-cols-2">
+        <FadeIn duration={1} delay={0.15}>
+          <div
+            class="relative flex h-full flex-col items-start gap-4 overflow-hidden rounded-lg bg-white p-8"
+          >
+            <img
+              src="/icons/gynecology/003-fertilization.svg"
+              alt=""
+              class="absolute right-4 bottom-4 h-24 w-24 opacity-[0.06]"
+            />
+            <p
+              class="text-brand-gray font-body relative z-10 text-lg leading-relaxed"
+            >
+              Desean un tratamiento de fertilizacion in vitro accesible
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn duration={1} delay={0.25}>
+          <div
+            class="relative flex h-full flex-col items-start gap-4 overflow-hidden rounded-lg bg-white p-8"
+          >
+            <img
+              src="/icons/gynecology/023-pregnancy test.svg"
+              alt=""
+              class="absolute right-4 bottom-4 h-24 w-24 opacity-[0.06]"
+            />
+            <p
+              class="text-brand-gray font-body relative z-10 text-lg leading-relaxed"
+            >
+              Han intentado sin exito por otros medios
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn duration={1} delay={0.35}>
+          <div
+            class="relative flex h-full flex-col items-start gap-4 overflow-hidden rounded-lg bg-white p-8"
+          >
+            <img
+              src="/icons/gynecology/022-heart.svg"
+              alt=""
+              class="absolute right-4 bottom-4 h-24 w-24 opacity-[0.06]"
+            />
+            <p
+              class="text-brand-gray font-body relative z-10 text-lg leading-relaxed"
+            >
+              Buscan un proceso honesto, humano y acompanado
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn duration={1} delay={0.45}>
+          <div
+            class="relative flex h-full flex-col items-start gap-4 overflow-hidden rounded-lg bg-white p-8"
+          >
+            <img
+              src="/icons/reproductive-health&wellness/002-family.svg"
+              alt=""
+              class="absolute right-4 bottom-4 h-24 w-24 opacity-[0.06]"
+            />
+            <p
+              class="text-brand-gray font-body relative z-10 text-lg leading-relaxed"
+            >
+              Necesitan una alternativa viable economicamente
+            </p>
+          </div>
+        </FadeIn>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Section -->
+  <ImageTextSection
+    imageSrc="/photo-bank/50.webp"
+    imageAlt="Pareja mirando prueba de embarazo"
+    imagePosition="right"
+  >
+    <img
+      src="/icons/gynecology/022-heart.svg"
+      alt=""
+      class="h-10 w-10 opacity-60"
+    />
+    <Heading
+      level={3}
+      className="text-brand font-medium tracking-normal"
+      text="Tratamos historias, no numeros"
+    />
+    <p class="text-brand-gray font-body text-lg leading-relaxed">
+      Aqui no tratamos numeros. Tratamos historias, ilusiones y proyectos de
+      vida.
+    </p>
+    <p class="text-brand-gray font-body mt-4 text-lg leading-relaxed">
+      Cada pareja que llega a Initia trae consigo un sueno, y nuestro trabajo es
+      acompanarlos con honestidad y profesionalismo hacia su meta.
+    </p>
+  </ImageTextSection>
+
+  <AgendaEvaluation />
   <Footer />
 </RootLayout>
