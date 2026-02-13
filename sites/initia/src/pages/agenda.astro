@@ -1,0 +1,21 @@
+---
+import Footer from "src/components/footer.astro";
+import Hero from "src/components/hero.astro";
+import Navbar from "src/components/navbar.astro";
+import RootLayout from "../layouts/root.astro";
+---
+
+<RootLayout title="Agenda tu cita">
+  <Navbar />
+  <Hero
+    alt="Agenda tu cita en Initia"
+    images={[
+      { size: "sm", src: "/temp/agenda-sm.webp" },
+      { size: "md", src: "/temp/agenda-md.webp" },
+      { size: "lg", src: "/temp/agenda.webp" },
+    ]}
+  >
+    El primer paso puede cambiarlo todo.
+  </Hero>
+  <Footer />
+</RootLayout>

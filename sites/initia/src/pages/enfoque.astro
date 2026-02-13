@@ -1,0 +1,21 @@
+---
+import Footer from "src/components/footer.astro";
+import Hero from "src/components/hero.astro";
+import Navbar from "src/components/navbar.astro";
+import RootLayout from "../layouts/root.astro";
+---
+
+<RootLayout title="Enfoque">
+  <Navbar />
+  <Hero
+    alt="Enfoque Initia"
+    images={[
+      { size: "sm", src: "/temp/enfoque-sm.webp" },
+      { size: "md", src: "/temp/enfoque-md.webp" },
+      { size: "lg", src: "/temp/enfoque.webp" },
+    ]}
+  >
+    Primero tu salud, luego la tecnología.
+  </Hero>
+  <Footer />
+</RootLayout>

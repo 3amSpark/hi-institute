@@ -1,0 +1,59 @@
+---
+import ParallaxImage from "src/components/parallax-image.astro";
+import GrainTexture from "src/components/grain-texture.astro";
+import Heading from "@repo/ui/components/heading.astro";
+
+interface Props {
+  backgroundImage?: string;
+  backgroundImageAlt?: string;
+}
+
+const {
+  backgroundImage = "/temp/agenda.webp",
+  backgroundImageAlt = "Bebé recién nacido",
+} = Astro.props;
+---
+
+<section class="relative w-full overflow-hidden px-4 py-32 md:py-40">
+  <div class="absolute inset-0 z-0 scale-110">
+    <ParallaxImage yPercent={-10} start="top center" end="bottom top">
+      <img
+        src={backgroundImage}
+        alt={backgroundImageAlt}
+        class="h-full w-full object-cover object-center grayscale"
+      />
+    </ParallaxImage>
+    <GrainTexture gradientOpacity={1} grainOpacity={0.5} />
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center gap-12 text-center">
+    <Heading
+      level={2}
+      className="font-medium text-balance text-white text-shadow-sm"
+      text="Agenda tu evaluación"
+    />
+
+    <div
+      class="max-w-2xl space-y-6 text-lg leading-relaxed text-white text-shadow-sm"
+    >
+      <p class="font-medium">El primer paso puede cambiarlo todo</p>
+      <div class="space-y-1">
+        <p>Cada historia es diferente.</p>
+        <p>Cada cuerpo tiene su propio ritmo.</p>
+        <p>Y cada pareja merece una evaluación honesta y profesional.</p>
+      </div>
+      <div class="space-y-1">
+        <p>Agenda tu cita y conversemos sobre tus posibilidades.</p>
+        <p>En Initia, estamos para acompañarte desde el inicio.</p>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <img
+        src="/logo.svg"
+        alt="Initia Fertility Center"
+        class="h-12 w-auto brightness-0 invert"
+      />
+    </div>
+  </div>
+</section>

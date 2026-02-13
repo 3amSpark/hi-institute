@@ -1,11 +1,12 @@
 ---
-import FadeIn from "@repo/ui/components/fade-in.astro";
+import ParallaxImage from "src/components/parallax-image.astro";
+import GrainTexture from "src/components/grain-texture.astro";
 import Heading from "@repo/ui/components/heading.astro";
 import ValueCard from "./value-card.astro";
 
 interface Props {
   backgroundImage: string;
-  backgroundImageAlt: string;
+  backgroundImageAlt?: string;
   heading: string;
   valueCards: {
     title: string;
@@ -13,32 +14,47 @@ interface Props {
   }[];
 }
 
-const { backgroundImage, backgroundImageAlt, heading, valueCards } =
-  Astro.props;
+const {
+  backgroundImage,
+  backgroundImageAlt = "Background image",
+  heading,
+  valueCards,
+} = Astro.props;
 ---
 
-<section class="relative w-full overflow-hidden bg-white py-20">
-  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
-    <FadeIn duration={1}>
-      <Heading
-        level={2}
-        className="text-brand-gray mb-12 text-balance font-medium sm:text-center"
-        text={heading}
+<section class="relative w-full overflow-hidden px-2 py-40">
+  <div class="absolute inset-0 z-0 scale-110">
+    <ParallaxImage yPercent={-10} start="top center" end="bottom top">
+      <img
+        src={backgroundImage}
+        alt={backgroundImageAlt}
+        class="h-full w-full object-cover object-center"
       />
-    </FadeIn>
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    </ParallaxImage>
+    <GrainTexture gradientOpacity={1} grainOpacity={0.5} />
+  </div>
+
+  <div class="relative z-10 flex flex-col gap-20">
+    <Heading
+      level={2}
+      className="text-center font-medium text-balance text-white text-shadow-sm"
+      text={heading}
+    />
+    <div
+      class="mx-auto grid max-w-6xl grid-cols-1 grid-rows-[auto_1fr] gap-x-4 gap-y-3 sm:w-full lg:grid-cols-3"
+    >
       {
-        valueCards.map((card, index) => (
-          <FadeIn duration={1} delay={index * 0.1}>
-            <ValueCard title={card.title} description={card.description} />
-          </FadeIn>
+        valueCards.map((item, idx) => (
+          <ValueCard
+            title={item.title}
+            description={item.description}
+            index={idx}
+            duration={1}
+            delay={idx * 0.1}
+            yOffset={-20}
+          />
         ))
       }
     </div>
   </div>
-  <img
-    src={backgroundImage}
-    alt={backgroundImageAlt}
-    class="absolute inset-0 z-0 h-full w-full object-cover opacity-10"
-  />
 </section>

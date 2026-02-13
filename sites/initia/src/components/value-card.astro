@@ -1,23 +1,44 @@
 ---
+import FadeIn from "@repo/ui/components/fade-in.astro";
 import Heading from "@repo/ui/components/heading.astro";
 
 interface Props {
   title: string;
   description: string[];
+  index: number;
+  duration?: number;
+  delay?: number;
+  yOffset?: number;
 }
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  index,
+  duration = 1,
+  delay = 0,
+  yOffset = -20,
+} = Astro.props;
 ---
 
-<div
-  class="border-initia/20 bg-initia/5 flex flex-col gap-4 rounded-2xl border p-6"
+<FadeIn
+  duration={duration}
+  delay={delay}
+  yOffset={yOffset}
+  class="row-span-2 grid grid-rows-subgrid"
 >
-  <Heading
-    level={4}
-    className="text-initia font-medium"
-    text={title}
-  />
-  <div class="text-brand-gray font-heading space-y-2 text-sm leading-relaxed">
-    {description.map((line) => <p>{line}</p>)}
+  <div
+    class={`grid sm:hover:translate-y-[-10px] ${
+      index % 2 === 1 ? "sm:hover:-rotate-1" : "sm:hover:rotate-1"
+    } bg-white  transition-transform rounded-xl p-7 font-heading duration-300 cursor-pointer border border-brand-blue grid-rows-subgrid row-span-2 text-left`}
+  >
+    <Heading
+      level={4}
+      className="text-brand text-xl font-medium tracking-normal! text-pretty"
+      text={title}
+    />
+    <div class="text-brand/90 font-body! flex flex-col gap-2">
+      {description.map((desc) => <p>{desc}</p>)}
+    </div>
   </div>
-</div>
+</FadeIn>

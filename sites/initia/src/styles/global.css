@@ -5,6 +5,7 @@
   --color-brand-blue: var(--color-initia-blue);
 
   --font-heading: "Halfre", sans-serif;
+  --font-body: var(--font-rubik);
 }
 
 html {

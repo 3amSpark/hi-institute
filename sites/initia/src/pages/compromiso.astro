@@ -1,0 +1,21 @@
+---
+import Footer from "src/components/footer.astro";
+import Hero from "src/components/hero.astro";
+import Navbar from "src/components/navbar.astro";
+import RootLayout from "../layouts/root.astro";
+---
+
+<RootLayout title="Compromiso">
+  <Navbar />
+  <Hero
+    alt="Compromiso Initia"
+    images={[
+      { size: "sm", src: "/temp/compromiso-sm.webp" },
+      { size: "md", src: "/temp/compromiso-md.webp" },
+      { size: "lg", src: "/temp/compromiso.webp" },
+    ]}
+  >
+    El derecho de intentarlo.
+  </Hero>
+  <Footer />
+</RootLayout>

@@ -6,12 +6,14 @@ interface Props {
   topic?: string;
   href?: string;
   class?: string;
+  variant?: "primary" | "secondary";
   target?: "_blank" | "_self" | "_parent" | "_top";
 }
 const {
   text,
   topic,
   href: customHref,
+  variant = "primary",
   class: className,
   target = "_blank",
 } = Astro.props as Props;
@@ -23,18 +25,19 @@ const href = customHref ?? buildWhatsAppUrl(topic);
   target={target}
   rel="noopener noreferrer"
   class:list={[
-    "font-heading group highlight bg-brand relative inline-block w-fit cursor-pointer overflow-hidden rounded-full px-7 py-2 text-lg font-medium text-white uppercase",
+    "font-heading group highlight relative inline-block w-fit cursor-pointer overflow-hidden rounded-full px-7 py-2 text-lg font-medium",
+    variant == "primary" ? "bg-brand text-white" : "text-initia-blue bg-white",
     className,
   ]}
 >
   <span class="invisible">{text}</span>
   <span
-    class="absolute inset-0 flex -translate-y-full items-center justify-center font-medium text-white transition-transform duration-300 group-hover:translate-y-0"
+    class="absolute inset-0 flex -translate-y-full items-center justify-center font-medium transition-transform duration-300 group-hover:translate-y-0"
   >
     {text}
   </span>
   <span
-    class="absolute inset-0 flex translate-y-0 items-center justify-center font-medium text-white transition-transform duration-300 group-hover:translate-y-full"
+    class="absolute inset-0 flex translate-y-0 items-center justify-center font-medium transition-transform duration-300 group-hover:translate-y-full"
   >
     {text}
   </span>

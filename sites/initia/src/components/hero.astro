@@ -7,7 +7,6 @@ import GrainTexture from "src/components/grain-texture.astro";
 import RevealSlides from "@repo/ui/components/reveal-slides.astro";
 
 interface Props {
-  title: string;
   subtitle?: string;
   alt: string;
   images: {
@@ -19,11 +18,10 @@ interface Props {
 }
 
 const {
-  title,
   subtitle,
   alt,
   images,
-  buttonText = "Agenda tu cita ahora",
+  buttonText = "Agendar consulta",
   revealSlides = false,
 } = Astro.props;
 
@@ -41,17 +39,11 @@ const fallbackImage = lgImage || mdImage || smImage;
     class="z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 p-4 md:pt-30 md:pb-0"
   >
     <FadeIn duration={1}>
-      {
-        title
-          .split("\n")
-          .map((line, index) => (
-            <Heading
-              text={line}
-              className="max-w-3/4 font-medium text-balance text-white text-shadow-sm"
-              level={1}
-            />
-          ))
-      }
+      <h1
+        class="font-heading max-w-3/4 text-4xl font-medium tracking-[-0.01em] text-balance text-white text-shadow-sm sm:text-5xl md:text-6xl"
+      >
+        <slot />
+      </h1>
 
       {
         subtitle && (
