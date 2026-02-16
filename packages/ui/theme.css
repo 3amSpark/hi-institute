@@ -31,4 +31,14 @@
   --font-rubik: "Rubik", sans-serif;
 
   --container-8xl: 100rem; /* 1600px */
+
+  /* Fluid typography */
+  --step--2: clamp(0.6944rem, 0.6513rem + 0.1919vw, 0.8rem);
+  --step--1: clamp(0.8333rem, 0.7652rem + 0.303vw, 1rem);
+  --step-0: clamp(1rem, 0.8977rem + 0.4545vw, 1.25rem);
+  --step-1: clamp(1.2rem, 1.0517rem + 0.6591vw, 1.5625rem);
+  --step-2: clamp(1.44rem, 1.2301rem + 0.933vw, 1.9531rem);
+  --step-3: clamp(1.728rem, 1.4362rem + 1.2971vw, 2.4414rem);
+  --step-4: clamp(2.0736rem, 1.6734rem + 1.7785vw, 3.0518rem);
+  --step-5: clamp(2.4883rem, 1.9457rem + 2.4116vw, 3.8147rem);
 }

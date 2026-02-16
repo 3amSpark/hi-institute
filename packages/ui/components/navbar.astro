@@ -15,6 +15,7 @@ interface Props {
   logoAlt?: string;
   largerLogo?: boolean;
   mobileBreakpoint?: "lg" | "xl";
+  prefetchStrategy?: "hover" | "tap" | "viewport" | "load" | false;
 }
 
 const {
@@ -23,7 +24,13 @@ const {
   logoAlt = "Logo",
   mobileBreakpoint = "xl",
   largerLogo = false,
+  prefetchStrategy = "hover",
 } = Astro.props;
+
+const prefetchProps =
+  prefetchStrategy === false
+    ? {}
+    : { "data-astro-prefetch": prefetchStrategy };
 
 const dropdownLinkClass =
   "font-body text-brand-gray/90 hover:bg-brand/10 hover:text-brand block rounded px-3 py-2 text-smaller font-medium uppercase transition-colors";
@@ -67,6 +74,7 @@ const currentBreakpoint = breakpointClasses[mobileBreakpoint];
           <MobileNavLink
             childCount={route.children?.length ?? 0}
             href={route.href}
+            {...prefetchProps}
           >
             {route.label}
           </MobileNavLink>
@@ -74,7 +82,7 @@ const currentBreakpoint = breakpointClasses[mobileBreakpoint];
             <div class="overflow-hidden">
               <div class="transform transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-data-[is-collapsed=true]:-translate-y-4 group-data-[is-collapsed=true]:opacity-0 group-data-[is-collapsed=false]:translate-y-0 group-data-[is-collapsed=false]:opacity-100">
                 {route.children?.map((child) => (
-                  <MobileNavLink href={child.href} isChild>
+                  <MobileNavLink href={child.href} isChild {...prefetchProps}>
                     {child.label}
                   </MobileNavLink>
                 ))}
@@ -93,7 +101,7 @@ const currentBreakpoint = breakpointClasses[mobileBreakpoint];
   <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between">
       <!-- Logo -->
-      <a href="/" class="shrink-0">
+      <a href="/" class="shrink-0" {...prefetchProps}>
         <img
           src={logoSrc}
           alt={logoAlt}
@@ -108,18 +116,18 @@ const currentBreakpoint = breakpointClasses[mobileBreakpoint];
         {
           routes.map((route) =>
             route.children ? (
-              <NavLink href={route.href}>
+              <NavLink href={route.href} {...prefetchProps}>
                 {route.label}
                 <Fragment slot="dropdown">
                   {route.children.map((child) => (
-                    <a href={child.href} class={dropdownLinkClass}>
+                    <a href={child.href} class={dropdownLinkClass} {...prefetchProps}>
                       {child.label}
                     </a>
                   ))}
                 </Fragment>
               </NavLink>
             ) : (
-              <NavLink href={route.href} exact={route.exact}>
+              <NavLink href={route.href} exact={route.exact} {...prefetchProps}>
                 {route.label}
               </NavLink>
             ),

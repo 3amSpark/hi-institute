@@ -2,6 +2,17 @@
   "name": "hi",
   "version": "1.0.0",
   "description": "",
+  "scripts": {
+    "dev:skin": "pnpm --filter skin-beauty dev",
+    "build:skin": "pnpm --filter skin-beauty build",
+    "preview:skin": "pnpm --filter skin-beauty preview",
+    "dev:initia": "pnpm --filter initia dev",
+    "build:initia": "pnpm --filter initia build",
+    "preview:initia": "pnpm --filter initia preview",
+    "dev:femcare": "pnpm --filter femcare dev",
+    "build:femcare": "pnpm --filter femcare build",
+    "preview:femcare": "pnpm --filter femcare preview"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
