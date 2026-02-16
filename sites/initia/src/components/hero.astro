@@ -61,17 +61,19 @@ const fallbackImage = lgImage || mdImage || smImage;
   </div>
   <ParallaxImage yPercent={-10} start="middle top" end="bottom top">
     <picture>
-      {smImage && <source srcset={smImage.src} media="(max-width: 767px)" />}
-      {mdImage && <source srcset={mdImage.src} media="(max-width: 1023px)" />}
-      {lgImage && <source srcset={lgImage.src} media="(max-width: 1920px)" />}
+      {lgImage && <source srcset={lgImage.src} media="(min-width: 1024px)" />}
+      {mdImage && <source srcset={mdImage.src} media="(min-width: 768px)" />}
+      {smImage && <source srcset={smImage.src} />}
       <img
-        src={fallbackImage?.src}
+        src={smImage?.src || mdImage?.src || lgImage?.src || fallbackImage?.src}
         alt={alt}
+        loading="eager"
+        fetchpriority="high"
         class="absolute inset-0 z-0 h-full w-full scale-105 object-cover object-right sm:object-center"
       />
     </picture>
   </ParallaxImage>
-  <GrainTexture gradientOpacity={0.5} />
+  <GrainTexture gradientOpacity={0.5} grainOpacity={0} />
   {
     revealSlides && (
       <RevealSlides

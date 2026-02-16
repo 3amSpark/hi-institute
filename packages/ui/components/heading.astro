@@ -5,6 +5,8 @@ interface Props {
   className?: string;
 }
 const { text, level, className } = Astro.props as Props;
+const containsInitia = /initia/i.test(text);
+const textParts = containsInitia ? text.split(/(initia)/gi) : [text];
 
 const sizeMap = {
   1: "text-4xl sm:text-5xl md:text-6xl tracking-tight ",
@@ -18,4 +20,16 @@ const sizeMap = {
 const Tag = `h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 ---
 
-<Tag class:list={[sizeMap[level], "font-heading", className]}>{text}</Tag>
+<Tag class:list={[sizeMap[level], "font-heading", className]}>
+  {
+    textParts.map((part) =>
+      part.toLowerCase() === "initia" ? (
+        <>
+          initi<span class="alt">a</span>
+        </>
+      ) : (
+        part
+      ),
+    )
+  }
+</Tag>

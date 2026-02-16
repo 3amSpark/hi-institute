@@ -6,6 +6,7 @@ interface Props {
   isChild?: boolean;
   childCount?: number;
   class?: string;
+  "data-astro-prefetch"?: string;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   isChild = false,
   childCount = 0,
   class: className,
+  ...rest
 } = Astro.props as Props;
 
 const hasHref = href && href !== "#";
@@ -28,6 +30,7 @@ const hasHref = href && href !== "#";
           isChild ? "bg-brand/5" : "",
           className,
         ]}
+        {...rest}
       >
         <slot />
       </a>

@@ -11,13 +11,13 @@ interface Props {
 }
 
 const {
-  title = "Initia - Centro de Fertilidad",
+  title = "initia - Centro de Fertilidad",
   description = "Centro de fertilidad especializado en tratamientos de reproducción asistida, FIV, inseminación artificial y acompañamiento integral para formar tu familia.",
   image = "/hero.webp",
   type = "website",
 } = Astro.props;
 
-const siteName = "Initia";
+const siteName = "initia";
 const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 const canonicalURL = Astro.site
   ? new URL(Astro.url.pathname, Astro.site).href
