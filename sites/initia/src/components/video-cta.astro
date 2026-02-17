@@ -1,0 +1,50 @@
+---
+import Heading from "@repo/ui/components/heading.astro";
+import GrainTexture from "./grain-texture.astro";
+import ParallaxImage from "./parallax-image.astro";
+
+interface Props {
+  backgroundImage?: string;
+  backgroundImageAlt?: string;
+}
+
+const {
+  backgroundImage = "/temp/footer.webp",
+  backgroundImageAlt = "Pareja caminando",
+} = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden px-4 py-24 md:py-32">
+  <div class="absolute inset-0 z-0 scale-110">
+    <ParallaxImage yPercent={-8} start="top center" end="bottom top">
+      <img
+        src={backgroundImage}
+        alt={backgroundImageAlt}
+        class="h-full w-full object-cover object-center grayscale"
+      />
+    </ParallaxImage>
+    <GrainTexture gradientOpacity={1} grainOpacity={0.35} />
+  </div>
+
+  <div
+    class="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center"
+  >
+    <Heading
+      level={2}
+      className="text-center font-medium tracking-normal text-balance text-white text-shadow-sm"
+      text="Conoce initia"
+    />
+    <p class="font-body mt-4 mb-8 text-center text-white/90 md:text-lg">
+      Te mostramos quiénes somos, cómo trabajamos y cómo podemos acompañarte.
+    </p>
+    <div
+      class="aspect-video w-full overflow-hidden rounded-2xl border border-white/40 bg-black/50 shadow-2xl backdrop-blur-sm"
+    >
+      <div
+        class="font-body flex h-full w-full items-center justify-center text-sm tracking-[0.2em] text-white/90 uppercase md:text-base"
+      >
+        Video Placeholder
+      </div>
+    </div>
+  </div>
+</section>
