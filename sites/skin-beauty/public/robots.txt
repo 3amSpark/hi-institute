@@ -3,5 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://beauty.hiinstitute.com/sitemap-index.xml
-
+Sitemap: https://hiskinbeauty.com/sitemap-index.xml
