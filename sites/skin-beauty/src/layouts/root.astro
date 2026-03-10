@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import ChatFab from "../components/chat-fab.astro";
+import GlassixWidget from "../components/glassix-widget.astro";
 
 interface Props {
   title?: string;
@@ -55,7 +56,10 @@ const imageURL = Astro.site ? new URL(image, Astro.site).href : image;
     <meta name="twitter:image" content={imageURL} />
   </head>
   <body class="selection:bg-skin/30 relative bg-white">
-    <ChatFab />
+    <!-- TODO: Ask if we should keep this as Glassix in theory handles all communication. -->
+    <!-- <ChatFab /> -->
     <slot />
+
+    <GlassixWidget />
   </body>
 </html>
