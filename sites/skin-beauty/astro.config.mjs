@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://beauty.hiinstitute.com",
+  site: "https://hiskinbeauty.com",
   prefetch: true,
   integrations: [sitemap()],
   devToolbar: {
