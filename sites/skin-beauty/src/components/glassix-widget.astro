@@ -1,0 +1,86 @@
+---
+// Glassix Chat Widget
+// apiKey and snippetId are shared with hiinstitute.com for testing.
+// TODO: replace snippetId with the one Glassix provides for hiskinbeauty.com.
+const GLASSIX_API_KEY = "d9d44428-abc1-4cbc-ae60-bde5dde273b7";
+const GLASSIX_SNIPPET_ID = "5HiscPcAY6xnpv39wRqG";
+---
+
+<script is:inline define:vars={{ GLASSIX_API_KEY, GLASSIX_SNIPPET_ID }}>
+  (function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const utm = urlParams.get("utm_source");
+    const shouldOpen = urlParams.get("openChat") === "1";
+
+    window.widgetOptions = {
+      apiKey: GLASSIX_API_KEY,
+      snippetId: GLASSIX_SNIPPET_ID,
+    };
+
+    function autoOpen() {
+      if (!shouldOpen) return;
+      const startedAt = Date.now();
+      const timeoutMs = 15000;
+      const interval = setInterval(function () {
+        const el =
+          document.querySelector('[class*="glassix"] button') ||
+          document.querySelector('[class*="glassix"]') ||
+          document.querySelector('iframe[src*="glassix"]');
+        if (el) {
+          el.click();
+          clearInterval(interval);
+          return;
+        }
+        if (Date.now() - startedAt > timeoutMs) {
+          clearInterval(interval);
+        }
+      }, 300);
+    }
+
+    (function (n) {
+      function init() {
+        if (
+          window.GlassixWidgetClient &&
+          typeof window.GlassixWidgetClient === "function"
+        ) {
+          window.widgetClient = new window.GlassixWidgetClient(n);
+
+          // Inject utm_source directly into the iframe URL
+          if (utm && typeof window.widgetClient.getIframeUri === "function") {
+            const original = window.widgetClient.getIframeUri.bind(
+              window.widgetClient,
+            );
+            window.widgetClient.getIframeUri = function () {
+              return Promise.resolve(original()).then(function (url) {
+                const u = String(url);
+                const sep = u.includes("?") ? "&" : "?";
+                return u + sep + "utm_source=" + encodeURIComponent(utm);
+              });
+            };
+          }
+
+          window.widgetClient.attach();
+          autoOpen();
+        }
+      }
+
+      var s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.crossOrigin = "anonymous";
+      s.id = "glassix-widget-script";
+      s.src = "https://cdn.glassix.com/clients/widget.1.2.min.js";
+      s.onload = init;
+      s.onerror = function () {
+        var s2 = document.createElement("script");
+        s2.async = true;
+        s2.type = "text/javascript";
+        s2.crossOrigin = "anonymous";
+        s2.src = "https://cdn.glassix.net/clients/widget.1.2.min.js";
+        s2.onload = init;
+        document.body.appendChild(s2);
+      };
+      document.body.appendChild(s);
+    })(window.widgetOptions);
+  })();
+</script>
