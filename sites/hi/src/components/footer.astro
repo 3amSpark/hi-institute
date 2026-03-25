@@ -1,0 +1,140 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Heading from "@repo/ui/components/heading.astro";
+import Facebook from "@repo/ui/icons/facebook.astro";
+import Instagram from "@repo/ui/icons/instagram.astro";
+import TikTok from "@repo/ui/icons/tiktok.astro";
+import ScheduleButton from "src/components/schedule-button.astro";
+
+interface Props {
+  skipCTA?: boolean;
+}
+
+const { skipCTA = false } = Astro.props;
+---
+
+<footer>
+  {
+    !skipCTA && (
+      <div class="bg-brand grain relative w-full overflow-hidden py-20 text-center">
+        <div class="relative z-20 mx-auto flex max-w-7xl flex-col items-center justify-center gap-4">
+          <FadeIn duration={1}>
+            <Heading
+              level={2}
+              className="text-balance text-white text-shadow-sm"
+              text="Tu piel merece atención experta. Solo necesitas dar el primer paso."
+            />
+          </FadeIn>
+          <FadeIn duration={1} delay={0.1}>
+            <p class="font-body text-white sm:text-lg">
+              Tu piel merece el cuidado de expertos. <br /> Agenda tu cita y
+              descubre una versión más saludable y radiante de ti.
+            </p>
+          </FadeIn>
+          <FadeIn duration={1} delay={0.2}>
+            <ScheduleButton text="AGENDA TU CITA AHORA" />
+          </FadeIn>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="w-full bg-white py-10 text-center">
+    <div
+      class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-4"
+    >
+      <Heading
+        level={6}
+        className="text-brand-gray text-xl font-medium"
+        text="Horario de atención"
+      />
+
+      <div class="flex flex-col gap-6 sm:flex-row sm:gap-16">
+        <!-- Derma-Estética -->
+        <div class="flex flex-col items-center gap-2">
+          <span class="font-heading text-brand-gray text-lg font-semibold"
+            >Derma-Estética</span
+          >
+          {
+            [
+              { day: "Lunes a Jueves", hours: "7am - 4pm" },
+              { day: "Viernes", hours: "7am - 6pm" },
+              { day: "Sábado", hours: "7am - 4pm" },
+            ].map((schedule) => (
+              <div class="font-heading text-brand-gray border-brand-gray/20 flex flex-col items-center border-b pb-2">
+                <span class="font-semibold">{schedule.day}</span>
+                <span class="font-light">{schedule.hours}</span>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Depilación Láser -->
+        <div class="flex flex-col items-center gap-2">
+          <span class="font-heading text-brand-gray text-lg font-semibold"
+            >Depilación Láser</span
+          >
+          {
+            [
+              { day: "Martes a Jueves", hours: "7am - 4pm" },
+              { day: "Viernes y Sábado", hours: "7am - 6pm" },
+              { day: "Domingo", hours: "Cerrados" },
+            ].map((schedule) => (
+              <div class="font-heading text-brand-gray border-brand-gray/20 flex flex-col items-center border-b pb-2">
+                <span class="font-semibold">{schedule.day}</span>
+                <span class="font-light">{schedule.hours}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <p class="text-brand-gray font-heading font-light">
+        Avenida La Reforma 9-55, Edif. Reforma 10 <br /> Zona 10, 7o. nivel, Clínica
+        709,<br />
+        Ciudad de Guatemala, Guatemala
+      </p>
+    </div>
+  </div>
+  <div class="bg-brand grain relative w-full overflow-hidden py-20 text-center">
+    <div
+      class="relative z-20 mx-auto flex max-w-7xl flex-col items-center justify-center gap-16 sm:flex-row"
+    >
+      <img
+        src="/logo-white.svg"
+        alt="Hi Skin & Beauty"
+        class="h-auto w-56 object-contain"
+      />
+      <p class="font-heading font-light text-white">
+        HI Skin & Beauty forma parte de A Tu Origen, Sociedad Anónima. © {
+          new Date().getFullYear()
+        }. Todos los derechos reservados
+      </p>
+      <div class="flex items-center gap-4">
+        <a
+          href="https://www.facebook.com/HI.SkinAndBeauty/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <Facebook class="text-white" />
+        </a>
+        <a
+          href="https://www.instagram.com/hi.skinandbeauty/?hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <Instagram class="text-white" />
+        </a>
+        <a
+          href="https://www.tiktok.com/@hi.skinandbeauty_gt"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+        >
+          <TikTok class="text-white" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,267 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+
+const ORBIT_SCALE = 1.4;
+
+const baseRings = [
+  { radius: 132, duration: 30, direction: 1 },
+  { radius: 228, duration: 42, direction: -1 },
+  { radius: 332, duration: 58, direction: 1 },
+];
+
+const rings = baseRings.map((ring) => ({
+  ...ring,
+  radius: Math.round(ring.radius * ORBIT_SCALE),
+}));
+
+const ringCells = [
+  [
+    { angle: 0.72, color: "#1d75b8" },
+    { angle: 3.88, color: "#009848" },
+  ],
+  [
+    { angle: 1.42, color: "#93c840" },
+    { angle: 4.76, color: "#1d75b8" },
+    { angle: 5.62, color: "#009848" },
+  ],
+  [
+    { angle: 0.3, color: "#93c840" },
+    { angle: 1.16, color: "#1d75b8" },
+    { angle: 2.54, color: "#1d75b8" },
+    { angle: 3.36, color: "#93c840" },
+    { angle: 4.18, color: "#009848" },
+    { angle: 5.24, color: "#009848" },
+  ],
+];
+
+const orbitSize = Math.round(rings[rings.length - 1].radius * 2 + 140);
+const heartSize = Math.round(72 * ORBIT_SCALE);
+const heartSizeMobile = Math.round(54 * ORBIT_SCALE);
+
+const tagColors = [
+  "#1d75b8",
+  "#009848",
+  "#1d75b8",
+  "#93c840",
+  "#1d75b8",
+  "#009848",
+  "#1d75b8",
+  "#93c840",
+  "#1d75b8",
+  "#009848",
+];
+
+const arms = tags.map((tag, i) => {
+  const ringIdx = Math.floor(i / 3);
+  const posInRing = i % 3;
+  const ring = rings[ringIdx];
+  const ringOffset =
+    ringIdx === 1 ? Math.PI / 6 : ringIdx === 2 ? -Math.PI / 10 : 0;
+  const startAngle = (posInRing / 3) * Math.PI * 2 + ringOffset;
+  return { tag, ring, ringIdx, startAngle, color: tagColors[i] };
+});
+---
+
+<div
+  class="orbit-container"
+  style={`--orbit-size: ${orbitSize}px; --heart-size: ${heartSize}px; --heart-size-mobile: ${heartSizeMobile}px;`}
+>
+  <!-- Decorative orbit paths -->
+  {rings.map((r) => <div class="orbit-path" style={`--r: ${r.radius}px`} />)}
+
+  {
+    rings.map((ring, ringIndex) =>
+      ringCells[ringIndex]?.map((cell) => (
+        <div
+          class="orbit-cell"
+          aria-hidden="true"
+          style={`--size: 11px; --cell-color: ${cell.color};`}
+          data-radius={ring.radius}
+          data-angle={cell.angle}
+          data-speed={((Math.PI * 2 * ring.direction) / ring.duration).toFixed(
+            6,
+          )}
+        />
+      )),
+    )
+  }
+
+  <!-- Heart center -->
+  <div class="orbit-heart drop-shadow-xl">
+    <svg viewBox="0 0 65.12 47.47" aria-hidden="true">
+      <path
+        fill="#93c840"
+        d="M60.77,4.36c-5.81-5.81-15.23-5.81-21.04,0l-7.16,7.16,10.55,10.55c5.55,5.55,5.8,14.39.75,20.23l16.9-16.9c5.81-5.81,5.81-15.23,0-21.04"
+      ></path>
+      <path
+        fill="#1d75b8"
+        d="M22.01,22.07l10.55-10.55-7.16-7.16c-5.81-5.81-15.23-5.81-21.04,0-5.81,5.81-5.81,15.23,0,21.04l16.91,16.91c-5.06-5.85-4.81-14.69.74-20.24"
+      ></path>
+      <path
+        fill="#009748"
+        d="M43.12,22.07l-10.55-10.55-10.55,10.55c-5.55,5.55-5.8,14.39-.74,20.24l.8.8c2.9,2.9,6.69,4.35,10.49,4.36,3.8,0,7.59-1.46,10.49-4.36l.81-.81c5.05-5.85,4.8-14.68-.75-20.23"
+      ></path>
+    </svg>
+  </div>
+
+  <!-- One item per tag. Position is driven with JS so each chip keeps its
+       original radius while orbiting cleanly around the heart. -->
+  {
+    arms.map(({ tag, ring, startAngle, color }) => (
+      <div
+        class="orbit-item"
+        style={`--bg: ${color};`}
+        data-radius={ring.radius}
+        data-angle={startAngle}
+        data-speed={((Math.PI * 2 * ring.direction) / ring.duration).toFixed(6)}
+      >
+        <span class="orbit-tag border">{tag}</span>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const positionOrbitItem = (item, timeSeconds) => {
+    const radius = Number(item.dataset.radius || 0);
+    const startAngle = Number(item.dataset.angle || 0);
+    const speed = Number(item.dataset.speed || 0);
+    const angle = startAngle + speed * timeSeconds;
+    const x = Math.cos(angle) * radius;
+    const y = Math.sin(angle) * radius;
+
+    item.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+  };
+
+  const initOrbit = (container) => {
+    const items = Array.from(container.querySelectorAll(".orbit-item"));
+    const cells = Array.from(container.querySelectorAll(".orbit-cell"));
+    const movingNodes = [...items, ...cells];
+    if (!movingNodes.length) return;
+
+    if (reduceMotion.matches) {
+      movingNodes.forEach((item) => positionOrbitItem(item, 0));
+      return;
+    }
+
+    let frameId = 0;
+    let startTime = 0;
+
+    const tick = (now) => {
+      if (!startTime) startTime = now;
+      const elapsed = (now - startTime) / 1000;
+      movingNodes.forEach((item) => positionOrbitItem(item, elapsed));
+      frameId = window.requestAnimationFrame(tick);
+    };
+
+    frameId = window.requestAnimationFrame(tick);
+
+    const handleMotionChange = () => {
+      window.cancelAnimationFrame(frameId);
+      if (reduceMotion.matches) {
+        movingNodes.forEach((item) => positionOrbitItem(item, 0));
+        return;
+      }
+
+      startTime = 0;
+      frameId = window.requestAnimationFrame(tick);
+    };
+
+    reduceMotion.addEventListener("change", handleMotionChange);
+
+    container.addEventListener(
+      "astro:unmount",
+      () => {
+        window.cancelAnimationFrame(frameId);
+        reduceMotion.removeEventListener("change", handleMotionChange);
+      },
+      { once: true },
+    );
+  };
+
+  document.querySelectorAll(".orbit-container").forEach(initOrbit);
+</script>
+
+<style>
+  .orbit-container {
+    position: relative;
+    width: 100%;
+    max-width: var(--orbit-size);
+    aspect-ratio: 1;
+    margin: 0 auto;
+    margin-bottom: calc(var(--orbit-size) * -0.5);
+  }
+
+  /* ── Decorative dashed rings ── */
+  .orbit-path {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(var(--r) * 2);
+    height: calc(var(--r) * 2);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px dashed rgba(0, 0, 0, 0.18);
+    pointer-events: none;
+  }
+
+  .orbit-cell {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--size);
+    height: var(--size);
+    transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y)));
+    border-radius: 9999px;
+    background: var(--cell-color);
+    pointer-events: none;
+  }
+
+  /* ── Heart ── */
+  .orbit-heart {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: var(--heart-size);
+    z-index: 10;
+  }
+
+  .orbit-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+  }
+
+  .orbit-tag {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: var(--bg);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .orbit-container {
+      max-width: min(100%, var(--orbit-size));
+    }
+
+    .orbit-heart {
+      width: var(--heart-size-mobile);
+    }
+  }
+</style>
