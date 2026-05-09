@@ -1,0 +1,253 @@
+---
+import HomeNav from "../components/home-nav.astro";
+import FinalCta from "../components/final-cta.astro";
+import MedicalDirectorSection from "../components/medical-director-section.astro";
+import OrbitLayout from "../components/orbit-layout.astro";
+import RootLayout from "../layouts/root.astro";
+
+const orbitTags = [
+  "Insulina",
+  "Diagnóstico",
+  "Terapia médica",
+  "Bioidénticas",
+  "Recetario propio",
+  "Balance hormonal",
+  "Precisión",
+  "Tecnología láser",
+  "Datos clínicos",
+];
+---
+
+<RootLayout>
+  <HomeNav />
+  <section
+    class="hairline-border-x relative isolate container mx-auto flex min-h-svh items-center justify-between overflow-hidden border-neutral-300 px-4"
+  >
+    <div class="z-10 flex max-w-xl flex-col gap-4">
+      <h1
+        class="font-sans text-5xl font-semibold tracking-tight text-balance text-neutral-900"
+      >
+        No es tu dieta, es tu
+        <span
+          class="to-brand-green via-brand-green from-brand-dark-green bg-linear-to-t via-80% bg-clip-text text-transparent"
+          >metabolismo.</span
+        >
+        <br />
+        Pierde peso de forma definitiva.
+      </h1>
+      <p class="text-lg text-balance">
+        Regula tus hormonas, controla la resistencia a la insulina y recupera tu
+        energía con nuestro método médico especializado.
+      </p>
+      <div class="mt-2 flex gap-2">
+        <a
+          href="#"
+          class="from-brand-blue border-b-brand-dark-green to-brand-blue border-t-brand-green hover:from-brand-green inline-flex w-fit items-center gap-2 rounded-full bg-radial-[at_50%_0%] via-80% py-1.5 pr-4 pl-5 text-base font-medium text-white shadow-[inset_0px_-0.5px_0px_1px_rgba(0,0,0,0.1)] transition-colors duration-300 ease-in-out text-shadow-xs"
+        >
+          Agendar cita
+          <svg
+            class="size-4 shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M7 17 17 7"></path>
+            <path d="M8 7h9v9"></path>
+          </svg>
+        </a>
+        <a
+          href="#"
+          class="inline-flex w-fit rounded-md px-5 py-1.5 text-base font-medium text-neutral-800"
+        >
+          Conoce más
+        </a>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="max-w-xl overflow-hidden rounded-lg">
+        <div
+          class="from-brand-blue/35 to-brand-green/40 pointer-events-none absolute inset-0 z-10 rounded-lg bg-linear-to-br via-transparent mix-blend-color"
+        >
+        </div>
+        <div
+          class="pointer-events-none absolute inset-0 z-10 rounded-lg bg-linear-to-t from-neutral-950/30 via-transparent to-white/10 mix-blend-multiply"
+        >
+        </div>
+        <img
+          class="aspect-4/5 object-cover shadow-[inset_0px_0px_20px_0px_rgba(0,0,0,0.8)]"
+          src="https://images.pexels.com/photos/12706800/pexels-photo-12706800.jpeg"
+          alt=""
+        />
+      </div>
+      <div
+        class="hairline-border absolute -bottom-8 -left-24 z-10 h-fit w-3/4 rounded-lg border border-neutral-200 bg-white px-6 py-4 shadow-lg/5"
+      >
+        <div
+          class="font-rubik mb-2 flex items-center gap-2 text-[0.6875rem] font-medium tracking-[0.16em] text-neutral-500 uppercase"
+        >
+          <svg
+            class="size-4 shrink-0 text-neutral-500"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 19h16"></path>
+            <path d="m6 15 4-4 3 3 5-6"></path>
+            <path d="M15 8h3v3"></path>
+          </svg>
+          Resultados Sostenibles
+        </div>
+        <p class="text-neutral-700">
+          El 94% de nuestros pacientes logra y mantiene su peso meta en 90
+          días.*
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- <span
+    class="hairline-border-t block h-px w-full border-t-neutral-300 border-b-white"
+  ></span> -->
+
+  <!-- ── Sección 2: Ciencia, no solo calorías ─────────── -->
+  <section
+    class="hairline-border-x container mx-auto overflow-hidden border-neutral-300"
+    id="metodo"
+  >
+    <div class="px-4">
+      <div class="mx-auto text-center">
+        <h2
+          class="text-4xl font-semibold tracking-tight text-balance text-neutral-900 md:text-5xl"
+        >
+          <span
+            class="from-brand-dark-blue via-brand-blue to-brand-blue bg-linear-to-t bg-clip-text text-transparent"
+          >
+            Ciencia,
+          </span>
+          no solo calorías.
+        </h2>
+        <p class="mt-4 text-lg leading-8 text-balance">
+          La mayoría de los programas fallan porque solo reducen porciones. <br
+          />En <b class="font-semibold">HI Institute</b>, entendemos que tu peso
+          es el resultado de tu salud hormonal. <br />Si tu metabolismo no está equilibrado,
+          ninguna dieta será suficiente.
+        </p>
+      </div>
+
+      <!-- Orbital layout with heart and rotating tags -->
+      <div class="">
+        <OrbitLayout tags={orbitTags} />
+      </div>
+    </div>
+  </section>
+  <span class="hairline-border-t block h-px w-full border-neutral-300"></span>
+
+  <!-- ── Sección 3: Tu Transformación en 3 Fases ──────── -->
+  <section
+    class="hairline-border-x relative container mx-auto border-neutral-300 px-4 py-32"
+  >
+    <div
+      class="absolute -top-1 -left-1 h-2 w-2 border border-neutral-300 bg-white"
+    >
+    </div>
+    <div
+      class="absolute -top-1 -right-1 h-2 w-2 border border-neutral-300 bg-white"
+    >
+    </div>
+    <div class="flex max-w-3xl flex-col gap-4 text-left">
+      <h2
+        class="max-w-2xl text-4xl font-semibold tracking-tight text-balance text-neutral-900 md:text-5xl"
+      >
+        Tu Transformación en 3 Fases
+      </h2>
+      <p class="max-w-2xl text-lg leading-8 text-balance text-neutral-600">
+        Nuestro protocolo está diseñado para que el éxito sea permanente. Cada
+        fase tiene un propósito claro y resultados medibles.
+      </p>
+    </div>
+
+    <div
+      class="mt-16 grid gap-6 lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-2 lg:gap-y-0"
+    >
+      <article
+        class="bg-brand-blue outline-brand-dark-blue/90 relative overflow-hidden rounded-lg border-t border-white/40 p-8 shadow-[0_24px_48px_-12px_rgba(29,117,184,0.45)] outline lg:row-span-3 lg:grid lg:grid-rows-subgrid lg:content-start"
+      >
+        <span
+          aria-hidden="true"
+          class="pointer-events-none absolute right-2 -bottom-2.5 text-[11rem] leading-none font-black text-white/10 select-none"
+          >01</span
+        >
+        <p
+          class="font-rubik text-xs font-medium tracking-[0.2em] text-white/50 uppercase"
+        >
+          Fase 01 &middot; Semanas 1–4
+        </p>
+        <h3 class="mt-4 text-2xl font-semibold text-white">
+          Control Metabólico Inicial
+        </h3>
+        <p class="mt-4 text-base leading-7 text-white/90">
+          Activamos tu metabolismo para una pérdida de peso efectiva y
+          saludable. Eliminamos el exceso de grasa abdominal y notas un aumento
+          inmediato en tu energía.
+        </p>
+      </article>
+
+      <article
+        class="bg-brand-dark-green relative overflow-hidden rounded-lg border-t border-white/40 p-8 shadow-[0_24px_48px_-12px_rgba(0,152,72,0.45)] outline outline-[#006e36]/90 lg:row-span-3 lg:grid lg:grid-rows-subgrid lg:content-start"
+      >
+        <span
+          aria-hidden="true"
+          class="pointer-events-none absolute right-2 -bottom-3 text-[11rem] leading-none font-black text-white/10 select-none"
+          >02</span
+        >
+        <p
+          class="font-rubik text-xs font-medium tracking-[0.2em] text-white/50 uppercase"
+        >
+          Fase 02 &middot; Semanas 5–8
+        </p>
+        <h3 class="mt-4 text-2xl font-semibold text-white">
+          Optimización Hormonal
+        </h3>
+        <p class="mt-4 text-base leading-7 text-white/70">
+          Estabilizamos tus niveles hormonales y fijamos tu nuevo peso. Guiamos
+          a tu cuerpo para que funcione de manera óptima y tu metabolismo no se
+          vuelva lento.
+        </p>
+      </article>
+
+      <article
+        class="bg-brand-dark-blue relative overflow-hidden rounded-lg border-t border-white/40 p-8 shadow-[0_24px_48px_-12px_rgba(14,100,100,0.4)] outline outline-[#104b78]/90 lg:row-span-3 lg:grid lg:grid-rows-subgrid lg:content-start"
+      >
+        <span
+          aria-hidden="true"
+          class="pointer-events-none absolute right-2 -bottom-3 text-[11rem] leading-none font-black text-white/10 select-none"
+          >03</span
+        >
+        <p
+          class="font-rubik text-xs font-medium tracking-[0.2em] text-white/50 uppercase"
+        >
+          Fase 03 &middot; Largo Plazo
+        </p>
+        <h3 class="mt-4 text-2xl font-semibold text-white">
+          Mantenimiento Definitivo
+        </h3>
+        <p class="mt-4 text-base leading-7 text-white/70">
+          Te entregamos las herramientas y el seguimiento para mantener tus
+          resultados de por vida. El bienestar se convierte en tu nuevo estilo
+          de vida, sin rebotes.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <MedicalDirectorSection />
+  <FinalCta />
+</RootLayout>

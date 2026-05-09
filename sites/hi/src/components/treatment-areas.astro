@@ -1,0 +1,201 @@
+---
+import Heading from "@repo/ui/components/heading.astro";
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import ArrowRight from "@repo/ui/icons/arrow-right.astro";
+
+const basePath = "/depilacion-laser/treatment-areas";
+
+const categories = [
+  {
+    id: "cara",
+    label: "Cara y Cuello",
+    areas: [
+      { name: "Patillas", price: "Q400", image: `${basePath}/patillas-1.png` },
+      { name: "Barbilla", price: "Q400", image: `${basePath}/barbilla.png` },
+      { name: "Bigote", price: "Q400", image: `${basePath}/bigote.png` },
+      { name: "Orejas", price: "Q400", image: `${basePath}/orejas.png` },
+      { name: "Nuca", price: "Q800", image: `${basePath}/nuca.png` },
+      { name: "Delineado de barba", price: "Q800", image: `${basePath}/delineado barba.png` },
+      { name: "Rostro completo", price: "Q1,200", image: `${basePath}/rostro completo.png` },
+    ],
+  },
+  {
+    id: "superior",
+    label: "Parte superior del cuerpo",
+    areas: [
+      { name: "Pezones", price: "Q400", image: `${basePath}/pezones.png` },
+      { name: "Dedos de la mano", price: "Q400", image: `${basePath}/dedos de la mano.png` },
+      { name: "Abdomen", price: "Q800", image: `${basePath}/abdomen.png` },
+      { name: "Pecho", price: "Q800", image: `${basePath}/pecho.png` },
+      { name: "Axilas", price: "Q800", image: `${basePath}/axilas.png` },
+      { name: "Brazos completos", price: "Q2,000", image: `${basePath}/brazos completos.png` },
+      { name: "Antebrazo y Mano", price: "Q1,200", image: `${basePath}/antebrazo y mano.png` },
+      { name: "Brazo con Hombro", price: "Q1,200", image: `${basePath}/brazo hombro.png` },
+      { name: "Espalda", price: "Q1,200", image: `${basePath}/espalda.png` },
+      { name: "Espalda extra velluda", price: "Q1,400", image: `${basePath}/espalda velluda.png` },
+    ],
+  },
+  {
+    id: "inferior",
+    label: "Parte inferior del cuerpo",
+    areas: [
+      { name: "Dedos de los pies", price: "Q400", image: `${basePath}/dedos de pie.png` },
+      { name: "Glúteos", price: "Q800", image: `${basePath}/gluteos.png` },
+      { name: "Piernas completas", price: "Q2,000", image: `${basePath}/piernas completas.png` },
+      { name: "Rodilla a Dedos del pie", price: "Q1,200", image: `${basePath}/rodillas a dedos de pie.png` },
+      { name: "Muslo", price: "Q1,200", image: `${basePath}/muslos.png` },
+      { name: "Bikini", price: "Q1,200", image: `${basePath}/bikini.png` },
+      { name: "Bikini Brasileño", price: "Q1,300", image: `${basePath}/brasileño.png` },
+    ],
+  },
+  {
+    id: "completas",
+    label: "Áreas completas",
+    areas: [
+      { name: "Cuerpo completo", price: "Q5,500", image: `${basePath}/cuerpo completo.png` },
+      { name: "Cuerpo y Rostro completo", price: "Q6,000", image: `${basePath}/cuerpo completo cara.png` },
+    ],
+  },
+];
+---
+
+<section class="mx-auto max-w-7xl px-4 py-20">
+  <div class="mb-12 text-center">
+    <Heading
+      level={2}
+      className="text-brand-gray mb-4 font-medium"
+      text="Áreas de tratamiento Unisex"
+    />
+    <p class="text-brand-gray/70 mx-auto max-w-2xl font-heading text-lg leading-relaxed">
+      Escríbenos para conocer nuestras promociones y descuentos por tratamiento
+      en múltiples áreas.
+    </p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="mb-12 overflow-x-auto pb-4">
+    <div
+      class="flex min-w-max justify-center border-b border-gray-100 px-4"
+      id="treatment-tabs"
+    >
+      {
+        categories.map((cat, i) => (
+          <button
+            class:list={[
+              "font-heading relative px-6 py-4 text-sm font-medium transition-all duration-300",
+              i === 0
+                ? "text-brand border-brand border-b-2"
+                : "text-brand-gray/50 hover:text-brand-gray border-b-2 border-transparent",
+            ]}
+            data-tab={cat.id}
+          >
+            {cat.label}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Areas Grid -->
+  <div class="relative min-h-[400px]">
+    {
+      categories.map((cat, i) => (
+        <div
+          id={`grid-${cat.id}`}
+          class:list={[
+            "grid grid-cols-2 gap-4 transition-all duration-500 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5",
+            i !== 0 && "absolute inset-0 pointer-events-none opacity-0 translate-y-4",
+          ]}
+        >
+          {cat.areas.map((area, areaIdx) => (
+            <FadeIn duration={0.5} delay={areaIdx * 0.05} class="h-full">
+              <div class="group bg-[#DABD9B] relative flex aspect-3/4 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl p-6 transition-all duration-500 hover:scale-[1.02]">
+                <!-- Area Image -->
+                <div class="flex h-64 w-full items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                  <img
+                    src={area.image}
+                    alt={area.name}
+                    class="h-full w-auto object-contain"
+                  />
+                </div>
+
+                <!-- Name -->
+                <span class="font-heading text-white text-center text-lg font-medium transition-opacity duration-300 group-hover:opacity-0">
+                  {area.name}
+                </span>
+
+                <!-- Price Overlay -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center bg-white/80 px-4 text-center opacity-0 transition-all duration-500 group-hover:opacity-100">
+                  <div class="translate-y-4 transition-transform duration-500 group-hover:-translate-y-4">
+                    <span class="text-brand-gray/60 block text-[10px] font-bold uppercase tracking-widest">
+                      Precio desde
+                    </span>
+                    <span class="text-brand-gray font-heading mt-1 block text-2xl font-bold">
+                      {area.price}
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-8 left-0 right-0 flex translate-y-4 justify-center opacity-0 transition-all delay-75 duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                    <div class="bg-brand/10 text-brand flex items-center gap-2 rounded-full px-4 py-2 text-[11px] font-bold uppercase tracking-widest transition-colors hover:bg-brand hover:text-white">
+                      Agendar cita
+                      <ArrowRight class="size-3" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  function setupTabs() {
+    const tabButtons = document.querySelectorAll("[data-tab]");
+    const grids = document.querySelectorAll('[id^="grid-"]');
+
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetId = button.getAttribute("data-tab");
+
+        // Update buttons
+        tabButtons.forEach((btn) => {
+          btn.classList.remove("text-brand", "border-brand");
+          btn.classList.add("text-brand-gray/50", "border-transparent");
+        });
+        button.classList.add("text-brand", "border-brand");
+        button.classList.remove("text-brand-gray/50", "border-transparent");
+
+        // Update grids
+        grids.forEach((grid) => {
+          if (grid.id === `grid-${targetId}`) {
+            grid.classList.remove(
+              "absolute",
+              "inset-0",
+              "pointer-events-none",
+              "opacity-0",
+              "translate-y-4"
+            );
+          } else {
+            grid.classList.add(
+              "absolute",
+              "inset-0",
+              "pointer-events-none",
+              "opacity-0",
+              "translate-y-4"
+            );
+          }
+        });
+      });
+    });
+  }
+
+  // Run on load
+  setupTabs();
+
+  // Run on view transition if enabled
+  document.addEventListener("astro:after-swap", setupTabs);
+</script>
+

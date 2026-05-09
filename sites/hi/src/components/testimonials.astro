@@ -1,0 +1,155 @@
+---
+import FadeIn from "@repo/ui/components/fade-in.astro";
+import Star from "./star.astro";
+import Heading from "@repo/ui/components/heading.astro";
+
+interface Testimonial {
+  name: string;
+  text: string;
+  avatar: string;
+}
+
+const featured: Testimonial = {
+  name: "Lupita Banman",
+  text: "Professional, detailed, painless. Excellent service. I had laser sessions in Mexico and USA but these were the best by far. The staff is incredibly attentive and the results exceeded all my expectations. Highly recommend!",
+  avatar: "/rejuvenecimiento/ultraclear/testimonials/lupita.png",
+};
+
+const testimonials: Testimonial[] = [
+  {
+    name: "Carmen de León",
+    text: "Excelente!! Además la atención es lo máximo.",
+    avatar: "/rejuvenecimiento/ultraclear/testimonials/carmen.png",
+  },
+  {
+    name: "Dorly Gálvez",
+    text: "Excelente servicio y el personal 10 de 10. Me encantó la atención personalizada.",
+    avatar: "/rejuvenecimiento/ultraclear/testimonials/dorly.png",
+  },
+  {
+    name: "Wilson Urizar",
+    text: "Excelente Servicio, muy contento con los resultados. El equipo es muy profesional.",
+    avatar: "/rejuvenecimiento/ultraclear/testimonials/wilson.png",
+  },
+];
+
+const googleReviewUrl =
+  "https://search.google.com/local/writereview?placeid=ChIJXxEh4nmjiYURhDcRAYxJjBc";
+---
+
+<section class="testimonials-section px-4 py-20 sm:px-6">
+  <div class="mx-auto max-w-4xl">
+    <FadeIn>
+      <Heading
+        level={3}
+        text="Descubre por qué nos eligen"
+        className="text-brand-gray mb-16 text-center font-medium"
+      />
+    </FadeIn>
+
+    <!-- Featured testimonial -->
+    <FadeIn delay={0.1}>
+      <div class="featured-card mb-6 rounded-2xl p-8 text-white md:p-10">
+        <div class="flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
+          <div class="flex-1">
+            <div class="mb-4 flex gap-1">
+              {Array.from({ length: 5 }).map(() => <Star class="text-white" />)}
+            </div>
+            <p class="font-body text-lg leading-relaxed text-white/90">
+              "{featured.text}"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 md:flex-col md:items-center">
+            <img
+              src={featured.avatar}
+              alt={featured.name}
+              class="h-14 w-14 shrink-0 rounded-full object-cover"
+            />
+            <span class="font-heading font-semibold">{featured.name}</span>
+          </div>
+        </div>
+      </div>
+    </FadeIn>
+
+    <!-- Bottom row -->
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        testimonials.map((t, i) => (
+          <FadeIn delay={0.2 + i * 0.1} class="h-full">
+            <div class="testimonial-card flex h-full flex-col rounded-2xl p-6">
+              <div class="mb-3 flex gap-1">
+                {Array.from({ length: 5 }).map(() => (
+                  <Star class="text-brand" />
+                ))}
+              </div>
+              <p class="font-body text-brand-gray/80 flex-1">"{t.text}"</p>
+              <div class="mt-4 flex items-center gap-3">
+                <img
+                  src={t.avatar}
+                  alt={t.name}
+                  class="h-9 w-9 shrink-0 rounded-full object-cover"
+                />
+                <span class="font-heading text-brand-gray text-sm font-semibold">
+                  {t.name}
+                </span>
+              </div>
+            </div>
+          </FadeIn>
+        ))
+      }
+    </div>
+
+    <!-- CTA -->
+    <FadeIn delay={0.5}>
+      <div class="mt-10 text-center">
+        <a
+          href={googleReviewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-brand hover:bg-brand/90 font-heading inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium text-white transition-all hover:scale-105"
+        >
+          Déjanos tu reseña en Google
+          <svg
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+      </div>
+    </FadeIn>
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    background: linear-gradient(
+      180deg,
+      oklch(0.98 0.01 65) 0%,
+      oklch(0.95 0.02 65) 100%
+    );
+  }
+
+  .featured-card {
+    background: linear-gradient(
+      135deg,
+      oklch(0.62 0.082 65.95) 0%,
+      oklch(0.55 0.09 60) 100%
+    );
+  }
+
+  .testimonial-card {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.6) 100%
+    );
+    border: 1px solid oklch(0.62 0.082 65.95 / 0.1);
+  }
+</style>

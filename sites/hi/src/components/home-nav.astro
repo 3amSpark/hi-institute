@@ -1,0 +1,180 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.svg";
+
+const links = [
+  { href: "/", label: "Inicio", active: true },
+  { href: "/", label: "Nosotros" },
+  { href: "/", label: "Programas metabólicos" },
+  {
+    label: "Nuestras clínicas",
+    clinics: [
+      {
+        href: "https://hiskinbeauty.com",
+        label: "HI Skin & Beauty",
+        colorClass: "bg-skin/7.5",
+
+        description:
+          "Medicina estética, rejuvenecimiento y cuidado avanzado de la piel.",
+        icon: "/skin.svg",
+      },
+      {
+        href: "https://femcare.hiinstitute.com",
+        label: "HI Femcare",
+        colorClass: "bg-smokey-pink/7.5",
+
+        description:
+          "Bienestar femenino con atención especializada y enfoque integral.",
+        icon: "/femcare.svg",
+      },
+    ],
+  },
+];
+---
+
+<nav class="fixed top-0 isolate z-10 w-full border-neutral-300">
+  <div
+    class="hairline-border-x relative container mx-auto flex items-center justify-between rounded-(--nav-radius) border-neutral-300 px-4 py-3"
+  >
+    <!-- Decorative corner elements -->
+    <div
+      class="absolute -bottom-1 -left-1 h-2 w-2 border border-neutral-300 bg-white"
+    >
+    </div>
+    <div
+      class="absolute -right-1 -bottom-1 h-2 w-2 border border-neutral-300 bg-white"
+    >
+    </div>
+
+    <Image src={logo} alt="HI Institute logo" height={28} quality={"mid"} />
+    <div class="flex items-center gap-1.5 text-sm text-neutral-500/80">
+      {
+        links.map(({ href, label, active, clinics }) =>
+          clinics ? (
+            <div class="group relative -my-4 py-4">
+              <button
+                type="button"
+                class="inline-flex cursor-pointer items-center gap-2 rounded-full px-3 py-1.5 font-medium text-neutral-500/80 transition-colors duration-150 group-focus-within:bg-neutral-100 group-focus-within:text-neutral-800 group-hover:bg-neutral-100 group-hover:text-neutral-800 focus:outline-none"
+                aria-haspopup="true"
+              >
+                <span>{label}</span>
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 16 16"
+                  class="size-3.5 transition-transform duration-300 ease-in-out group-focus-within:rotate-180 group-hover:rotate-180"
+                >
+                  <path
+                    d="M4 6.5 8 10l4-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </button>
+
+              <div class="pointer-events-none absolute top-full left-1/2 z-20 w-96 origin-top -translate-x-1/2 scale-[0.85] rounded-md border-[0.5px] border-neutral-300 bg-neutral-100 p-4.5 opacity-0 shadow-[0_18px_50px_rgba(15,23,42,0.1)] transition-all duration-200 ease-out group-focus-within:pointer-events-auto group-focus-within:scale-100 group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100">
+                <div class="absolute inset-x-0 -top-4 h-4" aria-hidden="true" />
+                <div class="grid gap-4">
+                  {clinics.map((clinic) => (
+                    <a
+                      href={clinic.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="flex items-center gap-4 transition-colors duration-150"
+                    >
+                      <div
+                        class:list={[
+                          "flex aspect-square h-full w-auto shrink-0 items-center justify-center rounded-md",
+                          clinic.colorClass,
+                        ]}
+                      >
+                        <img
+                          src={clinic.icon}
+                          alt={clinic.label}
+                          class="size-9 object-contain"
+                        />
+                      </div>
+                      <div class="space-y-1">
+                        <p class="text-sm font-medium text-neutral-900">
+                          {clinic.label}
+                        </p>
+                        <p class="text-sm leading-snug text-balance text-neutral-600">
+                          {clinic.description}
+                        </p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={href}
+              class:list={[
+                "rounded-full px-3 py-1.5 font-medium transition-colors duration-150 hover:bg-neutral-200/50",
+                active
+                  ? "text-neutral-900"
+                  : "text-neutral-500/80 hover:text-neutral-800",
+              ]}
+            >
+              {label}
+            </a>
+          ),
+        )
+      }
+      <a
+        href="/"
+        class="rounded-full bg-linear-to-b from-neutral-800 to-black px-3.5 py-1.5 text-white shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.2)] transition-opacity duration-150 hover:opacity-80"
+      >
+        Agendar consulta
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const nav = document.querySelector<HTMLElement>("nav");
+  if (nav) {
+    const THRESHOLD = 50;
+
+    const enter = (instant = false) => {
+      gsap.to(nav, {
+        backgroundColor: "rgba(250, 250, 250, 1)",
+        duration: instant ? 0 : 0.4,
+        ease: "power2.out",
+        overwrite: true,
+      });
+      nav.classList.add("hairline-border-b");
+    };
+
+    const leave = (instant = false) => {
+      gsap.to(nav, {
+        backgroundColor: "rgba(255, 255, 255, 0)",
+        duration: instant ? 0 : 0.4,
+        ease: "power2.out",
+        overwrite: true,
+      });
+      nav.classList.remove("hairline-border-b");
+    };
+
+    // Fix page-load bug: apply the correct state immediately before any scroll
+    if (window.scrollY > THRESHOLD) {
+      enter(true);
+    } else {
+      leave(true);
+    }
+
+    ScrollTrigger.create({
+      start: THRESHOLD,
+      onEnter: () => enter(),
+      onLeaveBack: () => leave(),
+    });
+  }
+</script>
