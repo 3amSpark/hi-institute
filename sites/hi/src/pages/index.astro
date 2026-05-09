@@ -1,5 +1,7 @@
 ---
 import HomeNav from "../components/home-nav.astro";
+import FinalCta from "../components/final-cta.astro";
+import MedicalDirectorSection from "../components/medical-director-section.astro";
 import OrbitLayout from "../components/orbit-layout.astro";
 import RootLayout from "../layouts/root.astro";
 
@@ -27,7 +29,7 @@ const orbitTags = [
       >
         No es tu dieta, es tu
         <span
-          class="to-brand-green from-brand-dark-green via-brand-green bg-linear-to-t via-80% bg-clip-text text-transparent"
+          class="to-brand-green via-brand-green from-brand-dark-green bg-linear-to-t via-80% bg-clip-text text-transparent"
           >metabolismo.</span
         >
         <br />
@@ -105,7 +107,7 @@ const orbitTags = [
           Resultados Sostenibles
         </div>
         <p class="text-neutral-700">
-          El 94% de nuestros pacientes logran y mantienen su peso meta en 90
+          El 94% de nuestros pacientes logra y mantiene su peso meta en 90
           días.*
         </p>
       </div>
@@ -134,9 +136,9 @@ const orbitTags = [
         </h2>
         <p class="mt-4 text-lg leading-8 text-balance">
           La mayoría de los programas fallan porque solo reducen porciones. <br
-          />En HI Institute, entendemos que tu peso es el resultado de tu salud
-          hormonal. <br /> Si tu metabolismo no está equilibrado, ninguna dieta será
-          suficiente.
+          />En <b class="font-semibold">HI Institute</b>, entendemos que tu peso
+          es el resultado de tu salud hormonal. <br />Si tu metabolismo no está equilibrado,
+          ninguna dieta será suficiente.
         </p>
       </div>
 
@@ -150,7 +152,7 @@ const orbitTags = [
 
   <!-- ── Sección 3: Tu Transformación en 3 Fases ──────── -->
   <section
-    class="hairline-border-x relative container mx-auto border-neutral-300 py-28"
+    class="hairline-border-x relative container mx-auto border-neutral-300 px-4 py-32"
   >
     <div
       class="absolute -top-1 -left-1 h-2 w-2 border border-neutral-300 bg-white"
@@ -160,7 +162,7 @@ const orbitTags = [
       class="absolute -top-1 -right-1 h-2 w-2 border border-neutral-300 bg-white"
     >
     </div>
-    <div class="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
+    <div class="flex max-w-3xl flex-col gap-4 text-left">
       <h2
         class="max-w-2xl text-4xl font-semibold tracking-tight text-balance text-neutral-900 md:text-5xl"
       >
@@ -173,7 +175,7 @@ const orbitTags = [
     </div>
 
     <div
-      class="mt-16 grid gap-6 px-4 lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-2 lg:gap-y-0"
+      class="mt-16 grid gap-6 lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-2 lg:gap-y-0"
     >
       <article
         class="bg-brand-blue outline-brand-dark-blue/90 relative overflow-hidden rounded-lg border-t border-white/40 p-8 shadow-[0_24px_48px_-12px_rgba(29,117,184,0.45)] outline lg:row-span-3 lg:grid lg:grid-rows-subgrid lg:content-start"
@@ -215,7 +217,7 @@ const orbitTags = [
           Optimización Hormonal
         </h3>
         <p class="mt-4 text-base leading-7 text-white/70">
-          Estabilizamos tus niveles hormonales y fijamos tu nuevo peso. Educamos
+          Estabilizamos tus niveles hormonales y fijamos tu nuevo peso. Guiamos
           a tu cuerpo para que funcione de manera óptima y tu metabolismo no se
           vuelva lento.
         </p>
@@ -245,4 +247,7 @@ const orbitTags = [
       </article>
     </div>
   </section>
+
+  <MedicalDirectorSection />
+  <FinalCta />
 </RootLayout>

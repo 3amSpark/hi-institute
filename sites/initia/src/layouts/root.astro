@@ -23,6 +23,7 @@ const canonicalURL = Astro.site
   ? new URL(Astro.url.pathname, Astro.site).href
   : Astro.url.href;
 const imageURL = Astro.site ? new URL(image, Astro.site).href : image;
+const gaMeasurementId = "G-KWYF3D6T5G";
 ---
 
 <html lang="es">
@@ -54,6 +55,57 @@ const imageURL = Astro.site ? new URL(image, Astro.site).href : image;
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageURL} />
+
+    <script
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+    ></script>
+    <script define:vars={{ gaMeasurementId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      function getPageRoute() {
+        return window.location.pathname;
+      }
+
+      function trackEvent(eventName, params) {
+        if (typeof gtag !== "function") return;
+        gtag("event", eventName, params);
+      }
+
+      function trackPageVisit() {
+        const pageRoute = getPageRoute();
+
+        trackEvent("visit_page", {
+          page_route: pageRoute,
+        });
+
+        window.setTimeout(() => {
+          trackEvent("engaged_visit", {
+            page_route: pageRoute,
+            engaged_seconds: 30,
+          });
+        }, 30000);
+      }
+
+      gtag("js", new Date());
+      gtag("config", gaMeasurementId);
+
+      trackPageVisit();
+
+      document.addEventListener("click", (event) => {
+        const cta = event.target.closest("[data-ga-lead-cta]");
+        if (!cta) return;
+
+        trackEvent("generate_lead", {
+          method: "whatsapp",
+          cta_location: cta.dataset.gaLeadCta,
+          page_route: getPageRoute(),
+        });
+      });
+    </script>
   </head>
   <body class="selection:bg-initia/30 relative bg-white">
     <ChatFab />

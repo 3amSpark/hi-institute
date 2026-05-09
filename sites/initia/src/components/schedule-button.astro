@@ -8,6 +8,7 @@ interface Props {
   class?: string;
   variant?: "primary" | "secondary";
   target?: "_blank" | "_self" | "_parent" | "_top";
+  leadCtaLocation?: "hero" | "final_cta" | "footer";
 }
 const {
   text,
@@ -16,6 +17,7 @@ const {
   variant = "primary",
   class: className,
   target = "_blank",
+  leadCtaLocation,
 } = Astro.props as Props;
 const href = customHref ?? buildWhatsAppUrl(topic);
 ---
@@ -24,6 +26,7 @@ const href = customHref ?? buildWhatsAppUrl(topic);
   href={href}
   target={target}
   rel="noopener noreferrer"
+  data-ga-lead-cta={leadCtaLocation}
   class:list={[
     "font-heading group highlight relative inline-block w-fit cursor-pointer overflow-hidden rounded-full px-7 py-2 text-lg font-medium",
     variant == "primary" ? "bg-brand text-white" : "text-initia-blue bg-white",
