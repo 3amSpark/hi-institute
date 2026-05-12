@@ -1,6 +1,5 @@
 {
-  "name": "hi-discontinued",
-  "private": true,
+  "name": "hi-institute",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -10,16 +9,22 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^5.0.4",
     "@astrojs/sitemap": "^3.6.1",
-    "@repo/ui": "workspace:^",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.3",
-    "gsap": "^3.13.0",
+    "framer-motion": "^12.38.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "prettier": "3.7.4",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "^0.7.2"
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "typescript": "^5.9.3"
   }
 }

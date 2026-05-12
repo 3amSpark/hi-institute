@@ -96,11 +96,15 @@ const gaMeasurementId = "G-KWYF3D6T5G";
       trackPageVisit();
 
       document.addEventListener("click", (event) => {
-        const cta = event.target.closest("[data-ga-lead-cta]");
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        const cta = target.closest("[data-ga-lead-cta]");
         if (!cta) return;
 
         trackEvent("generate_lead", {
           method: "whatsapp",
+          lead_source: "whatsapp",
           cta_location: cta.dataset.gaLeadCta,
           page_route: getPageRoute(),
         });
