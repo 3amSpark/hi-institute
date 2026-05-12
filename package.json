@@ -4,6 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "pnpm --filter hi-institute dev",
+    "build": "pnpm --filter hi-institute build",
+    "preview": "pnpm --filter hi-institute preview",
     "dev:skin": "pnpm --filter skin-beauty dev",
     "build:skin": "pnpm --filter skin-beauty build",
     "preview:skin": "pnpm --filter skin-beauty preview",
