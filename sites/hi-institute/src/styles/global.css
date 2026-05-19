@@ -11,17 +11,34 @@
     "Segoe UI",
     sans-serif;
   color: #171412;
+}
 
-  @theme {
-    --font-sans:
-      "Space Grotesk", ui-sans-serif, system-ui, -apple-system,
-      BlinkMacSystemFont, "Segoe UI", sans-serif;
+@theme {
+  --font-sans:
+    "Space Grotesk", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-    --color-brand-blue: #1d75b8;
-    --color-brand-dark-green: #009848;
-    --color-brand-green: #9ccd37;
-    --color-brand-dark-blue: #19639c;
-  }
+  --color-brand-blue: #1d75b8;
+  --color-brand-dark-green: #009848;
+  --color-brand-green: #9ccd37;
+  --color-brand-dark-blue: #19639c;
+
+  /* Step -2: 12.5px → 30.72px */
+  --step--2: clamp(0.7813rem, 0.3154rem + 2.0705vw, 1.92rem);
+  /* Step -1: 15px → 38.4px */
+  --step--1: clamp(0.9375rem, 0.3392rem + 2.6591vw, 2.4rem);
+  /* Step 0: 18px → 48px */
+  --step-0: clamp(1.125rem, 0.358rem + 3.4091vw, 3rem);
+  /* Step 1: 21.6px → 60px */
+  --step-1: clamp(1.35rem, 0.3682rem + 4.3636vw, 3.75rem);
+  /* Step 2: 25.92px → 75px */
+  --step-2: clamp(1.62rem, 0.3651rem + 5.5773vw, 4.6875rem);
+  /* Step 3: 31.104px → 93.75px */
+  --step-3: clamp(1.944rem, 0.3423rem + 7.1189vw, 5.8594rem);
+  /* Step 4: 37.3248px → 117.1875px */
+  --step-4: clamp(2.3328rem, 0.2909rem + 9.0753vw, 7.3242rem);
+  /* Step 5: 44.7898px → 146.4844px */
+  --step-5: clamp(2.7994rem, 0.1992rem + 11.5562vw, 9.1553rem);
 }
 
 html {

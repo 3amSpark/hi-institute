@@ -1,0 +1,118 @@
+---
+const navLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/tratamientos", label: "Tratamientos" },
+  { href: "/farmacia", label: "Farmacia" },
+  { href: "/clinicas", label: "Clínicas" },
+  { href: "/contacto", label: "Contacto" },
+];
+---
+
+<footer class="text-white">
+  <section
+    class="bg-[radial-gradient(circle_at_18%_12%,rgba(29,117,184,0.34),transparent_34%),radial-gradient(circle_at_78%_8%,rgba(156,205,55,0.88),transparent_42%),linear-gradient(90deg,#b9c5d3_0%,#9ccd37_100%)] px-6 py-20 text-center md:py-24"
+  >
+    <div class="mx-auto flex max-w-3xl flex-col items-center">
+      <p
+        class="text-2xl leading-tight font-medium tracking-wide text-white md:text-3xl"
+      >
+        Tu cuerpo ya te está hablando.<br />
+        Es momento de escucharlo.
+      </p>
+      <a
+        href="/contacto"
+        class="text-brand-blue mt-8 inline-flex rounded-full bg-white px-10 py-3 font-sans text-xl font-bold transition-opacity hover:opacity-90"
+      >
+        ¡AGENDA TU CITA HOY!
+      </a>
+    </div>
+  </section>
+
+  <section
+    class="text-brand-blue bg-[radial-gradient(circle_at_50%_38%,rgba(255,255,255,0.76),transparent_30%),radial-gradient(circle_at_16%_12%,rgba(29,117,184,0.14),transparent_42%),linear-gradient(180deg,#dff6fb_0%,#d4f0f7_100%)] px-6 py-16 text-center md:py-24"
+  >
+    <div class="mx-auto max-w-6xl">
+      <h2
+        class="font-sans text-3xl leading-tight font-medium tracking-wide uppercase md:text-5xl"
+      >
+        Estamos mas cerca<br />
+        de lo que crees
+      </h2>
+
+      <div
+        class="border-brand-blue/10 mt-16 grid min-h-72 place-items-center rounded-3xl border bg-white/25 text-lg tracking-wide text-neutral-800 shadow-inner shadow-white/50 md:min-h-96"
+      >
+        google map
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="bg-[radial-gradient(circle_at_28%_18%,rgba(156,205,55,0.22),transparent_32%),radial-gradient(circle_at_74%_88%,rgba(29,117,184,0.32),transparent_38%),linear-gradient(100deg,#5fa1c0_0%,#79b4b6_52%,#62a0bd_100%)] px-6 py-14 md:py-20 lg:px-10"
+  >
+    <div
+      class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.1fr_1.2fr_1.1fr] lg:items-start"
+    >
+      <div>
+        <a href="/" aria-label="HI Institute International home">
+          <img
+            src="/Asset%201.svg"
+            alt="HI Health Institute International"
+            class="h-auto w-72 max-w-full"
+            loading="lazy"
+          />
+        </a>
+      </div>
+
+      <nav
+        aria-label="Footer navigation"
+        class="grid gap-x-10 gap-y-6 sm:grid-cols-2"
+      >
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="font-sans text-xl font-medium tracking-[0.38em] text-white transition-opacity hover:opacity-75"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div>
+        <h2
+          class="font-sans text-xl font-medium tracking-[0.38em] text-white uppercase"
+        >
+          We send awesome emails
+        </h2>
+        <p class="mt-4 text-sm font-medium text-white/90 md:text-base">
+          Be the first to know about new treatments, supplements and more!
+        </p>
+        <form class="mt-5 flex max-w-lg" action="#">
+          <label class="sr-only" for="footer-email">Email</label>
+          <input
+            id="footer-email"
+            type="email"
+            name="email"
+            placeholder="email"
+            class="min-w-0 flex-1 bg-white px-5 py-3 text-lg text-neutral-800 placeholder:text-neutral-400"
+          />
+          <button
+            type="submit"
+            aria-label="Subscribe"
+            class="w-16 bg-neutral-600 transition-colors hover:bg-neutral-700"
+          >
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <p
+      class="mx-auto mt-10 max-w-7xl text-sm font-medium text-white md:text-base"
+    >
+      HI Institute forma parte de A Tu Origen, Sociedad Anónima. © 2024. Todos
+      los derechos reservados
+    </p>
+  </section>
+</footer>

@@ -2,14 +2,15 @@
 import hero1 from "../assets/hero/1.webp";
 import hero2 from "../assets/hero/2.webp";
 import hero3 from "../assets/hero/3.webp";
+import Footer from "../components/footer.astro";
 import Hero from "../components/hero";
 import Navbar from "../components/navbar";
 import Root from "../layouts/root.astro";
 
 const heroImages = [
+  { src: hero3.src, alt: "HI Institute clinical space" },
   { src: hero1.src, alt: "HI Institute treatment room" },
   { src: hero2.src, alt: "HI Institute care experience" },
-  { src: hero3.src, alt: "HI Institute clinical space" },
 ];
 ---
 
@@ -17,16 +18,13 @@ const heroImages = [
   title="HI Institute"
   description="HI Institute is preparing a new, accurate website experience."
 >
-  <Navbar client:load />
+  <Navbar client:load currentPath={Astro.url.pathname} />
   <Hero
     client:load
-    title="Health Institute International"
-    description="Tratamientos, farmacia y clínicas con atención especializada."
+    title="Expertos en metabolismo y equilibrio hormonal"
     align="left"
     images={heroImages}
-    actions={[
-      { href: "/contacto", label: "Contacto" },
-      { href: "/tratamientos", label: "Ver tratamientos" },
-    ]}
+    actions={[{ href: "/contacto", label: "AGENDA TU CITA AHORA" }]}
   />
+  <Footer />
 </Root>
