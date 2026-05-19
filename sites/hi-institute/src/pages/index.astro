@@ -6,6 +6,7 @@ import Footer from "../components/footer.astro";
 import FounderIntro from "../components/founder-intro.astro";
 import Hero from "../components/hero";
 import Navbar from "../components/navbar";
+import Steps from "../components/steps";
 import Root from "../layouts/root.astro";
 
 const heroImages = [
@@ -46,5 +47,6 @@ const heroImages = [
     actions={[{ href: "/contacto", label: "AGENDA TU CITA AHORA" }]}
   />
   <FounderIntro />
+  <Steps client:visible />
   <Footer />
 </Root>
