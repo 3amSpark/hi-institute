@@ -1,0 +1,70 @@
+---
+import herbert from "../assets/herbert.webp";
+import FadeIn from "./fade-in";
+import Heading from "./heading";
+---
+
+<section class="bg-white">
+  <div
+    class="from-brand-green to-brand-blue overflow-visible bg-linear-to-r px-0 py-12 pb-0 lg:px-10 lg:py-30"
+  >
+    <div
+      class="mx-auto flex max-w-6xl flex-col-reverse gap-12 lg:flex-row lg:items-center lg:gap-20"
+    >
+      <div class="w-full lg:w-1/2">
+        <div class="relative z-10 mx-auto w-full lg:mx-0 lg:-mb-92">
+          <img
+            src={herbert.src}
+            alt="Dr. Herbert Maradiaga"
+            class="aspect-video w-full object-cover object-center lg:aspect-square"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Signature intentionally hidden for now. -->
+      </div>
+
+      <div class="w-full lg:w-1/2">
+        <Heading
+          client:visible
+          as="h2"
+          size="0"
+          className="text-center tracking-[0.28em] text-white uppercase lg:text-left"
+        >
+          Feel Better<br />
+          Than Ever
+        </Heading>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-6 pt-12 pb-12 lg:px-10 lg:pt-16 lg:pb-16">
+    <div class="mx-auto flex max-w-6xl flex-col gap-10 lg:flex-row">
+      <div class="hidden lg:block lg:w-1/2"></div>
+
+      <div class="w-full lg:w-1/2">
+        <FadeIn
+          client:visible
+          as="div"
+          className="max-w-xl text-base leading-8 text-neutral-600 lg:text-lg"
+          delay={0.1}
+        >
+          <p>
+            Desde 2010 somos expertos en metabolismo, equilibrio hormonal y
+            bienestar integral. Hemos construido clínicas especializadas donde
+            la experiencia médica y la tecnología avanzada trabajan para una
+            sola meta:
+            <span class="block font-medium text-neutral-700 uppercase">
+              que te sientas mejor que nunca.
+            </span>
+          </p>
+
+          <p class="mt-7">
+            Por eso nuestro lema es Feel Better Than Ever. No es solo un slogan.
+            Es una promesa.
+          </p>
+        </FadeIn>
+      </div>
+    </div>
+  </div>
+</section>

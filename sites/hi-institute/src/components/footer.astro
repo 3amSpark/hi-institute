@@ -1,4 +1,6 @@
 ---
+import Heading from "./heading";
+
 const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/tratamientos", label: "Tratamientos" },
@@ -13,15 +15,13 @@ const navLinks = [
     class="bg-[radial-gradient(circle_at_18%_12%,rgba(29,117,184,0.34),transparent_34%),radial-gradient(circle_at_78%_8%,rgba(156,205,55,0.88),transparent_42%),linear-gradient(90deg,#b9c5d3_0%,#9ccd37_100%)] px-6 py-20 text-center md:py-24"
   >
     <div class="mx-auto flex max-w-3xl flex-col items-center">
-      <p
-        class="text-2xl leading-tight font-medium tracking-wide text-white md:text-3xl"
-      >
+      <Heading client:visible as="h2" size="0" className="text-white">
         Tu cuerpo ya te está hablando.<br />
         Es momento de escucharlo.
-      </p>
+      </Heading>
       <a
         href="/contacto"
-        class="text-brand-blue mt-8 inline-flex rounded-full bg-white px-10 py-3 font-sans text-xl font-bold transition-opacity hover:opacity-90"
+        class="text-brand-blue mt-8 inline-flex rounded-full bg-white px-10 py-3 font-sans font-medium transition-opacity hover:opacity-90 md:text-xl"
       >
         ¡AGENDA TU CITA HOY!
       </a>
@@ -32,18 +32,12 @@ const navLinks = [
     class="text-brand-blue bg-[radial-gradient(circle_at_50%_38%,rgba(255,255,255,0.76),transparent_30%),radial-gradient(circle_at_16%_12%,rgba(29,117,184,0.14),transparent_42%),linear-gradient(180deg,#dff6fb_0%,#d4f0f7_100%)] px-6 py-16 text-center md:py-24"
   >
     <div class="mx-auto max-w-6xl">
-      <h2
-        class="font-sans text-3xl leading-tight font-medium tracking-wide uppercase md:text-5xl"
-      >
-        Estamos mas cerca<br />
+      <Heading client:visible as="h2" size="1" className="uppercase">
+        Estamos más cerca<br />
         de lo que crees
-      </h2>
+      </Heading>
 
-      <div
-        class="border-brand-blue/10 mt-16 grid min-h-72 place-items-center rounded-3xl border bg-white/25 text-lg tracking-wide text-neutral-800 shadow-inner shadow-white/50 md:min-h-96"
-      >
-        google map
-      </div>
+      <div class="mx-auto mt-12 h-96 w-3/4 bg-white">google map</div>
     </div>
   </section>
 
@@ -72,7 +66,7 @@ const navLinks = [
           navLinks.map((link) => (
             <a
               href={link.href}
-              class="font-sans text-xl font-medium tracking-[0.38em] text-white transition-opacity hover:opacity-75"
+              class="font-sans text-xl font-medium text-white transition-opacity hover:opacity-75"
             >
               {link.label}
             </a>
@@ -81,11 +75,14 @@ const navLinks = [
       </nav>
 
       <div>
-        <h2
-          class="font-sans text-xl font-medium tracking-[0.38em] text-white uppercase"
+        <Heading
+          client:visible
+          as="h2"
+          size="-2"
+          className="text-white uppercase"
         >
           We send awesome emails
-        </h2>
+        </Heading>
         <p class="mt-4 text-sm font-medium text-white/90 md:text-base">
           Be the first to know about new treatments, supplements and more!
         </p>

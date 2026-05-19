@@ -5,6 +5,8 @@ import FadeIn from "./fade-in";
 type HeroImage = {
   src: string;
   alt: string;
+  title?: string;
+  description?: string;
 };
 
 type HeroAction = {
@@ -30,8 +32,8 @@ const contentClass = {
 const slideTransition = {
   type: "spring",
   restDelta: 0.001,
-  damping: 30,
-  stiffness: 300,
+  damping: 34,
+  stiffness: 170,
 } as const;
 
 export default function Hero({
@@ -40,7 +42,7 @@ export default function Hero({
   actions = [],
   images,
   align = "left",
-  intervalMs = 5000,
+  intervalMs = 7000,
 }: HeroProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const reduceMotion = useReducedMotion();
@@ -49,6 +51,8 @@ export default function Hero({
   const displayedIndex =
     images.length > 0 ? Math.min(activeIndex, images.length - 1) : 0;
   const activeImage = images[displayedIndex];
+  const activeTitle = activeImage?.title ?? title;
+  const activeDescription = activeImage?.description ?? description;
 
   useEffect(() => {
     setActiveIndex((current) =>
@@ -100,33 +104,39 @@ export default function Hero({
       <div className="mx-auto flex min-h-svh max-w-7xl items-center px-6 lg:px-10">
         <div className={`flex max-w-2xl flex-col ${contentClass[align]}`}>
           <FadeIn
+            key={activeTitle}
             as="h1"
             className="font-sans text-(length:--step-1) leading-snug font-medium text-white uppercase text-shadow-md/5"
           >
-            {title}
+            {activeTitle}
           </FadeIn>
 
-          {description ? (
+          {activeDescription ? (
             <FadeIn
+              key={activeDescription}
               as="p"
-              className="mt-6 max-w-xl text-lg leading-8 text-white/80"
+              className="mt-4 max-w-xl text-lg leading-8 text-white/80 text-shadow-md/5"
               delay={0.1}
             >
-              {description}
+              {activeDescription}
             </FadeIn>
           ) : null}
 
           {actions.length > 0 ? (
-            <FadeIn className="mt-8 flex flex-wrap gap-3" delay={0.2}>
+            <FadeIn
+              key={`actions-${displayedIndex}`}
+              className="mt-8 flex flex-wrap gap-3"
+              delay={0.2}
+            >
               {actions.map((action) => (
                 <a
                   key={action.href}
                   href={action.href}
-                  className="from-brand-green via-brand-dark-green to-brand-blue inline-flex w-fit items-center gap-2 rounded-full bg-linear-to-tr py-1.5 pr-4 pl-5 font-sans text-lg font-medium text-white transition-colors duration-300 ease-in-out"
+                  className="group inline-flex w-fit items-center gap-2 rounded-full bg-linear-to-r from-[#31ADD0] via-[#8FC746] to-[#31ADD0] bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-4 pl-5 font-sans text-lg font-medium text-white shadow-lg shadow-[#31ADD0]/20 transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] hover:shadow-[#8FC746]/30"
                 >
-                  {action.label}
+                  <span>{action.label}</span>
                   <svg
-                    className="size-5 shrink-0"
+                    className="size-5 shrink-0 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"

@@ -234,7 +234,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
             <img
               src={logo.src}
               alt="HI Health Institute International"
-              className="h-auto w-30 max-w-full md:w-50"
+              className="h-auto w-45 max-w-full md:w-50"
             />
           </a>
 
@@ -285,7 +285,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                     <a
                       key={treatment.href}
                       href={treatment.href}
-                      className="hover:text-brand-blue block w-50 text-center font-sans text-sm leading-none font-bold tracking-tight text-neutral-600 transition-colors"
+                      className="hover:text-brand-blue block w-50 text-center font-sans text-sm leading-none font-medium text-neutral-600 transition-colors"
                     >
                       <img
                         src={treatment.image.src}

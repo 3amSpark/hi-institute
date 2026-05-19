@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
-type FadeInElement = "div" | "h1" | "p";
+type FadeInElement = "div" | "h1" | "h2" | "h3" | "p";
 
 type FadeInProps = {
   as?: FadeInElement;
@@ -13,11 +13,13 @@ type FadeInProps = {
 const fadeInComponents = {
   div: motion.div,
   h1: motion.h1,
+  h2: motion.h2,
+  h3: motion.h3,
   p: motion.p,
 };
 
 const fadeTransition = {
-  duration: 0.72,
+  duration: 0.95,
   ease: [0.22, 1, 0.36, 1],
 } as const;
 
@@ -42,7 +44,7 @@ export default function FadeIn({
           ? { opacity: 1 }
           : { opacity: 1, y: 0, filter: "blur(0px)" }
       }
-      viewport={{ once: true, amount: 0.35 }}
+      viewport={{ once: true, amount: 0.6, margin: "0px 0px -10% 0px" }}
       transition={reduceMotion ? { duration: 0 } : { ...fadeTransition, delay }}
       {...props}
     >
