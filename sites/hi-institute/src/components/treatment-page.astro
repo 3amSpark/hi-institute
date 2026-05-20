@@ -1,0 +1,80 @@
+---
+import type { ImageMetadata } from "astro";
+import FadeIn from "./fade-in";
+import Heading from "./heading";
+
+interface Props {
+  heroImage: ImageMetadata;
+  heroImageAlt: string;
+  heroTitle: string;
+  heroDescription: string;
+  treatmentName: string;
+}
+
+const { heroImage, heroImageAlt, heroTitle, heroDescription, treatmentName } =
+  Astro.props;
+---
+
+<main>
+  <section
+    class="relative mt-14 min-h-[50svh] overflow-hidden bg-neutral-900 text-white md:mt-[4.125rem]"
+  >
+    <img
+      src={heroImage.src}
+      alt={heroImageAlt}
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="absolute inset-0 bg-black/25" aria-hidden="true"></div>
+
+    <div
+      class="relative z-10 mx-auto flex min-h-[50svh] max-w-7xl items-center justify-center px-6 py-20 text-center lg:px-10"
+    >
+      <div class="max-w-4xl">
+        <Heading
+          client:visible
+          as="h1"
+          size="-1"
+          className="tracking-tight text-white uppercase text-shadow-md/20"
+        >
+          {heroTitle}
+        </Heading>
+        <FadeIn
+          client:visible
+          as="p"
+          className="mx-auto mt-4 max-w-3xl text-xl leading-snug text-white text-shadow-md/20 md:text-3xl"
+          delay={0.1}
+        >
+          {heroDescription}
+        </FadeIn>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-6 py-20 md:py-28 lg:px-10">
+    <div
+      class="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.85fr_1.15fr] md:gap-16 lg:gap-24"
+    >
+      <Heading
+        client:visible
+        as="h2"
+        size="-1"
+        className="text-brand-blue tracking-[0.35em] uppercase"
+      >
+        {treatmentName}
+      </Heading>
+
+      <FadeIn
+        client:visible
+        as="div"
+        className="space-y-8 text-lg leading-8 text-neutral-600 md:text-xl md:leading-9"
+        delay={0.1}
+      >
+        <slot />
+      </FadeIn>
+    </div>
+  </section>
+
+  <slot name="sections" />
+</main>

@@ -116,8 +116,19 @@ export default function Steps() {
         ))}
       </div>
 
+      {/* Mobile heading */}
+      <motion.h2
+        className="text-brand-blue bg-white px-6 py-8 text-center text-lg font-medium tracking-[0.3em] uppercase md:hidden"
+        initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+        whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={reduceMotion ? { duration: 0 } : fadeTransition}
+      >
+        As&iacute; empieza tu cambio
+      </motion.h2>
+
       {/* Mobile: stacked cards */}
-      <div className="flex flex-col md:hidden">
+      <div className="flex flex-col bg-white md:hidden">
         {steps.map((step) => (
           <div
             key={step.number}
@@ -184,17 +195,6 @@ export default function Steps() {
         As&iacute; empieza tu cambio
       </motion.h2>
 
-      {/* Mobile heading */}
-      <motion.h2
-        className="bg-neutral-950 py-8 text-center text-lg font-medium tracking-[0.3em] text-white uppercase md:hidden"
-        initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-        whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.6 }}
-        transition={reduceMotion ? { duration: 0 } : fadeTransition}
-      >
-        As&iacute; empieza tu cambio
-      </motion.h2>
-
       {/* CTA - bottom overlay on desktop, inline on mobile */}
       <motion.div
         className="absolute right-0 bottom-8 left-0 z-10 hidden flex-col items-center gap-4 md:flex lg:bottom-12"
@@ -208,37 +208,6 @@ export default function Steps() {
         <a
           href="/contacto"
           className="group inline-flex items-center gap-2 rounded-full bg-linear-to-r from-[#31ADD0] via-[#8FC746] to-[#31ADD0] bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-4 pl-5 text-lg font-medium text-white shadow-lg shadow-[#31ADD0]/20 transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] hover:shadow-[#8FC746]/30"
-        >
-          <span>AGENDA TU CITA</span>
-          <svg
-            className="size-5 shrink-0 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M7 17 17 7" />
-            <path d="M8 7h9v9" />
-          </svg>
-        </a>
-      </motion.div>
-
-      {/* Mobile CTA */}
-      <motion.div
-        className="flex flex-col items-center gap-4 bg-neutral-950 py-8 md:hidden"
-        initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-        whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.6 }}
-        transition={
-          reduceMotion ? { duration: 0 } : { ...fadeTransition, delay: 0.2 }
-        }
-      >
-        <a
-          href="/contacto"
-          className="group inline-flex items-center gap-2 rounded-full bg-linear-to-r from-[#31ADD0] via-[#8FC746] to-[#31ADD0] bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-4 pl-5 text-base font-medium text-white shadow-lg shadow-[#31ADD0]/20 transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] hover:shadow-[#8FC746]/30"
         >
           <span>AGENDA TU CITA</span>
           <svg

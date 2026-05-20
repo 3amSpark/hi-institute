@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import logo from "../assets/logo.svg";
 import balanceHormonal from "../assets/tratamientos/balance-hormonal.jpg";
+import diabetes from "../assets/tratamientos/diabetes.jpg";
 import fertilidad from "../assets/tratamientos/fertilidad.jpg";
 import ginecologia from "../assets/tratamientos/ginecologia.jpg";
 import metabolismo from "../assets/tratamientos/metabolismo.jpg";
@@ -33,6 +34,11 @@ const treatments = [
     href: "/tratamientos/balance-hormonal",
     label: "Balance Hormonal",
     image: balanceHormonal,
+  },
+  {
+    href: "/tratamientos/diabetes",
+    label: "Diabetes",
+    image: diabetes,
   },
 ];
 

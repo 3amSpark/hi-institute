@@ -1,0 +1,74 @@
+---
+import type { ImageMetadata } from "astro";
+import FadeIn from "./fade-in";
+import Heading from "./heading";
+
+interface Props {
+  title: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  reverse?: boolean;
+  placeholderLabel?: string;
+}
+
+const {
+  title,
+  image,
+  imageAlt = "",
+  reverse = false,
+  placeholderLabel,
+} = Astro.props;
+---
+
+<section class="bg-white px-6 py-16 md:py-20 lg:px-10">
+  <div
+    class:list={[
+      "mx-auto flex max-w-6xl flex-col gap-12 md:items-center md:gap-20",
+      reverse ? "md:flex-row-reverse" : "md:flex-row",
+    ]}
+  >
+    <FadeIn client:visible className="relative w-full md:w-1/2">
+      <div
+        class="from-brand-green absolute top-10 -right-5 -bottom-7 left-8 bg-linear-to-r via-[#b7d4d7] to-[#cfd0dc] md:-right-8 md:left-12"
+        aria-hidden="true"
+      >
+      </div>
+      {
+        image ? (
+          <img
+            src={image.src}
+            alt={imageAlt}
+            loading="lazy"
+            decoding="async"
+            class="relative aspect-[4/3] w-full object-cover"
+          />
+        ) : (
+          <div class="relative flex aspect-[4/3] w-full items-center justify-center bg-neutral-100 p-10 text-center">
+            <span class="text-brand-blue font-sans text-3xl font-medium tracking-[0.12em] uppercase">
+              {placeholderLabel}
+            </span>
+          </div>
+        )
+      }
+    </FadeIn>
+
+    <div class="w-full md:w-1/2">
+      <Heading
+        client:visible
+        as="h2"
+        size="0"
+        className="text-brand-blue max-w-xl"
+      >
+        {title}
+      </Heading>
+      <FadeIn
+        client:visible
+        as="div"
+        className="mt-8 space-y-6 text-lg leading-8 text-neutral-600"
+        delay={0.1}
+      >
+        <slot />
+      </FadeIn>
+    </div>
+  </div>
+</section>

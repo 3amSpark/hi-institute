@@ -8,6 +8,11 @@ const navLinks = [
   { href: "/clinicas", label: "Clínicas" },
   { href: "/contacto", label: "Contacto" },
 ];
+
+const mapsUrl =
+  "https://www.google.com/maps/search/?api=1&query=The%20Health%20Institute%20Centro%20de%20Fertilidad%20y%20Peso%20en%20Guatemala%2C%20Avenida%20La%20Reforma%209-55%2C%20Cdad.%20de%20Guatemala%2001010";
+const mapsEmbedUrl =
+  "https://www.google.com/maps?q=The%20Health%20Institute%20Centro%20de%20Fertilidad%20y%20Peso%20en%20Guatemala%2C%20Avenida%20La%20Reforma%209-55%2C%20Cdad.%20de%20Guatemala%2001010&z=16&output=embed";
 ---
 
 <footer class="text-white">
@@ -35,7 +40,25 @@ const navLinks = [
         de lo que crees
       </Heading>
 
-      <div class="mx-auto mt-12 h-96 w-3/4 bg-white">google map</div>
+      <div
+        class="border-brand-blue/10 mx-auto mt-12 h-96 w-full max-w-5xl overflow-hidden rounded-3xl border bg-white shadow-sm md:w-3/4"
+      >
+        <iframe
+          src={mapsEmbedUrl}
+          title="HI Institute en Avenida La Reforma 9-55, Ciudad de Guatemala"
+          class="h-full w-full"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <a
+        href={mapsUrl}
+        target="_blank"
+        rel="noreferrer"
+        class="text-brand-blue mt-5 inline-flex font-sans font-medium transition-opacity hover:opacity-75"
+      >
+        Abrir en Google Maps
+      </a>
     </div>
   </section>
 
@@ -79,25 +102,42 @@ const navLinks = [
           size="-2"
           className="text-white uppercase"
         >
-          We send awesome emails
+          Recibe noticias de HI Institute
         </Heading>
         <p class="mt-4 text-sm font-medium text-white/90 md:text-base">
-          Be the first to know about new treatments, supplements and more!
+          Sé la primera persona en conocer nuevos tratamientos, suplementos y
+          más.
         </p>
-        <form class="mt-5 flex max-w-lg" action="#">
+        <form
+          class="mt-5 flex max-w-lg overflow-hidden rounded-full bg-white shadow-sm"
+          action="#"
+        >
           <label class="sr-only" for="footer-email">Email</label>
           <input
             id="footer-email"
             type="email"
             name="email"
             placeholder="email"
-            class="min-w-0 flex-1 bg-white px-5 py-3 text-lg text-neutral-800 placeholder:text-neutral-400"
+            class="min-w-0 flex-1 bg-transparent px-5 py-3 text-lg text-neutral-800 outline-none placeholder:text-neutral-400"
           />
           <button
             type="submit"
-            aria-label="Subscribe"
-            class="w-16 bg-neutral-600 transition-colors hover:bg-neutral-700"
+            aria-label="Suscribirse"
+            class="bg-brand-blue hover:bg-brand-dark-blue flex w-16 items-center justify-center text-white transition-colors"
           >
+            <svg
+              class="size-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
           </button>
         </form>
       </div>

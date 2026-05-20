@@ -1,0 +1,70 @@
+---
+import diabetes from "../../assets/diabetes/banner.jpg";
+import Footer from "../../components/footer.astro";
+import Navbar from "../../components/navbar";
+import TreatmentPage from "../../components/treatment-page.astro";
+import TreatmentSection from "../../components/treatment-section.astro";
+import Root from "../../layouts/root.astro";
+---
+
+<Root
+  title="Tratamiento para Diabetes | HI Institute"
+  description="Tratamiento integral para diabetes tipo 2 en HI Institute, enfocado en entender el metabolismo y trabajar desde la causa."
+>
+  <Navbar client:load currentPath={Astro.url.pathname} />
+  <TreatmentPage
+    heroImage={diabetes}
+    heroImageAlt="Profesional de salud midiendo glucosa en sangre"
+    heroTitle="Diabetes no es solo azúcar alta."
+    heroDescription="Es un desbalance que se puede corregir desde su origen."
+    treatmentName="Diabetes"
+  >
+    <p>
+      En HI Institute creemos que la diabetes tipo 2 no se trata solo de
+      controlar números. Se trata de entender por qué tu metabolismo perdió
+      equilibrio y ayudarle a recuperarlo.
+    </p>
+
+    <p>
+      No tratamos únicamente síntomas.<br />
+      Trabajamos sobre las causas.
+    </p>
+
+    <Fragment slot="sections">
+      <TreatmentSection
+        title="La glucosa alta es una señal, no toda la historia."
+        image={diabetes}
+        imageAlt="Control metabólico para diabetes"
+      >
+        <p>
+          La diabetes tipo 2 suele estar relacionada con resistencia a la
+          insulina, inflamación, cambios de composición corporal, estrés,
+          descanso y hábitos que alteran la forma en que tu cuerpo usa la
+          energía.
+        </p>
+        <p>
+          Nuestro enfoque busca entender por qué la glucosa se elevó y qué
+          necesita tu metabolismo para volver a responder mejor.
+        </p>
+      </TreatmentSection>
+
+      <TreatmentSection
+        title="Tratamos el metabolismo que está detrás del diagnóstico."
+        image={diabetes}
+        imageAlt="Evaluación integral para diabetes tipo 2"
+        reverse
+      >
+        <p>
+          Evaluamos marcadores clínicos, peso, composición corporal,
+          alimentación y señales hormonales para construir un plan realista,
+          medible y personalizado.
+        </p>
+        <p>
+          El objetivo es mejorar control metabólico, energía y salud a largo
+          plazo, no solo perseguir un número aislado.
+        </p>
+      </TreatmentSection>
+    </Fragment>
+  </TreatmentPage>
+  <Footer />
+</Root>
