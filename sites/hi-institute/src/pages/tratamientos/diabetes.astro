@@ -1,5 +1,4 @@
 ---
-import diabetes from "../../assets/diabetes/banner.jpg";
 import Footer from "../../components/footer.astro";
 import Navbar from "../../components/navbar";
 import TreatmentPage from "../../components/treatment-page.astro";
@@ -13,7 +12,7 @@ import Root from "../../layouts/root.astro";
 >
   <Navbar client:load currentPath={Astro.url.pathname} />
   <TreatmentPage
-    heroImage={diabetes}
+    heroImage="/assets/diabetes/banner.jpg"
     heroImageAlt="Profesional de salud midiendo glucosa en sangre"
     heroTitle="Diabetes no es solo azúcar alta."
     heroDescription="Es un desbalance que se puede corregir desde su origen."
@@ -33,7 +32,7 @@ import Root from "../../layouts/root.astro";
     <Fragment slot="sections">
       <TreatmentSection
         title="La glucosa alta es una señal, no toda la historia."
-        image={diabetes}
+        image="/assets/diabetes/banner.jpg"
         imageAlt="Control metabólico para diabetes"
       >
         <p>
@@ -50,7 +49,7 @@ import Root from "../../layouts/root.astro";
 
       <TreatmentSection
         title="Tratamos el metabolismo que está detrás del diagnóstico."
-        image={diabetes}
+        image="/assets/diabetes/banner.jpg"
         imageAlt="Evaluación integral para diabetes tipo 2"
         reverse
       >

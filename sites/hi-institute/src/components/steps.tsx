@@ -1,18 +1,15 @@
 import { motion, useReducedMotion } from "framer-motion";
-import paso1 from "../assets/pasos/1.webp";
-import paso2 from "../assets/pasos/2.webp";
-import paso3 from "../assets/pasos/3.webp";
 
 const steps = [
   {
-    src: paso1.src,
+    src: "/assets/pasos/1.webp",
     number: "1",
     title: "Evaluaci\u00f3n Completa",
     description: "Hormonas, metabolismo, estilo de vida",
     color: "#1d75b8",
   },
   {
-    src: paso2.src,
+    src: "/assets/pasos/2.webp",
     number: "2",
     title: "Plan Personalizado",
     description:
@@ -20,7 +17,7 @@ const steps = [
     color: "#009848",
   },
   {
-    src: paso3.src,
+    src: "/assets/pasos/3.webp",
     number: "3",
     title: "Recuperaci\u00f3n Progresiva",
     description: "Empiezas a sentir cambios reales",

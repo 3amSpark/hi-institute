@@ -1,7 +1,5 @@
 ---
-import ginecologia from "../../assets/ginecologia/banner.jpg";
 import Footer from "../../components/footer.astro";
-import girl from "../../assets/ginecologia/girl.jpg";
 import Navbar from "../../components/navbar";
 import TreatmentPage from "../../components/treatment-page.astro";
 import TreatmentSection from "../../components/treatment-section.astro";
@@ -14,7 +12,7 @@ import Root from "../../layouts/root.astro";
 >
   <Navbar client:load currentPath={Astro.url.pathname} />
   <TreatmentPage
-    heroImage={ginecologia}
+    heroImage="/assets/ginecologia/banner.jpg"
     heroImageAlt="Mujer en consulta de salud femenina"
     heroTitle="Tu ciclo cuenta una historia."
     heroDescription="La escuchamos completa para cuidar tu salud en cada etapa."
@@ -33,7 +31,7 @@ import Root from "../../layouts/root.astro";
     <Fragment slot="sections">
       <TreatmentSection
         title="Tu ciclo, tus síntomas y tus hormonas están conectados."
-        image={girl}
+        image="/assets/ginecologia/girl.jpg"
         imageAlt="Consulta de salud femenina"
       >
         <p>
@@ -50,7 +48,7 @@ import Root from "../../layouts/root.astro";
 
       <TreatmentSection
         title="Cuidarte también significa entender qué está pasando."
-        image={ginecologia}
+        image="/assets/ginecologia/banner.jpg"
         imageAlt="Mujer recibiendo acompañamiento ginecológico"
         reverse
       >

@@ -1,7 +1,4 @@
 ---
-import metabolismo from "../../assets/metabolismo/banner.jpg";
-import corporal3d from "../../assets/metabolismo/3d.png";
-import lady from "../../assets/metabolismo/jeans.jpg";
 import FadeIn from "../../components/fade-in";
 import Footer from "../../components/footer.astro";
 import Heading from "../../components/heading";
@@ -17,7 +14,7 @@ import Root from "../../layouts/root.astro";
 >
   <Navbar client:load currentPath={Astro.url.pathname} />
   <TreatmentPage
-    heroImage={metabolismo}
+    heroImage="/assets/metabolismo/banner.jpg"
     heroImageAlt="Persona enfocada en recuperar su salud metabólica"
     heroTitle="Tu peso no define tu salud metabólica."
     heroDescription="Entendemos qué está frenando a tu cuerpo antes de tratarlo."
@@ -37,7 +34,7 @@ import Root from "../../layouts/root.astro";
     <Fragment slot="sections">
       <TreatmentSection
         title="Tu peso no depende solo de comer más o menos."
-        image={lady}
+        image="/assets/metabolismo/jeans.jpg"
         imageAlt="Persona revisando su progreso metabólico"
       >
         <p>
@@ -62,7 +59,7 @@ import Root from "../../layouts/root.astro";
         >
           <FadeIn client:visible>
             <img
-              src={corporal3d.src}
+              src="/assets/metabolismo/3d.png"
               alt="Análisis corporal 3D de composición y distribución corporal"
               loading="lazy"
               decoding="async"
