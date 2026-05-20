@@ -3,9 +3,9 @@ import Heading from "./heading";
 
 const navLinks = [
   { href: "/", label: "Inicio" },
-  { href: "/tratamientos", label: "Tratamientos" },
+  { label: "Tratamientos" },
   { href: "/farmacia", label: "Farmacia" },
-  { href: "/clinicas", label: "Clínicas" },
+  { label: "Clínicas" },
   { href: "/contacto", label: "Contacto" },
 ];
 
@@ -84,14 +84,20 @@ const mapsEmbedUrl =
         class="grid gap-x-10 gap-y-6 sm:grid-cols-2"
       >
         {
-          navLinks.map((link) => (
-            <a
-              href={link.href}
-              class="font-sans text-xl font-medium text-white transition-opacity hover:opacity-75"
-            >
-              {link.label}
-            </a>
-          ))
+          navLinks.map((link) =>
+            link.href ? (
+              <a
+                href={link.href}
+                class="font-sans text-xl font-medium text-white transition-opacity hover:opacity-75"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <span class="font-sans text-xl font-medium text-white/80">
+                {link.label}
+              </span>
+            ),
+          )
         }
       </nav>
 

@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import femcareLogo from "../assets/clinicas/femcare.svg";
+import initiaLogo from "../assets/clinicas/initia.svg";
+import skinLogo from "../assets/clinicas/skin.svg";
 import logo from "../assets/logo.svg";
 import balanceHormonal from "../assets/tratamientos/balance-hormonal.jpg";
 import diabetes from "../assets/tratamientos/diabetes.jpg";
@@ -8,9 +11,7 @@ import metabolismo from "../assets/tratamientos/metabolismo.jpg";
 
 const navLinks = [
   { href: "/", label: "Inicio" },
-  { href: "/tratamientos", label: "Tratamientos" },
   { href: "/farmacia", label: "Farmacia" },
-  { href: "/clinicas", label: "Clínicas" },
   { href: "/contacto", label: "Contacto" },
 ];
 
@@ -39,6 +40,27 @@ const treatments = [
     href: "/tratamientos/diabetes",
     label: "Diabetes",
     image: diabetes,
+  },
+];
+
+const clinics = [
+  {
+    href: "https://hiskinbeauty.com/",
+    label: "HI Skin & Beauty",
+    description: "Dermatología y estética médica",
+    logo: skinLogo,
+  },
+  {
+    href: "https://femcare.hiinstitute.com/",
+    label: "HI Fem Care",
+    description: "Ginecología y salud íntima",
+    logo: femcareLogo,
+  },
+  {
+    href: "https://initiafertilitycenter.com/",
+    label: "initia",
+    description: "Fertilidad accesible",
+    logo: initiaLogo,
   },
 ];
 
@@ -90,11 +112,14 @@ function ChevronDown({ className = "" }: { className?: string }) {
 
 export default function Navbar({ currentPath }: NavbarProps) {
   const [isTreatmentsOpen, setIsTreatmentsOpen] = useState(false);
+  const [isClinicsOpen, setIsClinicsOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMobileTreatmentsOpen, setIsMobileTreatmentsOpen] = useState(
     isActivePath(currentPath, "/tratamientos"),
   );
-  const closeTimeout = useRef<number | undefined>(undefined);
+  const [isMobileClinicsOpen, setIsMobileClinicsOpen] = useState(false);
+  const treatmentsCloseTimeout = useRef<number | undefined>(undefined);
+  const clinicsCloseTimeout = useRef<number | undefined>(undefined);
   const isTreatmentsActive = isActivePath(currentPath, "/tratamientos");
 
   useEffect(() => {
@@ -103,6 +128,8 @@ export default function Navbar({ currentPath }: NavbarProps) {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsMobileOpen(false);
+        setIsTreatmentsOpen(false);
+        setIsClinicsOpen(false);
       }
     };
 
@@ -115,13 +142,26 @@ export default function Navbar({ currentPath }: NavbarProps) {
   }, [isMobileOpen]);
 
   const openTreatments = () => {
-    window.clearTimeout(closeTimeout.current);
+    window.clearTimeout(treatmentsCloseTimeout.current);
+    setIsClinicsOpen(false);
     setIsTreatmentsOpen(true);
   };
 
   const closeTreatments = () => {
-    closeTimeout.current = window.setTimeout(() => {
+    treatmentsCloseTimeout.current = window.setTimeout(() => {
       setIsTreatmentsOpen(false);
+    }, 120);
+  };
+
+  const openClinics = () => {
+    window.clearTimeout(clinicsCloseTimeout.current);
+    setIsTreatmentsOpen(false);
+    setIsClinicsOpen(true);
+  };
+
+  const closeClinics = () => {
+    clinicsCloseTimeout.current = window.setTimeout(() => {
+      setIsClinicsOpen(false);
     }, 120);
   };
 
@@ -155,29 +195,20 @@ export default function Navbar({ currentPath }: NavbarProps) {
           </a>
 
           <div>
-            <div className="relative">
-              <a
-                href="/tratamientos"
-                aria-current={isTreatmentsActive ? "page" : undefined}
-                className={mobileLinkClassName(isTreatmentsActive)}
-                onClick={() => setIsMobileOpen(false)}
-              >
-                Tratamientos
-              </a>
-              <button
-                type="button"
-                aria-label="Mostrar tratamientos"
-                aria-expanded={isMobileTreatmentsOpen}
-                onClick={() => setIsMobileTreatmentsOpen((isOpen) => !isOpen)}
-                className="absolute top-1/2 right-3 z-10 -translate-y-1/2 p-3 text-neutral-500/80"
-              >
-                <ChevronDown
-                  className={`size-8 transition-transform duration-300 ${
-                    isMobileTreatmentsOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-            </div>
+            <button
+              type="button"
+              aria-current={isTreatmentsActive ? "page" : undefined}
+              aria-expanded={isMobileTreatmentsOpen}
+              onClick={() => setIsMobileTreatmentsOpen((isOpen) => !isOpen)}
+              className={`${mobileLinkClassName(isTreatmentsActive)} w-full justify-between`}
+            >
+              <span>Tratamientos</span>
+              <ChevronDown
+                className={`size-8 transition-transform duration-300 ${
+                  isMobileTreatmentsOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
             <div
               className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.19,1,0.22,1)] ${
                 isMobileTreatmentsOpen
@@ -216,21 +247,84 @@ export default function Navbar({ currentPath }: NavbarProps) {
             </div>
           </div>
 
-          {navLinks.slice(2).map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              aria-current={
-                isActivePath(currentPath, link.href) ? "page" : undefined
-              }
-              className={mobileLinkClassName(
-                isActivePath(currentPath, link.href),
-              )}
-              onClick={() => setIsMobileOpen(false)}
+          <a
+            href="/farmacia"
+            aria-current={
+              isActivePath(currentPath, "/farmacia") ? "page" : undefined
+            }
+            className={mobileLinkClassName(
+              isActivePath(currentPath, "/farmacia"),
+            )}
+            onClick={() => setIsMobileOpen(false)}
+          >
+            Farmacia
+          </a>
+
+          <div>
+            <button
+              type="button"
+              aria-expanded={isMobileClinicsOpen}
+              onClick={() => setIsMobileClinicsOpen((isOpen) => !isOpen)}
+              className={`${mobileLinkClassName(false)} w-full justify-between`}
             >
-              {link.label}
-            </a>
-          ))}
+              <span>Clínicas</span>
+              <ChevronDown
+                className={`size-8 transition-transform duration-300 ${
+                  isMobileClinicsOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            <div
+              className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.19,1,0.22,1)] ${
+                isMobileClinicsOpen
+                  ? "grid-rows-[1fr] opacity-100"
+                  : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div
+                  className={`bg-brand-blue/5 grid gap-0 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] ${
+                    isMobileClinicsOpen
+                      ? "translate-y-0 opacity-100"
+                      : "-translate-y-4 opacity-0"
+                  }`}
+                >
+                  {clinics.map((clinic) => (
+                    <a
+                      key={clinic.href}
+                      href={clinic.href}
+                      className="hover:text-brand-blue border-brand-blue/10 flex min-h-16 items-center gap-4 border-b px-10 py-3 text-neutral-700 transition-colors last:border-b-0"
+                      onClick={() => setIsMobileOpen(false)}
+                    >
+                      <span className="flex size-9 shrink-0 items-center justify-center">
+                        <img
+                          src={clinic.logo.src}
+                          alt=""
+                          className="max-h-full max-w-full"
+                        />
+                      </span>
+                      <span className="block font-sans text-base font-medium">
+                        {clinic.label}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a
+            href="/contacto"
+            aria-current={
+              isActivePath(currentPath, "/contacto") ? "page" : undefined
+            }
+            className={mobileLinkClassName(
+              isActivePath(currentPath, "/contacto"),
+            )}
+            onClick={() => setIsMobileOpen(false)}
+          >
+            Contacto
+          </a>
         </div>
       </div>
 
@@ -268,16 +362,17 @@ export default function Navbar({ currentPath }: NavbarProps) {
                 }
               }}
             >
-              <a
-                href="/tratamientos"
+              <button
+                type="button"
                 aria-expanded={isTreatmentsOpen}
                 aria-current={isTreatmentsActive ? "page" : undefined}
                 className={linkClassName(isTreatmentsActive)}
+                onClick={() => setIsTreatmentsOpen((isOpen) => !isOpen)}
               >
                 Tratamientos
                 <ChevronDown className="mt-0.5 ml-1 size-4 text-neutral-500/80 transition-transform duration-300 group-hover:rotate-180 group-hover:text-neutral-950" />
                 <span aria-hidden="true" className={underlineClassName}></span>
-              </a>
+              </button>
 
               <div
                 className={`absolute top-full left-0 w-screen bg-white shadow-lg shadow-black/5 transition-opacity duration-200 ease-out ${
@@ -301,6 +396,73 @@ export default function Navbar({ currentPath }: NavbarProps) {
                         className="mb-4 aspect-square w-full object-cover"
                       />
                       {treatment.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="/farmacia"
+              aria-current={
+                isActivePath(currentPath, "/farmacia") ? "page" : undefined
+              }
+              className={linkClassName(isActivePath(currentPath, "/farmacia"))}
+            >
+              Farmacia
+              <span aria-hidden="true" className={underlineClassName}></span>
+            </a>
+
+            <div
+              onMouseEnter={openClinics}
+              onMouseLeave={closeClinics}
+              onFocus={openClinics}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) {
+                  setIsClinicsOpen(false);
+                }
+              }}
+            >
+              <button
+                type="button"
+                aria-expanded={isClinicsOpen}
+                className={linkClassName(false)}
+                onClick={() => setIsClinicsOpen((isOpen) => !isOpen)}
+              >
+                Clínicas
+                <ChevronDown className="mt-0.5 ml-1 size-4 text-neutral-500/80 transition-transform duration-300 group-hover:rotate-180 group-hover:text-neutral-950" />
+                <span aria-hidden="true" className={underlineClassName}></span>
+              </button>
+
+              <div
+                className={`absolute top-full left-0 w-screen bg-white shadow-lg shadow-black/5 transition-opacity duration-200 ease-out ${
+                  isClinicsOpen
+                    ? "pointer-events-auto opacity-100"
+                    : "pointer-events-none opacity-0"
+                }`}
+              >
+                <div className="mx-auto flex max-w-4xl justify-center gap-8 px-6 pt-2 pb-5 lg:px-14">
+                  {clinics.map((clinic) => (
+                    <a
+                      key={clinic.href}
+                      href={clinic.href}
+                      className="hover:text-brand-blue block w-46 text-center font-sans text-sm leading-none font-medium text-neutral-600 transition-colors"
+                    >
+                      <span className="mb-4 flex aspect-square w-full items-center justify-center bg-neutral-100 p-10">
+                        <img
+                          src={clinic.logo.src}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          className="max-h-full max-w-full"
+                        />
+                      </span>
+                      <span className="block text-neutral-800">
+                        {clinic.label}
+                      </span>
+                      <span className="mt-1 block text-xs font-normal text-neutral-500">
+                        {clinic.description}
+                      </span>
                     </a>
                   ))}
                 </div>
