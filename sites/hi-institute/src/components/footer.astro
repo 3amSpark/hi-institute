@@ -1,0 +1,159 @@
+---
+import Heading from "./heading";
+
+const navLinks = [
+  { href: "/", label: "Inicio" },
+  { label: "Tratamientos" },
+  { href: "/farmacia", label: "Farmacia" },
+  { label: "Clínicas" },
+  { href: "/contacto", label: "Contacto" },
+];
+
+const mapsUrl =
+  "https://www.google.com/maps/search/?api=1&query=The%20Health%20Institute%20Centro%20de%20Fertilidad%20y%20Peso%20en%20Guatemala%2C%20Avenida%20La%20Reforma%209-55%2C%20Cdad.%20de%20Guatemala%2001010";
+const mapsEmbedUrl =
+  "https://www.google.com/maps?q=The%20Health%20Institute%20Centro%20de%20Fertilidad%20y%20Peso%20en%20Guatemala%2C%20Avenida%20La%20Reforma%209-55%2C%20Cdad.%20de%20Guatemala%2001010&z=16&output=embed";
+---
+
+<footer class="text-white">
+  <section
+    class="bg-[radial-gradient(circle_at_18%_12%,rgba(29,117,184,0.34),transparent_34%),radial-gradient(circle_at_78%_8%,rgba(156,205,55,0.88),transparent_42%),linear-gradient(90deg,#b9c5d3_0%,#9ccd37_100%)] px-6 py-20 text-center md:py-24"
+  >
+    <div class="mx-auto flex max-w-3xl flex-col items-center">
+      <Heading client:visible as="h2" size="0" className="text-white">
+        Tu cuerpo ya te está hablando.<br />
+        Es momento de escucharlo.
+      </Heading>
+      <a
+        href="/contacto"
+        class="text-brand-blue mt-8 inline-flex rounded-full bg-white px-10 py-3 font-sans font-medium transition-opacity hover:opacity-90 md:text-xl"
+      >
+        ¡AGENDA TU CITA HOY!
+      </a>
+    </div>
+  </section>
+
+  <section class="text-brand-blue bg-white px-6 py-16 text-center md:py-24">
+    <div class="mx-auto max-w-6xl">
+      <Heading client:visible as="h2" size="1" className="uppercase">
+        Estamos más cerca<br />
+        de lo que crees
+      </Heading>
+
+      <div
+        class="border-brand-blue/10 mx-auto mt-12 h-96 w-full max-w-5xl overflow-hidden rounded-3xl border bg-white shadow-sm md:w-3/4"
+      >
+        <iframe
+          src={mapsEmbedUrl}
+          title="HI Institute en Avenida La Reforma 9-55, Ciudad de Guatemala"
+          class="h-full w-full"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <a
+        href={mapsUrl}
+        target="_blank"
+        rel="noreferrer"
+        class="text-brand-blue mt-5 inline-flex font-sans font-medium transition-opacity hover:opacity-75"
+      >
+        Abrir en Google Maps
+      </a>
+    </div>
+  </section>
+
+  <section
+    class="bg-[radial-gradient(circle_at_28%_18%,rgba(156,205,55,0.22),transparent_32%),radial-gradient(circle_at_74%_88%,rgba(29,117,184,0.32),transparent_38%),linear-gradient(100deg,#5fa1c0_0%,#79b4b6_52%,#62a0bd_100%)] px-6 py-14 md:py-20 lg:px-10"
+  >
+    <div
+      class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.1fr_1.2fr_1.1fr] lg:items-start"
+    >
+      <div>
+        <a href="/" aria-label="HI Institute International home">
+          <img
+            src="/Asset%201.svg"
+            alt="HI Health Institute International"
+            class="h-auto w-72 max-w-full"
+            loading="lazy"
+          />
+        </a>
+      </div>
+
+      <nav
+        aria-label="Footer navigation"
+        class="grid gap-x-10 gap-y-6 sm:grid-cols-2"
+      >
+        {
+          navLinks.map((link) =>
+            link.href ? (
+              <a
+                href={link.href}
+                class="font-sans text-xl font-medium text-white transition-opacity hover:opacity-75"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <span class="font-sans text-xl font-medium text-white/80">
+                {link.label}
+              </span>
+            ),
+          )
+        }
+      </nav>
+
+      <div>
+        <Heading
+          client:visible
+          as="h2"
+          size="-2"
+          className="text-white uppercase"
+        >
+          Recibe noticias de HI Institute
+        </Heading>
+        <p class="mt-4 text-sm font-medium text-white/90 md:text-base">
+          Sé la primera persona en conocer nuevos tratamientos, suplementos y
+          más.
+        </p>
+        <form
+          class="mt-5 flex max-w-lg overflow-hidden rounded-full bg-white shadow-sm"
+          action="#"
+        >
+          <label class="sr-only" for="footer-email">Email</label>
+          <input
+            id="footer-email"
+            type="email"
+            name="email"
+            placeholder="email"
+            class="min-w-0 flex-1 bg-transparent px-5 py-3 text-lg text-neutral-800 outline-none placeholder:text-neutral-400"
+          />
+          <button
+            type="submit"
+            aria-label="Suscribirse"
+            class="bg-brand-blue hover:bg-brand-dark-blue flex w-16 items-center justify-center text-white transition-colors"
+          >
+            <svg
+              class="size-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <p
+      class="mx-auto mt-10 max-w-7xl text-sm font-medium text-white md:text-base"
+    >
+      HI Institute forma parte de A Tu Origen, Sociedad Anónima. © 2024. Todos
+      los derechos reservados
+    </p>
+  </section>
+</footer>

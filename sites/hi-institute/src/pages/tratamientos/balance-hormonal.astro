@@ -1,0 +1,70 @@
+---
+import balance from "../../assets/balance/banner.jpg";
+import boxing from "../../assets/balance/boxing.jpg";
+import Footer from "../../components/footer.astro";
+import Navbar from "../../components/navbar";
+import TreatmentPage from "../../components/treatment-page.astro";
+import TreatmentSection from "../../components/treatment-section.astro";
+import Root from "../../layouts/root.astro";
+---
+
+<Root
+  title="Tratamiento de Balance Hormonal | HI Institute"
+  description="Tratamiento de balance hormonal en HI Institute, enfocado en identificar desbalances y recuperar energía, claridad y bienestar."
+>
+  <Navbar client:load currentPath={Astro.url.pathname} />
+  <TreatmentPage
+    heroImage={balance}
+    heroImageAlt="Persona con energía y bienestar en un ambiente moderno"
+    heroTitle="Tus hormonas no trabajan solas."
+    heroDescription="Cuando pierden equilibrio, tu cuerpo lo siente en todo."
+    treatmentName="Balance Hormonal"
+  >
+    <p>
+      En HI Institute evaluamos el balance hormonal como parte de un sistema:
+      metabolismo, sueño, estrés, composición corporal, energía y etapa de vida.
+    </p>
+
+    <p>
+      No perseguimos síntomas aislados.<br />
+      Buscamos el patrón que explica cómo te sientes.
+    </p>
+
+    <Fragment slot="sections">
+      <TreatmentSection
+        title="Todo en tu cuerpo depende de tus hormonas."
+        image={boxing}
+        imageAlt="Persona con bienestar y energía"
+      >
+        <p>
+          Tu energía, tu peso, tu estado de ánimo, tu sueño y tu fertilidad no
+          son casualidad. Cuando tus hormonas están en balance, todo fluye.
+          Cuando no lo están, tu cuerpo empieza a avisarte.
+        </p>
+        <p>
+          Cansancio constante, ansiedad, cambios de ánimo, dificultad para bajar
+          de peso, problemas para dormir o baja libido pueden ser señales de que
+          algo interno no está funcionando como debería.
+        </p>
+      </TreatmentSection>
+
+      <TreatmentSection
+        title="Un plan hormonal debe mirar el sistema completo."
+        image={balance}
+        imageAlt="Ambiente de bienestar y salud hormonal"
+        reverse
+      >
+        <p>
+          Revisamos síntomas, laboratorios, historial, hábitos y etapa de vida
+          para entender si el desbalance viene de tiroides, insulina, cortisol,
+          hormonas sexuales o una combinación de factores.
+        </p>
+        <p>
+          El objetivo es ayudarte a recuperar claridad, energía y estabilidad
+          sin tratar cada síntoma como si estuviera separado del resto.
+        </p>
+      </TreatmentSection>
+    </Fragment>
+  </TreatmentPage>
+  <Footer />
+</Root>

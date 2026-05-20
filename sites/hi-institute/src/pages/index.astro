@@ -2,14 +2,37 @@
 import hero1 from "../assets/hero/1.webp";
 import hero2 from "../assets/hero/2.webp";
 import hero3 from "../assets/hero/3.webp";
+import Footer from "../components/footer.astro";
+import FounderIntro from "../components/founder-intro.astro";
 import Hero from "../components/hero";
+import MetabolicCta from "../components/metabolic-cta.astro";
 import Navbar from "../components/navbar";
+import Steps from "../components/steps";
+import WhyUs from "../components/why-us";
 import Root from "../layouts/root.astro";
 
 const heroImages = [
-  { src: hero1.src, alt: "HI Institute treatment room" },
-  { src: hero2.src, alt: "HI Institute care experience" },
-  { src: hero3.src, alt: "HI Institute clinical space" },
+  {
+    src: hero3.src,
+    alt: "HI Institute clinical space",
+    title: "Expertos en metabolismo y equilibrio hormonal",
+    description:
+      "Evaluamos metabolismo, hormonas y hábitos para entender qué necesita tu cuerpo.",
+  },
+  {
+    src: hero1.src,
+    alt: "HI Institute treatment room",
+    title: "Recupera energía desde adentro",
+    description:
+      "Planes médicos personalizados para recuperar energía, composición corporal y salud metabólica.",
+  },
+  {
+    src: hero2.src,
+    alt: "HI Institute care experience",
+    title: "Salud femenina en cada etapa",
+    description:
+      "Fertilidad, ginecología y balance hormonal con una mirada integral de tu bienestar.",
+  },
 ];
 ---
 
@@ -17,16 +40,17 @@ const heroImages = [
   title="HI Institute"
   description="HI Institute is preparing a new, accurate website experience."
 >
-  <Navbar client:load />
+  <Navbar client:load currentPath={Astro.url.pathname} />
   <Hero
     client:load
-    title="Health Institute International"
-    description="Tratamientos, farmacia y clínicas con atención especializada."
+    title="Expertos en metabolismo y equilibrio hormonal"
     align="left"
     images={heroImages}
-    actions={[
-      { href: "/contacto", label: "Contacto" },
-      { href: "/tratamientos", label: "Ver tratamientos" },
-    ]}
+    actions={[{ href: "/contacto", label: "AGENDA TU CITA AHORA" }]}
   />
+  <FounderIntro />
+  <MetabolicCta />
+  <Steps client:visible />
+  <WhyUs client:visible />
+  <Footer />
 </Root>

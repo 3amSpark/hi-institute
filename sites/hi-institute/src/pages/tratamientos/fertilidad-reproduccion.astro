@@ -1,0 +1,69 @@
+---
+import fertilidad from "../../assets/fertilidad/banner.webp";
+import Footer from "../../components/footer.astro";
+import Navbar from "../../components/navbar";
+import TreatmentPage from "../../components/treatment-page.astro";
+import TreatmentSection from "../../components/treatment-section.astro";
+import Root from "../../layouts/root.astro";
+---
+
+<Root
+  title="Tratamiento de Fertilidad y Reproducción | HI Institute"
+  description="Acompañamiento integral de fertilidad y reproducción en HI Institute, con una mirada metabólica, hormonal y personalizada."
+>
+  <Navbar client:load currentPath={Astro.url.pathname} />
+  <TreatmentPage
+    heroImage={fertilidad}
+    heroImageAlt="Pareja recibiendo acompañamiento médico de fertilidad"
+    heroTitle="Fertilidad también es equilibrio."
+    heroDescription="Miramos más allá del intento para entender qué necesita tu cuerpo."
+    treatmentName="Fertilidad & Reproducción"
+  >
+    <p>
+      En HI Institute acompañamos la fertilidad desde una visión integral:
+      metabolismo, hormonas, ciclo, nutrición, antecedentes y estilo de vida.
+    </p>
+
+    <p>
+      No tratamos cada caso como un protocolo genérico.<br />
+      Buscamos el origen de lo que puede estar interfiriendo.
+    </p>
+
+    <Fragment slot="sections">
+      <TreatmentSection
+        title="La fertilidad no depende de un solo factor."
+        image={fertilidad}
+        imageAlt="Acompañamiento médico en fertilidad"
+      >
+        <p>
+          El ciclo, la ovulación, la calidad metabólica, la inflamación, el
+          estrés, la tiroides y las hormonas pueden influir en la capacidad del
+          cuerpo para prepararse para un embarazo.
+        </p>
+        <p>
+          Por eso estudiamos el contexto completo antes de decidir un camino.
+          Queremos entender qué necesita tu cuerpo y qué barreras podemos
+          corregir.
+        </p>
+      </TreatmentSection>
+
+      <TreatmentSection
+        title="Acompañamiento claro, humano y personalizado."
+        image={fertilidad}
+        imageAlt="Pareja en proceso de fertilidad"
+        reverse
+      >
+        <p>
+          Te guiamos con evaluación médica, seguimiento y recomendaciones
+          concretas para fortalecer tu salud reproductiva desde la raíz.
+        </p>
+        <p>
+          Cada plan se adapta a tu historia, tus tiempos y tus objetivos, sin
+          perder de vista que la fertilidad también necesita salud metabólica y
+          hormonal.
+        </p>
+      </TreatmentSection>
+    </Fragment>
+  </TreatmentPage>
+  <Footer />
+</Root>

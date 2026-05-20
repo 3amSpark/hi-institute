@@ -1,0 +1,70 @@
+---
+import ginecologia from "../../assets/ginecologia/banner.jpg";
+import Footer from "../../components/footer.astro";
+import girl from "../../assets/ginecologia/girl.jpg";
+import Navbar from "../../components/navbar";
+import TreatmentPage from "../../components/treatment-page.astro";
+import TreatmentSection from "../../components/treatment-section.astro";
+import Root from "../../layouts/root.astro";
+---
+
+<Root
+  title="Tratamiento de Salud Femenina y Ginecológica | HI Institute"
+  description="Cuidado integral de salud femenina y ginecológica en HI Institute, enfocado en entender síntomas, hormonas y bienestar."
+>
+  <Navbar client:load currentPath={Astro.url.pathname} />
+  <TreatmentPage
+    heroImage={ginecologia}
+    heroImageAlt="Mujer en consulta de salud femenina"
+    heroTitle="Tu ciclo cuenta una historia."
+    heroDescription="La escuchamos completa para cuidar tu salud en cada etapa."
+    treatmentName="Salud Femenina & Ginecológica"
+  >
+    <p>
+      En HI Institute abordamos la salud femenina entendiendo cómo se conectan
+      ciclo, hormonas, metabolismo, síntomas y etapa de vida.
+    </p>
+
+    <p>
+      No normalizamos el dolor ni los cambios que alteran tu bienestar.<br />
+      Investigamos qué hay detrás para tratarlo con precisión.
+    </p>
+
+    <Fragment slot="sections">
+      <TreatmentSection
+        title="Tu ciclo, tus síntomas y tus hormonas están conectados."
+        image={girl}
+        imageAlt="Consulta de salud femenina"
+      >
+        <p>
+          Dolor, irregularidad, cambios de flujo, acné, cansancio, inflamación o
+          cambios de ánimo no deberían tratarse como molestias aisladas. Muchas
+          veces son señales de un desbalance que necesita una evaluación más
+          completa.
+        </p>
+        <p>
+          Acompañamos cada etapa con una mirada clínica e integral, desde salud
+          menstrual hasta transición hormonal, prevención y bienestar femenino.
+        </p>
+      </TreatmentSection>
+
+      <TreatmentSection
+        title="Cuidarte también significa entender qué está pasando."
+        image={ginecologia}
+        imageAlt="Mujer recibiendo acompañamiento ginecológico"
+        reverse
+      >
+        <p>
+          Nuestro enfoque une consulta, estudios, historia clínica y hábitos
+          para definir un plan que responda a tu etapa de vida y a lo que tu
+          cuerpo necesita ahora.
+        </p>
+        <p>
+          Buscamos que tengas respuestas claras, seguimiento y un tratamiento
+          que no minimice lo que sientes.
+        </p>
+      </TreatmentSection>
+    </Fragment>
+  </TreatmentPage>
+  <Footer />
+</Root>

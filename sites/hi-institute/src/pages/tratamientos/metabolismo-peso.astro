@@ -1,0 +1,106 @@
+---
+import metabolismo from "../../assets/metabolismo/banner.jpg";
+import corporal3d from "../../assets/metabolismo/3d.png";
+import lady from "../../assets/metabolismo/jeans.jpg";
+import FadeIn from "../../components/fade-in";
+import Footer from "../../components/footer.astro";
+import Heading from "../../components/heading";
+import Navbar from "../../components/navbar";
+import TreatmentPage from "../../components/treatment-page.astro";
+import TreatmentSection from "../../components/treatment-section.astro";
+import Root from "../../layouts/root.astro";
+---
+
+<Root
+  title="Tratamiento de Metabolismo y Peso | HI Institute"
+  description="Tratamiento integral de metabolismo y peso en HI Institute, enfocado en encontrar la causa y recuperar equilibrio metabólico."
+>
+  <Navbar client:load currentPath={Astro.url.pathname} />
+  <TreatmentPage
+    heroImage={metabolismo}
+    heroImageAlt="Persona enfocada en recuperar su salud metabólica"
+    heroTitle="Tu peso no define tu salud metabólica."
+    heroDescription="Entendemos qué está frenando a tu cuerpo antes de tratarlo."
+    treatmentName="Metabolismo & Peso"
+  >
+    <p>
+      En HI Institute vemos el peso como una señal, no como el problema
+      completo. Evaluamos metabolismo, hormonas, hábitos y marcadores clínicos
+      para entender qué necesita tu cuerpo.
+    </p>
+
+    <p>
+      No buscamos soluciones temporales.<br />
+      Diseñamos un plan para recuperar equilibrio y sostener resultados.
+    </p>
+
+    <Fragment slot="sections">
+      <TreatmentSection
+        title="Tu peso no depende solo de comer más o menos."
+        image={lady}
+        imageAlt="Persona revisando su progreso metabólico"
+      >
+        <p>
+          Cuando el metabolismo y las hormonas están fuera de balance, bajar de
+          peso se vuelve cada vez más difícil. Aunque hagas dieta. Aunque hagas
+          ejercicio. Aunque lo intentes una y otra vez.
+        </p>
+        <p>
+          La resistencia a la insulina, la inflamación, el estrés hormonal y los
+          cambios metabólicos pueden hacer que tu cuerpo almacene grasa, retenga
+          líquidos o pierda energía.
+        </p>
+        <p>
+          Por eso no tratamos únicamente el peso. Tratamos lo que está haciendo
+          que tu cuerpo no responda como debería.
+        </p>
+      </TreatmentSection>
+
+      <section class="bg-[#dfe4e7] px-6 py-14 md:py-20 lg:px-10">
+        <div
+          class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.5fr_0.75fr] md:items-center lg:gap-16"
+        >
+          <FadeIn client:visible>
+            <img
+              src={corporal3d.src}
+              alt="Análisis corporal 3D de composición y distribución corporal"
+              loading="lazy"
+              decoding="async"
+              class="w-full bg-white object-cover"
+            />
+          </FadeIn>
+
+          <div>
+            <Heading
+              client:visible
+              as="h2"
+              size="-2"
+              className="text-brand-blue uppercase"
+            >
+              3D corporal
+            </Heading>
+            <FadeIn
+              client:visible
+              as="div"
+              className="mt-6 space-y-6 text-lg leading-8 text-neutral-600"
+              delay={0.1}
+            >
+              <p>
+                Tu cuerpo habla más de lo que imaginas. Este análisis nos
+                permite entender cómo está funcionando tu metabolismo,
+                distribución de grasa, masa muscular y composición corporal para
+                crear un tratamiento realmente personalizado.
+              </p>
+              <p>
+                Con esa información podemos medir progreso de una forma más
+                precisa: no solo por el número en la báscula, sino por los
+                cambios que suceden en tu cuerpo.
+              </p>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+    </Fragment>
+  </TreatmentPage>
+  <Footer />
+</Root>
