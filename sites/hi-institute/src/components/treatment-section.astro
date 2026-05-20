@@ -1,11 +1,10 @@
 ---
-import type { ImageMetadata } from "astro";
 import FadeIn from "./fade-in";
 import Heading from "./heading";
 
 interface Props {
   title: string;
-  image?: ImageMetadata;
+  image?: string;
   imageAlt?: string;
   reverse?: boolean;
   placeholderLabel?: string;
@@ -36,7 +35,7 @@ const {
       {
         image ? (
           <img
-            src={image.src}
+            src={image}
             alt={imageAlt}
             loading="lazy"
             decoding="async"

@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import whyUsImage from "../assets/why-us.webp";
 import Heading from "./heading";
 
 const reasons = [
@@ -47,7 +46,7 @@ export default function WhyUs() {
   return (
     <section className="relative isolate overflow-hidden bg-neutral-950 px-6 py-20 text-white md:min-h-[760px] md:py-24 lg:px-10">
       <img
-        src={whyUsImage.src}
+        src="/assets/why-us.webp"
         alt="Personas representando cuidado integral en HI Institute"
         className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
         loading="lazy"

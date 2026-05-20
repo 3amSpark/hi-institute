@@ -1,13 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import femcareLogo from "../assets/clinicas/femcare.svg";
-import initiaLogo from "../assets/clinicas/initia.svg";
-import skinLogo from "../assets/clinicas/skin.svg";
-import logo from "../assets/logo.svg";
-import balanceHormonal from "../assets/tratamientos/balance-hormonal.jpg";
-import diabetes from "../assets/tratamientos/diabetes.jpg";
-import fertilidad from "../assets/tratamientos/fertilidad.jpg";
-import ginecologia from "../assets/tratamientos/ginecologia.jpg";
-import metabolismo from "../assets/tratamientos/metabolismo.jpg";
+
+const logo = "/assets/logo.svg";
 
 const navLinks = [
   { href: "/", label: "Inicio" },
@@ -19,27 +12,27 @@ const treatments = [
   {
     href: "/tratamientos/metabolismo-peso",
     label: "Metabolismo & Peso",
-    image: metabolismo,
+    image: "/assets/tratamientos/metabolismo.jpg",
   },
   {
     href: "/tratamientos/fertilidad-reproduccion",
     label: "Fertilidad & Reproducción",
-    image: fertilidad,
+    image: "/assets/tratamientos/fertilidad.jpg",
   },
   {
     href: "/tratamientos/salud-femenina-ginecologica",
     label: "Salud Femenina & Ginecológica",
-    image: ginecologia,
+    image: "/assets/tratamientos/ginecologia.jpg",
   },
   {
     href: "/tratamientos/balance-hormonal",
     label: "Balance Hormonal",
-    image: balanceHormonal,
+    image: "/assets/tratamientos/balance-hormonal.jpg",
   },
   {
     href: "/tratamientos/diabetes",
     label: "Diabetes",
-    image: diabetes,
+    image: "/assets/tratamientos/diabetes.jpg",
   },
 ];
 
@@ -48,19 +41,19 @@ const clinics = [
     href: "https://hiskinbeauty.com/",
     label: "HI Skin & Beauty",
     description: "Dermatología y estética médica",
-    logo: skinLogo,
+    logo: "/assets/clinicas/skin.svg",
   },
   {
     href: "https://femcare.hiinstitute.com/",
     label: "HI Fem Care",
     description: "Ginecología y salud íntima",
-    logo: femcareLogo,
+    logo: "/assets/clinicas/femcare.svg",
   },
   {
     href: "https://initiafertilitycenter.com/",
     label: "initia",
     description: "Fertilidad accesible",
-    logo: initiaLogo,
+    logo: "/assets/clinicas/initia.svg",
   },
 ];
 
@@ -298,7 +291,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                     >
                       <span className="flex size-9 shrink-0 items-center justify-center">
                         <img
-                          src={clinic.logo.src}
+                          src={clinic.logo}
                           alt=""
                           className="max-h-full max-w-full"
                         />
@@ -332,7 +325,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
           <a href="/" aria-label="HI Institute International home">
             <img
-              src={logo.src}
+              src={logo}
               alt="HI Health Institute International"
               className="h-auto w-45 max-w-full md:w-50"
             />
@@ -389,7 +382,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                       className="hover:text-brand-blue block w-50 text-center font-sans text-sm leading-none font-medium text-neutral-600 transition-colors"
                     >
                       <img
-                        src={treatment.image.src}
+                        src={treatment.image}
                         alt=""
                         loading="lazy"
                         decoding="async"
@@ -450,7 +443,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                     >
                       <span className="mb-4 flex aspect-square w-full items-center justify-center bg-neutral-100 p-10">
                         <img
-                          src={clinic.logo.src}
+                          src={clinic.logo}
                           alt=""
                           loading="lazy"
                           decoding="async"
