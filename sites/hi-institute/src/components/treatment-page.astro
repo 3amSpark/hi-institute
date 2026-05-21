@@ -1,6 +1,5 @@
 ---
 import FadeIn from "./fade-in";
-import Heading from "./heading";
 
 interface Props {
   heroImage: string;
@@ -31,18 +30,17 @@ const { heroImage, heroImageAlt, heroTitle, heroDescription, treatmentName } =
       class="relative z-10 mx-auto flex min-h-[50svh] max-w-7xl items-center justify-center px-6 py-20 text-center lg:px-10"
     >
       <div class="max-w-4xl">
-        <Heading
+        <FadeIn
           client:visible
           as="h1"
-          size="-1"
-          className="tracking-tight text-white uppercase text-shadow-md/20"
+          className="text-(length:--step-5)/13 font-semibold tracking-tight text-white"
         >
           {heroTitle}
-        </Heading>
+        </FadeIn>
         <FadeIn
           client:visible
           as="p"
-          className="mx-auto mt-4 max-w-3xl text-xl leading-snug text-white text-shadow-md/20 md:text-3xl"
+          className="mx-auto mt-4 max-w-3xl text-(length:--step-0)/8 text-white"
           delay={0.1}
         >
           {heroDescription}
@@ -55,19 +53,18 @@ const { heroImage, heroImageAlt, heroTitle, heroDescription, treatmentName } =
     <div
       class="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.85fr_1.15fr] md:gap-16 lg:gap-24"
     >
-      <Heading
+      <FadeIn
         client:visible
         as="h2"
-        size="-1"
-        className="text-brand-blue tracking-[0.35em] uppercase"
+        className="text-brand-blue text-(length:--step-2)/9 font-semibold"
       >
         {treatmentName}
-      </Heading>
+      </FadeIn>
 
       <FadeIn
         client:visible
         as="div"
-        className="space-y-8 text-lg leading-8 text-neutral-600 md:text-xl md:leading-9"
+        className="space-y-8 text-(length:--step-0)/8 text-neutral-600"
         delay={0.1}
       >
         <slot />

@@ -22,6 +22,8 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -29,7 +31,7 @@ const {
     <meta name="apple-mobile-web-app-title" content="HI Institute" />
     <link rel="manifest" href="/site.webmanifest" />
   </head>
-  <body>
+  <body class="font-sans">
     <slot />
     <GlassixWidget />
   </body>

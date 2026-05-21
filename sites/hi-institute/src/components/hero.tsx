@@ -79,10 +79,8 @@ export default function Hero({
   if (!activeImage) return null;
 
   return (
-    <section className="relative isolate min-h-svh overflow-hidden bg-neutral-950">
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute z-10 h-full w-full bg-linear-to-tr from-black/50 via-transparent to-transparent mix-blend-overlay"></div>
-
+    <section className="relative isolate min-h-dvh overflow-hidden bg-neutral-950">
+      <div className="absolute inset-0 -z-10 h-full overflow-hidden">
         <motion.div
           className="flex h-full w-full"
           animate={{ x: `${displayedIndex * -100}%` }}
@@ -101,21 +99,21 @@ export default function Hero({
         </motion.div>
       </div>
 
-      <div className="mx-auto flex min-h-svh max-w-7xl items-center px-6 lg:px-10">
-        <div className={`flex max-w-2xl flex-col ${contentClass[align]}`}>
+      <div className="mx-auto flex min-h-dvh max-w-7xl items-center px-6 lg:px-10">
+        <div className={`flex max-w-2xl flex-col gap-4 ${contentClass[align]}`}>
           <FadeIn
             key={activeTitle}
             as="h1"
-            className="font-sans text-(length:--step-1) leading-snug font-medium text-white uppercase text-shadow-md/5"
+            className="text-(length:--step-5)/14 font-semibold tracking-tight text-white"
           >
-            {activeTitle}
+            {activeTitle}.
           </FadeIn>
 
           {activeDescription ? (
             <FadeIn
               key={activeDescription}
               as="p"
-              className="mt-4 max-w-xl text-lg leading-8 text-white/80 text-shadow-md/5"
+              className="max-w-xl text-(length:--step-0) leading-8 text-white"
               delay={0.1}
             >
               {activeDescription}
@@ -125,14 +123,14 @@ export default function Hero({
           {actions.length > 0 ? (
             <FadeIn
               key={`actions-${displayedIndex}`}
-              className="mt-8 flex flex-wrap gap-3"
+              className="flex flex-wrap gap-3"
               delay={0.2}
             >
               {actions.map((action) => (
                 <a
                   key={action.href}
                   href={action.href}
-                  className="group inline-flex w-fit items-center gap-2 rounded-full bg-linear-to-r from-[#31ADD0] via-[#8FC746] to-[#31ADD0] bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-4 pl-5 font-sans text-lg font-medium text-white shadow-lg shadow-[#31ADD0]/20 transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] hover:shadow-[#8FC746]/30"
+                  className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-black bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-4 pl-5 text-(length:--step--0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%]"
                 >
                   <span>{action.label}</span>
                   <svg

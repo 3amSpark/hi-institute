@@ -1,6 +1,5 @@
 ---
 import FadeIn from "./fade-in";
-import Heading from "./heading";
 ---
 
 <section class="bg-white">
@@ -24,15 +23,14 @@ import Heading from "./heading";
       </div>
 
       <div class="w-full lg:w-1/2">
-        <Heading
+        <FadeIn
           client:visible
           as="h2"
-          size="0"
-          className="text-center tracking-[0.28em] text-white uppercase lg:text-left"
+          className="font-clash text-center text-(length:--step-4)/none font-medium tracking-[0.2em] text-white uppercase lg:text-left"
         >
           Feel Better<br />
           Than Ever
-        </Heading>
+        </FadeIn>
       </div>
     </div>
   </div>
@@ -45,7 +43,7 @@ import Heading from "./heading";
         <FadeIn
           client:visible
           as="div"
-          className="max-w-xl text-base leading-8 text-neutral-600 lg:text-lg"
+          className="max-w-xl text-(length:--step-0)/8 text-neutral-600"
           delay={0.1}
         >
           <p>

@@ -74,15 +74,14 @@ const isActivePath = (currentPath: string, href: string) => {
 };
 
 const linkClassName = (isActive: boolean) =>
-  `group relative inline-flex items-center px-3 py-1.5 font-sans font-medium transition-colors duration-150 hover:text-neutral-800 ${
-    isActive ? "text-neutral-900" : "text-neutral-500/80"
-  }`;
+  `group relative inline-flex items-center font-[480]  px-2 py-1.5 text-(length:--step--1) transition-colors duration-150 hover:text-neutral-800
+`;
 
 const underlineClassName =
   "from-brand-blue to-brand-green absolute top-5/6 left-1/2 h-0.5 w-3/4 origin-left -translate-x-1/2 scale-x-0 bg-black bg-linear-to-r transition-all duration-200 ease-out group-hover:scale-x-100";
 
 const mobileLinkClassName = (isActive: boolean, isChild = false) =>
-  `flex min-h-18 items-center border-b border-brand-blue/10 px-6 font-sans text-lg font-medium transition-colors hover:text-brand-blue ${
+  `flex min-h-18 items-center border-b border-brand-blue/10 px-6 text-lg font-medium transition-colors hover:text-brand-blue ${
     isActive ? "text-neutral-900" : "text-neutral-700"
   } ${isChild ? "bg-brand-blue/5 pl-10 text-base" : ""}`;
 
@@ -114,6 +113,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
   const treatmentsCloseTimeout = useRef<number | undefined>(undefined);
   const clinicsCloseTimeout = useRef<number | undefined>(undefined);
   const isTreatmentsActive = isActivePath(currentPath, "/tratamientos");
+  const isDesktopSubmenuOpen = isTreatmentsOpen || isClinicsOpen;
 
   useEffect(() => {
     document.body.classList.toggle("overflow-hidden", isMobileOpen);
@@ -296,7 +296,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                           className="max-h-full max-w-full"
                         />
                       </span>
-                      <span className="block font-sans text-base font-medium">
+                      <span className="block text-base font-medium">
                         {clinic.label}
                       </span>
                     </a>
@@ -320,18 +320,18 @@ export default function Navbar({ currentPath }: NavbarProps) {
           </a>
         </div>
       </div>
-
+      {/**/}
+      <div
+        aria-hidden="true"
+        className={`fixed inset-0 z-40 hidden bg-black/30 transition-opacity duration-200 lg:block ${
+          isDesktopSubmenuOpen
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
+        }`}
+      />
       <header className="fixed top-0 right-0 left-0 z-50 bg-white">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-          <a href="/" aria-label="HI Institute International home">
-            <img
-              src={logo}
-              alt="HI Health Institute International"
-              className="h-auto w-45 max-w-full md:w-50"
-            />
-          </a>
-
-          <div className="hidden items-center gap-1.5 text-sm lg:flex">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-10">
+          <div className="hidden items-center gap-0.5 lg:flex lg:justify-self-start">
             <a
               href={navLinks[0].href}
               aria-current={
@@ -363,7 +363,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                 onClick={() => setIsTreatmentsOpen((isOpen) => !isOpen)}
               >
                 Tratamientos
-                <ChevronDown className="mt-0.5 ml-1 size-4 text-neutral-500/80 transition-transform duration-300 group-hover:rotate-180 group-hover:text-neutral-950" />
+                <ChevronDown className="ml-1 size-4 text-neutral-800 transition-transform duration-300 group-hover:rotate-180 group-hover:text-neutral-950" />
                 <span aria-hidden="true" className={underlineClassName}></span>
               </button>
 
@@ -379,7 +379,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                     <a
                       key={treatment.href}
                       href={treatment.href}
-                      className="hover:text-brand-blue block w-50 text-center font-sans text-sm leading-none font-medium text-neutral-600 transition-colors"
+                      className="hover:text-brand-dark-blue block w-full text-(length:--step--1) leading-none font-medium text-balance text-neutral-800 transition-colors"
                     >
                       <img
                         src={treatment.image}
@@ -394,7 +394,21 @@ export default function Navbar({ currentPath }: NavbarProps) {
                 </div>
               </div>
             </div>
+          </div>
 
+          <a
+            href="/"
+            aria-label="HI Institute International home"
+            className="lg:justify-self-center"
+          >
+            <img
+              src={logo}
+              alt="HI Health Institute International"
+              className="h-auto w-45 max-w-full md:w-45"
+            />
+          </a>
+
+          <div className="hidden items-center gap-0.5 lg:flex lg:justify-self-end">
             <a
               href="/farmacia"
               aria-current={
@@ -423,7 +437,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                 onClick={() => setIsClinicsOpen((isOpen) => !isOpen)}
               >
                 Clínicas
-                <ChevronDown className="mt-0.5 ml-1 size-4 text-neutral-500/80 transition-transform duration-300 group-hover:rotate-180 group-hover:text-neutral-950" />
+                <ChevronDown className="ml-1 size-4 transition-transform duration-300 group-hover:rotate-180 group-hover:text-neutral-950" />
                 <span aria-hidden="true" className={underlineClassName}></span>
               </button>
 
@@ -439,7 +453,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                     <a
                       key={clinic.href}
                       href={clinic.href}
-                      className="hover:text-brand-blue block w-46 text-center font-sans text-sm leading-none font-medium text-neutral-600 transition-colors"
+                      className="hover:text-brand-dark-blue block w-full text-(length:--step--1) leading-none font-medium text-balance text-neutral-800 transition-colors"
                     >
                       <span className="mb-4 flex aspect-square w-full items-center justify-center bg-neutral-100 p-10">
                         <img

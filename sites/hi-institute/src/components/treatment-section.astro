@@ -1,6 +1,5 @@
 ---
 import FadeIn from "./fade-in";
-import Heading from "./heading";
 
 interface Props {
   title: string;
@@ -43,7 +42,7 @@ const {
           />
         ) : (
           <div class="relative flex aspect-[4/3] w-full items-center justify-center bg-neutral-100 p-10 text-center">
-            <span class="text-brand-blue font-sans text-3xl font-medium tracking-[0.12em] uppercase">
+            <span class="text-brand-blue text-(length:--step-1) font-semibold tracking-[0.12em]">
               {placeholderLabel}
             </span>
           </div>
@@ -52,18 +51,17 @@ const {
     </FadeIn>
 
     <div class="w-full md:w-1/2">
-      <Heading
+      <FadeIn
         client:visible
         as="h2"
-        size="0"
-        className="text-brand-blue max-w-xl"
+        className="text-brand-blue max-w-xl text-(length:--step-3)/10 font-semibold"
       >
         {title}
-      </Heading>
+      </FadeIn>
       <FadeIn
         client:visible
         as="div"
-        className="mt-8 space-y-6 text-lg leading-8 text-neutral-600"
+        className="mt-8 space-y-6 text-(length:--step-0)/8 text-neutral-600"
         delay={0.1}
       >
         <slot />

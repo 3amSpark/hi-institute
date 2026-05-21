@@ -1,5 +1,5 @@
 ---
-import Heading from "../components/heading";
+import FadeIn from "../components/fade-in";
 import Navbar from "../components/navbar";
 import Root from "../layouts/root.astro";
 
@@ -51,17 +51,16 @@ const socialLinks = [
       </div>
 
       <div class="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
-        <Heading
+        <FadeIn
           client:visible
           as="h1"
-          size="0"
-          className="max-w-3xl text-white text-shadow-md/10"
+          className="max-w-3xl text-(length:--step-3)/10 font-medium tracking-tight text-white text-shadow-md/10"
         >
           ¿No te sientes bien y no sabes<br class="hidden md:block" />
           por dónde empezar?
-        </Heading>
+        </FadeIn>
 
-        <div class="mt-10 space-y-6 text-xl leading-tight md:text-2xl">
+        <div class="mt-10 space-y-6 text-(length:--step-0)/8">
           <p>
             No tienes que resolverlo solo.<br />
             Estamos aquí para escucharte y entender tu cuerpo.
@@ -79,7 +78,7 @@ const socialLinks = [
           href={whatsappUrl}
           target="_blank"
           rel="noreferrer"
-          class="to-brand-green mt-24 inline-flex min-w-72 justify-center rounded-full bg-linear-to-r from-[#31ADD0] px-10 py-2 font-sans text-xl font-medium text-white transition-opacity hover:opacity-90 md:min-w-80 md:text-2xl"
+          class="to-brand-green mt-24 inline-flex min-w-72 justify-center rounded-full bg-linear-to-r from-[#31ADD0] px-10 py-2 text-(length:--step-0) font-medium text-white transition-opacity hover:opacity-90 md:min-w-80"
         >
           EMPIEZA AQUÍ
         </a>

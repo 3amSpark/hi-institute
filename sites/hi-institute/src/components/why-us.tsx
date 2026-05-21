@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import Heading from "./heading";
+import FadeIn from "./fade-in";
 
 const reasons = [
   {
@@ -55,13 +55,12 @@ export default function WhyUs() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_14%,rgba(49,173,208,0.68),transparent_34%),radial-gradient(circle_at_88%_12%,rgba(156,205,55,0.72),transparent_34%),linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.52))]" />
 
       <div className="mx-auto flex max-w-7xl flex-col items-center">
-        <Heading
+        <FadeIn
           as="h2"
-          size="0"
-          className="max-w-3xl text-center text-white text-shadow-md/20"
+          className="max-w-3xl text-center text-(length:--step-2)/9 font-medium text-white text-shadow-md/20"
         >
           ¿Por qué HI Institute es una clínica diferente?
-        </Heading>
+        </FadeIn>
 
         <motion.div
           className="mt-16 grid w-full max-w-5xl grid-cols-1 gap-5 md:mt-24 md:grid-cols-3 md:gap-6"
@@ -76,10 +75,10 @@ export default function WhyUs() {
               className="grid grid-rows-[auto_1fr] gap-7 rounded-xl bg-white/95 p-8 text-neutral-700 shadow-xl shadow-black/10 md:row-span-2 md:grid-rows-subgrid"
               variants={reduceMotion ? undefined : cardVariants}
             >
-              <h3 className="text-brand-blue text-2xl leading-none font-medium">
+              <h3 className="text-brand-blue text-(length:--step-1)/7 font-medium">
                 {reason.title}
               </h3>
-              <p className="text-base leading-7">{reason.description}</p>
+              <p className="text-(length:--step-0)/8">{reason.description}</p>
             </motion.article>
           ))}
         </motion.div>
