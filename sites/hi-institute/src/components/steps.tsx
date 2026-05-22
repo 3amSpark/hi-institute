@@ -168,7 +168,7 @@ export default function Steps() {
                   : { ...fadeTransition, delay: 0.5 }
               }
             >
-              <h3 className="text-(length:--step-2) font-semibold tracking-wide uppercase text-shadow-sm">
+              <h3 className="text-(length:--step-2) font-medium tracking-wide uppercase text-shadow-sm">
                 {step.number}. {step.title}
               </h3>
               <p className="mt-1 text-sm leading-relaxed text-white/90 text-shadow-sm">

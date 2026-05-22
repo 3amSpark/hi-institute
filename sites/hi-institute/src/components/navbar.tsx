@@ -163,7 +163,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
       <div
         aria-hidden="true"
         onClick={() => setIsMobileOpen(false)}
-        className={`fixed inset-0 top-14 z-40 transition-all duration-200 md:top-[4.125rem] lg:hidden ${
+        className={`fixed inset-0 top-18 z-40 transition-all duration-200 lg:hidden ${
           isMobileOpen
             ? "pointer-events-auto bg-black/30"
             : "pointer-events-none bg-black/0"
@@ -171,7 +171,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
       />
 
       <div
-        className={`fixed inset-x-0 top-14 z-40 h-[calc(100dvh-3.5rem)] overflow-y-auto bg-linear-to-t from-neutral-100 to-white transition-all duration-200 md:top-[4.125rem] md:h-[calc(100dvh-4.125rem)] lg:hidden ${
+        className={`fixed inset-x-0 top-18 z-40 h-[calc(100dvh-4.5rem)] overflow-y-auto bg-linear-to-t from-neutral-100 to-white transition-all duration-200 lg:hidden ${
           isMobileOpen
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-2 opacity-0"
@@ -329,8 +329,8 @@ export default function Navbar({ currentPath }: NavbarProps) {
             : "pointer-events-none opacity-0"
         }`}
       />
-      <header className="fixed top-0 right-0 left-0 z-50 bg-white">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-10">
+      <header className="fixed top-0 right-0 left-0 z-50 h-18 bg-white">
+        <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-10">
           <div className="hidden items-center gap-0.5 lg:flex lg:justify-self-start">
             <a
               href={navLinks[0].href}

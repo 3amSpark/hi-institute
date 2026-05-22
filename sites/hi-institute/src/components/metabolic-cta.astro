@@ -3,58 +3,53 @@ import FadeIn from "./fade-in";
 ---
 
 <section
-  class="relative min-h-[680px] overflow-hidden bg-neutral-900 px-6 py-20 text-center text-white md:min-h-[720px] md:px-10 md:py-24"
+  class="relative mx-auto mb-16 overflow-hidden bg-white text-left text-white"
 >
   <img
-    src="/assets/talvez.webp"
+    src="/assets/talvez.jpg"
     alt="Persona pensando en síntomas de bienestar metabólico y hormonal"
-    class="absolute inset-0 h-full w-full object-cover object-[62%_center]"
+    class="absolute inset-0 z-0 h-full w-full object-cover object-top p-2"
     loading="lazy"
   />
-  <div
-    class="absolute inset-0 bg-linear-to-r from-black/35 via-black/10 to-transparent md:hidden"
-    aria-hidden="true"
-  >
-  </div>
 
   <div
-    class="relative z-10 mx-auto flex max-w-7xl justify-center md:justify-start"
+    class="relative z-10 mx-auto grid h-full max-w-7xl justify-around lg:grid-cols-3"
   >
-    <div class="max-w-2xl text-center md:w-1/2">
+    <div class="z-10 col-span-2 col-start-1 w-full p-8 text-left">
       <FadeIn
         client:visible
         as="h2"
-        className="text-(length:--step-1)/7 font-medium text-white uppercase text-shadow-md/10"
+        className="text-(length:--step-5)/12 font-semibold tracking-tight text-white"
       >
-        Tal vez te está pasando esto:
+        Tal vez te está pasando esto
       </FadeIn>
 
       <FadeIn
         client:visible
         as="div"
-        className="mt-10 text-(length:--step-0)/8 text-white text-shadow-md/10"
+        className="mt-8 text-(length:--step-0)/8 text-white"
         delay={0.1}
       >
-        <p>
-          Te cuesta bajar de peso aunque “comes bien”<br />
-          Te sientes cansada(o) sin razón alguna<br />
-          Tu ciclo es irregular o doloroso<br />
-          Te ha costado embarazarte<br />
-          Tienes ansiedad por azúcar o carbohidratos<br />
-          Sientes que tu cuerpo cambió... y no sabes por qué
-        </p>
+        <ul class="space-y-1 divide-neutral-200">
+          <li class="">Te cuesta bajar de peso aunque “comes bien”</li>
+          <li>Te sientes cansada(o) sin razón alguna</li>
+          <li>Tu ciclo es irregular o doloroso</li>
+          <li>Te ha costado embarazarte</li>
+          <li>Tienes ansiedad por azúcar o carbohidratos</li>
+          <li>Sientes que tu cuerpo cambió... y no sabes por qué</li>
+        </ul>
 
-        <p class="mt-10 font-medium">
+        <p class="mt-6 text-(length:--step-0)/8 font-medium">
           No es normal. Y no tienes que vivir así.
         </p>
       </FadeIn>
 
-      <FadeIn client:visible className="mt-10" delay={0.2}>
+      <FadeIn client:visible className="mt-8" delay={0.2}>
         <a
           href="/contacto"
-          class="group inline-flex min-w-64 items-center justify-center gap-2 rounded-full bg-linear-to-r from-[#31ADD0] via-[#8FC746] to-[#31ADD0] bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-4 pl-5 text-(length:--step-0) font-medium text-white shadow-lg shadow-[#31ADD0]/20 transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] hover:shadow-[#8FC746]/30"
+          class="group inline-flex items-center justify-center gap-2 rounded-full bg-black bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-4 pl-5 text-(length:--step-0) font-medium text-white duration-500 ease-out"
         >
-          <span>AGENDA TU CITA AHORA</span>
+          <span>Conocer más</span>
           <svg
             class="size-5 shrink-0 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             viewBox="0 0 24 24"

@@ -8,6 +8,7 @@ type FadeInProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
+  disableBlur?: boolean;
 };
 
 const fadeInComponents = {
@@ -28,6 +29,7 @@ export default function FadeIn({
   children,
   className,
   delay = 0,
+  disableBlur = false,
   ...props
 }: FadeInProps) {
   const reduceMotion = useReducedMotion();
@@ -37,7 +39,13 @@ export default function FadeIn({
     <Component
       className={className}
       initial={
-        reduceMotion ? false : { opacity: 0, y: 18, filter: "blur(6px)" }
+        reduceMotion
+          ? false
+          : {
+              opacity: 0,
+              y: 18,
+              filter: disableBlur ? "blur(0px)" : "blur(6px)",
+            }
       }
       whileInView={
         reduceMotion

@@ -57,7 +57,7 @@ export default function WhyUs() {
       <div className="mx-auto flex max-w-7xl flex-col items-center">
         <FadeIn
           as="h2"
-          className="max-w-3xl text-center text-(length:--step-2)/9 font-medium text-white text-shadow-md/20"
+          className="max-w-3xl text-center text-(length:--step-5)/14 font-semibold tracking-tight text-white"
         >
           ¿Por qué HI Institute es una clínica diferente?
         </FadeIn>
