@@ -135,7 +135,7 @@ export default function Hero({
                 >
                   <FadeIn>
                     <h1
-                      className={`text-(length:--step-5)/12 font-semibold tracking-tight md:text-(length:--step-6)/16 ${slideTheme.title}`}
+                      className={`text-(length:--step-5)/12 font-semibold tracking-tight text-balance md:text-(length:--step-6)/16 ${slideTheme.title}`}
                     >
                       {slideTitle}.
                     </h1>

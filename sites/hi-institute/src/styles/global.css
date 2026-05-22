@@ -1,4 +1,6 @@
 @import url("/clash-grotesk/css/clash-grotesk.css");
+@import url("/cabinet-grotesk/css/cabinet-grotesk.css");
+@import url("/switzer/css/switzer.css");
 @import "tailwindcss";
 
 :root {
@@ -20,6 +22,12 @@
     BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-clash:
     "ClashGrotesk-Variable", "ClashGrotesk-Regular", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-cabinet:
+    "CabinetGrotesk-Variable", "CabinetGrotesk-Regular", ui-sans-serif,
+    system-ui, sans-serif;
+  --font-switzer:
+    "Switzer-Variable", "Switzer-Regular", ui-sans-serif, system-ui,
     sans-serif;
 
   --color-brand-blue: #1d75b8;

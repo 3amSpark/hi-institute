@@ -63,7 +63,7 @@ export default function WhyUs() {
         </FadeIn>
 
         <motion.div
-          className="mt-16 grid w-full max-w-5xl grid-cols-1 gap-5 md:mt-24 md:grid-cols-3 md:gap-6"
+          className="mt-16 grid w-full max-w-6xl grid-cols-1 gap-5 md:mt-24 md:grid-cols-3 md:gap-6"
           variants={reduceMotion ? undefined : containerVariants}
           initial={reduceMotion ? false : "hidden"}
           whileInView={reduceMotion ? undefined : "visible"}
@@ -75,7 +75,7 @@ export default function WhyUs() {
               className="grid grid-rows-[auto_1fr] gap-7 rounded-xl bg-white/95 p-8 text-neutral-700 shadow-xl shadow-black/10 md:row-span-2 md:grid-rows-subgrid"
               variants={reduceMotion ? undefined : cardVariants}
             >
-              <h3 className="text-brand-blue text-(length:--step-1)/7 font-medium">
+              <h3 className="text-brand-blue text-(length:--step-3)/10 font-medium text-balance">
                 {reason.title}
               </h3>
               <p className="text-(length:--step-0)/8">{reason.description}</p>
