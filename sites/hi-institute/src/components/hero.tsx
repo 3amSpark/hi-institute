@@ -37,9 +37,9 @@ const slideLayoutClass = {
 
 const slideThemes = [
   {
-    title: "text-neutral-950",
+    title: "text-neutral-600",
     body: "text-neutral-800",
-    cta: "bg-neutral-950",
+    cta: "bg-neutral-600",
   },
   {
     title: "text-brand-blue",
@@ -135,7 +135,7 @@ export default function Hero({
                 >
                   <FadeIn>
                     <h1
-                      className={`text-(length:--step-5)/12 font-semibold tracking-tight text-balance md:text-(length:--step-6)/16 ${slideTheme.title}`}
+                      className={`text-(length:--step-5)/12 font-semibold tracking-tighter text-balance md:text-(length:--step-6)/16 ${slideTheme.title}`}
                     >
                       {slideTitle}.
                     </h1>

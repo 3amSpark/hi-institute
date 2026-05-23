@@ -1,6 +1,7 @@
 @import url("/clash-grotesk/css/clash-grotesk.css");
 @import url("/cabinet-grotesk/css/cabinet-grotesk.css");
 @import url("/switzer/css/switzer.css");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -20,6 +21,7 @@
   --font-sans:
     "InterVariable", "Inter", ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-grotesk: "Space Grotesk", monospaced;
   --font-clash:
     "ClashGrotesk-Variable", "ClashGrotesk-Regular", ui-sans-serif, system-ui,
     sans-serif;
@@ -27,13 +29,14 @@
     "CabinetGrotesk-Variable", "CabinetGrotesk-Regular", ui-sans-serif,
     system-ui, sans-serif;
   --font-switzer:
-    "Switzer-Variable", "Switzer-Regular", ui-sans-serif, system-ui,
-    sans-serif;
+    "Switzer-Variable", "Switzer-Regular", ui-sans-serif, system-ui, sans-serif;
 
   --color-brand-blue: #1d75b8;
   --color-brand-dark-green: #009848;
   --color-brand-green: #9ccd37;
   --color-brand-dark-blue: #19639c;
+  --color-brand-darker-blue: #0f3b5e;
+  --color-brand-darker-green: #005b2b;
 
   --step--2: clamp(0.68rem, 0.6993rem + -0.0214vw, 0.6944rem);
   --step--1: clamp(0.8333rem, 0.8278rem + 0.0247vw, 0.85rem);

@@ -9,6 +9,7 @@ type FadeInProps = {
   className?: string;
   delay?: number;
   disableBlur?: boolean;
+  amount?: number;
 };
 
 const fadeInComponents = {
@@ -29,6 +30,7 @@ export default function FadeIn({
   children,
   className,
   delay = 0,
+  amount = 0.6,
   disableBlur = false,
   ...props
 }: FadeInProps) {
@@ -52,7 +54,7 @@ export default function FadeIn({
           ? { opacity: 1 }
           : { opacity: 1, y: 0, filter: "blur(0px)" }
       }
-      viewport={{ once: true, amount: 0.6, margin: "0px 0px -10% 0px" }}
+      viewport={{ once: true, amount: amount, margin: "0px 0px -10% 0px" }}
       transition={reduceMotion ? { duration: 0 } : { ...fadeTransition, delay }}
       {...props}
     >

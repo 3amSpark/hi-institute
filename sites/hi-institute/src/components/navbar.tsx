@@ -379,7 +379,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                     <a
                       key={treatment.href}
                       href={treatment.href}
-                      className="hover:text-brand-dark-blue block w-full text-(length:--step-0) leading-none font-medium text-balance text-neutral-800 transition-colors"
+                      className="hover:text-brand-dark-blue block w-full text-(length:--step--1) leading-none font-medium text-balance text-neutral-800 transition-colors"
                     >
                       <img
                         src={treatment.image}

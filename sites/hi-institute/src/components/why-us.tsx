@@ -20,6 +20,12 @@ const reasons = [
   },
 ];
 
+const cardClassNames = [
+  "bg-neutral-600 text-white",
+  "bg-brand-green text-white",
+  "bg-brand-blue text-white",
+];
+
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -31,11 +37,10 @@ const containerVariants: Variants = {
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
+  hidden: { opacity: 0, x: 28 },
   visible: {
     opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
+    x: 0,
     transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
@@ -44,41 +49,46 @@ export default function WhyUs() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-neutral-950 px-6 py-20 text-white md:min-h-[760px] md:py-24 lg:px-10">
-      <img
-        src="/assets/why-us.webp"
-        alt="Personas representando cuidado integral en HI Institute"
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-        loading="lazy"
-        decoding="async"
-      />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_14%,rgba(49,173,208,0.68),transparent_34%),radial-gradient(circle_at_88%_12%,rgba(156,205,55,0.72),transparent_34%),linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.52))]" />
-
-      <div className="mx-auto flex max-w-7xl flex-col items-center">
-        <FadeIn
-          as="h2"
-          className="max-w-3xl text-center text-(length:--step-5)/14 font-semibold tracking-tight text-white"
-        >
-          ¿Por qué HI Institute es una clínica diferente?
-        </FadeIn>
+    <section className="m-2 my-20 overflow-hidden bg-white text-white">
+      <div className="flex flex-col gap-2 md:flex-row">
+        <div className="relative overflow-hidden md:min-h-[760px] md:basis-3/5">
+          <img
+            src="/assets/why-us.webp"
+            alt="Personas representando cuidado integral en HI Institute"
+            className="h-full w-full -scale-x-100 object-cover object-center"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-linear-to-b from-black/0 via-black/5 to-black/45" />
+          <div className="absolute inset-0 flex items-center justify-center px-6">
+            <FadeIn
+              as="h2"
+              className="max-w-4xl text-center text-(length:--step-6)/18 font-semibold tracking-tighter text-white"
+            >
+              ¿Por qué HI Institute es una clínica diferente?
+            </FadeIn>
+          </div>
+        </div>
 
         <motion.div
-          className="mt-16 grid w-full max-w-6xl grid-cols-1 gap-5 md:mt-24 md:grid-cols-3 md:gap-6"
+          className="grid grid-cols-1 grid-rows-3 gap-2 md:basis-2/5"
           variants={reduceMotion ? undefined : containerVariants}
           initial={reduceMotion ? false : "hidden"}
           whileInView={reduceMotion ? undefined : "visible"}
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={{ once: true, amount: 0.65 }}
         >
-          {reasons.map((reason) => (
+          {reasons.map((reason, index) => (
             <motion.article
               key={reason.title}
-              className="grid grid-rows-[auto_1fr] gap-7 rounded-xl bg-white/95 p-8 text-neutral-700 shadow-xl shadow-black/10 md:row-span-2 md:grid-rows-subgrid"
+              className={`${cardClassNames[index]} flex flex-col gap-4 p-6 md:p-7`}
               variants={reduceMotion ? undefined : cardVariants}
             >
-              <h3 className="text-brand-blue text-(length:--step-3)/10 font-medium text-balance">
+              <h3 className="text-(length:--step-3)/10 font-semibold tracking-tighter text-balance">
                 {reason.title}
               </h3>
-              <p className="text-(length:--step-0)/8">{reason.description}</p>
+              <p className="text-(length:--step-0)/7 opacity-85">
+                {reason.description}
+              </p>
             </motion.article>
           ))}
         </motion.div>
