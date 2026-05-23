@@ -1,7 +1,6 @@
 ---
 import FadeIn from "../../components/fade-in";
 import Footer from "../../components/footer.astro";
-import Heading from "../../components/heading";
 import Navbar from "../../components/navbar";
 import TreatmentPage from "../../components/treatment-page.astro";
 import TreatmentSection from "../../components/treatment-section.astro";
@@ -68,18 +67,17 @@ import Root from "../../layouts/root.astro";
           </FadeIn>
 
           <div>
-            <Heading
+            <FadeIn
               client:visible
               as="h2"
-              size="-2"
-              className="text-brand-blue uppercase"
+              className="text-brand-blue text-(length:--step-2)/9 font-semibold"
             >
               3D corporal
-            </Heading>
+            </FadeIn>
             <FadeIn
               client:visible
               as="div"
-              className="mt-6 space-y-6 text-lg leading-8 text-neutral-600"
+              className="mt-6 space-y-6 text-(length:--step-0)/8 text-neutral-600"
               delay={0.1}
             >
               <p>

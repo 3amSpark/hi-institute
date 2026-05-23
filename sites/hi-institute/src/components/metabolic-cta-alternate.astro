@@ -1,0 +1,97 @@
+---
+import FadeIn from "./fade-in";
+
+const signals = [
+  {
+    text: 'Te cuesta bajar de peso aunque "comes bien".',
+    label: "Metabólico",
+  },
+  {
+    text: "Te sientes cansada(o) sin razón alguna.",
+    label: "Energía",
+  },
+  {
+    text: "Tu ciclo es irregular o doloroso.",
+    label: "Hormonal",
+  },
+  {
+    text: "Te ha costado embarazarte.",
+    label: "Fertilidad",
+  },
+  {
+    text: "Tienes ansiedad por azúcar o carbohidratos.",
+    label: "Metabólico",
+  },
+  {
+    text: "Sientes que tu cuerpo cambió, y no sabes por qué.",
+    label: "Sistémico",
+  },
+];
+---
+
+<section class="mt-10 mb-20 bg-neutral-50 px-6 py-14 lg:px-24 lg:py-10">
+  <div class="mx-auto grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
+    <div class="flex flex-col justify-between">
+      <FadeIn client:visible as="div" className="max-w-2xl lg:sticky lg:top-24">
+        <h2
+          class="max-w-xl text-(length:--step-5)/12 font-semibold tracking-tighter text-neutral-600 md:text-(length:--step-6)/16"
+        >
+          Tal vez te está pasando <span class="text-brand-green">esto.</span>
+        </h2>
+
+        <p class="mt-8 max-w-xl text-(length:--step--0)/8 text-neutral-700">
+          Seis señales que escuchamos cada semana en consulta.<br />No son tu
+          personalidad.<br />Son señales de que tu cuerpo necesita una
+          evaluación más completa.
+        </p>
+
+        <div
+          class="mt-14 border-t border-neutral-300/80 pt-8 md:flex md:items-center md:justify-between md:gap-8"
+        >
+          <p
+            class="text-(length:--step-1)/9 font-medium tracking-tight text-neutral-600"
+          >
+            No es normal.<br />Y no tienes que vivir así.
+          </p>
+
+          <a
+            href="/contacto"
+            class="group bg-brand-blue mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-4 pl-5 text-(length:--step-0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] md:mt-0"
+          >
+            <span>Conocer más</span>
+            <svg
+              class="size-5 shrink-0 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M7 17 17 7"></path>
+              <path d="M8 7h9v9"></path>
+            </svg>
+          </a>
+        </div>
+      </FadeIn>
+    </div>
+
+    <FadeIn client:visible as="div">
+      <ol>
+        {
+          signals.map((signal) => (
+            <li class="border-b border-neutral-300/80 py-7 md:py-8">
+              <span class="text-(length:--step--2)/2 font-bold tracking-[0.3em] text-neutral-400 uppercase">
+                {signal.label}
+              </span>
+              <p class="mt-2 max-w-3xl text-(length:--step-2)/8 font-semibold tracking-tight text-neutral-600">
+                {signal.text}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </FadeIn>
+  </div>
+</section>

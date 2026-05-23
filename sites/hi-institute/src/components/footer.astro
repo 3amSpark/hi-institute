@@ -1,5 +1,5 @@
 ---
-import Heading from "./heading";
+import FadeIn from "./fade-in";
 
 const navLinks = [
   { href: "/", label: "Inicio" },
@@ -15,30 +15,40 @@ const mapsEmbedUrl =
   "https://www.google.com/maps?q=The%20Health%20Institute%20Centro%20de%20Fertilidad%20y%20Peso%20en%20Guatemala%2C%20Avenida%20La%20Reforma%209-55%2C%20Cdad.%20de%20Guatemala%2001010&z=16&output=embed";
 ---
 
-<footer class="text-white">
+<footer class="mt-20 text-white">
   <section
-    class="bg-[radial-gradient(circle_at_18%_12%,rgba(29,117,184,0.34),transparent_34%),radial-gradient(circle_at_78%_8%,rgba(156,205,55,0.88),transparent_42%),linear-gradient(90deg,#b9c5d3_0%,#9ccd37_100%)] px-6 py-20 text-center md:py-24"
+    class="from-brand-green to-brand-blue bg-linear-to-br px-2 py-20 text-center md:px-6 md:py-24"
   >
     <div class="mx-auto flex max-w-3xl flex-col items-center">
-      <Heading client:visible as="h2" size="0" className="text-white">
+      <FadeIn
+        client:visible
+        as="h2"
+        className="text-(length:--step-5)/12 font-semibold tracking-tight text-white"
+      >
         Tu cuerpo ya te está hablando.<br />
         Es momento de escucharlo.
-      </Heading>
+      </FadeIn>
       <a
         href="/contacto"
-        class="text-brand-blue mt-8 inline-flex rounded-full bg-white px-10 py-3 font-sans font-medium transition-opacity hover:opacity-90 md:text-xl"
+        class="text-brand-blue mt-8 inline-flex rounded-full bg-white px-10 py-3 text-(length:--step-0) font-medium transition-opacity"
       >
-        ¡AGENDA TU CITA HOY!
+        ¡Agenda tu cita hoy!
       </a>
     </div>
   </section>
 
-  <section class="text-brand-blue bg-white px-6 py-16 text-center md:py-24">
+  <section
+    class="text-brand-dark-blue bg-white px-6 py-16 text-center md:py-24"
+  >
     <div class="mx-auto max-w-6xl">
-      <Heading client:visible as="h2" size="1" className="uppercase">
+      <FadeIn
+        client:visible
+        as="h2"
+        className="text-(length:--step-5)/12 font-semibold tracking-tight"
+      >
         Estamos más cerca<br />
-        de lo que crees
-      </Heading>
+        de lo que crees.
+      </FadeIn>
 
       <div
         class="border-brand-blue/10 mx-auto mt-12 h-96 w-full max-w-5xl overflow-hidden rounded-3xl border bg-white shadow-sm md:w-3/4"
@@ -55,7 +65,7 @@ const mapsEmbedUrl =
         href={mapsUrl}
         target="_blank"
         rel="noreferrer"
-        class="text-brand-blue mt-5 inline-flex font-sans font-medium transition-opacity hover:opacity-75"
+        class="text-brand-blue mt-5 inline-flex font-medium transition-opacity hover:opacity-75"
       >
         Abrir en Google Maps
       </a>
@@ -88,12 +98,12 @@ const mapsEmbedUrl =
             link.href ? (
               <a
                 href={link.href}
-                class="font-sans text-xl font-medium text-white transition-opacity hover:opacity-75"
+                class="text-(length:--step-0) font-medium text-white transition-opacity hover:opacity-75"
               >
                 {link.label}
               </a>
             ) : (
-              <span class="font-sans text-xl font-medium text-white/80">
+              <span class="text-(length:--step-0) font-medium text-white/80">
                 {link.label}
               </span>
             ),
@@ -102,14 +112,13 @@ const mapsEmbedUrl =
       </nav>
 
       <div>
-        <Heading
+        <FadeIn
           client:visible
           as="h2"
-          size="-2"
-          className="text-white uppercase"
+          className="text-(length:--step-0)/7 font-medium text-white uppercase"
         >
           Recibe noticias de HI Institute
-        </Heading>
+        </FadeIn>
         <p class="mt-4 text-sm font-medium text-white/90 md:text-base">
           Sé la primera persona en conocer nuevos tratamientos, suplementos y
           más.

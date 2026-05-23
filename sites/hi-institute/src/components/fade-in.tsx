@@ -8,6 +8,8 @@ type FadeInProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
+  disableBlur?: boolean;
+  amount?: number;
 };
 
 const fadeInComponents = {
@@ -28,6 +30,8 @@ export default function FadeIn({
   children,
   className,
   delay = 0,
+  amount = 0.6,
+  disableBlur = false,
   ...props
 }: FadeInProps) {
   const reduceMotion = useReducedMotion();
@@ -37,14 +41,20 @@ export default function FadeIn({
     <Component
       className={className}
       initial={
-        reduceMotion ? false : { opacity: 0, y: 18, filter: "blur(6px)" }
+        reduceMotion
+          ? false
+          : {
+              opacity: 0,
+              y: 18,
+              filter: disableBlur ? "blur(0px)" : "blur(6px)",
+            }
       }
       whileInView={
         reduceMotion
           ? { opacity: 1 }
           : { opacity: 1, y: 0, filter: "blur(0px)" }
       }
-      viewport={{ once: true, amount: 0.6, margin: "0px 0px -10% 0px" }}
+      viewport={{ once: true, amount: amount, margin: "0px 0px -10% 0px" }}
       transition={reduceMotion ? { duration: 0 } : { ...fadeTransition, delay }}
       {...props}
     >
