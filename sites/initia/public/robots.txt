@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://initia.hiinstitute.com/sitemap-index.xml
+Sitemap: https://initiafertilitycenter.com/sitemap-index.xml
