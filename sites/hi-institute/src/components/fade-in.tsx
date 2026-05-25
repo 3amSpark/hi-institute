@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
-type FadeInElement = "div" | "h1" | "h2" | "h3" | "p";
+type FadeInElement = "div" | "h1" | "h2" | "h3" | "p" | "li";
 
 type FadeInProps = {
   as?: FadeInElement;
@@ -18,6 +18,7 @@ const fadeInComponents = {
   h2: motion.h2,
   h3: motion.h3,
   p: motion.p,
+  li: motion.li,
 };
 
 const fadeTransition = {

@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { CSSProperties } from "react";
+import FadeIn from "./fade-in";
 
 const steps = [
   {
@@ -39,14 +40,15 @@ function StepPanel({
   index: number;
 }) {
   const reduceMotion = useReducedMotion();
+  const isLastStep = index === steps.length - 1;
 
   return (
-    <article className="group grid grid-rows-[auto_auto] overflow-hidden md:row-span-2 md:grid-rows-subgrid">
+    <article className="group relative grid grid-rows-[auto_auto] overflow-visible md:row-span-2 md:grid-rows-subgrid">
       <div className="relative overflow-hidden">
         <motion.img
           src={step.src}
           alt={step.title}
-          className={`h-44 w-full object-cover object-[0_20%] sm:h-52 md:h-full md:min-h-0 md:object-center ${index === 0 ? "md:pl-2" : ""} ${index === steps.length - 1 ? "md:pr-2" : ""}`}
+          className={`w-full object-cover object-[0_20%] sm:h-52 md:object-center lg:h-full`}
           loading="lazy"
           initial={reduceMotion ? false : { opacity: 0.55, scale: 1.06 }}
           whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
@@ -72,19 +74,19 @@ function StepPanel({
         />
       </div>
 
-      <div className="h-fit bg-black text-left text-black">
+      <div className="h-fit text-left">
         <div
-          className="relative grid h-full grid-rows-[auto_auto_auto_1fr] content-start bg-white px-4 py-3 md:px-0 md:pt-2 md:pb-0 md:pl-2"
+          className="relative grid h-full grid-rows-[auto_auto_auto_1fr] content-start bg-white py-3 md:px-0 md:pt-2 md:pb-0"
           style={{ "--step-panel-color": step.color } as CSSProperties}
         >
-          <span className="text-(length:--step--1)/5 font-semibold tracking-widest text-neutral-700 uppercase">
+          <span className="text-(length:--step--1)/5 font-semibold tracking-widest text-neutral-500 uppercase">
             Paso {step.number}
           </span>
-          <h3 className="relative w-fit text-(length:--step-2)/7 font-semibold tracking-tight md:text-(length:--step-3)/8">
+          <h3 className="relative w-fit text-(length:--step-2)/7 font-semibold tracking-tight md:text-(length:--step-2)/10">
             {step.title}
           </h3>
 
-          <p className="mt-1 text-sm leading-relaxed md:text-(length:--step-0)">
+          <p className="text-sm leading-relaxed md:text-(length:--step-0)">
             {step.description}
           </p>
         </div>
@@ -94,11 +96,15 @@ function StepPanel({
 }
 
 export default function Steps() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="relative mb-14 overflow-hidden md:mb-20">
-      <motion.h2 className="text-ne mx-auto w-fit px-6 pt-14 pb-8 text-center text-(length:--step-4) font-semibold tracking-tighter md:pt-20 md:pb-10 md:text-(length:--step-5)">
-        As&iacute; empieza tu cambio
-      </motion.h2>
+    <section className="max-w-desktop relative mx-auto overflow-hidden">
+      <FadeIn>
+        <motion.h2 className="bg-linear-to-br bg-clip-text px-4 pb-15 text-center text-(length:--step-4) font-semibold tracking-tighter text-neutral-600 md:text-(length:--step-5)">
+          As&iacute; empieza tu <span className="text-brand-blue">cambio:</span>
+        </motion.h2>
+      </FadeIn>
 
       <div className="grid grid-cols-1 bg-white md:max-h-[70dvh] md:grid-cols-3 md:grid-rows-[minmax(0,1fr)_auto] md:gap-x-2">
         {steps.map((step, i) => (

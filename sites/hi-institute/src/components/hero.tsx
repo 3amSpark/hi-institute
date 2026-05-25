@@ -158,22 +158,24 @@ export default function Hero({
                           <a
                             key={action.href}
                             href={action.href}
-                            className={`group inline-flex w-fit items-center gap-2 rounded-full bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-4 pl-5 text-(length:--step--0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] ${slideTheme.cta}`}
+                            className={`group inline-flex w-fit items-center gap-3 rounded-full bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-1.5 pl-5 text-(length:--step--0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] ${slideTheme.cta}`}
                           >
                             <span>{action.label}</span>
-                            <svg
-                              className="size-5 shrink-0 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              aria-hidden="true"
-                            >
-                              <path d="M7 17 17 7"></path>
-                              <path d="M8 7h9v9"></path>
-                            </svg>
+                            <span className="grid size-8 shrink-0 place-items-center rounded-full bg-white text-neutral-500">
+                              <svg
+                                className="size-4.5 -rotate-45 transition-transform duration-300 ease-out group-hover:rotate-0"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                aria-hidden="true"
+                              >
+                                <path d="M5 12h14"></path>
+                                <path d="m13 6 6 6-6 6"></path>
+                              </svg>
+                            </span>
                           </a>
                         ))}
                       </div>

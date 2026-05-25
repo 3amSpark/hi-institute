@@ -29,38 +29,46 @@ const signals = [
 ];
 ---
 
-<section class="mt-10 mb-20 bg-neutral-50 px-6 py-14 lg:px-24 lg:py-10">
-  <div class="mx-auto grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
-    <div class="flex flex-col justify-between">
-      <FadeIn client:visible as="div" className="max-w-2xl lg:sticky lg:top-24">
+<section class="relative overflow-hidden bg-neutral-50 p-2 px-4">
+  <div class="max-w-desktop mx-auto grid lg:grid-cols-[1.3fr_1fr]">
+    <div class="max-w-3xl">
+      <FadeIn
+        client:visible
+        as="div"
+        className="flex h-full flex-col justify-center gap-10"
+      >
         <h2
-          class="max-w-xl text-(length:--step-5)/12 font-semibold tracking-tighter text-neutral-600 md:text-(length:--step-6)/16"
+          class="text-(length:--step-5)/12 font-semibold tracking-tighter text-neutral-600 md:text-(length:--step-5)/16"
         >
           Tal vez te está pasando <span class="text-brand-green">esto.</span>
         </h2>
-
-        <p class="mt-8 max-w-xl text-(length:--step--0)/8 text-neutral-700">
+        <p class="pl-2 text-(length:--step-0)/8 text-neutral-600">
           Seis señales que escuchamos cada semana en consulta.<br />No son tu
           personalidad.<br />Son señales de que tu cuerpo necesita una
           evaluación más completa.
         </p>
+        <!--
+        <img
+          src="/assets/talvez.jpg"
+          alt="Persona pensando en síntomas de bienestar metabólico y hormonal"
+          class="mt-8 aspect-video w-full -scale-x-100 object-cover object-[80%_0%]"
+          loading="lazy"
+        /> -->
 
-        <div
-          class="mt-14 border-t border-neutral-300/80 pt-8 md:flex md:items-center md:justify-between md:gap-8"
-        >
+        <div class="md:flex md:items-center md:justify-between md:gap-8">
           <p
-            class="text-(length:--step-1)/9 font-medium tracking-tight text-neutral-600"
+            class="pl-2 text-(length:--step-0)/8 font-medium tracking-tight text-neutral-600"
           >
             No es normal.<br />Y no tienes que vivir así.
           </p>
 
           <a
             href="/contacto"
-            class="group bg-brand-blue mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-4 pl-5 text-(length:--step-0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] md:mt-0"
+            class="group bg-brand-blue mt-6 inline-flex w-fit items-center gap-3 rounded-full bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-2 pl-5 text-(length:--step-0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] md:mt-0"
           >
             <span>Conocer más</span>
             <svg
-              class="size-5 shrink-0 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              class="size-6 shrink-0 rounded-full bg-white p-1 text-neutral-500 transition-transform duration-300 ease-out group-hover:rotate-45"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -77,12 +85,12 @@ const signals = [
       </FadeIn>
     </div>
 
-    <FadeIn client:visible as="div">
-      <ol>
+    <FadeIn client:visible as="div" delay={0.1}>
+      <ol class="divide-y divide-neutral-200 last:pb-0">
         {
-          signals.map((signal) => (
-            <li class="border-b border-neutral-300/80 py-7 md:py-8">
-              <span class="text-(length:--step--2)/2 font-bold tracking-[0.3em] text-neutral-400 uppercase">
+          signals.map((signal, idx) => (
+            <li class="py-7.5">
+              <span class="text-(length:--step--2)/2 font-bold tracking-[0.2em] text-neutral-400 uppercase">
                 {signal.label}
               </span>
               <p class="mt-2 max-w-3xl text-(length:--step-2)/8 font-semibold tracking-tight text-neutral-600">

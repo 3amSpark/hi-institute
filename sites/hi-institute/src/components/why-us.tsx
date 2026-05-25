@@ -21,7 +21,7 @@ const reasons = [
 ];
 
 const cardClassNames = [
-  "bg-neutral-600 text-white",
+  "bg-neutral-500 text-white",
   "bg-brand-green text-white",
   "bg-brand-blue text-white",
 ];
@@ -49,7 +49,7 @@ export default function WhyUs() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="m-2 my-20 overflow-hidden bg-white text-white">
+    <section className="m-2 overflow-hidden bg-white text-white">
       <div className="flex flex-col gap-2 md:flex-row">
         <div className="relative overflow-hidden md:min-h-[760px] md:basis-3/5">
           <img
