@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, type MotionValue } from "framer-motion";
 import {
   ChevronDown,
   clinics,
@@ -12,6 +12,8 @@ import {
 
 type DesktopNavbarProps = {
   currentPath: string;
+  linkColor: MotionValue<string> | string;
+  hasTextShadow: boolean;
 };
 
 const dropdownTransition = {
@@ -19,7 +21,11 @@ const dropdownTransition = {
   ease: [0.22, 1, 0.36, 1],
 } as const;
 
-export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
+export default function DesktopNavbar({
+  currentPath,
+  linkColor,
+  hasTextShadow,
+}: DesktopNavbarProps) {
   const [isTreatmentsOpen, setIsTreatmentsOpen] = useState(false);
   const [isClinicsOpen, setIsClinicsOpen] = useState(false);
   const treatmentsCloseTimeout = useRef<number | undefined>(undefined);
@@ -75,13 +81,19 @@ export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
         }`}
       />
 
-      <div className="relative z-50 hidden items-center gap-0.5 lg:flex">
+      <motion.div
+        className="relative z-50 hidden items-center gap-0.5 lg:flex"
+        style={{ color: linkColor }}
+      >
         <a
           href={navLinks[0].href}
           aria-current={
             isActivePath(currentPath, navLinks[0].href) ? "page" : undefined
           }
-          className={linkClassName(isActivePath(currentPath, navLinks[0].href))}
+          className={linkClassName(
+            isActivePath(currentPath, navLinks[0].href),
+            hasTextShadow,
+          )}
         >
           {navLinks[0].label}
           <span aria-hidden="true" className={underlineClassName}></span>
@@ -101,11 +113,15 @@ export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
             type="button"
             aria-expanded={isTreatmentsOpen}
             aria-current={isTreatmentsActive ? "page" : undefined}
-            className={linkClassName(isTreatmentsActive)}
+            className={linkClassName(isTreatmentsActive, hasTextShadow)}
             onClick={() => setIsTreatmentsOpen((isOpen) => !isOpen)}
           >
             Tratamientos
-            <ChevronDown className="ml-1 size-4 text-neutral-800 transition-transform duration-300 group-hover:rotate-180 group-hover:text-neutral-950" />
+            <ChevronDown
+              className={`ml-1 size-4 transition-transform duration-300 group-hover:rotate-180 ${
+                hasTextShadow ? "drop-shadow-xs" : ""
+              }`}
+            />
             <span aria-hidden="true" className={underlineClassName}></span>
           </button>
 
@@ -153,7 +169,10 @@ export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
           aria-current={
             isActivePath(currentPath, "/farmacia") ? "page" : undefined
           }
-          className={linkClassName(isActivePath(currentPath, "/farmacia"))}
+          className={linkClassName(
+            isActivePath(currentPath, "/farmacia"),
+            hasTextShadow,
+          )}
         >
           Farmacia
           <span aria-hidden="true" className={underlineClassName}></span>
@@ -172,11 +191,15 @@ export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
           <button
             type="button"
             aria-expanded={isClinicsOpen}
-            className={linkClassName(false)}
+            className={linkClassName(false, hasTextShadow)}
             onClick={() => setIsClinicsOpen((isOpen) => !isOpen)}
           >
             Clínicas
-            <ChevronDown className="ml-1 size-4 transition-transform duration-300 group-hover:rotate-180 group-hover:text-neutral-950" />
+            <ChevronDown
+              className={`ml-1 size-4 transition-transform duration-300 group-hover:rotate-180 ${
+                hasTextShadow ? "drop-shadow-xs" : ""
+              }`}
+            />
             <span aria-hidden="true" className={underlineClassName}></span>
           </button>
 
@@ -225,13 +248,16 @@ export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
             aria-current={
               isActivePath(currentPath, link.href) ? "page" : undefined
             }
-            className={linkClassName(isActivePath(currentPath, link.href))}
+            className={linkClassName(
+              isActivePath(currentPath, link.href),
+              hasTextShadow,
+            )}
           >
             {link.label}
             <span aria-hidden="true" className={underlineClassName}></span>
           </a>
         ))}
-      </div>
+      </motion.div>
     </>
   );
 }
