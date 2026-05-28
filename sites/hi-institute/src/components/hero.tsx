@@ -142,7 +142,7 @@ export default function Hero({
                     </h1>
                   </FadeIn>
 
-                  <FadeIn delay={0.15} instant={true}>
+                  <FadeIn delay={0.2} instant={true}>
                     {slideDescription ? (
                       <p
                         className={`max-w-lg text-(length:--step-0) leading-8 ${slideTheme.body}`}
@@ -152,7 +152,7 @@ export default function Hero({
                     ) : null}
                   </FadeIn>
 
-                  <FadeIn delay={0.225} instant={true}>
+                  <FadeIn delay={0.35} instant={true}>
                     {actions.length > 0 ? (
                       <div className="flex flex-wrap gap-3">
                         {actions.map((action) => (
