@@ -60,21 +60,25 @@ const signals = [
     <MetabolicSignalScroller client:visible signals={signals} />
   </FadeIn>
 
-  <div class="mt-20 items-center bg-neutral-50 py-20 text-center">
-    <div class="max-w-desktop mx-auto flex items-center justify-between px-4">
+  <div class="mt-20 h-64 items-center bg-neutral-100 text-center">
+    <div
+      class="max-w-desktop mx-auto flex h-full items-center justify-between px-4"
+    >
       <FadeIn client:visible>
         <p
-          class="text-left text-(length:--step-3) font-medium tracking-tighter text-neutral-600"
+          class="text-left text-(length:--step-1) font-[550] tracking-tighter text-neutral-600"
         >
           No es normal. <br />
-          <span class="text-brand-blue">Y no tienes que vivir así. </span>
+          <span class="text-(length:--step-3) text-neutral-700"
+            >Y no tienes que vivir así.
+          </span>
         </p>
       </FadeIn>
 
       <FadeIn client:visible delay={0.2}>
         <a
           href="/contacto"
-          class="group inline-flex h-fit w-fit items-center gap-2 rounded-full bg-neutral-700 bg-size-[200%_100%] bg-position-[0%_50%] px-6 py-2 text-(length:--step-0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%]"
+          class="group inline-flex h-fit w-fit items-center gap-2 rounded-full bg-[#007AD6] bg-size-[200%_100%] bg-position-[0%_50%] px-6 py-2 text-(length:--step-0) font-medium tracking-tight text-white transition-all duration-500 ease-[cubic-bezier(0.9,0,0.1,1)] ease-out hover:bg-white hover:bg-position-[100%_50%] hover:text-neutral-700"
         >
           <span>Agenda tu evaluación</span>
           <!-- <svg

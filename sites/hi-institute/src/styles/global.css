@@ -47,6 +47,7 @@
   --breakpoint-tablet: 40rem;
   --breakpoint-laptop: 64rem;
   --container-desktop: 92rem;
+  --container-xxl: 120rem;
 }
 
 html {
