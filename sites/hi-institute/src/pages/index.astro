@@ -1,9 +1,11 @@
 ---
 import Footer from "../components/footer.astro";
-import FounderIntro from "../components/founder-intro.astro";
+// import FounderIntro from "../components/founder-intro.astro";
+import FounderIntroAlternate from "../components/founder-intro-alternate.astro";
 import Hero from "../components/hero";
 import MetabolicCtaAlternate from "../components/metabolic-cta-alternate.astro";
-import MetabolicCta from "../components/metabolic-cta.astro";
+import MetabolicCtaMinimal from "../components/metabolic-cta-minimal.astro";
+// import MetabolicCta from "../components/metabolic-cta.astro";
 import Navbar from "../components/navbar";
 import Steps from "../components/steps";
 import WhyUs from "../components/why-us";
@@ -11,14 +13,14 @@ import Root from "../layouts/root.astro";
 
 const heroImages = [
   {
-    src: "/assets/hero/3.webp",
+    src: "/assets/hero/new-hero.png",
     alt: "HI Institute clinical space",
     title: "Expertos en metabolismo y equilibrio hormonal",
     description:
       "Evaluamos metabolismo, hormonas y hábitos para entender qué necesita tu cuerpo.",
   },
   {
-    src: "/assets/hero/1.webp",
+    src: "/assets/hero/couple.png",
     alt: "HI Institute treatment room",
     imagePosition: "left" as const,
     title: "Recupera energía desde adentro",
@@ -26,7 +28,7 @@ const heroImages = [
       "Planes médicos personalizados para recuperar energía, composición corporal y salud metabólica.",
   },
   {
-    src: "/assets/hero/2.webp",
+    src: "/assets/hero/sitting.png",
     alt: "HI Institute care experience",
     title: "Salud femenina en cada etapa",
     description:
@@ -47,10 +49,13 @@ const heroImages = [
     images={heroImages}
     actions={[{ href: "/contacto", label: "Agenda tu cita ahora" }]}
   />
-  <FounderIntro />
-  <MetabolicCtaAlternate />
-  <MetabolicCta />
-  <Steps client:visible />
-  <WhyUs client:visible />
-  <Footer />
+  <main class="flex flex-col gap-25">
+    <!-- <FounderIntro /> -->
+    <FounderIntroAlternate />
+    <MetabolicCtaMinimal />
+    <!-- <MetabolicCtaAlternate /> -->
+    <Steps client:visible />
+    <WhyUs client:visible />
+    <Footer />
+  </main>
 </Root>

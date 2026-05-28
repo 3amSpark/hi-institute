@@ -1,0 +1,99 @@
+---
+import type { delay } from "framer-motion";
+import FadeIn from "./fade-in";
+import MetabolicSignalScroller from "./metabolic-signal-scroller";
+
+const signals = [
+  {
+    text: 'Te cuesta bajar de peso aunque "comes bien".',
+    description:
+      "Puede haber señales metabólicas u hormonales que no se resuelven solo con dieta.",
+    image: "/hi-test.png",
+  },
+  {
+    text: "Te sientes cansada(o) sin razón alguna.",
+    description:
+      "La energía baja constante puede ser una pista de desbalance interno.",
+    image: "/hi-test.png",
+  },
+  {
+    text: "Tu ciclo es irregular o doloroso.",
+    description:
+      "Tu ciclo también habla de inflamación, estrés y salud hormonal.",
+    image: "/hi-test.png",
+  },
+  {
+    text: "Te ha costado embarazarte.",
+    description:
+      "Entender tus hormonas y metabolismo puede abrir nuevas respuestas.",
+    image: "/hi-test.png",
+  },
+  {
+    text: "Tienes ansiedad por azúcar o carbohidratos.",
+    description:
+      "No siempre es falta de voluntad; puede estar relacionado con glucosa e insulina.",
+    image: "/hi-test.png",
+  },
+  {
+    text: "Sientes que tu cuerpo cambió, y no sabes por qué.",
+    description:
+      "Cuando algo se siente distinto, vale la pena investigarlo con datos claros.",
+    image: "/hi-test.png",
+  },
+];
+---
+
+<section>
+  <div class="max-w-desktop mx-auto px-4 text-left sm:text-right">
+    <FadeIn client:visible as="div">
+      <h2
+        class="mx-auto text-(length:--step-5)/12 font-[550] tracking-tighter text-balance text-neutral-700 md:text-(length:--step-5)/16"
+      >
+        Tal vez te está pasando esto
+      </h2>
+
+      <p class="mx-auto mt-6 text-(length:--step-0)/8 text-neutral-600"></p>
+    </FadeIn>
+  </div>
+
+  <FadeIn client:visible as="div" delay={0.1} className="mt-20">
+    <MetabolicSignalScroller client:visible signals={signals} />
+  </FadeIn>
+
+  <div class="mt-20 items-center bg-neutral-50 py-20 text-center">
+    <div class="max-w-desktop mx-auto flex items-center justify-between px-4">
+      <FadeIn client:visible>
+        <p
+          class="text-left text-(length:--step-3) font-medium tracking-tighter text-neutral-600"
+        >
+          No es normal. <br />
+          <span class="text-brand-blue">Y no tienes que vivir así. </span>
+        </p>
+      </FadeIn>
+
+      <FadeIn client:visible delay={0.2}>
+        <a
+          href="/contacto"
+          class="group inline-flex h-fit w-fit items-center gap-2 rounded-full bg-neutral-700 bg-size-[200%_100%] bg-position-[0%_50%] px-6 py-2 text-(length:--step-0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%]"
+        >
+          <span>Agenda tu evaluación</span>
+          <!-- <svg
+          class="size-5.5 -rotate-45 transition-transform duration-300 ease-out group-hover:rotate-0"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14"></path>
+          <path d="m13 6 6 6-6 6"></path>
+        </svg> -->
+        </a>
+      </FadeIn>
+    </div>
+  </div>
+</section>
+
+<style></style>

@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { easeInOut, motion, useReducedMotion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import FadeIn from "./fade-in";
 
@@ -21,9 +21,9 @@ const reasons = [
 ];
 
 const cardClassNames = [
-  "bg-neutral-600 text-white",
-  "bg-brand-green text-white",
-  "bg-brand-blue text-white",
+  " bg-neutral-500  text-white",
+  " bg-brand-green  text-white",
+  " bg-brand-blue  text-white",
 ];
 
 const containerVariants: Variants = {
@@ -49,9 +49,9 @@ export default function WhyUs() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="m-2 my-20 overflow-hidden bg-white text-white">
-      <div className="flex flex-col gap-2 md:flex-row">
-        <div className="relative overflow-hidden md:min-h-[760px] md:basis-3/5">
+    <section>
+      <div className="flex flex-col gap-2 overflow-clip px-2 md:flex-row">
+        <div className="relative overflow-clip md:min-h-[760px] md:basis-3/5">
           <img
             src="/assets/why-us.webp"
             alt="Personas representando cuidado integral en HI Institute"
@@ -63,7 +63,7 @@ export default function WhyUs() {
           <div className="absolute inset-0 flex items-center justify-center px-6">
             <FadeIn
               as="h2"
-              className="max-w-4xl text-center text-(length:--step-6)/18 font-semibold tracking-tighter text-white"
+              className="max-w-4xl text-center text-(length:--step-5)/12 font-semibold tracking-tighter text-white lg:text-(length:--step-6)/18"
             >
               ¿Por qué HI Institute es una clínica diferente?
             </FadeIn>
@@ -71,7 +71,7 @@ export default function WhyUs() {
         </div>
 
         <motion.div
-          className="grid grid-cols-1 grid-rows-3 gap-2 md:basis-2/5"
+          className="why-us-reasons grid grid-cols-1 grid-rows-3 gap-2 md:basis-2/5"
           variants={reduceMotion ? undefined : containerVariants}
           initial={reduceMotion ? false : "hidden"}
           whileInView={reduceMotion ? undefined : "visible"}
@@ -80,7 +80,7 @@ export default function WhyUs() {
           {reasons.map((reason, index) => (
             <motion.article
               key={reason.title}
-              className={`${cardClassNames[index]} flex flex-col gap-4 p-6 md:p-7`}
+              className={`${cardClassNames[index]} why-us-reason flex flex-col gap-4 p-6 md:p-7`}
               variants={reduceMotion ? undefined : cardVariants}
             >
               <h3 className="text-(length:--step-3)/10 font-semibold tracking-tighter text-balance">

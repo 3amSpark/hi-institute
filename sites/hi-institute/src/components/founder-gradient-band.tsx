@@ -1,24 +1,24 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+
+const reveal = {
+  hidden: { clipPath: "inset(0% 100% 0% 0%)" },
+  visible: { clipPath: "inset(0% 0% 0% 0%)" },
+};
 
 export default function FounderGradientBand() {
-  const reduceMotion = useReducedMotion();
-
   return (
-    <div
+    <motion.div
       aria-hidden="true"
-      className="absolute top-1/2 left-1/2 h-56 w-screen -translate-x-1/2 -translate-y-1/2 overflow-hidden lg:h-60"
+      className="absolute top-1/2 right-[calc(50%-50dvw)] left-[calc(50%-50dvw)] h-56 -translate-y-1/2 overflow-hidden lg:h-60"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ margin: "0px 0px -50% 0px", once: true }}
     >
       <motion.div
-        className="from-brand-green to-brand-blue h-full w-full origin-left bg-linear-to-r"
-        initial={reduceMotion ? false : { scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: "0px 0px -50% 0px" }}
-        transition={
-          reduceMotion
-            ? { duration: 0 }
-            : { duration: 2.5, ease: [0.22, 1, 0.36, 1] }
-        }
+        className="from-brand-green to-brand-blue h-full w-full bg-linear-to-r"
+        variants={reveal}
+        transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
       />
-    </div>
+    </motion.div>
   );
 }
