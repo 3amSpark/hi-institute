@@ -29,8 +29,8 @@ export default function Navbar({ currentPath }: NavbarProps) {
         onClose={() => setIsMobileOpen(false)}
       />
 
-      <header className="fixed top-0 right-0 left-0 z-50 h-18 bg-white">
-        <nav className="max-w-desktop mx-auto flex h-18 items-center justify-between px-6 lg:px-10">
+      <header className="fixed top-0 right-0 left-0 z-50 h-19 bg-white">
+        <nav className="max-w-desktop mx-auto flex h-19 items-center justify-between px-6 lg:px-10">
           <a href="/" aria-label="HI Institute International home">
             <img
               src={logo}

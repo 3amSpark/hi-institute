@@ -72,12 +72,12 @@ export const isActivePath = (currentPath: string, href: string) => {
 };
 
 export const linkClassName = (isActive: boolean) =>
-  `group relative inline-flex items-center px-2 py-1.5 text-(length:--step--1) font-[480] transition-colors duration-150 hover:text-neutral-800 ${
-    isActive ? "text-neutral-950" : "text-neutral-700"
+  `group relative inline-flex text-neutral-700  items-center px-2 py-1.5 text-(length:--step--1) tracking-[-0.01em]  transition-colors duration-150 hover:text-neutral-800 ${
+    isActive && "font-semibold"
   }`;
 
 export const underlineClassName =
-  "from-brand-blue to-brand-green absolute top-5/6 left-1/2 h-0.5 w-3/4 origin-left -translate-x-1/2 scale-x-0 bg-black bg-linear-to-r transition-all duration-200 ease-out group-hover:scale-x-100";
+  "from-brand-blue to-brand-green absolute top-5/6  left-1/2 h-0.5 w-5/6 origin-left -translate-x-1/2 scale-x-0 bg-black bg-linear-to-r transition-all duration-200 ease-out group-hover:scale-x-100";
 
 export function ChevronDown({ className = "" }: { className?: string }) {
   return (

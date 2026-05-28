@@ -2,16 +2,16 @@
 @import url("/cabinet-grotesk/css/cabinet-grotesk.css");
 @import url("/switzer/css/switzer.css");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=TASA+Orbiter:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 @import "tailwindcss";
 
 :root {
   color: #171412;
   font-feature-settings:
-    "liga" 1,
-    /* Standard ligatures */ "calt" 1,
-    /* Contextual alternates */ "ss01" 1,
-    /* Geometric open 'a' (Highly recommended for premium look) */ "ss03" 1,
-    /* Geometric uppercase 'G' */ "cv08" 0; /* Lowercase 'f' alternate tail */
+    "ss03" on,
+    "cv05" on;
 
   /* Modern browsers also support the cleaner 'font-variant-numeric' for numbers */
   font-variant-numeric: tabular-nums; /* Makes numbers align perfectly in tables/grids */
@@ -19,23 +19,17 @@
 
 @theme {
   --font-sans:
-    "InterVariable", "Inter", ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-grotesk: "Space Grotesk", monospaced;
-  --font-clash:
-    "ClashGrotesk-Variable", "ClashGrotesk-Regular", ui-sans-serif, system-ui,
-    sans-serif;
-  --font-cabinet:
-    "CabinetGrotesk-Variable", "CabinetGrotesk-Regular", ui-sans-serif,
-    system-ui, sans-serif;
-  --font-switzer:
-    "Switzer-Variable", "Switzer-Regular", ui-sans-serif, system-ui, sans-serif;
+    "Tasa Orbiter", "InterVariable", "Inter", ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", monospaced;
 
   --color-brand-blue: #1d75b8;
   --color-brand-green: #9ccd37;
+  --color-brand-green-2: oklch(0.66 0.148 128.338);
+  --lol: oklch(0.701 0.157 128.338);
   --color-brand-dark-green: #009848;
   --color-brand-dark-blue: #19639c;
-  --color-brand-darker-blue: #0f3b5e;
+  --color-brand-darker-blue: #009848;
   --color-brand-darker-green: #005b2b;
 
   --step--2: clamp(0.68rem, 0.6993rem + -0.0214vw, 0.6944rem);
@@ -47,6 +41,8 @@
   --step-4: clamp(2.0736rem, 1.9001rem + 0.771vw, 2.594rem);
   --step-5: clamp(2.4883rem, 2.2369rem + 1.1173vw, 3.2425rem);
   --step-6: clamp(2.986rem, 2.6303rem + 1.5809vw, 4.0531rem);
+  --step-7: clamp(4.0311rem, 3.2418rem + 3.508vw, 5.9605rem);
+  --step-8: clamp(4.8373rem, 3.7682rem + 4.7514vw, 7.4506rem);
 
   --breakpoint-tablet: 40rem;
   --breakpoint-laptop: 64rem;
@@ -57,4 +53,39 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Tasa Orbiter", monospaced;
+}
+
+.trim {
+  line-height: 1;
+
+  /* Slices away the invisible font margins entirely */
+  text-box-trim: both;
+  text-box-edge: cap alphabetic;
+}
+.trim-2 {
+  font-size: 50cqh;
+  line-height: 1;
+
+  /* Slices away the invisible font margins entirely */
+  text-box-trim: both;
+  text-box-edge: cap alphabetic;
+}
+.test {
+  container-type: size;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

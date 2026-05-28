@@ -29,20 +29,50 @@ const signals = [
 ];
 ---
 
-<section class="relative overflow-hidden bg-neutral-50 p-2 px-4">
-  <div class="max-w-desktop mx-auto grid lg:grid-cols-[1.3fr_1fr]">
-    <div class="max-w-3xl">
+<section class="relative overflow-hidden bg-neutral-50 px-4 py-12 lg:py-2">
+  <div
+    class="max-w-desktop mx-auto grid gap-0 lg:grid-cols-[1.3fr_1fr] lg:gap-10"
+  >
+    <div class="max-w-3xl lg:row-start-1">
+      <FadeIn
+        client:visible
+        as="div"
+        className="flex h-full flex-col justify-center"
+      >
+        <h2
+          class="text-(length:--step-5)/12 font-semibold tracking-tighter text-balance text-neutral-600 md:text-(length:--step-5)/16"
+        >
+          Tal vez te está <span class="text-brand-green"> pasando esto.</span>
+        </h2>
+      </FadeIn>
+    </div>
+
+    <FadeIn client:visible as="div" delay={0.1} className="lg:row-span-2">
+      <ol
+        class="mt-8 divide-y divide-neutral-200 border-t border-neutral-200 last:pb-0 lg:mt-0 lg:border-0"
+      >
+        {
+          signals.map((signal) => (
+            <li class="py-7.5">
+              <span class="text-(length:--step--2)/2 font-bold tracking-[0.2em] text-neutral-400 uppercase">
+                {signal.label}
+              </span>
+              <p class="mt-2 max-w-3xl text-(length:--step-2)/10 font-semibold tracking-tight text-balance text-neutral-600">
+                {signal.text}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </FadeIn>
+
+    <div class="lg:row-start-2 lg:max-w-3xl">
       <FadeIn
         client:visible
         as="div"
         className="flex h-full flex-col justify-center gap-10"
       >
-        <h2
-          class="text-(length:--step-5)/12 font-semibold tracking-tighter text-neutral-600 md:text-(length:--step-5)/16"
-        >
-          Tal vez te está pasando <span class="text-brand-green">esto.</span>
-        </h2>
-        <p class="pl-2 text-(length:--step-0)/8 text-neutral-600">
+        <p class="text-(length:--step-0)/8 text-neutral-600">
           Seis señales que escuchamos cada semana en consulta.<br />No son tu
           personalidad.<br />Son señales de que tu cuerpo necesita una
           evaluación más completa.
@@ -57,7 +87,7 @@ const signals = [
 
         <div class="md:flex md:items-center md:justify-between md:gap-8">
           <p
-            class="pl-2 text-(length:--step-0)/8 font-medium tracking-tight text-neutral-600"
+            class="text-(length:--step-0)/8 font-medium tracking-tight text-neutral-600"
           >
             No es normal.<br />Y no tienes que vivir así.
           </p>
@@ -84,22 +114,5 @@ const signals = [
         </div>
       </FadeIn>
     </div>
-
-    <FadeIn client:visible as="div" delay={0.1}>
-      <ol class="divide-y divide-neutral-200 last:pb-0">
-        {
-          signals.map((signal, idx) => (
-            <li class="py-7.5">
-              <span class="text-(length:--step--2)/2 font-bold tracking-[0.2em] text-neutral-400 uppercase">
-                {signal.label}
-              </span>
-              <p class="mt-2 max-w-3xl text-(length:--step-2)/8 font-semibold tracking-tight text-neutral-600">
-                {signal.text}
-              </p>
-            </li>
-          ))
-        }
-      </ol>
-    </FadeIn>
   </div>
 </section>

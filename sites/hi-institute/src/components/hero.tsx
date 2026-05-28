@@ -37,18 +37,18 @@ const slideLayoutClass = {
 
 const slideThemes = [
   {
-    title: "text-neutral-600",
-    body: "text-neutral-800",
-    cta: "bg-neutral-600",
+    title: "text-neutral-700",
+    body: "text-neutral-700",
+    cta: "bg-neutral-800",
   },
   {
     title: "text-brand-blue",
-    body: "text-neutral-800",
+    body: "text-neutral-700",
     cta: "bg-brand-blue",
   },
   {
     title: "text-brand-green",
-    body: "text-neutral-800",
+    body: "text-neutral-700",
     cta: "bg-brand-green",
   },
 ] as const;
@@ -56,8 +56,9 @@ const slideThemes = [
 const slideTransition = {
   type: "spring",
   restDelta: 0.001,
-  damping: 34,
-  stiffness: 170,
+  damping: 30,
+  mass: 1,
+  stiffness: 220,
 } as const;
 
 export default function Hero({
@@ -74,6 +75,8 @@ export default function Hero({
   const hasMultipleImages = images.length > 1;
   const displayedIndex =
     images.length > 0 ? Math.min(activeIndex, images.length - 1) : 0;
+  const canShowPreviousImage = displayedIndex > 0;
+  const canShowNextImage = displayedIndex < images.length - 1;
 
   useEffect(() => {
     setActiveIndex((current) =>
@@ -100,21 +103,19 @@ export default function Hero({
   if (images.length === 0) return null;
 
   const showPreviousImage = () => {
-    setActiveIndex((current) =>
-      current === 0 ? images.length - 1 : current - 1,
-    );
+    setActiveIndex((current) => Math.max(current - 1, 0));
     setUserHasInteracted(true);
   };
 
   const showNextImage = () => {
-    setActiveIndex((current) => (current + 1) % images.length);
+    setActiveIndex((current) => Math.min(current + 1, images.length - 1));
     setUserHasInteracted(true);
   };
 
   return (
-    <section className="relative isolate mt-18 min-h-[calc(100dvh-4.5rem)] overflow-hidden bg-white">
+    <section className="relative isolate mt-19 min-h-[calc(100dvh-4.75rem)] overflow-hidden bg-white">
       <motion.div
-        className="flex min-h-[calc(100dvh-4.5rem)] w-full"
+        className="flex min-h-[calc(100dvh-4.75rem)] w-full"
         animate={{ x: `${displayedIndex * -100}%` }}
         transition={reduceMotion ? { duration: 0 } : slideTransition}
       >
@@ -127,21 +128,21 @@ export default function Hero({
           return (
             <div
               key={image.src}
-              className={`flex h-[calc(100dvh-4.5rem)] w-full shrink-0 flex-col-reverse lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${slideLayoutClass[imagePosition]}`}
+              className={`flex h-[calc(100dvh-4.75rem)] w-full shrink-0 flex-col-reverse lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${slideLayoutClass[imagePosition]}`}
             >
-              <div className="hero-copy flex items-center px-4 pb-4 lg:px-16 lg:py-24 xl:px-24">
+              <div className="hero-copy flex shrink-0 items-end justify-start px-3 pt-2 pb-4 lg:h-auto lg:flex-auto lg:px-16 lg:py-24 lg:pt-0 xl:px-24">
                 <div
-                  className={`flex max-w-xl flex-col gap-2 sm:gap-5 ${contentClass[align]}`}
+                  className={`flex flex-col gap-2 sm:gap-5 lg:max-w-xl ${contentClass[align]}`}
                 >
-                  <FadeIn>
+                  <FadeIn instant={true}>
                     <h1
-                      className={`text-(length:--step-5)/12 font-semibold tracking-tighter text-balance md:text-(length:--step-6)/16 ${slideTheme.title}`}
+                      className={`text-(length:--step-5)/12 font-[550] tracking-tighter text-balance text-neutral-800 md:text-(length:--step-6)/16`}
                     >
-                      {slideTitle}.
+                      {slideTitle}
                     </h1>
                   </FadeIn>
 
-                  <FadeIn delay={0.125}>
+                  <FadeIn delay={0.15} instant={true}>
                     {slideDescription ? (
                       <p
                         className={`max-w-lg text-(length:--step-0) leading-8 ${slideTheme.body}`}
@@ -151,19 +152,35 @@ export default function Hero({
                     ) : null}
                   </FadeIn>
 
-                  <FadeIn delay={0.2}>
+                  <FadeIn delay={0.225} instant={true}>
                     {actions.length > 0 ? (
                       <div className="flex flex-wrap gap-3">
                         {actions.map((action) => (
                           <a
                             key={action.href}
                             href={action.href}
-                            className={`group inline-flex w-fit items-center gap-3 rounded-full bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-1.5 pl-5 text-(length:--step--0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] ${slideTheme.cta}`}
+                            className={`group inline-flex w-fit items-center gap-2 rounded-full border bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-3 pl-5 text-(length:--step--0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] ${slideTheme.cta}`}
                           >
                             <span>{action.label}</span>
-                            <span className="grid size-8 shrink-0 place-items-center rounded-full bg-white text-neutral-500">
+                            <svg
+                              className="size-5.5 -rotate-45 transition-transform duration-300 ease-out group-hover:rotate-0"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              aria-hidden="true"
+                            >
+                              <path d="M5 12h14"></path>
+                              <path d="m13 6 6 6-6 6"></path>
+                            </svg>
+
+                            {/*<span
+                              className={`grid size-8 shrink-0 place-items-center rounded-full bg-white ${slideTheme.title}`}
+                            >
                               <svg
-                                className="size-4.5 -rotate-45 transition-transform duration-300 ease-out group-hover:rotate-0"
+                                className="size-5.5 -rotate-45 transition-transform duration-300 ease-out group-hover:rotate-0"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -175,7 +192,7 @@ export default function Hero({
                                 <path d="M5 12h14"></path>
                                 <path d="m13 6 6 6-6 6"></path>
                               </svg>
-                            </span>
+                            </span>*/}
                           </a>
                         ))}
                       </div>
@@ -184,14 +201,15 @@ export default function Hero({
                 </div>
               </div>
 
-              <div className="hero-media relative flex-1 px-2 pt-2 pb-2 lg:min-h-[calc(100dvh-4.5rem)] lg:pt-0">
-                <div className="h-full w-full overflow-hidden bg-neutral-950">
+              <div className="hero-media relative flex flex-1 lg:min-h-[calc(100dvh-4.75rem)] lg:flex-1 lg:pt-0">
+                <div className="relative grid h-full w-full place-items-center overflow-hidden">
+                  {/*<div className="from-brand-green/70 to-brand-blue absolute inset-0 z-20 size-full bg-linear-to-tl via-transparent via-70% mix-blend-color" />*/}
                   <img
                     src={image.src}
                     alt={image.alt}
                     loading={index === 0 ? "eager" : "lazy"}
                     decoding="async"
-                    className="h-full w-full object-cover object-right"
+                    className="z-0 h-full w-full object-cover object-center grayscale-20"
                   />
                 </div>
               </div>
@@ -202,44 +220,48 @@ export default function Hero({
 
       {hasMultipleImages ? (
         <>
-          <button
-            type="button"
-            aria-label="Show previous slide"
-            onClick={showPreviousImage}
-            className="absolute top-1/2 left-4 z-20 grid size-9 -translate-y-1/2 place-items-center rounded-full bg-white text-neutral-950 transition-colors md:left-6"
-          >
-            <svg
-              className="size-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
+          {canShowPreviousImage ? (
+            <button
+              type="button"
+              aria-label="Show previous slide"
+              onClick={showPreviousImage}
+              className="absolute top-1/2 left-4 z-20 grid size-9 -translate-y-1/2 place-items-center rounded-full bg-white text-neutral-700 transition-colors md:left-6"
             >
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            aria-label="Show next slide"
-            onClick={showNextImage}
-            className="absolute top-1/2 right-4 z-20 grid size-9 -translate-y-1/2 place-items-center rounded-full bg-white text-neutral-950 transition-colors md:right-6"
-          >
-            <svg
-              className="size-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
+              <svg
+                className="size-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+          ) : null}
+          {canShowNextImage ? (
+            <button
+              type="button"
+              aria-label="Show next slide"
+              onClick={showNextImage}
+              className="absolute top-1/2 right-4 z-20 grid size-9 -translate-y-1/2 place-items-center rounded-full bg-white text-neutral-700 transition-colors md:right-6"
             >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </button>
+              <svg
+                className="size-5.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+          ) : null}
         </>
       ) : null}
     </section>

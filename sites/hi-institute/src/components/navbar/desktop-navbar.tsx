@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import {
   ChevronDown,
   clinics,
@@ -12,6 +13,11 @@ import {
 type DesktopNavbarProps = {
   currentPath: string;
 };
+
+const dropdownTransition = {
+  duration: 0.4,
+  ease: [0.22, 1, 0.36, 1],
+} as const;
 
 export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
   const [isTreatmentsOpen, setIsTreatmentsOpen] = useState(false);
@@ -62,7 +68,7 @@ export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
     <>
       <div
         aria-hidden="true"
-        className={`fixed inset-x-0 top-18 bottom-0 z-40 hidden bg-black/30 transition-opacity duration-200 lg:block ${
+        className={`fixed inset-x-0 top-18 bottom-0 z-40 hidden bg-black/30 transition-opacity duration-400 lg:block ${
           isDesktopSubmenuOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -103,19 +109,30 @@ export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
             <span aria-hidden="true" className={underlineClassName}></span>
           </button>
 
-          <div
-            className={`fixed top-18 left-0 z-50 w-screen bg-white shadow-lg shadow-black/5 transition-opacity duration-200 ease-out ${
-              isTreatmentsOpen
-                ? "pointer-events-auto opacity-100"
-                : "pointer-events-none opacity-0"
+          <motion.div
+            className={`fixed inset-x-0 top-18 z-50 bg-white shadow-lg shadow-black/5 ${
+              isTreatmentsOpen ? "pointer-events-auto" : "pointer-events-none"
             }`}
+            initial={false}
+            animate={
+              isTreatmentsOpen
+                ? {
+                    opacity: 1,
+                    clipPath: "inset(0% 0% 0% 0%)",
+                  }
+                : {
+                    opacity: 0,
+                    clipPath: "inset(0% 0% 100% 0%)",
+                  }
+            }
+            transition={dropdownTransition}
           >
-            <div className="mx-auto flex max-w-7xl justify-center gap-8 px-6 pt-2 pb-5 lg:px-14">
+            <div className="group/dropdown mx-auto flex max-w-7xl justify-center gap-8 px-6 pt-2 pb-5 lg:px-14">
               {treatments.map((treatment) => (
                 <a
                   key={treatment.href}
                   href={treatment.href}
-                  className="hover:text-brand-dark-blue block w-full text-(length:--step--1) leading-none font-medium text-balance text-neutral-800 transition-colors"
+                  className="hover:text-brand-dark-blue group/item block w-full text-(length:--step--1) leading-none font-medium text-balance text-neutral-800 transition-opacity duration-300 ease-out group-hover/dropdown:opacity-60 hover:opacity-100"
                 >
                   <img
                     src={treatment.image}
@@ -128,7 +145,7 @@ export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
                 </a>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
         <a
@@ -163,19 +180,24 @@ export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
             <span aria-hidden="true" className={underlineClassName}></span>
           </button>
 
-          <div
-            className={`fixed top-18 left-0 z-50 w-screen bg-white shadow-lg shadow-black/5 transition-opacity duration-200 ease-out ${
-              isClinicsOpen
-                ? "pointer-events-auto opacity-100"
-                : "pointer-events-none opacity-0"
+          <motion.div
+            className={`fixed inset-x-0 top-18 z-50 origin-top bg-white shadow-lg shadow-black/5 ${
+              isClinicsOpen ? "pointer-events-auto" : "pointer-events-none"
             }`}
+            initial={false}
+            animate={
+              isClinicsOpen
+                ? { opacity: 1, scaleY: 1, filter: "blur(0px)" }
+                : { opacity: 0, scaleY: 0.82, filter: "blur(6px)" }
+            }
+            transition={dropdownTransition}
           >
-            <div className="mx-auto flex max-w-4xl justify-center gap-8 px-6 pt-2 pb-5 lg:px-14">
+            <div className="group/dropdown mx-auto flex max-w-4xl justify-center gap-8 px-6 pt-2 pb-5 lg:px-14">
               {clinics.map((clinic) => (
                 <a
                   key={clinic.href}
                   href={clinic.href}
-                  className="hover:text-brand-dark-blue block w-full text-(length:--step--1) leading-none font-medium text-balance text-neutral-800 transition-colors"
+                  className="hover:text-brand-dark-blue group/item block w-full text-(length:--step--1) leading-none font-medium text-balance text-neutral-800 transition-opacity duration-300 ease-out group-hover/dropdown:opacity-60 hover:opacity-100"
                 >
                   <span className="mb-4 flex aspect-square w-full items-center justify-center bg-neutral-100 p-10">
                     <img
@@ -193,7 +215,7 @@ export default function DesktopNavbar({ currentPath }: DesktopNavbarProps) {
                 </a>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {navLinks.slice(2).map((link) => (
