@@ -24,6 +24,7 @@
   --font-mono: "IBM Plex Mono", monospaced;
 
   --color-brand-blue: #1d75b8;
+  --color-foreground-blue: oklch(0.946 0.025 247.084);
   --color-brand-green: #9ccd37;
   --color-brand-green-2: oklch(0.66 0.148 128.338);
   --lol: oklch(0.701 0.157 128.338);

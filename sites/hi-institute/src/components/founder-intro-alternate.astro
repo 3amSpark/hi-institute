@@ -6,18 +6,20 @@ import FounderIntroStickyImage from "./founder-intro-sticky-image";
 <section class="relative">
   <FounderIntroStickyImage client:load />
 
-  <div class="relative z-10 grid min-h-svh items-center bg-neutral-100 px-6">
-    <div class="max-w-desktop mx-auto">
-      <FadeIn client:visible as="div" className="flex">
+  <div
+    class="bg-brand-blue relative z-10 grid min-h-svh items-center p-4 text-white lg:p-8"
+  >
+    <div class="mx-auto">
+      <FadeIn client:visible as="div" className="flex flex-col gap-1">
         <h2
-          class="max-w-5xl text-(length:--step-5)/12 font-[550] tracking-tighter text-balance text-neutral-800 md:text-(length:--step-5)/14"
+          class="max-w-5xl text-(length:--step-5)/12 font-medium tracking-tighter text-balance md:text-(length:--step-5)/14"
         >
           Entendemos tu cuerpo antes de intentar cambiarlo.
         </h2>
       </FadeIn>
 
       <div
-        class="relative mt-16 grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-start"
+        class="relative mt-10 grid gap-8 lg:items-start xl:grid-cols-[1.15fr_1fr]"
       >
         <!-- <div
           class="from-brand-dark-blue via-brand-blue to-brand-blue absolute top-1/2 right-[calc(50%-50dvw)] left-[calc(50%-50dvw)] hidden h-[20rem] -translate-y-1/2 bg-linear-to-r via-20% lg:block"
@@ -27,11 +29,6 @@ import FounderIntroStickyImage from "./founder-intro-sticky-image";
 
         <FadeIn client:visible disableBlur className="relative mx-auto w-full">
           <div class="group relative flex min-h-96 items-center justify-start">
-            <div
-              class="from-brand-blue to-brand-green absolute -bottom-5 -left-5 h-[calc(100%-3rem)] w-[calc(100%-3rem)] bg-linear-to-br"
-              aria-hidden="true"
-            >
-            </div>
             <!-- <div
               class="bg-brand-blue absolute right-0 bottom-0 z-40 flex w-full flex-col items-end justify-center gap-4 px-3 py-4 text-white"
             >
@@ -43,19 +40,19 @@ import FounderIntroStickyImage from "./founder-intro-sticky-image";
             <img
               src="/assets/herbert.webp"
               alt="Dr. Herbert Maradiaga"
-              class="shadow-xlmax-w-sm relative z-10 aspect-5/3 w-full object-cover object-center shadow-xl lg:max-w-none"
+              class="relative z-10 aspect-5/3 w-full max-w-none object-cover object-center"
               loading="lazy"
             />
           </div>
         </FadeIn>
 
-        <div class="text-neutral-700 lg:bg-none lg:p-0">
-          <div class="grid gap-4 pl-2 md:grid-cols-3 lg:grid-cols-1">
+        <div class="lg:bg-none lg:p-0">
+          <div class="grid gap-2 lg:grid-cols-2 lg:gap-8">
             <FadeIn
               client:visible
               as="p"
-              delay={0.1}
-              className="text-(length:--step-0)/8 text-balance text-neutral-700"
+              delay={0.2}
+              className="text-(length:--step-0)/8 text-pretty"
             >
               <span class="text-(length:--step-0)/8 font-semibold"
                 >Desde 2010</span
@@ -70,23 +67,15 @@ import FounderIntroStickyImage from "./founder-intro-sticky-image";
             <FadeIn
               client:visible
               as="p"
-              delay={0.26}
-              className="text-(length:--step-0)/8 text-balance"
+              delay={0.35}
+              className="text-(length:--step-0)/8 text-pretty xl:max-w-[30ch]"
             >
-              Por eso nuestro lema es <br />
-              <span class="text-(length:--step-0)/8 font-semibold">
-                Feel Better Than Ever
-              </span>
-            </FadeIn>
-            <FadeIn
-              client:visible
-              as="p"
-              delay={0.26}
-              className="text-(length:--step-0)/8 text-balance"
-            >
-              No es solo un slogan. <br /> Es una promesa. <br /> Significa ir más
-              allá de tratar síntomas. <br /> Significa ayudarte a recuperar energía,
-              control, confianza y calidad de vida.
+              Por eso nuestro lema es
+              <span class="block font-semibold"> Feel Better Than Ever </span>
+
+              No es solo un slogan. Es una promesa. Significa ir más allá de
+              tratar síntomas. Significa ayudarte a recuperar energía, control,
+              confianza y calidad de vida.
             </FadeIn>
           </div>
         </div>

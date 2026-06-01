@@ -111,7 +111,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
           className="gradient navbar-gradient absolute inset-0 to-transparent"
           style={{ opacity: isDesktopHovered ? 0 : gradientOpacity }}
         />
-        <nav className="max-w-desktop mx-auto flex h-19 items-center justify-between px-6 lg:px-10">
+        <nav className="max-w-xxl mx-auto flex h-19 items-center justify-between px-6 lg:px-10">
           <a
             href="/"
             aria-label="HI Institute International home"

@@ -130,7 +130,7 @@ export default function Hero({
               key={image.src}
               className={`flex h-[calc(100dvh-4.75rem)] w-full shrink-0 flex-col-reverse lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${slideLayoutClass[imagePosition]}`}
             >
-              <div className="hero-copy flex shrink-0 items-end justify-start px-3 pt-2 pb-4 lg:h-auto lg:flex-auto lg:px-16 lg:py-24 lg:pt-0 xl:px-24">
+              <div className="hero-copy flex shrink-0 items-end justify-start px-3 pt-2 pb-4 lg:h-auto lg:flex-auto lg:px-14 lg:py-15 lg:pt-0">
                 <div
                   className={`flex flex-col gap-2 sm:gap-5 lg:max-w-xl ${contentClass[align]}`}
                 >
