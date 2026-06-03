@@ -10,7 +10,7 @@ import FadeIn from "./fade-in";
 
 const steps = [
   {
-    src: "hi-test.png",
+    src: "step-1.png",
     number: "01",
     title: "Evaluacion completa",
     eyebrow: "Primero entendemos",
@@ -19,7 +19,7 @@ const steps = [
       "Reunimos datos claros para identificar que esta frenando tu progreso y que necesita atencion real.",
   },
   {
-    src: "feel-better-than-ever.png",
+    src: "step2.png",
     number: "02",
     title: "Plan personalizado",
     eyebrow: "Despues disenamos",
@@ -28,7 +28,7 @@ const steps = [
       "Tu plan se construye alrededor de tus resultados, tus sintomas y lo que puedes sostener en tu vida diaria.",
   },
   {
-    src: "/assets/hero/couple.png",
+    src: "step-3.png",
     number: "03",
     title: "Cambio progresivo",
     eyebrow: "Luego ajustamos",
@@ -46,12 +46,12 @@ export default function Steps() {
   const activeStep = steps[activeIndex];
 
   return (
-    <section className="relative grid h-[80svh] w-full place-items-center overflow-hidden bg-neutral-50">
-      <div className="grid h-full w-full gap-4 lg:grid-cols-[1fr_1.5fr]">
+    <section className="relative grid min-h-[80svh] w-full place-items-center overflow-hidden bg-gray-100">
+      <div className="grid h-full w-full gap-4 lg:grid-cols-[1fr_1.2fr]">
         {/* Left column */}
         <div className="flex flex-col justify-center">
-          <FadeIn className="pt-8 pl-24">
-            <p className="mb-2 text-(length:--step--1) font-[550] text-neutral-600">
+          <FadeIn className="pt-8 pl-10">
+            <p className="mb-2 text-(length:--step-0) font-[550] text-neutral-600">
               Nuestro proceso
             </p>
             <h2 className="mb-8 text-left text-(length:--step-4) font-[550] tracking-tighter text-balance text-neutral-700 md:text-(length:--step-5)/[1.05]">
@@ -60,7 +60,7 @@ export default function Steps() {
           </FadeIn>
 
           <LayoutGroup>
-            <div className="pl-20">
+            <div className="pl-10">
               {/*<div className="h-px bg-neutral-200" />*/}
               {steps.map((step, index) => {
                 const isActive = index === activeIndex;
@@ -70,12 +70,12 @@ export default function Steps() {
                     <button
                       type="button"
                       onClick={() => setActiveIndex(index)}
-                      className={`group w-full cursor-pointer p-6 text-left ${isActive && "bg-neutral-100"}`}
+                      className={`group w-full cursor-pointer p-6 text-left ${isActive && "bg-gray-200"}`}
                     >
                       <div className="min-w-0 flex-1">
                         <div className="flex w-full items-center justify-between">
                           <span
-                            className={`block text-(length:--step-1) font-[550] tracking-tight transition-colors duration-300 ${
+                            className={`block text-(length:--step-1) font-medium tracking-tight transition-colors duration-300 ${
                               isActive
                                 ? "text-neutral-700"
                                 : "text-neutral-500 group-hover:text-neutral-700"
@@ -118,7 +118,7 @@ export default function Steps() {
                               }}
                               style={{ overflow: "hidden" }}
                             >
-                              <p className="max-w-sm text-sm/6 text-pretty text-neutral-700">
+                              <p className="max-w-sm text-pretty text-neutral-700">
                                 {step.summary}
                               </p>
                             </motion.div>

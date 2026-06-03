@@ -15,6 +15,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isDesktopHovered, setIsDesktopHovered] = useState(false);
+  const [hasPassedThreshold, setHasPassedThreshold] = useState(false);
   const [hasDesktopPassedThreshold, setHasDesktopPassedThreshold] =
     useState(false);
   const { scrollY } = useScroll();
@@ -27,7 +28,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
     isDesktop ? value : 0,
   );
   const gradientOpacity = useTransform(
-    desktopScrollProgress,
+    scrollProgress,
     [0, 1],
     [0, 0.356],
   );
@@ -49,6 +50,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
   );
 
   useMotionValueEvent(scrollY, "change", (latestScrollY) => {
+    setHasPassedThreshold(latestScrollY > DESKTOP_SCROLL_THRESHOLD);
     setHasDesktopPassedThreshold(
       isDesktop && latestScrollY > DESKTOP_SCROLL_THRESHOLD,
     );
@@ -59,6 +61,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
 
     const updateScrollState = () => {
       setIsDesktop(desktopQuery.matches);
+      setHasPassedThreshold(window.scrollY > DESKTOP_SCROLL_THRESHOLD);
       setHasDesktopPassedThreshold(
         desktopQuery.matches && window.scrollY > DESKTOP_SCROLL_THRESHOLD,
       );
@@ -87,6 +90,8 @@ export default function Navbar({ currentPath }: NavbarProps) {
     };
   }, [isMobileOpen]);
 
+  const hasMobileWhiteChrome = !isDesktop && hasPassedThreshold;
+
   return (
     <>
       <MobileNavbar
@@ -108,7 +113,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
         />
         <motion.div
           aria-hidden="true"
-          className="gradient navbar-gradient absolute inset-0 to-transparent"
+          className="navbar-gradient absolute top-0 right-0 left-0 h-32"
           style={{ opacity: isDesktopHovered ? 0 : gradientOpacity }}
         />
         <nav className="max-w-xxl mx-auto flex h-19 items-center justify-between px-6 lg:px-10">
@@ -121,14 +126,26 @@ export default function Navbar({ currentPath }: NavbarProps) {
               src={logo}
               alt="HI Health Institute International"
               className="h-auto w-full"
-              style={{ opacity: isDesktopHovered ? 1 : defaultLogoOpacity }}
+              style={{
+                opacity: hasMobileWhiteChrome
+                  ? 0
+                  : isDesktopHovered
+                    ? 1
+                    : defaultLogoOpacity,
+              }}
             />
             <motion.img
               src={whiteLogo}
               alt=""
               aria-hidden="true"
               className="absolute inset-0 h-auto w-full"
-              style={{ opacity: isDesktopHovered ? 0 : whiteLogoOpacity }}
+              style={{
+                opacity: hasMobileWhiteChrome
+                  ? 1
+                  : isDesktopHovered
+                    ? 0
+                    : whiteLogoOpacity,
+              }}
             />
           </a>
 
@@ -146,17 +163,23 @@ export default function Navbar({ currentPath }: NavbarProps) {
             className="group relative flex size-10 cursor-pointer flex-col items-center justify-center gap-1.5 lg:hidden"
           >
             <span
-              className={`h-0.5 w-6 origin-center bg-neutral-700 transition-all duration-300 ${
+              className={`h-0.5 w-6 origin-center transition-all duration-300 ${
+                hasMobileWhiteChrome ? "bg-white" : "bg-neutral-700"
+              } ${
                 isMobileOpen ? "translate-y-[8px] rotate-45" : ""
               }`}
             ></span>
             <span
-              className={`h-0.5 w-6 bg-neutral-700 transition-all duration-300 ${
+              className={`h-0.5 w-6 transition-all duration-300 ${
+                hasMobileWhiteChrome ? "bg-white" : "bg-neutral-700"
+              } ${
                 isMobileOpen ? "scale-0 opacity-0" : ""
               }`}
             ></span>
             <span
-              className={`h-0.5 w-6 origin-center bg-neutral-700 transition-all duration-300 ${
+              className={`h-0.5 w-6 origin-center transition-all duration-300 ${
+                hasMobileWhiteChrome ? "bg-white" : "bg-neutral-700"
+              } ${
                 isMobileOpen ? "-translate-y-[8px] -rotate-45" : ""
               }`}
             ></span>

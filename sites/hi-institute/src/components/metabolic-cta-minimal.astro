@@ -1,5 +1,4 @@
 ---
-import type { delay } from "framer-motion";
 import FadeIn from "./fade-in";
 import MetabolicSignalScroller from "./metabolic-signal-scroller";
 
@@ -8,73 +7,84 @@ const signals = [
     text: 'Te cuesta bajar de peso aunque "comes bien".',
     description:
       "Puede haber señales metabólicas u hormonales que no se resuelven solo con dieta.",
-    image: "/hi-test.png",
+    image: "/overweight2.png",
+    href: "/tratamientos/metabolismo-peso",
   },
   {
     text: "Te sientes cansada(o) sin razón alguna.",
     description:
       "La energía baja constante puede ser una pista de desbalance interno.",
-    image: "/hi-test.png",
+    image: "/mom-2.png",
+    href: "/tratamientos/balance-hormonal",
   },
   {
     text: "Tu ciclo es irregular o doloroso.",
     description:
       "Tu ciclo también habla de inflamación, estrés y salud hormonal.",
-    image: "/hi-test.png",
+    image: "/period.png",
+    href: "/tratamientos/salud-femenina-ginecologica",
   },
   {
     text: "Te ha costado embarazarte.",
     description:
       "Entender tus hormonas y metabolismo puede abrir nuevas respuestas.",
     image: "/hi-test.png",
+    href: "/tratamientos/fertilidad-reproduccion",
   },
   {
     text: "Tienes ansiedad por azúcar o carbohidratos.",
     description:
       "No siempre es falta de voluntad; puede estar relacionado con glucosa e insulina.",
-    image: "/hi-test.png",
+    image: "/anxiety.png",
+    href: "/tratamientos/diabetes",
   },
   {
     text: "Sientes que tu cuerpo cambió, y no sabes por qué.",
     description:
       "Cuando algo se siente distinto, vale la pena investigarlo con datos claros.",
     image: "/hi-test.png",
+    href: "/tratamientos/balance-hormonal",
   },
 ];
 ---
 
-<section class="bg-neutral-100">
-  <div class="mx-auto px-6 text-left">
-    <FadeIn client:visible as="div">
-      <h2
-        class="mx-auto pt-30 pb-10 text-(length:--step-5)/12 font-[550] tracking-tighter text-balance text-neutral-700 md:text-(length:--step-5)/16"
-      >
-        Tal vez te está pasando esto
-      </h2>
-
-      <p class="mx-auto text-(length:--step-0)/8 text-neutral-600"></p>
-    </FadeIn>
-  </div>
+<section class="max-w-xxl mx-auto bg-gray-50/30">
+  <FadeIn
+    client:visible
+    as="div"
+    className="mx-auto flex items-center justify-between px-10 pt-15 pb-15"
+  >
+    <h2
+      class="text-(length:--step-4) leading-relaxed font-medium tracking-tighter text-balance text-neutral-700"
+    >
+      Te ha pasado alguna vez:
+    </h2>
+    <p
+      class="text-(length:--step-0) font-medium tracking-tight text-neutral-500"
+    >
+      Si reconoces alguno, no lo dejes pasar. <br />
+      <span class="font-semibold"> Tiene explicación, y solución. </span>
+    </p>
+  </FadeIn>
 
   <FadeIn client:visible as="div" delay={0.1}>
     <MetabolicSignalScroller client:visible signals={signals} />
   </FadeIn>
-
+  <!-- CTA -->
   <section
-    class="min-h-xl flex flex-col items-center justify-center gap-20 px-6 py-30"
+    class="bg-brand-green mt-15 flex min-h-96 flex-col items-center justify-center gap-10 py-30 text-white"
   >
     <div class="flex gap-4">
-      <img src="/assets/logo-single.svg" class="w-12" />
+      <!-- <img src="/assets/logo-single.svg" class="w-12" /> -->
       <FadeIn
         client:visible
         as="div"
-        className="flex h-full flex-col items-start gap-12 md:flex-row md:items-end md:justify-between md:gap-16"
+        className="flex h-full flex-col items-start gap-12 text-center md:flex-row md:items-end md:justify-between md:gap-16"
       >
         <p
-          class="text- text-(length:--step-1)/[1.05] font-medium tracking-tight text-neutral-600 md:text-(length:--step-1)/[1.05]"
+          class="text- text-(length:--step-3)/[1.05] font-light tracking-tighter md:text-(length:--step-3)/[1.05]"
         >
-          No es normal.<br /><span
-            class="text-(length:--step-5) font-[550] text-neutral-700"
+          No es normal.<br /><span class="text-(length:--step-5) font-medium"
             >Y no tienes que vivir así.</span
           >
         </p>
@@ -82,9 +92,9 @@ const signals = [
     </div>
     <a
       href="/contacto"
-      class="group inline-flex h-fit w-fit shrink-0 items-center gap-3 rounded-full bg-white px-6 py-2 text-(length:--step-0) font-[550] tracking-tight text-neutral-700 transition-colors duration-300 hover:bg-neutral-100"
+      class="group inline-flex h-fit w-fit shrink-0 items-center gap-3 rounded-full bg-neutral-700 px-7 py-1.5 text-(length:--step-0) font-[550] tracking-tight text-white transition-colors duration-300 hover:bg-neutral-900"
     >
-      <span>Conocer más</span>
+      <span>Conoce más</span>
     </a>
   </section>
 </section>

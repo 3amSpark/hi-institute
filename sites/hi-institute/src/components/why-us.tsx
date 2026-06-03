@@ -1,4 +1,4 @@
-import { easeInOut, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import FadeIn from "./fade-in";
 
@@ -20,12 +20,6 @@ const reasons = [
   },
 ];
 
-const cardClassNames = [
-  " bg-neutral-500  text-white",
-  " bg-brand-green  text-white",
-  " bg-brand-blue  text-white",
-];
-
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -37,10 +31,10 @@ const containerVariants: Variants = {
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, x: 28 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
@@ -49,44 +43,45 @@ export default function WhyUs() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section>
-      <div className="flex flex-col gap-2 overflow-clip px-2 md:flex-row">
-        <div className="relative overflow-clip md:min-h-[760px] md:basis-3/5">
-          <img
-            src="/assets/why-us.webp"
-            alt="Personas representando cuidado integral en HI Institute"
-            className="h-full w-full -scale-x-100 object-cover object-center"
-            loading="lazy"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-linear-to-b from-black/0 via-black/5 to-black/45" />
-          <div className="absolute inset-0 flex items-center justify-center px-6">
-            <FadeIn
-              as="h2"
-              className="max-w-4xl text-center text-(length:--step-5)/12 font-semibold tracking-tighter text-white lg:text-(length:--step-6)/18"
-            >
-              ¿Por qué HI Institute es una clínica diferente?
-            </FadeIn>
-          </div>
+    <section className="relative min-h-svh overflow-hidden text-white">
+      <div className="absolute inset-0 -z-10">
+        <img
+          src="/hi-test-2.png"
+          alt="Personas representando cuidado integral en HI Institute"
+          className="h-full w-full -scale-x-100 object-cover object-center"
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="absolute inset-0 bg-black/20" />
+      </div>
+
+      <div className="grid min-h-svh grid-rows-[1.5fr_1fr]">
+        <div className="flex items-center justify-center px-6 pt-19">
+          <FadeIn
+            as="h2"
+            className="text-center text-(length:--step-6) leading-tight font-[550] tracking-tighter text-balance text-white"
+          >
+            ¿Por qué HI Institute es una clínica diferente?
+          </FadeIn>
         </div>
 
         <motion.div
-          className="why-us-reasons grid grid-cols-1 grid-rows-3 gap-2 md:basis-2/5"
+          className="why-us-reasons grid grid-cols-1 grid-rows-[auto_1fr] px-6 pb-10 md:grid-cols-3 md:px-10"
           variants={reduceMotion ? undefined : containerVariants}
           initial={reduceMotion ? false : "hidden"}
           whileInView={reduceMotion ? undefined : "visible"}
           viewport={{ once: true, amount: 0.65 }}
         >
-          {reasons.map((reason, index) => (
+          {reasons.map((reason) => (
             <motion.article
               key={reason.title}
-              className={`${cardClassNames[index]} why-us-reason flex flex-col gap-4 p-6 md:p-7`}
+              className="why-us-reason grid grid-rows-subgrid gap-4 p-4 text-white md:row-span-2"
               variants={reduceMotion ? undefined : cardVariants}
             >
-              <h3 className="text-(length:--step-3)/10 font-semibold tracking-tighter text-balance">
+              <h3 className="text-(length:--step-3) leading-tight font-medium tracking-tighter text-balance">
                 {reason.title}
               </h3>
-              <p className="text-(length:--step-0)/7 opacity-85">
+              <p className="max-w-[55ch] text-(length:--step-0)/7 opacity-85">
                 {reason.description}
               </p>
             </motion.article>

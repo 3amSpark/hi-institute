@@ -37,19 +37,16 @@ const slideLayoutClass = {
 
 const slideThemes = [
   {
-    title: "text-neutral-700",
-    body: "text-neutral-700",
-    cta: "bg-neutral-800",
+    background: "bg-gray-100",
+    text: "text-neutral-700",
   },
   {
-    title: "text-brand-blue",
-    body: "text-neutral-700",
-    cta: "bg-brand-blue",
+    background: "bg-brand-blue",
+    text: "text-white",
   },
   {
-    title: "text-brand-green",
-    body: "text-neutral-700",
-    cta: "bg-brand-green",
+    background: "bg-brand-green",
+    text: "text-white",
   },
 ] as const;
 
@@ -128,7 +125,7 @@ export default function Hero({
           return (
             <div
               key={image.src}
-              className={`flex h-[calc(100dvh-4.75rem)] w-full shrink-0 flex-col-reverse lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${slideLayoutClass[imagePosition]}`}
+              className={`flex h-[calc(100dvh-4.75rem)] w-full shrink-0 flex-col-reverse lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${slideTheme.background} ${slideLayoutClass[imagePosition]}`}
             >
               <div className="hero-copy flex shrink-0 items-end justify-start px-3 pt-2 pb-4 lg:h-auto lg:flex-auto lg:px-14 lg:py-15 lg:pt-0">
                 <div
@@ -136,7 +133,7 @@ export default function Hero({
                 >
                   <FadeIn instant={true}>
                     <h1
-                      className={`text-(length:--step-5)/12 font-[550] tracking-tighter text-balance text-neutral-800 md:text-(length:--step-6)/16`}
+                      className={`text-(length:--step-5)/12 font-medium tracking-tighter text-balance md:text-(length:--step-6)/16 ${slideTheme.text}`}
                     >
                       {slideTitle}
                     </h1>
@@ -145,7 +142,7 @@ export default function Hero({
                   <FadeIn delay={0.2} instant={true}>
                     {slideDescription ? (
                       <p
-                        className={`max-w-lg text-(length:--step-0) leading-8 ${slideTheme.body}`}
+                        className={`max-w-lg text-(length:--step-0) leading-8 ${slideTheme.text}`}
                       >
                         {slideDescription}
                       </p>
@@ -159,40 +156,13 @@ export default function Hero({
                           <a
                             key={action.href}
                             href={action.href}
-                            className={`group inline-flex w-fit items-center gap-2 rounded-full border bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-3 pl-5 text-(length:--step--0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] ${slideTheme.cta}`}
+                            className="group inline-flex w-fit items-center gap-2 rounded-full bg-neutral-700 bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-3 pl-5 text-(length:--step--0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%]"
                           >
                             <span>{action.label}</span>
-                            <svg
-                              className="size-5.5 -rotate-45 transition-transform duration-300 ease-out group-hover:rotate-0"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
+                            <span
+                              className="size-5.5 -rotate-45 bg-current [mask-image:url('/assets/icons/arrow-right.svg')] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] transition-transform duration-300 ease-out group-hover:rotate-0"
                               aria-hidden="true"
-                            >
-                              <path d="M5 12h14"></path>
-                              <path d="m13 6 6 6-6 6"></path>
-                            </svg>
-
-                            {/*<span
-                              className={`grid size-8 shrink-0 place-items-center rounded-full bg-white ${slideTheme.title}`}
-                            >
-                              <svg
-                                className="size-5.5 -rotate-45 transition-transform duration-300 ease-out group-hover:rotate-0"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                aria-hidden="true"
-                              >
-                                <path d="M5 12h14"></path>
-                                <path d="m13 6 6 6-6 6"></path>
-                              </svg>
-                            </span>*/}
+                            />
                           </a>
                         ))}
                       </div>
@@ -225,20 +195,12 @@ export default function Hero({
               type="button"
               aria-label="Show previous slide"
               onClick={showPreviousImage}
-              className="absolute top-1/2 left-4 z-20 grid size-9 -translate-y-1/2 place-items-center rounded-full bg-white text-neutral-700 transition-colors md:left-6"
+              className="absolute top-1/2 left-4 z-20 grid size-9 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white text-neutral-700 transition-colors md:left-6"
             >
-              <svg
-                className="size-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              <span
+                className="size-5 rotate-180 bg-current [mask-image:url('/assets/icons/chevron-right.svg')] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat]"
                 aria-hidden="true"
-              >
-                <path d="m15 18-6-6 6-6" />
-              </svg>
+              />
             </button>
           ) : null}
           {canShowNextImage ? (
@@ -246,20 +208,12 @@ export default function Hero({
               type="button"
               aria-label="Show next slide"
               onClick={showNextImage}
-              className="absolute top-1/2 right-4 z-20 grid size-9 -translate-y-1/2 place-items-center rounded-full bg-white text-neutral-700 transition-colors md:right-6"
+              className="absolute top-1/2 right-4 z-20 grid size-9 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white text-neutral-700 transition-colors md:right-6"
             >
-              <svg
-                className="size-5.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              <span
+                className="size-5.5 bg-current [mask-image:url('/assets/icons/chevron-right.svg')] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat]"
                 aria-hidden="true"
-              >
-                <path d="m9 18 6-6-6-6" />
-              </svg>
+              />
             </button>
           ) : null}
         </>

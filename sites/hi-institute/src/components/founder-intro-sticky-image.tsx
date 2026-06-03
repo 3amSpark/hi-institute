@@ -4,6 +4,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import { image } from "framer-motion/m";
 import { useRef } from "react";
 
 export default function FounderIntroStickyImage() {
@@ -13,6 +14,12 @@ export default function FounderIntroStickyImage() {
     target: ref,
     offset: ["start end", "start start"],
   });
+
+  const imageScale = useTransform(
+    scrollYProgress,
+    [0.15, 1],
+    reduceMotion ? [1, 1] : [0.55, 1],
+  );
 
   const textScale = useTransform(
     scrollYProgress,
@@ -27,11 +34,11 @@ export default function FounderIntroStickyImage() {
         alt="Dr. Herbert Maradiaga"
         className="h-full w-full object-cover object-center"
         loading="lazy"
-        style={{ scale: textScale, y: scrollYProgress }}
+        style={{ scale: imageScale, y: scrollYProgress }}
       />
       <motion.div
         className="absolute inset-0 bg-linear-to-b from-transparent to-black/20"
-        style={{ scale: textScale }}
+        style={{ scale: imageScale }}
       />
 
       <motion.h2
