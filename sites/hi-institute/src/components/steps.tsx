@@ -46,22 +46,21 @@ export default function Steps() {
   const activeStep = steps[activeIndex];
 
   return (
-    <section className="relative grid min-h-[80svh] w-full place-items-center overflow-hidden bg-gray-100">
-      <div className="grid h-full w-full gap-4 lg:grid-cols-[1fr_1.2fr]">
+    <section className="relative w-full overflow-hidden bg-gray-50 lg:grid lg:min-h-[80svh] lg:place-items-center">
+      <div className="grid w-full lg:h-full lg:grid-cols-[1fr_1fr] lg:gap-4">
         {/* Left column */}
-        <div className="flex flex-col justify-center">
-          <FadeIn className="pt-8 pl-10">
-            <p className="mb-2 text-(length:--step-0) font-[550] text-neutral-600">
+        <div className="flex flex-col justify-center px-4 pt-12 pb-10 sm:px-6 lg:px-0 lg:py-0">
+          <FadeIn className="lg:pt-8 lg:pl-10">
+            <p className="mb-3 text-base font-semibold text-neutral-500 lg:mb-2 lg:text-(length:--step-0)">
               Nuestro proceso
             </p>
-            <h2 className="mb-8 text-left text-(length:--step-4) font-[550] tracking-tighter text-balance text-neutral-700 md:text-(length:--step-5)/[1.05]">
+            <h2 className="mb-8 text-left text-(length:--step-5)/[1.05] font-[550] tracking-tighter text-balance text-neutral-800">
               Asi empieza tu cambio
             </h2>
           </FadeIn>
 
           <LayoutGroup>
-            <div className="pl-10">
-              {/*<div className="h-px bg-neutral-200" />*/}
+            <div className="lg:ml-4 lg:border-0">
               {steps.map((step, index) => {
                 const isActive = index === activeIndex;
 
@@ -70,15 +69,15 @@ export default function Steps() {
                     <button
                       type="button"
                       onClick={() => setActiveIndex(index)}
-                      className={`group w-full cursor-pointer p-6 text-left ${isActive && "bg-gray-200"}`}
+                      className={`group w-full cursor-pointer px-4 py-5 text-left transition-colors duration-300 sm:px-5 lg:p-6 ${isActive ? "bg-gray-100" : "hover:bg-gray-200/50"}`}
                     >
                       <div className="min-w-0 flex-1">
-                        <div className="flex w-full items-center justify-between">
+                        <div className="flex w-full items-start justify-between gap-5">
                           <span
-                            className={`block text-(length:--step-1) font-medium tracking-tight transition-colors duration-300 ${
+                            className={`block text-(length:--step-1) leading-tight font-medium tracking-tight transition-colors duration-300 ${
                               isActive
-                                ? "text-neutral-700"
-                                : "text-neutral-500 group-hover:text-neutral-700"
+                                ? "text-neutral-900"
+                                : "text-neutral-400/80 group-hover:text-neutral-700"
                             }`}
                           >
                             {step.title}
@@ -118,7 +117,7 @@ export default function Steps() {
                               }}
                               style={{ overflow: "hidden" }}
                             >
-                              <p className="max-w-sm text-pretty text-neutral-700">
+                              <p className="mt-3 max-w-md max-w-prose pr-6 text-sm leading-relaxed text-pretty text-neutral-700 lg:mt-0 lg:pr-0">
                                 {step.summary}
                               </p>
                             </motion.div>
@@ -126,7 +125,6 @@ export default function Steps() {
                         </AnimatePresence>
                       </div>
                     </button>
-                    {/*<div className="h-px bg-neutral-200" />*/}
                   </motion.div>
                 );
               })}
@@ -135,7 +133,7 @@ export default function Steps() {
         </div>
 
         {/* Right column */}
-        <div className="relative h-full min-w-0 overflow-hidden">
+        <div className="relative aspect-4/3 min-w-0 overflow-hidden sm:aspect-16/10 lg:aspect-auto lg:h-full">
           {/* Cross-fade image — no mode="wait", absolute stack */}
           <AnimatePresence mode="sync">
             <motion.img

@@ -48,34 +48,29 @@ const signals = [
 ];
 ---
 
-<section class="max-w-xxl mx-auto bg-gray-50/30">
+<section class="mx-auto bg-gray-100">
   <FadeIn
     client:visible
     as="div"
-    className="mx-auto flex items-center justify-between px-10 pt-15 pb-15"
+    className="mx-auto flex flex-col gap-4 px-4 pt-10 pb-6 sm:px-6 md:flex-row md:items-end md:justify-between md:gap-8 md:px-10 md:py-20"
   >
-    <h2
-      class="text-(length:--step-4) leading-relaxed font-medium tracking-tighter text-balance text-neutral-700"
-    >
+    <h2 class="text-(length:--step-4)/[1.05] font-medium tracking-tighter">
       Te ha pasado alguna vez:
     </h2>
     <p
-      class="text-(length:--step-0) font-medium tracking-tight text-neutral-500"
+      class="max-w-md text-(length:--step-0)/7 font-medium tracking-tight text-neutral-500"
     >
       Si reconoces alguno, no lo dejes pasar. <br />
       <span class="font-semibold"> Tiene explicación, y solución. </span>
     </p>
   </FadeIn>
 
-  <FadeIn client:visible as="div" delay={0.1}>
-    <MetabolicSignalScroller client:visible signals={signals} />
-  </FadeIn>
+  <MetabolicSignalScroller client:visible signals={signals} />
   <!-- CTA -->
-  <section
-    class="bg-brand-green mt-15 flex min-h-96 flex-col items-center justify-center gap-10 py-30 text-white"
+  <!-- <section
+    class="bg-muted-green mt-15 flex min-h-96 flex-col items-center justify-center gap-10 py-30 text-white"
   >
     <div class="flex gap-4">
-      <!-- <img src="/assets/logo-single.svg" class="w-12" /> -->
       <FadeIn
         client:visible
         as="div"
@@ -96,5 +91,5 @@ const signals = [
     >
       <span>Conoce más</span>
     </a>
-  </section>
+  </section> -->
 </section>

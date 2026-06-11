@@ -50,14 +50,11 @@ const heroImages = [
     images={heroImages}
     actions={[{ href: "/contacto", label: "Agenda tu cita ahora" }]}
   />
-  <main>
-    <!-- <FounderIntro /> -->
-    <FounderIntroAlternate client:visible />
-    <!-- <FounderIntroGrid /> -->
+  <main class="bg-gray-50">
+    <FounderIntroAlternate client:load />
     <MetabolicCtaMinimal />
-    <!-- <MetabolicCtaAlternate /> -->
-    <Steps client:visible />
-    <WhyUs client:visible />
+    <Steps client:load />
+    <WhyUs client:load />
     <Footer />
   </main>
 </Root>

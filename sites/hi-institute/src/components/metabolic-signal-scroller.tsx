@@ -41,7 +41,10 @@ function SignalCard({
   );
 
   return (
-    <li ref={cardRef} className="min-w-md snap-start">
+    <li
+      ref={cardRef}
+      className="relative min-w-sm snap-start focus-within:z-20 hover:z-20 md:min-w-lg"
+    >
       <a
         href={signal.href}
         className="group relative z-0 block focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-neutral-800"
@@ -60,7 +63,7 @@ function SignalCard({
             />
           </motion.div>
         </div>
-        <p className="relative z-10 max-w-[calc(100%-4rem)] pt-3 pl-0 text-left text-(length:--step-1) leading-tight font-[550] tracking-tight text-balance text-neutral-600 transition-colors duration-350 group-hover:text-white group-focus-visible:text-white">
+        <p className="relative z-10 max-w-none pt-3 pl-0 text-left text-(length:--step-2) leading-tight font-[550] tracking-tight text-balance transition-colors duration-350 group-hover:text-white group-focus-visible:text-white">
           {signal.text}
         </p>
         <p className="relative z-10 mt-2 max-w-[calc(100%-4rem)] pb-8 text-left text-base tracking-tight text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-white group-focus-visible:text-white">
@@ -145,7 +148,7 @@ export default function MetabolicSignalScroller({
     <div className="group/scroller relative">
       <ul
         ref={scrollerRef}
-        className="signal-scroller flex snap-x snap-mandatory scroll-mb-28 scroll-pl-10 gap-6 overflow-x-auto scroll-smooth pt-4 pb-8 pl-10"
+        className="signal-scroller flex snap-x snap-mandatory scroll-mb-28 gap-0.5 overflow-x-auto scroll-smooth pt-4 pb-8 pl-10 sm:scroll-pl-8"
       >
         {signals.map((signal, idx) => (
           <SignalCard

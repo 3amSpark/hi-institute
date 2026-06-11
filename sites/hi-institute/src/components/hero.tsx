@@ -31,14 +31,15 @@ const contentClass = {
 };
 
 const slideLayoutClass = {
-  left: "lg:[&_.hero-copy]:order-2 lg:[&_.hero-media]:order-1",
+  // left: "lg:[&_.hero-copy]:order-2 lg:[&_.hero-media]:order-1",
+  left: "",
   right: "",
 };
 
 const slideThemes = [
   {
     background: "bg-gray-100",
-    text: "text-neutral-700",
+    text: "text-neutral-900",
   },
   {
     background: "bg-brand-blue",
@@ -72,8 +73,6 @@ export default function Hero({
   const hasMultipleImages = images.length > 1;
   const displayedIndex =
     images.length > 0 ? Math.min(activeIndex, images.length - 1) : 0;
-  const canShowPreviousImage = displayedIndex > 0;
-  const canShowNextImage = displayedIndex < images.length - 1;
 
   useEffect(() => {
     setActiveIndex((current) =>
@@ -99,20 +98,15 @@ export default function Hero({
 
   if (images.length === 0) return null;
 
-  const showPreviousImage = () => {
-    setActiveIndex((current) => Math.max(current - 1, 0));
-    setUserHasInteracted(true);
-  };
-
-  const showNextImage = () => {
-    setActiveIndex((current) => Math.min(current + 1, images.length - 1));
+  const showImage = (index: number) => {
+    setActiveIndex(index);
     setUserHasInteracted(true);
   };
 
   return (
-    <section className="relative isolate mt-19 min-h-[calc(100dvh-4.75rem)] overflow-hidden bg-white">
+    <section className="mt-navbar relative isolate min-h-[calc(100dvh-var(--spacing-navbar))] overflow-hidden bg-white">
       <motion.div
-        className="flex min-h-[calc(100dvh-4.75rem)] w-full"
+        className="flex min-h-[calc(100dvh-var(--spacing-navbar))] w-full"
         animate={{ x: `${displayedIndex * -100}%` }}
         transition={reduceMotion ? { duration: 0 } : slideTransition}
       >
@@ -125,15 +119,15 @@ export default function Hero({
           return (
             <div
               key={image.src}
-              className={`flex h-[calc(100dvh-4.75rem)] w-full shrink-0 flex-col-reverse lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${slideTheme.background} ${slideLayoutClass[imagePosition]}`}
+              className={`flex h-[calc(100dvh-var(--spacing-navbar))] w-full shrink-0 flex-col-reverse lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${slideTheme.background} ${slideLayoutClass[imagePosition]}`}
             >
-              <div className="hero-copy flex shrink-0 items-end justify-start px-3 pt-2 pb-4 lg:h-auto lg:flex-auto lg:px-14 lg:py-15 lg:pt-0">
+              <div className="hero-copy flex flex-1 items-center justify-start px-4 py-5 lg:h-auto lg:flex-auto lg:items-end lg:px-14 lg:py-15 lg:pt-0">
                 <div
-                  className={`flex flex-col gap-2 sm:gap-5 lg:max-w-xl ${contentClass[align]}`}
+                  className={`flex max-w-prose flex-col gap-4 sm:gap-5 lg:max-w-xl ${contentClass[align]}`}
                 >
                   <FadeIn instant={true}>
                     <h1
-                      className={`text-(length:--step-5)/12 font-medium tracking-tighter text-balance md:text-(length:--step-6)/16 ${slideTheme.text}`}
+                      className={`text-(length:--step-5) leading-[1em] font-medium tracking-tighter text-balance md:text-(length:--step-6) ${slideTheme.text}`}
                     >
                       {slideTitle}
                     </h1>
@@ -156,7 +150,7 @@ export default function Hero({
                           <a
                             key={action.href}
                             href={action.href}
-                            className="group inline-flex w-fit items-center gap-2 rounded-full bg-neutral-700 bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-3 pl-5 text-(length:--step--0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%]"
+                            className="group inline-flex w-fit items-center gap-2 rounded-full bg-neutral-900 bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-3 pl-5 text-(length:--step--0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%]"
                           >
                             <span>{action.label}</span>
                             <span
@@ -171,7 +165,7 @@ export default function Hero({
                 </div>
               </div>
 
-              <div className="hero-media relative flex flex-1 lg:min-h-[calc(100dvh-4.75rem)] lg:flex-1 lg:pt-0">
+              <div className="hero-media relative flex h-[min(100vw,62dvh)] shrink-0 lg:min-h-[calc(100dvh-var(--spacing-navbar))] lg:flex-1 lg:pt-0">
                 <div className="relative grid h-full w-full place-items-center overflow-hidden">
                   {/*<div className="from-brand-green/70 to-brand-blue absolute inset-0 z-20 size-full bg-linear-to-tl via-transparent via-70% mix-blend-color" />*/}
                   <img
@@ -189,34 +183,32 @@ export default function Hero({
       </motion.div>
 
       {hasMultipleImages ? (
-        <>
-          {canShowPreviousImage ? (
+        <div
+          className="absolute right-0 bottom-0 left-0 z-20 grid"
+          style={{
+            gridTemplateColumns: `repeat(${images.length}, minmax(0, 1fr))`,
+          }}
+        >
+          {images.map((image, index) => (
             <button
+              key={image.src}
               type="button"
-              aria-label="Show previous slide"
-              onClick={showPreviousImage}
-              className="absolute top-1/2 left-4 z-20 grid size-9 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white text-neutral-700 transition-colors md:left-6"
+              aria-label={`Show slide ${index + 1}`}
+              aria-current={index === displayedIndex ? "true" : undefined}
+              onClick={() => showImage(index)}
+              className="group flex h-2 cursor-pointer items-end"
             >
               <span
-                className="size-5 rotate-180 bg-current [mask-image:url('/assets/icons/chevron-right.svg')] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat]"
+                className={`block h-1.5 w-full transition-[height,background-color] duration-300 ${
+                  index === displayedIndex
+                    ? "h-1.5 bg-neutral-900/50"
+                    : "bg-neutral-900/20 group-hover:bg-neutral-900/60"
+                }`}
                 aria-hidden="true"
               />
             </button>
-          ) : null}
-          {canShowNextImage ? (
-            <button
-              type="button"
-              aria-label="Show next slide"
-              onClick={showNextImage}
-              className="absolute top-1/2 right-4 z-20 grid size-9 -translate-y-1/2 cursor-pointer place-items-center rounded-full bg-white text-neutral-700 transition-colors md:right-6"
-            >
-              <span
-                className="size-5.5 bg-current [mask-image:url('/assets/icons/chevron-right.svg')] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat]"
-                aria-hidden="true"
-              />
-            </button>
-          ) : null}
-        </>
+          ))}
+        </div>
       ) : null}
     </section>
   );

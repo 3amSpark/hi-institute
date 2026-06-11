@@ -27,22 +27,13 @@ export default function Navbar({ currentPath }: NavbarProps) {
   const desktopScrollProgress = useTransform(scrollProgress, (value) =>
     isDesktop ? value : 0,
   );
-  const gradientOpacity = useTransform(
-    scrollProgress,
-    [0, 1],
-    [0, 0.356],
-  );
-  // Uncomment this with the white logo image below if we want the logo crossfade back.
+  const gradientOpacity = useTransform(scrollProgress, [0, 1], [0, 0.356]);
   const defaultLogoOpacity = useTransform(
     desktopScrollProgress,
-    [0, 0.7, 1],
-    [1, 0, 0],
+    [0, 1],
+    [1, 0],
   );
-  const whiteLogoOpacity = useTransform(
-    desktopScrollProgress,
-    [0, 0.7, 1],
-    [0, 1, 1],
-  );
+  const whiteLogoOpacity = useTransform(desktopScrollProgress, [0, 1], [0, 1]);
   const desktopLinkColor = useTransform(
     desktopScrollProgress,
     [0, 1],
@@ -90,7 +81,8 @@ export default function Navbar({ currentPath }: NavbarProps) {
     };
   }, [isMobileOpen]);
 
-  const hasMobileWhiteChrome = !isDesktop && hasPassedThreshold;
+  const hasMobileWhiteChrome =
+    !isDesktop && hasPassedThreshold && !isMobileOpen;
 
   return (
     <>
@@ -101,22 +93,26 @@ export default function Navbar({ currentPath }: NavbarProps) {
       />
 
       <motion.header
-        className="fixed top-0 right-0 left-0 z-50 h-19"
-        onMouseEnter={() => setIsDesktopHovered(true)}
-        onMouseLeave={() => setIsDesktopHovered(false)}
+        className="h-navbar fixed top-0 right-0 left-0 z-50"
+        onMouseEnter={() => {
+          if (isDesktop) setIsDesktopHovered(true);
+        }}
+        onMouseLeave={() => {
+          if (isDesktop) setIsDesktopHovered(false);
+        }}
       >
         <motion.div
           aria-hidden="true"
-          className="absolute inset-0 bg-white"
+          className="pointer-events-none absolute inset-0 bg-white"
           animate={{ opacity: isDesktop && isDesktopHovered ? 1 : 0 }}
           transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
         />
         <motion.div
           aria-hidden="true"
-          className="navbar-gradient absolute top-0 right-0 left-0 h-32"
+          className="navbar-gradient pointer-events-none absolute top-0 right-0 left-0 h-32"
           style={{ opacity: isDesktopHovered ? 0 : gradientOpacity }}
         />
-        <nav className="max-w-xxl mx-auto flex h-19 items-center justify-between px-6 lg:px-10">
+        <nav className="max-w-xxl h-navbar mx-auto flex items-center justify-between px-6 lg:px-10">
           <a
             href="/"
             aria-label="HI Institute International home"
@@ -165,23 +161,17 @@ export default function Navbar({ currentPath }: NavbarProps) {
             <span
               className={`h-0.5 w-6 origin-center transition-all duration-300 ${
                 hasMobileWhiteChrome ? "bg-white" : "bg-neutral-700"
-              } ${
-                isMobileOpen ? "translate-y-[8px] rotate-45" : ""
-              }`}
+              } ${isMobileOpen ? "translate-y-[8px] rotate-45" : ""}`}
             ></span>
             <span
               className={`h-0.5 w-6 transition-all duration-300 ${
                 hasMobileWhiteChrome ? "bg-white" : "bg-neutral-700"
-              } ${
-                isMobileOpen ? "scale-0 opacity-0" : ""
-              }`}
+              } ${isMobileOpen ? "scale-0 opacity-0" : ""}`}
             ></span>
             <span
               className={`h-0.5 w-6 origin-center transition-all duration-300 ${
                 hasMobileWhiteChrome ? "bg-white" : "bg-neutral-700"
-              } ${
-                isMobileOpen ? "-translate-y-[8px] -rotate-45" : ""
-              }`}
+              } ${isMobileOpen ? "-translate-y-[8px] -rotate-45" : ""}`}
             ></span>
           </button>
         </nav>

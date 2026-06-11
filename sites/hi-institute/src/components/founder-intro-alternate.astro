@@ -4,14 +4,12 @@ import FounderIntroStickyImage from "./founder-intro-sticky-image";
 import ScrollRevealHeading from "./scroll-reveal-heading";
 ---
 
-<section class="relative overflow-x-hidden">
+<section class="relative overflow-hidden">
   <FounderIntroStickyImage client:load />
 
-  <div
-    class="bg-brand-blue relative z-10 grid min-h-96 items-center text-shadow-neutral-800"
-  >
+  <div class="bg-brand-blue relative z-10 grid min-h-96 items-center">
     <div
-      class="grid h-full w-full max-w-5xl items-center place-self-center border-b border-white/20 text-center text-(length:--step-5)/14 font-medium tracking-tighter text-balance text-white"
+      class="grid h-full w-full max-w-5xl items-center place-self-center text-center text-(length:--step-5)/14 font-medium tracking-tighter text-balance text-white"
     >
       <ScrollRevealHeading
         client:visible
@@ -20,7 +18,7 @@ import ScrollRevealHeading from "./scroll-reveal-heading";
     </div>
   </div>
   <div
-    class="relative z-10 flex w-full flex-col-reverse items-center justify-between gap-8 bg-gray-50 text-(length:--step-0)/8 text-pretty lg:flex-row"
+    class="relative z-10 flex w-full flex-col-reverse items-center justify-between gap-8 pb-8 text-(length:--step-0)/8 text-pretty lg:flex-row lg:pb-0"
   >
     <FadeIn
       client:visible

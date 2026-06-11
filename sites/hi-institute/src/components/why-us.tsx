@@ -4,19 +4,25 @@ import FadeIn from "./fade-in";
 
 const reasons = [
   {
+    number: "01",
     title: "El origen lo cambia todo",
     description:
       "Tratamos el sistema completo, no solo lo visible. Mientras otros se enfocan en controlar azúcar, peso o síntomas, aquí vamos al origen: metabolismo, hormonas e inflamación.",
+    className: "bg-gray-100 ",
   },
   {
+    number: "02",
     title: "Cada cuerpo necesita una respuesta distinta",
     description:
       "Tu historia importa. Por eso evaluamos antes de intervenir y diseñamos un plan personalizado, con seguimiento continuo y ajustes según cómo responde tu cuerpo.",
+    className: "bg-gray-100 ",
   },
   {
+    number: "03",
     title: "Buscamos resultados que se mantengan",
     description:
       "Bajar de peso, regular hormonas o mejorar tu salud no debería ser temporal. Nuestro enfoque está diseñado para sostener cambios reales porque trabajamos sobre la causa.",
+    className: "bg-gray-100 ",
   },
 ];
 
@@ -43,51 +49,43 @@ export default function WhyUs() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative min-h-svh overflow-hidden text-white">
-      <div className="absolute inset-0 -z-10">
-        <img
-          src="/hi-test-2.png"
-          alt="Personas representando cuidado integral en HI Institute"
-          className="h-full w-full -scale-x-100 object-cover object-center"
-          loading="lazy"
-          decoding="async"
-        />
-        <div className="absolute inset-0 bg-black/20" />
+    <section className="bg-brand-blue overflow-hidden">
+      <div className="px-4 py-14 text-center sm:px-6 md:px-10 md:py-20 lg:py-32">
+        <FadeIn
+          as="h2"
+          className="mx-auto max-w-2xl text-(length:--step-4)/[1.02] font-[450] tracking-tighter text-pretty text-white md:text-(length:--step-5)/[0.98]"
+        >
+          ¿Por qué Hi Institute es tu mejor opción?
+        </FadeIn>
       </div>
 
-      <div className="grid min-h-svh grid-rows-[1.5fr_1fr]">
-        <div className="flex items-center justify-center px-6 pt-19">
-          <FadeIn
-            as="h2"
-            className="text-center text-(length:--step-6) leading-tight font-[550] tracking-tighter text-balance text-white"
+      <motion.div
+        className="grid md:grid-cols-3"
+        variants={reduceMotion ? undefined : containerVariants}
+        initial={reduceMotion ? false : "hidden"}
+        whileInView={reduceMotion ? undefined : "visible"}
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {reasons.map((reason) => (
+          <motion.article
+            key={reason.title}
+            className={`${reason.className} flex min-h-[22rem] flex-col justify-between border-r border-gray-200 p-5 last:border-b-0 sm:min-h-[27rem] sm:p-7 md:min-h-[34rem] lg:p-10`}
+            variants={reduceMotion ? undefined : cardVariants}
           >
-            ¿Por qué HI Institute es una clínica diferente?
-          </FadeIn>
-        </div>
-
-        <motion.div
-          className="why-us-reasons grid grid-cols-1 grid-rows-[auto_1fr] px-6 pb-10 md:grid-cols-3 md:px-10"
-          variants={reduceMotion ? undefined : containerVariants}
-          initial={reduceMotion ? false : "hidden"}
-          whileInView={reduceMotion ? undefined : "visible"}
-          viewport={{ once: true, amount: 0.65 }}
-        >
-          {reasons.map((reason) => (
-            <motion.article
-              key={reason.title}
-              className="why-us-reason grid grid-rows-subgrid gap-4 p-4 text-white md:row-span-2"
-              variants={reduceMotion ? undefined : cardVariants}
-            >
-              <h3 className="text-(length:--step-3) leading-tight font-medium tracking-tighter text-balance">
+            <span className="text-sm font-bold tracking-[0.14em] tabular-nums">
+              {reason.number}
+            </span>
+            <div>
+              <h3 className="max-w-[15ch] text-(length:--step-3)/[1.02] font-medium tracking-tighter text-balance">
                 {reason.title}
               </h3>
-              <p className="max-w-[55ch] text-(length:--step-0)/7 opacity-85">
+              <p className="mt-6 max-w-[48ch] text-base leading-relaxed opacity-85 md:text-(length:--step-0)/7">
                 {reason.description}
               </p>
-            </motion.article>
-          ))}
-        </motion.div>
-      </div>
+            </div>
+          </motion.article>
+        ))}
+      </motion.div>
     </section>
   );
 }
