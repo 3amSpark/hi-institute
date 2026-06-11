@@ -50,10 +50,10 @@ export default function WhyUs() {
 
   return (
     <section className="bg-brand-blue overflow-hidden">
-      <div className="px-4 py-14 text-center sm:px-6 md:px-10 md:py-20 lg:py-32">
+      <div className="px-4 py-12 text-center sm:px-6 md:px-10 md:py-20 lg:py-32">
         <FadeIn
           as="h2"
-          className="mx-auto max-w-2xl text-(length:--step-4)/[1.02] font-[450] tracking-tighter text-pretty text-white md:text-(length:--step-5)/[0.98]"
+          className="mx-auto max-w-2xl text-(length:--step-3)/[1.05] font-[450] tracking-tighter text-balance text-white sm:text-(length:--step-4)/[1.02] md:text-(length:--step-5)/[0.98]"
         >
           ¿Por qué Hi Institute es tu mejor opción?
         </FadeIn>
@@ -64,22 +64,22 @@ export default function WhyUs() {
         variants={reduceMotion ? undefined : containerVariants}
         initial={reduceMotion ? false : "hidden"}
         whileInView={reduceMotion ? undefined : "visible"}
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.05 }}
       >
         {reasons.map((reason) => (
           <motion.article
             key={reason.title}
-            className={`${reason.className} flex min-h-[22rem] flex-col justify-between border-r border-gray-200 p-5 last:border-b-0 sm:min-h-[27rem] sm:p-7 md:min-h-[34rem] lg:p-10`}
+            className={`${reason.className} flex flex-col gap-10 border-b border-gray-300 p-5 last:border-b-0 sm:p-7 md:min-h-[34rem] md:justify-between md:gap-0 md:border-r md:border-b-0 md:last:border-r-0 lg:p-10`}
             variants={reduceMotion ? undefined : cardVariants}
           >
             <span className="text-sm font-bold tracking-[0.14em] tabular-nums">
               {reason.number}
             </span>
             <div>
-              <h3 className="max-w-[15ch] text-(length:--step-3)/[1.02] font-medium tracking-tighter text-balance">
+              <h3 className="max-w-[18ch] text-(length:--step-2)/[1.05] font-medium tracking-tighter text-balance sm:text-(length:--step-3)/[1.02]">
                 {reason.title}
               </h3>
-              <p className="mt-6 max-w-[48ch] text-base leading-relaxed opacity-85 md:text-(length:--step-0)/7">
+              <p className="mt-4 max-w-[48ch] text-base leading-relaxed opacity-85 md:mt-6 md:text-(length:--step-0)/7">
                 {reason.description}
               </p>
             </div>
