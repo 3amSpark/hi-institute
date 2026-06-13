@@ -43,7 +43,7 @@ function SignalCard({
   return (
     <li
       ref={cardRef}
-      className="relative min-w-sm snap-start focus-within:z-20 hover:z-20 md:min-w-lg"
+      className="relative min-w-sm snap-start focus-within:z-20 hover:z-20 md:min-w-lg lg:min-w-md"
     >
       <a
         href={signal.href}
@@ -148,7 +148,7 @@ export default function MetabolicSignalScroller({
     <div className="group/scroller relative">
       <ul
         ref={scrollerRef}
-        className="signal-scroller flex snap-x snap-mandatory scroll-mb-28 gap-0.5 overflow-x-auto scroll-smooth pt-4 pb-8 pl-10 sm:scroll-pl-8"
+        className="signal-scroller flex snap-x snap-mandatory scroll-mb-28 gap-4 overflow-x-auto scroll-smooth pt-4 pb-8 pl-10 sm:scroll-pl-8"
       >
         {signals.map((signal, idx) => (
           <SignalCard
