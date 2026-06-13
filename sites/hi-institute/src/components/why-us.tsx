@@ -1,29 +1,29 @@
-import { easeInOut, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import FadeIn from "./fade-in";
 
 const reasons = [
   {
+    number: "01",
     title: "El origen lo cambia todo",
     description:
       "Tratamos el sistema completo, no solo lo visible. Mientras otros se enfocan en controlar azúcar, peso o síntomas, aquí vamos al origen: metabolismo, hormonas e inflamación.",
+    className: "bg-gray-100 ",
   },
   {
+    number: "02",
     title: "Cada cuerpo necesita una respuesta distinta",
     description:
       "Tu historia importa. Por eso evaluamos antes de intervenir y diseñamos un plan personalizado, con seguimiento continuo y ajustes según cómo responde tu cuerpo.",
+    className: "bg-gray-100 ",
   },
   {
+    number: "03",
     title: "Buscamos resultados que se mantengan",
     description:
       "Bajar de peso, regular hormonas o mejorar tu salud no debería ser temporal. Nuestro enfoque está diseñado para sostener cambios reales porque trabajamos sobre la causa.",
+    className: "bg-gray-100 ",
   },
-];
-
-const cardClassNames = [
-  " bg-neutral-500  text-white",
-  " bg-brand-green  text-white",
-  " bg-brand-blue  text-white",
 ];
 
 const containerVariants: Variants = {
@@ -37,10 +37,10 @@ const containerVariants: Variants = {
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, x: 28 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
@@ -49,50 +49,43 @@ export default function WhyUs() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section>
-      <div className="flex flex-col gap-2 overflow-clip px-2 md:flex-row">
-        <div className="relative overflow-clip md:min-h-[760px] md:basis-3/5">
-          <img
-            src="/assets/why-us.webp"
-            alt="Personas representando cuidado integral en HI Institute"
-            className="h-full w-full -scale-x-100 object-cover object-center"
-            loading="lazy"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-linear-to-b from-black/0 via-black/5 to-black/45" />
-          <div className="absolute inset-0 flex items-center justify-center px-6">
-            <FadeIn
-              as="h2"
-              className="max-w-4xl text-center text-(length:--step-5)/12 font-semibold tracking-tighter text-white lg:text-(length:--step-6)/18"
-            >
-              ¿Por qué HI Institute es una clínica diferente?
-            </FadeIn>
-          </div>
-        </div>
-
-        <motion.div
-          className="why-us-reasons grid grid-cols-1 grid-rows-3 gap-2 md:basis-2/5"
-          variants={reduceMotion ? undefined : containerVariants}
-          initial={reduceMotion ? false : "hidden"}
-          whileInView={reduceMotion ? undefined : "visible"}
-          viewport={{ once: true, amount: 0.65 }}
+    <section className="bg-brand-blue overflow-hidden">
+      <div className="px-4 py-12 text-center sm:px-6 md:px-10 md:py-20 lg:py-32">
+        <FadeIn
+          as="h2"
+          className="mx-auto max-w-2xl text-(length:--step-3)/[1.05] font-[450] tracking-tighter text-balance text-white sm:text-(length:--step-4)/[1.02] md:text-(length:--step-5)/[0.98]"
         >
-          {reasons.map((reason, index) => (
-            <motion.article
-              key={reason.title}
-              className={`${cardClassNames[index]} why-us-reason flex flex-col gap-4 p-6 md:p-7`}
-              variants={reduceMotion ? undefined : cardVariants}
-            >
-              <h3 className="text-(length:--step-3)/10 font-semibold tracking-tighter text-balance">
+          ¿Por qué Hi Institute es tu mejor opción?
+        </FadeIn>
+      </div>
+
+      <motion.div
+        className="grid md:grid-cols-3"
+        variants={reduceMotion ? undefined : containerVariants}
+        initial={reduceMotion ? false : "hidden"}
+        whileInView={reduceMotion ? undefined : "visible"}
+        viewport={{ once: true, amount: 0.05 }}
+      >
+        {reasons.map((reason) => (
+          <motion.article
+            key={reason.title}
+            className={`${reason.className} flex flex-col gap-10 border-b border-gray-300 p-5 last:border-b-0 sm:p-7 md:min-h-[34rem] md:justify-between md:gap-0 md:border-r md:border-b-0 md:last:border-r-0 lg:p-10`}
+            variants={reduceMotion ? undefined : cardVariants}
+          >
+            <span className="text-sm font-bold tracking-[0.14em] tabular-nums">
+              {reason.number}
+            </span>
+            <div>
+              <h3 className="max-w-[18ch] text-(length:--step-2)/[1.05] font-medium tracking-tighter text-balance sm:text-(length:--step-3)/[1.02]">
                 {reason.title}
               </h3>
-              <p className="text-(length:--step-0)/7 opacity-85">
+              <p className="mt-4 max-w-[48ch] text-base leading-relaxed opacity-85 md:mt-6 md:text-(length:--step-0)/7">
                 {reason.description}
               </p>
-            </motion.article>
-          ))}
-        </motion.div>
-      </div>
+            </div>
+          </motion.article>
+        ))}
+      </motion.div>
     </section>
   );
 }

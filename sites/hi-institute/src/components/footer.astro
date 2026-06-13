@@ -16,55 +16,49 @@ const mapsEmbedUrl =
 const currentYear = new Date().getFullYear();
 ---
 
-<footer>
+<footer class="overflow-hidden">
   <section
-    class="from-brand-green to-brand-blue bg-linear-to-br px-2 py-20 text-center md:px-6 md:py-24"
+    class="bg-brand-blue flex min-h-96 flex-col items-center justify-center border-t border-neutral-200 text-center"
   >
-    <div class="mx-auto flex max-w-3xl flex-col items-center">
-      <FadeIn
-        client:visible
-        as="h2"
-        className="text-(length:--step-4)/12 font-semibold tracking-tight text-white"
-      >
-        Tu cuerpo ya te está hablando.<br />
-        Es momento de escucharlo.
-      </FadeIn>
-      <a
-        href="/contacto"
-        class="mt-8 inline-flex rounded-full bg-white px-6 py-2 text-(length:--step-0) font-medium transition-opacity"
-      >
-        ¡Agenda tu cita hoy!
-      </a>
-    </div>
-  </section>
-
-  <section class="bg-white px-6 pb-20 text-center">
-    <div
-      class="max-w-desktop mx-auto flex h-full flex-col items-center justify-center gap-20 lg:flex-row"
+    <FadeIn
+      client:visible
+      as="h2"
+      className="leading-tighter text-(length:--step-2) font-medium tracking-tight text-white"
     >
-      <FadeIn
-        client:visible
-        as="h2"
-        className="flex-1 text-(length:--step-4)/12 font-semibold tracking-tighter text-balance text-neutral-600"
-      >
-        Estamos más cerca<br />
-        de lo que crees.
-      </FadeIn>
-
-      <div
-        class="border-brand-blue/10 mx-auto mt-12 h-144 w-full max-w-5xl flex-2 overflow-hidden border bg-white"
-      >
-        <iframe
-          src={mapsEmbedUrl}
-          title="HI Institute en Avenida La Reforma 9-55, Ciudad de Guatemala"
-          class="h-full w-full"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
+      Tu cuerpo te está hablando.<br />
+      <span class="text-(length:--step-4)/8 tracking-tighter">
+        Es momento de escucharlo.
+      </span>
+    </FadeIn>
+    <a
+      href="/contacto"
+      class="mt-8 w-fit rounded-full bg-white px-6 py-1.5 text-base font-medium transition-opacity"
+    >
+      ¡Agenda tu cita hoy!
+    </a>
   </section>
 
-  <section class="bg-black py-14 md:py-18">
+  <section
+    class="bg-brand-green flex max-h-svh flex-col items-center justify-between text-center text-white md:flex-row"
+  >
+    <FadeIn
+      client:visible
+      as="h2"
+      className="flex-1 py-20 text-(length:--step-4) leading-tight font-medium tracking-tighter text-balance"
+    >
+      Estamos más cerca<br />
+      de lo que crees.
+    </FadeIn>
+
+    <iframe
+      src={mapsEmbedUrl}
+      title="HI Institute en Avenida La Reforma 9-55, Ciudad de Guatemala"
+      class="h-160 w-full shrink-0 md:flex-2"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <section class="bg-neutral-700 py-14 md:py-18">
     <div
       class="mx-auto grid max-w-7xl gap-16 md:grid-cols-2 lg:grid-cols-[auto_1fr_1fr] lg:items-start"
     >

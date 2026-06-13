@@ -22,9 +22,18 @@
     "Tasa Orbiter", "InterVariable", "Inter", ui-sans-serif, system-ui,
     -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", monospaced;
+  --font-roc-grotesk: "roc-grotesk", sans-serif;
+  --font-roc-grotesk-wide: "roc-grotesk-wide", sans-serif;
+  --font-roc-grotesk-extrawide: "roc-grotesk-extrawide", sans-serif;
+  --font-neue-haas-display: "neue-haas-grotesk-display", sans-serif;
+  --font-neue-haas-text: "neue-haas-grotesk-text", sans-serif;
 
   --color-brand-blue: #1d75b8;
+  --color-foreground-blue: oklch(0.946 0.025 247.084);
   --color-brand-green: #9ccd37;
+  --color-alt-green: #90a6a9;
+  --color-muted-green: #98c066;
+  --color-muted-blue: #3575a3;
   --color-brand-green-2: oklch(0.66 0.148 128.338);
   --lol: oklch(0.701 0.157 128.338);
   --color-brand-dark-green: #009848;
@@ -47,6 +56,8 @@
   --breakpoint-tablet: 40rem;
   --breakpoint-laptop: 64rem;
   --container-desktop: 92rem;
+  --container-xxl: 120rem;
+  --spacing-navbar: calc(var(--spacing) * 17);
 }
 
 html {
@@ -88,4 +99,73 @@ h3 {
 .hide-scroll {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.signal-scroller {
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+}
+
+.signal-scroller:hover,
+.signal-scroller:focus-within {
+  scrollbar-color: rgb(38 38 38 / 0.35) transparent;
+}
+
+.signal-scroller::-webkit-scrollbar {
+  height: 0.375rem;
+}
+
+.signal-scroller::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.signal-scroller::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 9999px;
+}
+
+.signal-scroller:hover::-webkit-scrollbar-thumb,
+.signal-scroller:focus-within::-webkit-scrollbar-thumb {
+  background-color: rgb(38 38 38 / 0.35);
+}
+
+.navbar-gradient {
+  background: linear-gradient(
+    to bottom,
+    black 0%,
+    rgba(0, 0, 0, 0.738) 19%,
+    rgba(0, 0, 0, 0.541) 34%,
+    rgba(0, 0, 0, 0.382) 47%,
+    rgba(0, 0, 0, 0.278) 56.5%,
+    rgba(0, 0, 0, 0.194) 65%,
+    rgba(0, 0, 0, 0.126) 73%,
+    rgba(0, 0, 0, 0.075) 80.2%,
+    rgba(0, 0, 0, 0.042) 86.1%,
+    rgba(0, 0, 0, 0.021) 91%,
+    rgba(0, 0, 0, 0.008) 95.2%,
+    rgba(0, 0, 0, 0.002) 98.2%,
+    transparent 100%
+  );
+}
+.mobile-nav-dialog {
+  transition-behavior: allow-discrete;
+}
+
+.mobile-nav-dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.35);
+  opacity: 1;
+  transition:
+    opacity 300ms ease,
+    display 300ms allow-discrete,
+    overlay 300ms allow-discrete;
+}
+
+.mobile-nav-dialog:not(.translate-x-0)::backdrop {
+  opacity: 0;
+}
+
+@starting-style {
+  .mobile-nav-dialog::backdrop {
+    opacity: 0;
+  }
 }

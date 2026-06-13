@@ -1,117 +1,162 @@
-import { motion, useReducedMotion } from "framer-motion";
-import type { CSSProperties } from "react";
+import {
+  AnimatePresence,
+  LayoutGroup,
+  motion,
+  spring,
+  useReducedMotion,
+} from "framer-motion";
+import { useState } from "react";
 import FadeIn from "./fade-in";
 
 const steps = [
   {
-    src: "/assets/pasos/1.webp",
-    number: "1",
-    title: "Evaluaci\u00f3n Completa",
-    description: "Hormonas, metabolismo, estilo de vida.",
-    color: "#707070",
+    src: "step-1.png",
+    number: "01",
+    title: "Evaluacion completa",
+    eyebrow: "Primero entendemos",
+    summary: "Hormonas, metabolismo, historia clinica y estilo de vida.",
+    detail:
+      "Reunimos datos claros para identificar que esta frenando tu progreso y que necesita atencion real.",
   },
   {
-    src: "/assets/pasos/2.webp",
-    number: "2",
-    title: "Plan Personalizado",
-    description:
-      "Alimentaci\u00f3n, suplementaci\u00f3n, tratamiento m\u00e9dico.",
-    color: "#1d75b8",
+    src: "step2.png",
+    number: "02",
+    title: "Plan personalizado",
+    eyebrow: "Despues disenamos",
+    summary: "Nutricion, suplementacion y tratamiento medico segun tu caso.",
+    detail:
+      "Tu plan se construye alrededor de tus resultados, tus sintomas y lo que puedes sostener en tu vida diaria.",
   },
   {
-    src: "/assets/pasos/3.webp",
-    number: "3",
-    title: "Recuperaci\u00f3n Progresiva",
-    description: "Empiezas a sentir cambios reales.",
-    color: "#97CC43",
+    src: "step-3.png",
+    number: "03",
+    title: "Cambio progresivo",
+    eyebrow: "Luego ajustamos",
+    summary: "Seguimiento cercano para convertir avances en cambios reales.",
+    detail:
+      "Medimos respuesta, afinamos el tratamiento y acompanamos tu recuperacion con decisiones basadas en evidencia.",
   },
 ];
 
-const imageTransition = {
-  duration: 1.1,
-  ease: [0.22, 1, 0.36, 1],
-} as const;
-
-function StepPanel({
-  step,
-  index,
-}: {
-  step: (typeof steps)[number];
-  index: number;
-}) {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <article
-      className={`group relative grid min-w-0 grid-rows-[auto_auto] overflow-hidden md:row-span-2 md:grid-rows-subgrid`}
-    >
-      <div className="relative overflow-hidden">
-        <motion.img
-          src={step.src}
-          alt={step.title}
-          className={`w-full object-cover object-[0_20%] sm:h-52 md:object-center lg:h-full`}
-          loading="lazy"
-          initial={reduceMotion ? false : { opacity: 0.55, scale: 1.06 }}
-          whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "0px 0px -50% 0px" }}
-          transition={
-            reduceMotion
-              ? { duration: 0 }
-              : { ...imageTransition, delay: index * 0.16 }
-          }
-        />
-
-        <motion.div
-          className="pointer-events-none absolute inset-0 z-10"
-          style={{ backgroundColor: step.color }}
-          initial={reduceMotion ? false : { x: "0%" }}
-          whileInView={reduceMotion ? { x: "100%" } : { x: "100%" }}
-          viewport={{ once: true, margin: "0px 0px -50% 0px" }}
-          transition={
-            reduceMotion
-              ? { duration: 0 }
-              : { ...imageTransition, delay: index * 0.2 }
-          }
-        />
-      </div>
-
-      <div
-        className="relative grid grid-rows-[auto_auto_auto_1fr] content-start bg-white md:px-0 md:pt-2 md:pb-0"
-        style={{ "--panel-color": step.color } as CSSProperties}
-      >
-        <FadeIn delay={index * 0.125} amount={0.1}>
-          <div className="flex items-start gap-2">
-            <span className="relative z-10 bg-white text-(length:--step-7) leading-none font-black tracking-wide text-(--panel-color) uppercase">
-              0{step.number}
-            </span>
-            <div className="flex h-full min-w-0 flex-col justify-between">
-              <h3 className="relative text-(length:--step-1)/9 font-medium tracking-tighter">
-                {step.title}
-              </h3>
-              <p className="max-w-64 text-base text-pretty text-neutral-500">
-                {step.description}
-              </p>
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-    </article>
-  );
-}
+const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
 export default function Steps() {
-  return (
-    <section className="max-w-desktop relative mx-auto w-full overflow-hidden pb-25">
-      <FadeIn>
-        <motion.h2 className="pb-25 text-left text-(length:--step-4) font-semibold tracking-tighter text-neutral-700 md:text-(length:--step-5)">
-          As&iacute; empieza <span className="text-brand-blue">tu cambio</span>
-        </motion.h2>
-      </FadeIn>
+  const [activeIndex, setActiveIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+  const activeStep = steps[activeIndex];
 
-      <div className="grid min-w-0 grid-cols-1 bg-white md:max-h-[65dvh] md:grid-cols-3 md:grid-rows-[minmax(0,1fr)_auto] md:gap-x-6">
-        {steps.map((step, i) => (
-          <StepPanel key={step.number} step={step} index={i} />
-        ))}
+  return (
+    <section className="relative w-full overflow-hidden bg-gray-50 lg:grid lg:min-h-[80svh] lg:place-items-center">
+      <div className="grid w-full lg:h-full lg:grid-cols-[1fr_1fr] lg:gap-4">
+        {/* Left column */}
+        <div className="flex flex-col justify-center px-4 pt-12 pb-10 sm:px-6 lg:px-0 lg:py-0">
+          <FadeIn className="lg:pt-8 lg:pl-10">
+            <p className="mb-3 text-base font-semibold text-neutral-500 lg:mb-2 lg:text-(length:--step-0)">
+              Nuestro proceso
+            </p>
+            <h2 className="mb-8 text-left text-(length:--step-5)/[1.05] font-[550] tracking-tighter text-balance text-neutral-800">
+              Asi empieza tu cambio
+            </h2>
+          </FadeIn>
+
+          <LayoutGroup>
+            <div className="lg:ml-4 lg:border-0">
+              {steps.map((step, index) => {
+                const isActive = index === activeIndex;
+
+                return (
+                  <motion.div key={step.number} layout="position">
+                    <button
+                      type="button"
+                      onClick={() => setActiveIndex(index)}
+                      className={`group w-full cursor-pointer px-4 py-5 text-left transition-colors duration-300 sm:px-5 lg:p-6 ${isActive ? "bg-gray-100" : "hover:bg-gray-200/50"}`}
+                    >
+                      <div className="min-w-0 flex-1">
+                        <div className="flex w-full items-start justify-between gap-5">
+                          <span
+                            className={`block text-(length:--step-1) leading-tight font-medium tracking-tight transition-colors duration-300 ${
+                              isActive
+                                ? "text-neutral-900"
+                                : "text-neutral-400/80 group-hover:text-neutral-700"
+                            }`}
+                          >
+                            {step.title}
+                          </span>
+                          <span
+                            className={`mt-0.5 shrink-0 text-[11px] font-bold uppercase tabular-nums transition-colors duration-300`}
+                          >
+                            {step.number}
+                          </span>
+                        </div>
+                        <AnimatePresence initial={false}>
+                          {isActive && (
+                            <motion.div
+                              key="content"
+                              initial={
+                                reduceMotion
+                                  ? false
+                                  : {
+                                      opacity: 0,
+                                      height: 0,
+                                      filter: "blur(5px)",
+                                    }
+                              }
+                              animate={{
+                                opacity: 1,
+                                height: "auto",
+                                filter: "blur(0px)",
+                              }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{
+                                duration: 0.26,
+                                type: "spring",
+                                restDelta: 0.001,
+                                damping: 30,
+                                mass: 1,
+                                stiffness: 220,
+                              }}
+                              style={{ overflow: "hidden" }}
+                            >
+                              <p className="mt-3 max-w-md max-w-prose pr-6 text-sm leading-relaxed text-pretty text-neutral-700 lg:mt-0 lg:pr-0">
+                                {step.summary}
+                              </p>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </button>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </LayoutGroup>
+        </div>
+
+        {/* Right column */}
+        <div className="relative aspect-4/3 min-w-0 overflow-hidden sm:aspect-16/10 lg:aspect-auto lg:h-full">
+          {/* Cross-fade image — no mode="wait", absolute stack */}
+          <AnimatePresence mode="sync">
+            <motion.img
+              key={activeStep.src}
+              src={activeStep.src}
+              alt={activeStep.title}
+              className="absolute inset-0 h-full w-full object-cover object-top"
+              loading="lazy"
+              initial={reduceMotion ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.27,
+                type: "spring",
+                mass: 1,
+                restDelta: 0.001,
+                damping: 30,
+
+                stiffness: 220,
+              }}
+            />
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

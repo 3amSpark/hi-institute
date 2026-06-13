@@ -70,49 +70,52 @@ const signals = [
       <FadeIn
         client:visible
         as="div"
-        className="flex h-full flex-col justify-center gap-10"
+        className="flex h-full flex-col justify-center"
       >
         <p class="text-(length:--step-0)/8 text-neutral-600">
           Seis señales que escuchamos cada semana en consulta.<br />No son tu
           personalidad.<br />Son señales de que tu cuerpo necesita una
           evaluación más completa.
         </p>
-        <!--
-        <img
-          src="/assets/talvez.jpg"
-          alt="Persona pensando en síntomas de bienestar metabólico y hormonal"
-          class="mt-8 aspect-video w-full -scale-x-100 object-cover object-[80%_0%]"
-          loading="lazy"
-        /> -->
-
-        <div class="md:flex md:items-center md:justify-between md:gap-8">
-          <p
-            class="text-(length:--step-0)/8 font-medium tracking-tight text-neutral-600"
-          >
-            No es normal.<br />Y no tienes que vivir así.
-          </p>
-
-          <a
-            href="/contacto"
-            class="group bg-brand-blue mt-6 inline-flex w-fit items-center gap-3 rounded-full bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-2 pl-5 text-(length:--step-0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] md:mt-0"
-          >
-            <span>Conocer más</span>
-            <svg
-              class="size-6 shrink-0 rounded-full bg-white p-1 text-neutral-500 transition-transform duration-300 ease-out group-hover:rotate-45"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M7 17 17 7"></path>
-              <path d="M8 7h9v9"></path>
-            </svg>
-          </a>
-        </div>
       </FadeIn>
     </div>
+  </div>
+</section>
+
+<section class="bg-brand-blue relative overflow-hidden px-4 py-28 lg:py-40">
+  <div class="max-w-desktop mx-auto">
+    <FadeIn
+      client:visible
+      as="div"
+      className="flex flex-col items-start gap-12 md:flex-row md:items-end md:justify-between md:gap-16"
+    >
+      <p
+        class="text-(length:--step-4)/[1.05] font-[550] tracking-tight text-balance text-white md:text-(length:--step-5)/[1.05]"
+      >
+        No es normal.<br /><span class="text-white/70"
+          >Y no tienes que vivir así.</span
+        >
+      </p>
+
+      <a
+        href="/contacto"
+        class="group inline-flex w-fit shrink-0 items-center gap-3 rounded-full bg-white py-2 pr-2 pl-6 text-(length:--step-0) font-medium text-neutral-900 transition-colors duration-300 hover:bg-neutral-100"
+      >
+        <span>Conocer más</span>
+        <svg
+          class="bg-brand-blue size-7 shrink-0 rounded-full p-1.5 text-white transition-transform duration-300 ease-out group-hover:rotate-45"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M7 17 17 7"></path>
+          <path d="M8 7h9v9"></path>
+        </svg>
+      </a>
+    </FadeIn>
   </div>
 </section>

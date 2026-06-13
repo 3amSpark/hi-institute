@@ -1,7 +1,7 @@
 export const logo = "/assets/logo.svg";
+export const whiteLogo = "/assets/logo-white.svg";
 
 export const navLinks = [
-  { href: "/", label: "Inicio" },
   { href: "/farmacia", label: "Farmacia" },
   { href: "/contacto", label: "Contacto" },
 ];
@@ -71,10 +71,8 @@ export const isActivePath = (currentPath: string, href: string) => {
         normalizedPath.startsWith(`${normalizedHref}/`);
 };
 
-export const linkClassName = (isActive: boolean) =>
-  `group relative inline-flex text-neutral-700  items-center px-2 py-1.5 text-(length:--step--1) tracking-[-0.01em]  transition-colors duration-150 hover:text-neutral-800 ${
-    isActive && "font-semibold"
-  }`;
+export const linkClassName = (isActive: boolean, hasTextShadow = false) =>
+  `group relative inline-flex   items-center pl-2 pr-3 py-1.5 text-(length:--step--1) tracking-[0.015em]   text-current transition-colors duration-150 font-medium  ${hasTextShadow ? "text-shadow-sm/0" : ""}`;
 
 export const underlineClassName =
   "from-brand-blue to-brand-green absolute top-5/6  left-1/2 h-0.5 w-5/6 origin-left -translate-x-1/2 scale-x-0 bg-black bg-linear-to-r transition-all duration-200 ease-out group-hover:scale-x-100";

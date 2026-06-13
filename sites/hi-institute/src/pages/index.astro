@@ -2,6 +2,7 @@
 import Footer from "../components/footer.astro";
 // import FounderIntro from "../components/founder-intro.astro";
 import FounderIntroAlternate from "../components/founder-intro-alternate.astro";
+import FounderIntroGrid from "../components/founder-intro-grid.astro";
 import Hero from "../components/hero";
 import MetabolicCtaAlternate from "../components/metabolic-cta-alternate.astro";
 import MetabolicCtaMinimal from "../components/metabolic-cta-minimal.astro";
@@ -49,13 +50,11 @@ const heroImages = [
     images={heroImages}
     actions={[{ href: "/contacto", label: "Agenda tu cita ahora" }]}
   />
-  <main class="flex flex-col gap-25">
-    <!-- <FounderIntro /> -->
-    <FounderIntroAlternate />
+  <main class="bg-gray-50">
+    <FounderIntroAlternate client:load />
     <MetabolicCtaMinimal />
-    <!-- <MetabolicCtaAlternate /> -->
-    <Steps client:visible />
-    <WhyUs client:visible />
+    <Steps client:load />
+    <WhyUs client:load />
     <Footer />
   </main>
 </Root>
