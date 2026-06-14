@@ -1,5 +1,5 @@
-export const logo = "/assets/logo.svg";
-export const whiteLogo = "/assets/logo-white.svg";
+export const logo = "/assets/logos/brand/logo.svg";
+export const whiteLogo = "/assets/logos/brand/logo-white.svg";
 
 export const navLinks = [
   { href: "/farmacia", label: "Farmacia" },
@@ -10,27 +10,27 @@ export const treatments = [
   {
     href: "/tratamientos/metabolismo-peso",
     label: "Metabolismo & Peso",
-    image: "/assets/tratamientos/metabolismo.jpg",
+    image: "/assets/images/treatments/navigation/metabolismo.jpg",
   },
   {
     href: "/tratamientos/fertilidad-reproduccion",
     label: "Fertilidad & Reproducción",
-    image: "/assets/tratamientos/fertilidad.jpg",
+    image: "/assets/images/treatments/navigation/fertilidad.jpg",
   },
   {
     href: "/tratamientos/salud-femenina-ginecologica",
     label: "Salud Femenina & Ginecológica",
-    image: "/assets/tratamientos/ginecologia.jpg",
+    image: "/assets/images/treatments/navigation/ginecologia.jpg",
   },
   {
     href: "/tratamientos/balance-hormonal",
     label: "Balance Hormonal",
-    image: "/assets/tratamientos/balance-hormonal.jpg",
+    image: "/assets/images/treatments/navigation/balance-hormonal.jpg",
   },
   {
     href: "/tratamientos/diabetes",
     label: "Diabetes",
-    image: "/assets/tratamientos/diabetes.jpg",
+    image: "/assets/images/treatments/navigation/diabetes.jpg",
   },
 ];
 
@@ -39,19 +39,19 @@ export const clinics = [
     href: "https://hiskinbeauty.com/",
     label: "HI Skin & Beauty",
     description: "Dermatología y estética médica",
-    logo: "/assets/clinicas/skin.svg",
+    logo: "/assets/logos/clinics/skin.svg",
   },
   {
     href: "https://femcare.hiinstitute.com/",
     label: "HI Fem Care",
     description: "Ginecología y salud íntima",
-    logo: "/assets/clinicas/femcare.svg",
+    logo: "/assets/logos/clinics/femcare.svg",
   },
   {
     href: "https://initiafertilitycenter.com/",
     label: "initia",
     description: "Fertilidad accesible",
-    logo: "/assets/clinicas/initia.svg",
+    logo: "/assets/logos/clinics/initia.svg",
   },
 ];
 

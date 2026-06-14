@@ -1,27 +1,23 @@
 ---
 import Footer from "../components/footer.astro";
-// import FounderIntro from "../components/founder-intro.astro";
-import FounderIntroAlternate from "../components/founder-intro-alternate.astro";
-import FounderIntroGrid from "../components/founder-intro-grid.astro";
-import Hero from "../components/hero";
-import MetabolicCtaAlternate from "../components/metabolic-cta-alternate.astro";
-import MetabolicCtaMinimal from "../components/metabolic-cta-minimal.astro";
-// import MetabolicCta from "../components/metabolic-cta.astro";
+import FounderIntro from "../components/home/founder-intro.astro";
+import Hero from "../components/home/hero";
+import MetabolicSignals from "../components/home/metabolic-signals.astro";
 import Navbar from "../components/navbar";
-import Steps from "../components/steps";
-import WhyUs from "../components/why-us";
+import Steps from "../components/home/steps";
+import WhyUs from "../components/home/why-us";
 import Root from "../layouts/root.astro";
 
 const heroImages = [
   {
-    src: "/assets/hero/new-hero.png",
+    src: "/assets/images/home/hero/metabolism.png",
     alt: "HI Institute clinical space",
     title: "Expertos en metabolismo y equilibrio hormonal",
     description:
       "Evaluamos metabolismo, hormonas y hábitos para entender qué necesita tu cuerpo.",
   },
   {
-    src: "/assets/hero/couple.png",
+    src: "/assets/images/home/hero/energy.png",
     alt: "HI Institute treatment room",
     imagePosition: "left" as const,
     title: "Recupera energía desde adentro",
@@ -29,7 +25,7 @@ const heroImages = [
       "Planes médicos personalizados para recuperar energía, composición corporal y salud metabólica.",
   },
   {
-    src: "/assets/hero/sitting.png",
+    src: "/assets/images/home/hero/womens-health.png",
     alt: "HI Institute care experience",
     title: "Salud femenina en cada etapa",
     description:
@@ -51,8 +47,8 @@ const heroImages = [
     actions={[{ href: "/contacto", label: "Agenda tu cita ahora" }]}
   />
   <main class="bg-gray-50">
-    <FounderIntroAlternate client:load />
-    <MetabolicCtaMinimal />
+    <FounderIntro />
+    <MetabolicSignals />
     <Steps client:load />
     <WhyUs client:load />
     <Footer />

@@ -13,7 +13,7 @@ import Root from "../../layouts/root.astro";
 >
   <Navbar client:load currentPath={Astro.url.pathname} />
   <TreatmentPage
-    heroImage="/assets/metabolismo/banner.jpg"
+    heroImage="/assets/images/treatments/metabolism/banner.jpg"
     heroImageAlt="Persona enfocada en recuperar su salud metabólica"
     heroTitle="Tu peso no define tu salud metabólica."
     heroDescription="Entendemos qué está frenando a tu cuerpo antes de tratarlo."
@@ -33,7 +33,7 @@ import Root from "../../layouts/root.astro";
     <Fragment slot="sections">
       <TreatmentSection
         title="Tu peso no depende solo de comer más o menos."
-        image="/assets/metabolismo/jeans.jpg"
+        image="/assets/images/treatments/metabolism/jeans.jpg"
         imageAlt="Persona revisando su progreso metabólico"
       >
         <p>
@@ -52,13 +52,13 @@ import Root from "../../layouts/root.astro";
         </p>
       </TreatmentSection>
 
-      <section class="bg-[#dfe4e7] px-6 py-14 md:py-20 lg:px-10">
+      <section class="px-6 py-14 md:py-20 lg:px-10">
         <div
-          class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.5fr_0.75fr] md:items-center lg:gap-16"
+          class="max-w-desktop mx-auto grid gap-10 md:grid-cols-[1fr_0.75fr] md:items-center lg:gap-16"
         >
           <FadeIn client:visible>
             <img
-              src="/assets/metabolismo/3d.png"
+              src="/assets/images/treatments/metabolism/body-scan-3d.png"
               alt="Análisis corporal 3D de composición y distribución corporal"
               loading="lazy"
               decoding="async"
@@ -70,7 +70,7 @@ import Root from "../../layouts/root.astro";
             <FadeIn
               client:visible
               as="h2"
-              className="text-brand-blue text-(length:--step-2)/9 font-semibold"
+              className="text-brand-blue text-(length:--step-2)/9 font-semibold tracking-tight"
             >
               3D corporal
             </FadeIn>
