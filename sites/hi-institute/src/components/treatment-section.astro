@@ -18,19 +18,17 @@ const {
 } = Astro.props;
 ---
 
-<section class="bg-white px-6 py-16 md:py-20 lg:px-10">
+<section class="bg-white px-6 pb-16 lg:px-10">
   <div
     class:list={[
-      "mx-auto flex max-w-6xl flex-col gap-12 md:items-center md:gap-20",
+      "max-w-desktop mx-auto flex flex-col gap-12 md:items-start md:gap-20",
       reverse ? "md:flex-row-reverse" : "md:flex-row",
     ]}
   >
-    <FadeIn client:visible className="relative w-full md:w-1/2">
-      <div
-        class="from-brand-green absolute top-10 -right-5 -bottom-7 left-8 bg-linear-to-r via-[#b7d4d7] to-[#cfd0dc] md:-right-8 md:left-12"
-        aria-hidden="true"
-      >
-      </div>
+    <FadeIn
+      client:visible
+      className="from-brand-green relative w-full bg-linear-to-r via-[#b7d4d7] to-[#cfd0dc] p-1.5 md:w-1/2"
+    >
       {
         image ? (
           <img
@@ -38,7 +36,7 @@ const {
             alt={imageAlt}
             loading="lazy"
             decoding="async"
-            class="relative aspect-[4/3] w-full object-cover"
+            class="relative aspect-5/3 w-full object-cover"
           />
         ) : (
           <div class="relative flex aspect-[4/3] w-full items-center justify-center bg-neutral-100 p-10 text-center">
@@ -54,14 +52,14 @@ const {
       <FadeIn
         client:visible
         as="h2"
-        className="text-brand-blue max-w-xl text-(length:--step-3)/10 font-semibold"
+        className="text-brand-green max-w-xl text-(length:--step-4) leading-tight font-[550] tracking-tighter text-pretty"
       >
         {title}
       </FadeIn>
       <FadeIn
         client:visible
         as="div"
-        className="mt-8 space-y-6 text-(length:--step-0)/8 text-neutral-600"
+        className="mt-8 space-y-6 text-(length:--step-0)/8 text-balance text-neutral-700"
         delay={0.1}
       >
         <slot />
