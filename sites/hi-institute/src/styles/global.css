@@ -87,6 +87,26 @@ html {
   );
 }
 
+.program-card-gradient {
+  opacity: 0.72;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.92) 0%,
+    rgb(0 0 0 / 0.78) 19%,
+    rgb(0 0 0 / 0.58) 34%,
+    rgb(0 0 0 / 0.4) 47%,
+    rgb(0 0 0 / 0.27) 56.5%,
+    rgb(0 0 0 / 0.17) 65%,
+    rgb(0 0 0 / 0.1) 73%,
+    rgb(0 0 0 / 0.055) 80.2%,
+    rgb(0 0 0 / 0.028) 86.1%,
+    rgb(0 0 0 / 0.013) 91%,
+    rgb(0 0 0 / 0.005) 95.2%,
+    rgb(0 0 0 / 0.002) 98.2%,
+    transparent 100%
+  );
+}
+
 .mobile-nav-dialog {
   transition-behavior: allow-discrete;
 }
