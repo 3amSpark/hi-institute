@@ -27,17 +27,18 @@ export default function Navbar({ currentPath }: NavbarProps) {
   const desktopScrollProgress = useTransform(scrollProgress, (value) =>
     isDesktop ? value : 0,
   );
-  const gradientOpacity = useTransform(scrollProgress, [0, 1], [0, 0.356]);
+  const backgroundOpacity = useTransform(scrollProgress, [0, 1], [0, 1]);
+  const gradientOpacity = useTransform(scrollProgress, [0, 1], [0.356, 0]);
   const defaultLogoOpacity = useTransform(
     desktopScrollProgress,
     [0, 1],
-    [1, 0],
+    [0, 1],
   );
-  const whiteLogoOpacity = useTransform(desktopScrollProgress, [0, 1], [0, 1]);
+  const whiteLogoOpacity = useTransform(desktopScrollProgress, [0, 1], [1, 0]);
   const desktopLinkColor = useTransform(
     desktopScrollProgress,
     [0, 1],
-    ["rgb(64,64,64)", "rgb(255,255,255)"],
+    ["rgb(255,255,255)", "rgb(38,38,38)"],
   );
 
   useMotionValueEvent(scrollY, "change", (latestScrollY) => {
@@ -82,7 +83,9 @@ export default function Navbar({ currentPath }: NavbarProps) {
   }, [isMobileOpen]);
 
   const hasMobileWhiteChrome =
-    !isDesktop && hasPassedThreshold && !isMobileOpen;
+    !isDesktop && !hasPassedThreshold && !isMobileOpen;
+  const hasDesktopWhiteChrome =
+    isDesktop && !hasDesktopPassedThreshold && !isDesktopHovered;
 
   return (
     <>
@@ -101,6 +104,11 @@ export default function Navbar({ currentPath }: NavbarProps) {
           if (isDesktop) setIsDesktopHovered(false);
         }}
       >
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-white"
+          style={{ opacity: backgroundOpacity }}
+        />
         <motion.div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-white"
@@ -123,8 +131,10 @@ export default function Navbar({ currentPath }: NavbarProps) {
               alt="HI Health Institute International"
               className="h-auto w-full"
               style={{
-                opacity: hasMobileWhiteChrome
-                  ? 0
+                opacity: !isDesktop
+                  ? hasMobileWhiteChrome
+                    ? 0
+                    : 1
                   : isDesktopHovered
                     ? 1
                     : defaultLogoOpacity,
@@ -136,8 +146,10 @@ export default function Navbar({ currentPath }: NavbarProps) {
               aria-hidden="true"
               className="absolute inset-0 h-auto w-full"
               style={{
-                opacity: hasMobileWhiteChrome
-                  ? 1
+                opacity: !isDesktop
+                  ? hasMobileWhiteChrome
+                    ? 1
+                    : 0
                   : isDesktopHovered
                     ? 0
                     : whiteLogoOpacity,
@@ -148,7 +160,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
           <DesktopNavbar
             currentPath={currentPath}
             linkColor={isDesktopHovered ? "rgb(64,64,64)" : desktopLinkColor}
-            hasTextShadow={hasDesktopPassedThreshold && !isDesktopHovered}
+            hasTextShadow={hasDesktopWhiteChrome}
           />
 
           <button

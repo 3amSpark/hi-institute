@@ -4,7 +4,14 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { type RefObject, useEffect, useRef, useState } from "react";
+import {
+  type RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import FadeIn from "../fade-in";
 
 type Signal = {
   text: string;
@@ -17,14 +24,32 @@ type SignalScrollerProps = {
   signals: Signal[];
 };
 
+function Arrow({ direction }: { direction: "left" | "right" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={`size-5 ${direction === "left" ? "rotate-180" : ""}`}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.5"
+      aria-hidden="true"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </svg>
+  );
+}
+
 function SignalCard({
   signal,
   scrollerRef,
-  idx,
+  index,
 }: {
   signal: Signal;
   scrollerRef: RefObject<HTMLUListElement | null>;
-  idx: number;
+  index: number;
 }) {
   const cardRef = useRef<HTMLLIElement>(null);
   const reduceMotion = useReducedMotion();
@@ -37,75 +62,102 @@ function SignalCard({
   const x = useTransform(
     scrollXProgress,
     [0, 1],
-    reduceMotion ? [0, 0] : [-100, 100],
+    reduceMotion ? [0, 0] : [-24, 24],
   );
 
   return (
     <li
       ref={cardRef}
-      className="relative min-w-sm snap-start focus-within:z-20 hover:z-20 md:min-w-lg lg:min-w-md"
+      data-signal-card
+      className="w-[82vw] max-w-sm shrink-0 md:w-[22rem] lg:w-[30rem] lg:max-w-none"
     >
       <a
         href={signal.href}
-        className="group relative z-0 block focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-neutral-800"
+        className="group flex h-full flex-col bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform hover:-translate-y-0.5 hover:shadow-md/5 focus-visible:-translate-y-0.5 focus-visible:shadow-md/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-800"
       >
-        <span
-          className={`${idx % 2 === 0 ? "bg-brand-green" : "bg-brand-blue"} absolute top-[calc(50%)] left-1/2 z-0 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-[0.4] opacity-100 transition-all duration-300 ease-[cubic-bezier(0.9,0,0.1,1)] group-hover:scale-x-105 group-hover:scale-y-104 group-focus-visible:scale-x-105 group-focus-visible:scale-y-104`}
-          aria-hidden="true"
-        />
-        <div className="relative z-10 aspect-7/8 overflow-hidden transition-shadow duration-700 group-hover:shadow-xl/10 group-focus-visible:shadow-xl/10">
+        <div className="aspect-4/3 overflow-hidden">
           <motion.div className="h-full w-full" style={{ x }}>
             <img
               src={signal.image}
               alt=""
-              className="z-0 h-full w-full scale-130 object-cover object-center"
+              className="h-full w-full scale-110 object-cover object-center transition-transform duration-700 ease-out group-hover:scale-115 group-focus-visible:scale-115"
               loading="lazy"
             />
           </motion.div>
         </div>
-        <p className="relative z-10 max-w-none pt-3 pl-0 text-left text-(length:--step-2) leading-tight font-[550] tracking-tight text-balance transition-colors duration-350 group-hover:text-white group-focus-visible:text-white">
-          {signal.text}
-        </p>
-        <p className="relative z-10 mt-2 max-w-[calc(100%-4rem)] pb-8 text-left text-base tracking-tight text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-white group-focus-visible:text-white">
-          {signal.description}
-        </p>
-        <span
-          className="absolute right-0 bottom-0 z-10 translate-y-2 text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
-          aria-hidden="true"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            className="size-5"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
+
+        <div className="flex min-h-64 flex-1 flex-col p-5 sm:p-6">
+          <span className="text-xs font-medium tracking-[0.14em] text-neutral-500 uppercase tabular-nums">
+            Señal {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3 className="mt-2 text-(length:--step-2) leading-tight font-medium tracking-tighter text-balance text-neutral-900">
+            {signal.text}
+          </h3>
+          <p className="max-w-[40ch] pt-3 pb-4 leading-relaxed text-pretty text-neutral-600">
+            {signal.description}
+          </p>
+          <span
+            className="mt-auto flex items-center justify-between border-t border-neutral-200 pt-5 text-sm font-medium text-neutral-800"
+            aria-hidden="true"
           >
-            <path d="M7 17 17 7" />
-            <path d="M8 7h9v9" />
-          </svg>
-        </span>
+            Conoce más
+            <span className="transition-transform duration-300 group-hover:translate-x-1 group-focus-visible:translate-x-1">
+              <Arrow direction="right" />
+            </span>
+          </span>
+        </div>
       </a>
     </li>
   );
 }
 
-export default function SignalScroller({
-  signals,
-}: SignalScrollerProps) {
+export default function SignalScroller({ signals }: SignalScrollerProps) {
   const scrollerRef = useRef<HTMLUListElement>(null);
-  const [hasMoreToScroll, setHasMoreToScroll] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [hasPrevious, setHasPrevious] = useState(false);
+  const [hasNext, setHasNext] = useState(false);
+
+  const updateScrollState = useCallback(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    const cards = Array.from(
+      scroller.querySelectorAll<HTMLElement>("[data-signal-card]"),
+    );
+    if (cards.length === 0) return;
+
+    const leadingInset =
+      Number.parseFloat(getComputedStyle(scroller).paddingLeft) || 0;
+    const scrollerLeft = scroller.getBoundingClientRect().left;
+    const currentLeft = scroller.scrollLeft;
+    const maxScrollLeft = scroller.scrollWidth - scroller.clientWidth;
+    const isAtStart = currentLeft <= 2;
+    const isAtEnd = currentLeft >= maxScrollLeft - 2;
+    const nearestIndex = isAtStart
+      ? 0
+      : isAtEnd
+        ? cards.length - 1
+        : cards.reduce(
+            (nearest, child, index) => {
+              const childLeft =
+                child.getBoundingClientRect().left - scrollerLeft + currentLeft;
+              const distance = Math.abs(childLeft - leadingInset - currentLeft);
+
+              return distance < nearest.distance
+                ? { index, distance }
+                : nearest;
+            },
+            { index: 0, distance: Number.POSITIVE_INFINITY },
+          ).index;
+
+    setCurrentIndex(nearestIndex);
+    setHasPrevious(!isAtStart);
+    setHasNext(!isAtEnd);
+  }, []);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
     if (!scroller) return;
-
-    const updateScrollState = () => {
-      setHasMoreToScroll(
-        scroller.scrollLeft < scroller.scrollWidth - scroller.clientWidth - 2,
-      );
-    };
 
     updateScrollState();
     scroller.addEventListener("scroll", updateScrollState, { passive: true });
@@ -115,72 +167,82 @@ export default function SignalScroller({
       scroller.removeEventListener("scroll", updateScrollState);
       window.removeEventListener("resize", updateScrollState);
     };
-  }, [signals.length]);
+  }, [signals.length, updateScrollState]);
 
-  const scrollToNextSignal = () => {
+  const scrollByCard = (direction: -1 | 1) => {
     const scroller = scrollerRef.current;
-    if (!scroller) return;
+    const firstCard =
+      scroller?.querySelector<HTMLElement>("[data-signal-card]");
+    if (!scroller || !firstCard) return;
 
-    const currentLeft = scroller.scrollLeft;
-    const leadingInset =
-      Number.parseFloat(getComputedStyle(scroller).paddingLeft) || 0;
-    const scrollerLeft = scroller.getBoundingClientRect().left;
-    const nextSignal = Array.from(scroller.children).find((child) => {
-      const childLeft =
-        child.getBoundingClientRect().left - scrollerLeft + currentLeft;
-      const snapLeft = childLeft - leadingInset;
-
-      return snapLeft > currentLeft + 2;
+    const gap = Number.parseFloat(getComputedStyle(scroller).columnGap) || 0;
+    scroller.scrollBy({
+      left: direction * (firstCard.getBoundingClientRect().width + gap),
+      behavior: "smooth",
     });
-
-    if (!nextSignal) return;
-
-    const nextLeft =
-      nextSignal.getBoundingClientRect().left -
-      scrollerLeft +
-      currentLeft -
-      leadingInset;
-
-    scroller.scrollTo({ left: nextLeft, behavior: "smooth" });
   };
 
   return (
-    <div className="group/scroller relative">
-      <ul
-        ref={scrollerRef}
-        className="signal-scroller flex snap-x snap-mandatory scroll-mb-28 gap-4 overflow-x-auto scroll-smooth pt-4 pb-8 pl-10 sm:scroll-pl-8"
-      >
-        {signals.map((signal, idx) => (
-          <SignalCard
-            key={`${signal.text}-${signal.image}`}
-            signal={signal}
-            scrollerRef={scrollerRef}
-            idx={idx}
-          />
-        ))}
-      </ul>
-      {hasMoreToScroll ? (
-        <button
-          type="button"
-          className="absolute top-1/2 right-4 z-20 flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-neutral-800 text-white shadow-lg/20 transition-all duration-300 hover:scale-105 hover:bg-neutral-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-800"
-          aria-label="Ver siguiente senal"
-          onClick={scrollToNextSignal}
+    <>
+      <div className="mx-auto flex flex-col items-start gap-6 px-4 pt-12 pb-8 md:flex-row md:items-end md:justify-between md:gap-8 md:px-10 md:pt-20 md:pb-12">
+        <FadeIn className="max-w-3xl">
+          <h2 className="text-(length:--step-4)/[1.05] font-medium tracking-tighter text-balance">
+            ¿Te ha pasado alguna vez?
+          </h2>
+          <p className="mt-4 max-w-xl text-(length:--step-0)/7 tracking-tight text-neutral-700">
+            Si reconoces alguno, no lo dejes pasar.{" "}
+            <span className="block font-semibold text-neutral-900">
+              Tiene explicación y solución.
+            </span>
+          </p>
+        </FadeIn>
+
+        <span
+          className="shrink-0 self-end pb-1 text-sm font-medium text-neutral-600 tabular-nums"
+          aria-live="polite"
         >
-          <svg
-            viewBox="0 0 24 24"
-            className="size-5"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1"
-            aria-hidden="true"
+          {String(currentIndex + 1).padStart(2, "0")} /{" "}
+          {String(signals.length).padStart(2, "0")}
+        </span>
+      </div>
+
+      <div className="relative">
+        <ul
+          ref={scrollerRef}
+          className="signal-scroller flex gap-4 overflow-x-auto scroll-smooth px-4 pt-2 pb-14 md:gap-6 md:px-10 md:pb-20"
+        >
+          {signals.map((signal, index) => (
+            <SignalCard
+              key={`${signal.text}-${signal.image}`}
+              signal={signal}
+              scrollerRef={scrollerRef}
+              index={index}
+            />
+          ))}
+        </ul>
+
+        {hasPrevious ? (
+          <button
+            type="button"
+            className="absolute top-[32%] left-4 z-20 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/95 text-neutral-900 shadow-sm/10 backdrop-blur-sm transition-[transform,background-color] duration-300 hover:scale-105 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-800 md:left-10 md:size-12"
+            aria-label="Ver señal anterior"
+            onClick={() => scrollByCard(-1)}
           >
-            <path d="M5 12h14" />
-            <path d="m13 6 6 6-6 6" />
-          </svg>
-        </button>
-      ) : null}
-    </div>
+            <Arrow direction="left" />
+          </button>
+        ) : null}
+
+        {hasNext ? (
+          <button
+            type="button"
+            className="absolute top-[32%] right-4 z-20 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/95 text-neutral-900 shadow-sm/10 backdrop-blur-sm transition-[transform,background-color] duration-300 hover:scale-105 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-800 md:right-10 md:size-12"
+            aria-label="Ver siguiente señal"
+            onClick={() => scrollByCard(1)}
+          >
+            <Arrow direction="right" />
+          </button>
+        ) : null}
+      </div>
+    </>
   );
 }

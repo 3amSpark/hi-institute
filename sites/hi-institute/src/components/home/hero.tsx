@@ -104,9 +104,9 @@ export default function Hero({
   };
 
   return (
-    <section className="mt-navbar relative isolate min-h-[calc(100dvh-var(--spacing-navbar))] overflow-hidden bg-white">
+    <section className="relative isolate min-h-dvh overflow-hidden bg-white">
       <motion.div
-        className="flex min-h-[calc(100dvh-var(--spacing-navbar))] w-full"
+        className="flex min-h-dvh w-full"
         animate={{ x: `${displayedIndex * -100}%` }}
         transition={reduceMotion ? { duration: 0 } : slideTransition}
       >
@@ -119,7 +119,7 @@ export default function Hero({
           return (
             <div
               key={image.src}
-              className={`flex h-[calc(100dvh-var(--spacing-navbar))] w-full shrink-0 flex-col-reverse lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${slideTheme.background} ${slideLayoutClass[imagePosition]}`}
+              className={`flex h-dvh w-full shrink-0 flex-col-reverse lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${slideTheme.background} ${slideLayoutClass[imagePosition]}`}
             >
               <div className="hero-copy flex flex-1 items-center justify-start px-4 py-5 lg:h-auto lg:flex-auto lg:items-end lg:px-14 lg:py-15 lg:pt-0">
                 <div
@@ -154,7 +154,7 @@ export default function Hero({
                           >
                             <span>{action.label}</span>
                             <span
-                            className="size-5.5 -rotate-45 bg-current [mask-image:url('/assets/icons/ui/arrow-right.svg')] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] transition-transform duration-300 ease-out group-hover:rotate-0"
+                              className="size-5.5 -rotate-45 bg-current [mask-image:url('/assets/icons/ui/arrow-right.svg')] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] transition-transform duration-300 ease-out group-hover:rotate-0"
                               aria-hidden="true"
                             />
                           </a>
@@ -165,7 +165,7 @@ export default function Hero({
                 </div>
               </div>
 
-              <div className="hero-media relative flex h-[min(100vw,62dvh)] shrink-0 lg:min-h-[calc(100dvh-var(--spacing-navbar))] lg:flex-1 lg:pt-0">
+              <div className="hero-media relative flex h-[min(100vw,62dvh)] shrink-0 lg:min-h-dvh lg:flex-1 lg:pt-0">
                 <div className="relative grid h-full w-full place-items-center overflow-hidden">
                   {/*<div className="from-brand-green/70 to-brand-blue absolute inset-0 z-20 size-full bg-linear-to-tl via-transparent via-70% mix-blend-color" />*/}
                   <img
