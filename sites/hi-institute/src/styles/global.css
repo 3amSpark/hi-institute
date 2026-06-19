@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Space+Grotesk:wght@300..700&family=TASA+Orbiter:wght@400..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&family=TASA+Orbiter:wght@400..800&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -83,6 +83,26 @@ html {
     rgba(0, 0, 0, 0.021) 91%,
     rgba(0, 0, 0, 0.008) 95.2%,
     rgba(0, 0, 0, 0.002) 98.2%,
+    transparent 100%
+  );
+}
+
+.program-card-gradient {
+  opacity: 0.72;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.92) 0%,
+    rgb(0 0 0 / 0.78) 19%,
+    rgb(0 0 0 / 0.58) 34%,
+    rgb(0 0 0 / 0.4) 47%,
+    rgb(0 0 0 / 0.27) 56.5%,
+    rgb(0 0 0 / 0.17) 65%,
+    rgb(0 0 0 / 0.1) 73%,
+    rgb(0 0 0 / 0.055) 80.2%,
+    rgb(0 0 0 / 0.028) 86.1%,
+    rgb(0 0 0 / 0.013) 91%,
+    rgb(0 0 0 / 0.005) 95.2%,
+    rgb(0 0 0 / 0.002) 98.2%,
     transparent 100%
   );
 }

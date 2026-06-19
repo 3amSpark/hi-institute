@@ -1,4 +1,4 @@
-export const WHATSAPP_PHONE = "50252810472";
+export const WHATSAPP_PHONE = "50232322168";
 export const WHATSAPP_BASE_MESSAGE =
   "Hola! Estoy interesada(o) en agendar una consulta";
 

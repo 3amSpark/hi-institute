@@ -17,12 +17,12 @@ export default function FounderImageReveal() {
   const imageScale = useTransform(
     scrollYProgress,
     [0.15, 1],
-    reduceMotion ? [1, 1] : [0.55, 1],
+    reduceMotion ? [1, 1] : [0.8, 1],
   );
 
   const textScale = useTransform(
     scrollYProgress,
-    [0, 1],
+    [0.4, 1],
     reduceMotion ? [1, 1] : [0.65, 1],
   );
 
