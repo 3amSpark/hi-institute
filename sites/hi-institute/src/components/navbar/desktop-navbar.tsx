@@ -84,7 +84,7 @@ export default function DesktopNavbar({
     <>
       <div
         aria-hidden="true"
-        className={`fixed inset-x-0 top-navbar bottom-0 z-40 hidden bg-black/30 transition-opacity duration-300 lg:block ${
+        className={`top-navbar fixed inset-x-0 bottom-0 z-40 hidden bg-black/30 transition-opacity duration-300 lg:block ${
           isDesktopSubmenuOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -122,7 +122,7 @@ export default function DesktopNavbar({
           </button>
 
           <motion.div
-            className={`fixed inset-x-0 top-navbar z-50 bg-white ${
+            className={`top-navbar fixed inset-x-0 z-50 bg-white ${
               isTreatmentsOpen ? "pointer-events-auto" : "pointer-events-none"
             }`}
             initial={false}
@@ -190,7 +190,7 @@ export default function DesktopNavbar({
           </button>
 
           <motion.div
-            className={`fixed inset-x-0 top-navbar z-50 bg-white shadow-lg shadow-black/5 ${
+            className={`top-navbar fixed inset-x-0 z-50 bg-white shadow-lg shadow-black/5 ${
               isClinicsOpen ? "pointer-events-auto" : "pointer-events-none"
             }`}
             initial={false}

@@ -29,7 +29,7 @@ export default function FounderImageReveal() {
   return (
     <div ref={ref} className="sticky top-0 h-svh overflow-hidden">
       <motion.img
-        src="/assets/images/home/founder/feel-better-than-ever.png"
+        src="/assets/images/home/founder/feel-better-than-ever.webp"
         alt="Dr. Herbert Maradiaga"
         className="h-full w-full object-cover object-center"
         loading="lazy"
