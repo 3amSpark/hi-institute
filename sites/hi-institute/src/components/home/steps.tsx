@@ -10,7 +10,7 @@ import FadeIn from "../fade-in";
 
 const steps = [
   {
-    src: "/assets/images/home/steps/evaluation.png",
+    src: "/assets/images/home/steps/evaluation.jpg",
     number: "01",
     title: "Evaluacion completa",
     eyebrow: "Primero entendemos",
@@ -19,7 +19,7 @@ const steps = [
       "Reunimos datos claros para identificar que esta frenando tu progreso y que necesita atencion real.",
   },
   {
-    src: "/assets/images/home/steps/personalized-plan.png",
+    src: "/assets/images/home/steps/personalized-plan.jpg",
     number: "02",
     title: "Plan personalizado",
     eyebrow: "Despues disenamos",
@@ -28,7 +28,7 @@ const steps = [
       "Tu plan se construye alrededor de tus resultados, tus sintomas y lo que puedes sostener en tu vida diaria.",
   },
   {
-    src: "/assets/images/home/steps/progress.png",
+    src: "/assets/images/home/steps/progress.jpg",
     number: "03",
     title: "Cambio progresivo",
     eyebrow: "Luego ajustamos",

@@ -31,8 +31,7 @@ const contentClass = {
 };
 
 const slideLayoutClass = {
-  // left: "lg:[&_.hero-copy]:order-2 lg:[&_.hero-media]:order-1",
-  left: "",
+  left: "lg:[&_.hero-copy]:order-2 lg:[&_.hero-media]:order-1",
   right: "",
 };
 
@@ -42,12 +41,12 @@ const slideThemes = [
     text: "text-neutral-900",
   },
   {
-    background: "bg-brand-blue",
-    text: "text-white",
+    background: "bg-gray-100",
+    text: "text-neutral-900",
   },
   {
-    background: "bg-brand-green",
-    text: "text-white",
+    background: "bg-gray-100",
+    text: "text-neutral-900",
   },
 ] as const;
 

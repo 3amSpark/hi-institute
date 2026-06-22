@@ -34,6 +34,11 @@
   --spacing-navbar: calc(var(--spacing) * 17);
 }
 
+/*p,
+button {
+  font-family: var(--font-sans);
+}*/
+
 html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
