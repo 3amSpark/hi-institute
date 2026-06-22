@@ -5,7 +5,7 @@ import Hero from "../components/home/hero";
 import Navbar from "../components/navbar";
 import Steps from "../components/home/steps";
 import TreatmentPrograms from "../components/home/treatment-programs.astro";
-import WhyUs from "../components/home/why-us";
+import WhyUs from "../components/home/why-us.astro";
 import Root from "../layouts/root.astro";
 
 const heroImages = [
@@ -50,7 +50,7 @@ const heroImages = [
     <FounderIntro />
     <TreatmentPrograms />
     <Steps client:load />
-    <WhyUs client:load />
+    <WhyUs />
     <Footer />
   </main>
 </Root>
