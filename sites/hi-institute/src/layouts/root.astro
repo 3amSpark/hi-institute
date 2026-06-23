@@ -12,6 +12,8 @@ const {
   title = "HI Institute",
   description = "The new HI Institute website is being prepared.",
 } = Astro.props;
+
+const isRootPage = Astro.url.pathname === "/";
 ---
 
 <!doctype html>
@@ -46,10 +48,14 @@ const {
     <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body class="font-grotesk text-neutral-800">
-    <RevealSlides
-      client:load
-      colors={["bg-brand-blue", "bg-brand-green", "bg-neutral-100"]}
-    />
+    {
+      isRootPage && (
+        <RevealSlides
+          client:load
+          colors={["bg-brand-blue", "bg-brand-green", "bg-neutral-100"]}
+        />
+      )
+    }
     <div id="site-canvas">
       <slot />
     </div>
