@@ -1,5 +1,6 @@
 ---
 import GlassixWidget from "../components/glassix-widget.astro";
+import RevealSlides from "../components/reveal-slides";
 import "../styles/global.css";
 
 interface Props {
@@ -11,6 +12,8 @@ const {
   title = "HI Institute",
   description = "The new HI Institute website is being prepared.",
 } = Astro.props;
+
+const isRootPage = Astro.url.pathname === "/";
 ---
 
 <!doctype html>
@@ -24,6 +27,9 @@ const {
       type="image/svg+xml"
       href="/assets/icons/favicons/favicon.svg"
     />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <link
@@ -42,7 +48,17 @@ const {
     <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body class="font-grotesk text-neutral-800">
-    <slot />
+    {
+      isRootPage && (
+        <RevealSlides
+          client:load
+          colors={["bg-brand-blue", "bg-brand-green", "bg-neutral-100"]}
+        />
+      )
+    }
+    <div id="site-canvas">
+      <slot />
+    </div>
     <GlassixWidget />
   </body>
 </html>

@@ -126,7 +126,7 @@ export default function Hero({
                 >
                   <FadeIn instant={true}>
                     <h1
-                      className={`text-(length:--step-5) leading-[1em] font-medium tracking-tighter text-balance md:text-(length:--step-6) ${slideTheme.text}`}
+                      className={`text-h1 leading-[1em] font-medium tracking-tighter text-balance ${slideTheme.text}`}
                     >
                       {slideTitle}
                     </h1>
@@ -135,7 +135,7 @@ export default function Hero({
                   <FadeIn delay={0.2} instant={true}>
                     {slideDescription ? (
                       <p
-                        className={`max-w-lg text-(length:--step-0) leading-8 ${slideTheme.text}`}
+                        className={`text-p max-w-lg leading-8 ${slideTheme.text}`}
                       >
                         {slideDescription}
                       </p>
@@ -149,7 +149,7 @@ export default function Hero({
                           <a
                             key={action.href}
                             href={action.href}
-                            className="group inline-flex w-fit items-center gap-2 rounded-full bg-neutral-900 bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-3 pl-5 text-(length:--step--0) font-medium text-white transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%]"
+                            className="group text-p inline-flex w-fit items-center gap-2 rounded-full bg-neutral-900 bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-5 pl-7 tracking-wide text-white uppercase transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%]"
                           >
                             <span>{action.label}</span>
                             <span

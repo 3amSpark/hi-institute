@@ -7,10 +7,13 @@
     "ss03" on,
     "cv05" on;
   font-variant-numeric: tabular-nums;
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1; /* fix for Chrome */
 }
 
 @theme {
-  --font-sans: "Tasa Orbiter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "TASA Orbiter", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-grotesk: "Space Grotesk", var(--font-sans);
 
   --color-brand-blue: #1d75b8;
@@ -28,15 +31,43 @@
   --step-6: clamp(2.986rem, 2.6303rem + 1.5809vw, 4.0531rem);
   --step-7: clamp(4.0311rem, 3.2418rem + 3.508vw, 5.9605rem);
   --step-8: clamp(4.8373rem, 3.7682rem + 4.7514vw, 7.4506rem);
+  --text-size--2: clamp(0.5628rem, 0.626rem + -0.0816vw, 0.6076rem);
+  --text-size--1: clamp(0.7292rem, 0.7206rem + 0.0382vw, 0.7502rem);
+  --text-size-0: clamp(0.875rem, 0.8239rem + 0.2273vw, 1rem);
+  --text-size-1: clamp(1.05rem, 0.9342rem + 0.5145vw, 1.333rem);
+  --text-size-2: clamp(1.26rem, 1.0485rem + 0.9398vw, 1.7769rem);
+  --text-size-3: clamp(1.512rem, 1.1616rem + 1.5574vw, 2.3686rem);
+  --text-size-4: clamp(1.8144rem, 1.265rem + 2.4417vw, 3.1573rem);
+  --text-size-5: clamp(2.1773rem, 1.3462rem + 3.6935vw, 4.2087rem);
+  --text-size-6: clamp(2.6127rem, 1.3865rem + 5.45vw, 5.6102rem);
+  --text-size-7: clamp(3.1353rem, 1.3585rem + 7.8966vw, 7.4784rem);
+  --text-massive: var(--text-size-6);
+  --text-hero: var(--text-size-6);
+
+  --text-h1: var(--text-size-5);
+
+  --text-h2: var(--text-size-4);
+  --text-h3: var(--text-size-3);
+  --text-h3--letter-spacing: var(--tracking-tighter);
+  --text-h4: var(--text-size-2);
+  --text-h4--line-height: 2rem;
+  --text-h4--letter-spacing: var(--tracking-tighter);
+
+  --text-h5: var(--text-size-1);
+
+  --text-p: var(--text-size-0);
+  --text-p--line-height: 1.75rem;
+
+  --text-smaller: var(--text-size--1);
 
   --container-desktop: 92rem;
   --container-xxl: 120rem;
-  --spacing-navbar: calc(var(--spacing) * 17);
+  --spacing-navbar: calc(var(--spacing) * 19);
 }
-
-/*p,
+/*
+p,
 button {
-  font-family: var(--font-sans);
+  font-family: var(--font-sans) !important;
 }*/
 
 html {

@@ -50,14 +50,9 @@ export default function FadeIn({
             : {
                 opacity: 0,
                 y: 24,
-                filter: disableBlur ? "blur(0px)" : "blur(6px)",
               }
         }
-        animate={
-          reduceMotion
-            ? { opacity: 1 }
-            : { opacity: 1, y: 0, filter: "blur(0px)" }
-        }
+        animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
         transition={
           reduceMotion ? { duration: 0 } : { ...fadeTransition, delay }
         }

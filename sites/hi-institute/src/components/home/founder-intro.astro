@@ -7,9 +7,11 @@ import ScrollRevealHeading from "./scroll-reveal-heading";
 <section class="relative overflow-hidden">
   <FounderImageReveal client:load />
 
-  <div class="bg-brand-blue relative z-10 grid min-h-96 items-center">
+  <div
+    class="from-brand-green to-brand-green/80 via-brand-green relative z-10 grid min-h-96 items-center bg-linear-to-tr"
+  >
     <div
-      class="grid h-full w-full max-w-5xl items-center place-self-center text-center text-(length:--step-5)/14 font-medium tracking-tighter text-balance text-white"
+      class="text-h2 grid h-full w-full max-w-5xl items-center place-self-center text-center leading-tight font-medium tracking-tighter text-balance text-white"
     >
       <ScrollRevealHeading
         client:visible
@@ -18,7 +20,7 @@ import ScrollRevealHeading from "./scroll-reveal-heading";
     </div>
   </div>
   <div
-    class="relative z-10 flex w-full flex-col-reverse items-start justify-between gap-8 pb-8 text-(length:--step-0)/8 text-pretty lg:flex-row lg:items-center lg:pb-0"
+    class="text-p relative z-10 flex w-full flex-col-reverse items-start justify-between gap-8 pb-8 text-pretty lg:flex-row lg:items-center lg:pb-0"
   >
     <FadeIn
       client:visible
