@@ -12,7 +12,7 @@ const steps = [
   {
     src: "/assets/images/home/steps/evaluation.jpg",
     number: "01",
-    title: "Evaluacion completa",
+    title: "Evaluación completa",
     eyebrow: "Primero entendemos",
     summary: "Hormonas, metabolismo, historia clinica y estilo de vida.",
     detail:
@@ -72,7 +72,7 @@ export default function Steps() {
                       <div className="min-w-0 flex-1">
                         <div className="flex w-full items-start justify-between gap-5">
                           <span
-                            className={`text-h5 block leading-tight font-medium tracking-tight transition-colors duration-300 ${
+                            className={`text-h5 block leading-tight font-[450] transition-colors duration-300 ${
                               isActive
                                 ? "text-neutral-900"
                                 : "text-neutral-400/80 group-hover:text-neutral-700"
@@ -81,7 +81,7 @@ export default function Steps() {
                             {step.title}
                           </span>
                           <span
-                            className={`text-p shrink-0 font-bold uppercase tabular-nums transition-colors duration-300`}
+                            className={`text-smaller shrink-0 font-bold uppercase tabular-nums transition-colors duration-300`}
                           >
                             {step.number}
                           </span>

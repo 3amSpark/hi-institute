@@ -38,15 +38,12 @@ const slideLayoutClass = {
 const slideThemes = [
   {
     background: "bg-gray-100",
-    text: "text-neutral-900",
   },
   {
     background: "bg-gray-100",
-    text: "text-neutral-900",
   },
   {
     background: "bg-gray-100",
-    text: "text-neutral-900",
   },
 ] as const;
 
@@ -118,25 +115,21 @@ export default function Hero({
           return (
             <div
               key={image.src}
-              className={`flex h-dvh w-full shrink-0 flex-col-reverse lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${slideTheme.background} ${slideLayoutClass[imagePosition]}`}
+              className={`relative isolate flex h-dvh w-full shrink-0 ${slideTheme.background} lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${slideLayoutClass[imagePosition]}`}
             >
-              <div className="hero-copy flex flex-1 items-center justify-start px-4 py-5 lg:h-auto lg:flex-auto lg:items-end lg:px-14 lg:py-15 lg:pt-0">
+              <div className="hero-copy pt-navbar relative z-20 flex h-full flex-1 items-end justify-start px-4 pb-12 lg:h-auto lg:flex-auto lg:items-end lg:px-14 lg:py-15 lg:pt-0">
                 <div
                   className={`flex max-w-prose flex-col gap-4 sm:gap-5 lg:max-w-xl ${contentClass[align]}`}
                 >
                   <FadeIn instant={true}>
-                    <h1
-                      className={`text-h1 leading-[1em] font-medium tracking-tighter text-balance ${slideTheme.text}`}
-                    >
+                    <h1 className="text-h2 leading-[1.25em] font-[450] tracking-tighter text-balance text-white lg:text-neutral-900">
                       {slideTitle}
                     </h1>
                   </FadeIn>
 
                   <FadeIn delay={0.2} instant={true}>
                     {slideDescription ? (
-                      <p
-                        className={`text-p max-w-lg leading-8 ${slideTheme.text}`}
-                      >
+                      <p className="text-p max-w-lg leading-8 text-white/90 lg:text-neutral-900">
                         {slideDescription}
                       </p>
                     ) : null}
@@ -149,7 +142,7 @@ export default function Hero({
                           <a
                             key={action.href}
                             href={action.href}
-                            className="group text-p inline-flex w-fit items-center gap-2 rounded-full bg-neutral-900 bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-5 pl-7 tracking-wide text-white uppercase transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%]"
+                            className="group sm:text-p inline-flex w-fit items-center gap-2 rounded-full bg-white bg-size-[200%_100%] bg-position-[0%_50%] py-1.5 pr-5 pl-7 tracking-wide text-neutral-900 uppercase transition-[background-position,box-shadow] duration-500 ease-out hover:bg-position-[100%_50%] lg:bg-neutral-900 lg:text-white"
                           >
                             <span>{action.label}</span>
                             <span
@@ -164,9 +157,9 @@ export default function Hero({
                 </div>
               </div>
 
-              <div className="hero-media relative flex h-[min(100vw,62dvh)] shrink-0 lg:min-h-dvh lg:flex-1 lg:pt-0">
+              <div className="hero-media absolute inset-0 z-0 flex h-full shrink-0 lg:relative lg:min-h-dvh lg:flex-1 lg:pt-0">
                 <div className="relative grid h-full w-full place-items-center overflow-hidden">
-                  {/*<div className="from-brand-green/70 to-brand-blue absolute inset-0 z-20 size-full bg-linear-to-tl via-transparent via-70% mix-blend-color" />*/}
+                  <div className="absolute inset-0 z-10 bg-linear-to-t from-black/40 via-black/25 to-black/10 lg:hidden" />
                   <img
                     src={image.src}
                     alt={image.alt}

@@ -31,16 +31,16 @@
   --step-6: clamp(2.986rem, 2.6303rem + 1.5809vw, 4.0531rem);
   --step-7: clamp(4.0311rem, 3.2418rem + 3.508vw, 5.9605rem);
   --step-8: clamp(4.8373rem, 3.7682rem + 4.7514vw, 7.4506rem);
-  --text-size--2: clamp(0.5628rem, 0.626rem + -0.0816vw, 0.6076rem);
-  --text-size--1: clamp(0.7292rem, 0.7206rem + 0.0382vw, 0.7502rem);
-  --text-size-0: clamp(0.875rem, 0.8239rem + 0.2273vw, 1rem);
-  --text-size-1: clamp(1.05rem, 0.9342rem + 0.5145vw, 1.333rem);
-  --text-size-2: clamp(1.26rem, 1.0485rem + 0.9398vw, 1.7769rem);
-  --text-size-3: clamp(1.512rem, 1.1616rem + 1.5574vw, 2.3686rem);
-  --text-size-4: clamp(1.8144rem, 1.265rem + 2.4417vw, 3.1573rem);
-  --text-size-5: clamp(2.1773rem, 1.3462rem + 3.6935vw, 4.2087rem);
-  --text-size-6: clamp(2.6127rem, 1.3865rem + 5.45vw, 5.6102rem);
-  --text-size-7: clamp(3.1353rem, 1.3585rem + 7.8966vw, 7.4784rem);
+  --text-size--2: clamp(0.5628rem, 0.7483rem + -0.2394vw, 0.6944rem);
+  --text-size--1: clamp(0.7502rem, 0.8673rem + -0.1512vw, 0.8333rem);
+  --text-size-0: clamp(1rem, 1rem + 0vw, 1rem);
+  --text-size-1: clamp(1.2rem, 1.1456rem + 0.2418vw, 1.333rem);
+  --text-size-2: clamp(1.44rem, 1.3022rem + 0.6125vw, 1.7769rem);
+  --text-size-3: clamp(1.728rem, 1.4659rem + 1.1647vw, 2.3686rem);
+  --text-size-4: clamp(2.0736rem, 1.6303rem + 1.9704vw, 3.1573rem);
+  --text-size-5: clamp(2.4883rem, 1.7845rem + 3.128vw, 4.2087rem);
+  --text-size-6: clamp(2.986rem, 1.9124rem + 4.7714vw, 5.6102rem);
+  --text-size-7: clamp(3.5832rem, 1.9897rem + 7.0823vw, 7.4784rem);
   --text-massive: var(--text-size-6);
   --text-hero: var(--text-size-6);
 
@@ -54,6 +54,7 @@
   --text-h4--letter-spacing: var(--tracking-tighter);
 
   --text-h5: var(--text-size-1);
+  --text-h5--letter-spacing: var(--tracking-tight);
 
   --text-p: var(--text-size-0);
   --text-p--line-height: 1.75rem;

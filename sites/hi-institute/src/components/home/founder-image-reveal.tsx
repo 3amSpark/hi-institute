@@ -43,7 +43,7 @@ export default function FounderImageReveal() {
       <motion.div className="absolute inset-0 bg-linear-to-b from-transparent to-black/20" />
 
       <motion.h2
-        className="text-massive absolute inset-x-4 top-1/2 -translate-y-1/2 text-center font-black tracking-widest text-balance text-white uppercase md:top-1/2"
+        className="text-massive absolute inset-x-4 top-1/2 -translate-y-1/2 text-center font-semibold tracking-widest text-balance text-white uppercase md:top-1/2"
         style={{ scale: textScale }}
       >
         Feel Better Than Ever
