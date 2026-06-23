@@ -51,10 +51,8 @@ export default function Steps() {
         {/* Left column */}
         <div className="flex flex-col justify-center px-4 pt-12 pb-10 sm:px-6 lg:px-0 lg:py-0">
           <FadeIn className="lg:pt-8 lg:pl-10">
-            <p className="mb-3 text-base font-semibold text-neutral-500 lg:mb-2 lg:text-(length:--step-0)">
-              Nuestro proceso
-            </p>
-            <h2 className="mb-8 text-left text-(length:--step-5)/[1.05] font-[550] tracking-tighter text-balance text-neutral-800">
+            <p className="text-p">Nuestro proceso</p>
+            <h2 className="text-h2 mb-8 text-left font-[550] tracking-tighter text-balance text-neutral-800">
               Asi empieza tu cambio
             </h2>
           </FadeIn>
@@ -74,7 +72,7 @@ export default function Steps() {
                       <div className="min-w-0 flex-1">
                         <div className="flex w-full items-start justify-between gap-5">
                           <span
-                            className={`block text-(length:--step-1) leading-tight font-medium tracking-tight transition-colors duration-300 ${
+                            className={`text-h5 block leading-tight font-medium tracking-tight transition-colors duration-300 ${
                               isActive
                                 ? "text-neutral-900"
                                 : "text-neutral-400/80 group-hover:text-neutral-700"
@@ -83,7 +81,7 @@ export default function Steps() {
                             {step.title}
                           </span>
                           <span
-                            className={`mt-0.5 shrink-0 text-[11px] font-bold uppercase tabular-nums transition-colors duration-300`}
+                            className={`text-p shrink-0 font-bold uppercase tabular-nums transition-colors duration-300`}
                           >
                             {step.number}
                           </span>
@@ -117,7 +115,7 @@ export default function Steps() {
                               }}
                               style={{ overflow: "hidden" }}
                             >
-                              <p className="mt-3 max-w-md max-w-prose pr-6 text-sm leading-relaxed text-pretty text-neutral-700 lg:mt-0 lg:pr-0">
+                              <p className="text-p mt-3 max-w-prose pr-6 leading-relaxed text-pretty text-neutral-700 lg:mt-0 lg:pr-0">
                                 {step.summary}
                               </p>
                             </motion.div>

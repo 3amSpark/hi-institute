@@ -69,6 +69,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
 
   useEffect(() => {
     document.body.classList.toggle("overflow-hidden", isMobileOpen);
+    document.body.classList.toggle("mobile-nav-open", isMobileOpen);
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setIsMobileOpen(false);
@@ -78,6 +79,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
 
     return () => {
       document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove("mobile-nav-open");
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isMobileOpen]);
@@ -96,7 +98,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
       />
 
       <motion.header
-        className="h-navbar fixed top-0 right-0 left-0 z-50"
+        className={`h-navbar fixed top-0 right-0 left-0 z-50 ${(hasPassedThreshold || isDesktopHovered) && `border-b-[0.5px] border-neutral-300/80`}`}
         onMouseEnter={() => {
           if (isDesktop) setIsDesktopHovered(true);
         }}
@@ -124,7 +126,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
           <a
             href="/"
             aria-label="HI Institute International home"
-            className="relative z-10 block w-40 max-w-full md:w-45"
+            className="relative z-10 block w-41 max-w-full"
           >
             <motion.img
               src={logo}

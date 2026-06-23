@@ -134,7 +134,7 @@ export default function DesktopNavbar({
                 <a
                   key={treatment.href}
                   href={treatment.href}
-                  className="hover:text-brand-dark-blue group/item block w-full text-sm leading-none font-[550] text-balance text-neutral-600 transition-opacity duration-300 ease-out group-hover/dropdown:opacity-60 hover:opacity-100"
+                  className="hover:text-brand-dark-blue group/item block w-full text-sm text-balance transition-opacity duration-300 ease-out group-hover/dropdown:opacity-60 hover:opacity-100"
                 >
                   <img
                     src={treatment.image}
@@ -202,7 +202,7 @@ export default function DesktopNavbar({
                 <a
                   key={clinic.href}
                   href={clinic.href}
-                  className="hover:text-brand-dark-blue group/item block w-full text-(length:--step--1) leading-none font-medium text-balance text-neutral-800 transition-opacity duration-300 ease-out group-hover/dropdown:opacity-60 hover:opacity-100"
+                  className="hover:text-brand-dark-blue group/item block w-full text-(length:--step--1) leading-none text-balance text-neutral-800 transition-opacity duration-300 ease-out group-hover/dropdown:opacity-60 hover:opacity-100"
                 >
                   <span className="mb-4 flex aspect-square w-full items-center justify-center bg-neutral-100 p-10">
                     <img
@@ -230,7 +230,7 @@ export default function DesktopNavbar({
             aria-current={
               isActivePath(currentPath, link.href) ? "page" : undefined
             }
-            className="ml-2 inline-flex items-center rounded-full bg-black px-4.5 py-1.5 text-(length:--step--1) font-medium text-white transition-colors duration-150 hover:bg-neutral-800"
+            className="ml-2 inline-flex items-center rounded-full bg-black px-5 py-1.5 text-(length:--step--1) text-white transition-colors duration-150 hover:bg-neutral-800"
           >
             {link.label}
           </a>
