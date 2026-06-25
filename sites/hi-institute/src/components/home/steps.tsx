@@ -52,7 +52,7 @@ export default function Steps() {
         <div className="flex flex-col justify-center px-4 pt-12 pb-10 sm:px-6 lg:px-0 lg:py-0">
           <FadeIn className="lg:pt-8 lg:pl-10">
             <p className="text-p">Nuestro proceso</p>
-            <h2 className="text-h2 mb-8 text-left font-[550] tracking-tighter text-balance text-neutral-800">
+            <h2 className="text-h2 mb-8 text-left font-[450] tracking-tighter text-balance text-neutral-800">
               Así empieza tu cambio
             </h2>
           </FadeIn>

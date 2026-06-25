@@ -28,7 +28,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
     isDesktop ? value : 0,
   );
   const backgroundOpacity = useTransform(scrollProgress, [0, 1], [0, 1]);
-  const gradientOpacity = useTransform(scrollProgress, [0, 1], [0.356, 0]);
+  const gradientOpacity = useTransform(scrollProgress, [0, 1], [0.5, 0]);
   const defaultLogoOpacity = useTransform(
     desktopScrollProgress,
     [0, 1],
@@ -125,6 +125,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
         <nav className="max-w-xxl h-navbar mx-auto flex items-center justify-between px-6 lg:px-10">
           <a
             href="/"
+            data-astro-prefetch="hover"
             aria-label="HI Institute International home"
             className="relative z-10 block w-41 max-w-full"
           >

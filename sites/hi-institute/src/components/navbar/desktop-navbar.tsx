@@ -84,7 +84,7 @@ export default function DesktopNavbar({
     <>
       <div
         aria-hidden="true"
-        className={`top-navbar fixed inset-x-0 bottom-0 z-40 hidden bg-black/30 transition-opacity duration-300 lg:block ${
+        className={`top-navbar fixed inset-x-0 bottom-0 z-40 hidden bg-black/20 transition-opacity duration-300 lg:block ${
           isDesktopSubmenuOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -134,6 +134,7 @@ export default function DesktopNavbar({
                 <a
                   key={treatment.href}
                   href={treatment.href}
+                  data-astro-prefetch="hover"
                   className="hover:text-brand-dark-blue group/item block w-full text-sm text-balance transition-opacity duration-300 ease-out group-hover/dropdown:opacity-60 hover:opacity-100"
                 >
                   <img
@@ -152,6 +153,7 @@ export default function DesktopNavbar({
 
         <a
           href="/farmacia"
+          data-astro-prefetch="hover"
           aria-current={
             isActivePath(currentPath, "/farmacia") ? "page" : undefined
           }
@@ -227,6 +229,7 @@ export default function DesktopNavbar({
           <a
             key={link.href}
             href={link.href}
+            data-astro-prefetch="hover"
             aria-current={
               isActivePath(currentPath, link.href) ? "page" : undefined
             }

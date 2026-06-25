@@ -57,13 +57,14 @@ const programs = [
     >
       {
         programs.map((program, index) => (
-          <FadeIn client:visible as="div" delay={index * 0.1}>
+          <FadeIn client:visible as="div" delay={index * 0.1} mobileDelay={0}>
             <div
               data-treatment-card
               class="w-[82vw] max-w-sm shrink-0 snap-start scroll-ml-4 md:w-auto md:max-w-none lg:scroll-ml-0"
             >
               <a
                 href={program.href}
+                data-astro-prefetch="hover"
                 class="group flex h-full flex-col text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"
               >
                 <div class="item relative flex aspect-4/5 overflow-hidden bg-neutral-900 text-white">
@@ -79,10 +80,8 @@ const programs = [
                     aria-hidden="true"
                   />
 
-                  <div class="relative z-10 mt-auto pb-4 pl-4">
-                    <h4 class="text-h4 font-[450] text-balance">
-                      {program.title}
-                    </h4>
+                  <div class="relative z-10 mt-auto px-4 pb-4">
+                    <h4 class="text-h5 text-balance">{program.title}</h4>
                   </div>
                 </div>
 
