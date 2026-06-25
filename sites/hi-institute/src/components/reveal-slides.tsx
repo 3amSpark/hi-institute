@@ -16,12 +16,12 @@ const finalClipStates: Record<RevealDirection, string> = {
   bt: "inset(0 0 100% 0)",
 };
 
-const defaultColors = ["bg-brand-blue", "bg-brand-green", "bg-neutral-100"];
+const defaultColors = ["bg-brand-green", "bg-brand-blue", "bg-gray-500"];
 
 export default function RevealSlides({
   colors = defaultColors,
   direction = "ltr",
-  duration = 1,
+  duration = 1.33,
 }: RevealSlidesProps) {
   const reduceMotion = useReducedMotion();
   const [isComplete, setIsComplete] = useState(false);
@@ -41,8 +41,8 @@ export default function RevealSlides({
           animate={{ clipPath: finalClipStates[direction] }}
           transition={{
             duration,
-            delay: index * 0.075,
-            ease: [0.76, 0, 0.24, 1],
+            delay: index * 0.125,
+            ease: [0.22, 1, 0.36, 1],
           }}
           style={{
             zIndex: colors.length - index,

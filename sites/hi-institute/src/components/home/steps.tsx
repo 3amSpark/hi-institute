@@ -12,20 +12,20 @@ const steps = [
   {
     src: "/assets/images/home/steps/evaluation.jpg",
     number: "01",
-    title: "Evaluacion completa",
+    title: "Evaluación completa",
     eyebrow: "Primero entendemos",
-    summary: "Hormonas, metabolismo, historia clinica y estilo de vida.",
+    summary: "Hormonas, metabolismo, historia clínica y estilo de vida.",
     detail:
-      "Reunimos datos claros para identificar que esta frenando tu progreso y que necesita atencion real.",
+      "Reunimos datos claros para identificar qué está frenando tu progreso y qué necesita atención real.",
   },
   {
     src: "/assets/images/home/steps/personalized-plan.jpg",
     number: "02",
     title: "Plan personalizado",
-    eyebrow: "Despues disenamos",
-    summary: "Nutricion, suplementacion y tratamiento medico segun tu caso.",
+    eyebrow: "Después diseñamos",
+    summary: "Nutrición, suplementación y tratamiento médico según tu caso.",
     detail:
-      "Tu plan se construye alrededor de tus resultados, tus sintomas y lo que puedes sostener en tu vida diaria.",
+      "Tu plan se construye alrededor de tus resultados, tus síntomas y lo que puedes sostener en tu vida diaria.",
   },
   {
     src: "/assets/images/home/steps/progress.jpg",
@@ -34,7 +34,7 @@ const steps = [
     eyebrow: "Luego ajustamos",
     summary: "Seguimiento cercano para convertir avances en cambios reales.",
     detail:
-      "Medimos respuesta, afinamos el tratamiento y acompanamos tu recuperacion con decisiones basadas en evidencia.",
+      "Medimos respuesta, afinamos el tratamiento y acompañamos tu recuperación con decisiones basadas en evidencia.",
   },
 ];
 
@@ -52,8 +52,8 @@ export default function Steps() {
         <div className="flex flex-col justify-center px-4 pt-12 pb-10 sm:px-6 lg:px-0 lg:py-0">
           <FadeIn className="lg:pt-8 lg:pl-10">
             <p className="text-p">Nuestro proceso</p>
-            <h2 className="text-h2 mb-8 text-left font-[550] tracking-tighter text-balance text-neutral-800">
-              Asi empieza tu cambio
+            <h2 className="text-h2 mb-8 text-left font-[450] tracking-tighter text-balance text-neutral-800">
+              Así empieza tu cambio
             </h2>
           </FadeIn>
 
@@ -72,7 +72,7 @@ export default function Steps() {
                       <div className="min-w-0 flex-1">
                         <div className="flex w-full items-start justify-between gap-5">
                           <span
-                            className={`text-h5 block leading-tight font-medium tracking-tight transition-colors duration-300 ${
+                            className={`text-h5 block leading-tight font-[450] transition-colors duration-300 ${
                               isActive
                                 ? "text-neutral-900"
                                 : "text-neutral-400/80 group-hover:text-neutral-700"
@@ -81,7 +81,7 @@ export default function Steps() {
                             {step.title}
                           </span>
                           <span
-                            className={`text-p shrink-0 font-bold uppercase tabular-nums transition-colors duration-300`}
+                            className={`text-smaller shrink-0 font-bold uppercase tabular-nums transition-colors duration-300`}
                           >
                             {step.number}
                           </span>

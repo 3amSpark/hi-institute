@@ -8,7 +8,7 @@ type MobileNavbarProps = {
 };
 
 const primaryLinkClassName =
-  "flex w-full items-center text-left text-3xl leading-none font-medium tracking-tight text-neutral-900 transition-colors hover:text-brand-blue";
+  "flex w-full items-center text-left text-h3 leading-none font-[450] tracking-tight text-neutral-900 transition-colors hover:text-brand-blue";
 
 export default function MobileNavbar({
   currentPath,
@@ -49,7 +49,7 @@ export default function MobileNavbar({
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
-      className={`mobile-nav-dialog fixed inset-y-0 right-0 left-auto m-0 h-dvh max-h-none w-5/6 max-w-md overflow-y-auto border-0 bg-white p-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] starting:translate-x-full lg:hidden ${
+      className={`mobile-nav-dialog fixed inset-y-0 right-0 left-auto m-0 h-dvh max-h-none w-5/6 max-w-md overflow-y-auto border-0 bg-white p-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden starting:translate-x-full ${
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
@@ -63,7 +63,7 @@ export default function MobileNavbar({
         <span className="absolute h-0.5 w-7 -rotate-45 bg-current" />
       </button>
 
-      <div className="min-h-full">
+      <div className="min-h-full bg-neutral-100">
         <nav
           aria-label="Navegación móvil"
           className="flex min-h-full flex-col px-7 pt-30 pb-8"
