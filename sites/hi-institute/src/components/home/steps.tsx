@@ -14,18 +14,18 @@ const steps = [
     number: "01",
     title: "Evaluación completa",
     eyebrow: "Primero entendemos",
-    summary: "Hormonas, metabolismo, historia clinica y estilo de vida.",
+    summary: "Hormonas, metabolismo, historia clínica y estilo de vida.",
     detail:
-      "Reunimos datos claros para identificar que esta frenando tu progreso y que necesita atencion real.",
+      "Reunimos datos claros para identificar qué está frenando tu progreso y qué necesita atención real.",
   },
   {
     src: "/assets/images/home/steps/personalized-plan.jpg",
     number: "02",
     title: "Plan personalizado",
-    eyebrow: "Despues disenamos",
-    summary: "Nutricion, suplementacion y tratamiento medico segun tu caso.",
+    eyebrow: "Después diseñamos",
+    summary: "Nutrición, suplementación y tratamiento médico según tu caso.",
     detail:
-      "Tu plan se construye alrededor de tus resultados, tus sintomas y lo que puedes sostener en tu vida diaria.",
+      "Tu plan se construye alrededor de tus resultados, tus síntomas y lo que puedes sostener en tu vida diaria.",
   },
   {
     src: "/assets/images/home/steps/progress.jpg",
@@ -34,7 +34,7 @@ const steps = [
     eyebrow: "Luego ajustamos",
     summary: "Seguimiento cercano para convertir avances en cambios reales.",
     detail:
-      "Medimos respuesta, afinamos el tratamiento y acompanamos tu recuperacion con decisiones basadas en evidencia.",
+      "Medimos respuesta, afinamos el tratamiento y acompañamos tu recuperación con decisiones basadas en evidencia.",
   },
 ];
 
@@ -53,7 +53,7 @@ export default function Steps() {
           <FadeIn className="lg:pt-8 lg:pl-10">
             <p className="text-p">Nuestro proceso</p>
             <h2 className="text-h2 mb-8 text-left font-[550] tracking-tighter text-balance text-neutral-800">
-              Asi empieza tu cambio
+              Así empieza tu cambio
             </h2>
           </FadeIn>
 

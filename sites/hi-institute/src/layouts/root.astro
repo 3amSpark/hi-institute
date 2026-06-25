@@ -48,14 +48,7 @@ const isRootPage = Astro.url.pathname === "/";
     <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body class="font-grotesk text-neutral-800">
-    {
-      isRootPage && (
-        <RevealSlides
-          client:load
-          colors={["bg-brand-blue", "bg-brand-green", "bg-neutral-100"]}
-        />
-      )
-    }
+    {isRootPage && <RevealSlides client:load />}
     <div id="site-canvas">
       <slot />
     </div>

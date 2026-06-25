@@ -51,13 +51,13 @@ const programs = [
   </FadeIn>
 
   <div class="relative">
-    <FadeIn client:visible as="div">
-      <div
-        id="treatment-programs-scroller"
-        class="signal-scroller flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden scroll-smooth px-4 pb-3 md:mt-16 lg:grid lg:snap-none lg:grid-cols-2 lg:gap-6 lg:overflow-visible lg:px-10 lg:pb-0 xl:grid-cols-4"
-      >
-        {
-          programs.map((program) => (
+    <div
+      id="treatment-programs-scroller"
+      class="signal-scroller flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden scroll-smooth px-4 pb-3 md:mt-16 lg:grid lg:snap-none lg:grid-cols-2 lg:gap-6 lg:overflow-visible lg:px-10 lg:pb-0 xl:grid-cols-4"
+    >
+      {
+        programs.map((program, index) => (
+          <FadeIn client:visible as="div" delay={index * 0.1}>
             <div
               data-treatment-card
               class="w-[82vw] max-w-sm shrink-0 snap-start scroll-ml-4 md:w-auto md:max-w-none lg:scroll-ml-0"
@@ -107,10 +107,10 @@ const programs = [
                 </span>
               </a>
             </div>
-          ))
-        }
-      </div>
-    </FadeIn>
+          </FadeIn>
+        ))
+      }
+    </div>
 
     <button
       id="treatment-programs-next"

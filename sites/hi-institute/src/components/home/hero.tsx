@@ -47,7 +47,10 @@ const slideThemes = [
   },
 ] as const;
 
+const slideRevealDuration = 0.5;
+
 const slideTransition = {
+  duration: slideRevealDuration,
   type: "spring",
   restDelta: 0.001,
   damping: 30,
@@ -121,13 +124,13 @@ export default function Hero({
                 <div
                   className={`flex max-w-prose flex-col gap-4 sm:gap-5 lg:max-w-xl ${contentClass[align]}`}
                 >
-                  <FadeIn instant={true}>
+                  <FadeIn delay={slideRevealDuration} instant={true}>
                     <h1 className="text-h2 leading-[1.25em] font-[450] tracking-tighter text-balance text-white lg:text-neutral-900">
                       {slideTitle}
                     </h1>
                   </FadeIn>
 
-                  <FadeIn delay={0.2} instant={true}>
+                  <FadeIn delay={slideRevealDuration + 0.15} instant={true}>
                     {slideDescription ? (
                       <p className="text-p max-w-lg leading-8 text-white/90 lg:text-neutral-900">
                         {slideDescription}
@@ -135,7 +138,7 @@ export default function Hero({
                     ) : null}
                   </FadeIn>
 
-                  <FadeIn delay={0.35} instant={true}>
+                  <FadeIn delay={slideRevealDuration + 0.35} instant={true}>
                     {actions.length > 0 ? (
                       <div className="flex flex-wrap gap-3">
                         {actions.map((action) => (
