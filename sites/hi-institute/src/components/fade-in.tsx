@@ -29,6 +29,9 @@ const fadeTransition = {
   ease: [0.25, 0.46, 0.45, 0.94],
 } as const;
 
+const reducedMotionClassName =
+  "motion-reduce:!transform-none motion-reduce:!opacity-100";
+
 export default function FadeIn({
   as,
   children,
@@ -48,6 +51,9 @@ export default function FadeIn({
   );
   const Component = fadeInComponents[as ?? "div"];
   const resolvedDelay = isDesktop ? delay : (mobileDelay ?? delay);
+  const resolvedClassName = [className, reducedMotionClassName]
+    .filter(Boolean)
+    .join(" ");
 
   useEffect(() => {
     const desktopQuery = window.matchMedia("(min-width: 1024px)");
@@ -62,7 +68,7 @@ export default function FadeIn({
   if (instant === true) {
     return (
       <Component
-        className={className}
+        className={resolvedClassName}
         initial={
           reduceMotion
             ? false
@@ -86,7 +92,7 @@ export default function FadeIn({
 
   return (
     <Component
-      className={className}
+      className={resolvedClassName}
       initial={
         reduceMotion
           ? false
