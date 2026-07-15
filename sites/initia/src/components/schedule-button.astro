@@ -1,5 +1,8 @@
 ---
-import { buildWhatsAppUrl } from "../constants";
+import {
+  buildWhatsAppUrl,
+  WHATSAPP_CONTACT_ENABLED,
+} from "../constants";
 
 interface Props {
   text: string;
@@ -19,16 +22,23 @@ const {
   target = "_blank",
   leadCtaLocation,
 } = Astro.props as Props;
-const href = customHref ?? buildWhatsAppUrl(topic);
+const href = WHATSAPP_CONTACT_ENABLED
+  ? (customHref ?? buildWhatsAppUrl(topic))
+  : undefined;
 ---
 
 <a
   href={href}
-  target={target}
-  rel="noopener noreferrer"
-  data-ga-lead-cta={leadCtaLocation}
+  target={WHATSAPP_CONTACT_ENABLED ? target : undefined}
+  rel={WHATSAPP_CONTACT_ENABLED ? "noopener noreferrer" : undefined}
+  aria-disabled={WHATSAPP_CONTACT_ENABLED ? undefined : "true"}
+  tabindex={WHATSAPP_CONTACT_ENABLED ? undefined : -1}
+  data-ga-lead-cta={
+    WHATSAPP_CONTACT_ENABLED ? leadCtaLocation : undefined
+  }
   class:list={[
-    "font-heading group highlight relative inline-block w-fit cursor-pointer overflow-hidden rounded-full px-7 py-2 text-lg font-medium",
+    "font-heading group highlight relative inline-block w-fit overflow-hidden rounded-full px-7 py-2 text-lg font-medium",
+    WHATSAPP_CONTACT_ENABLED ? "cursor-pointer" : "pointer-events-none",
     variant == "primary" ? "bg-brand text-white" : "text-initia-blue bg-white",
     className,
   ]}

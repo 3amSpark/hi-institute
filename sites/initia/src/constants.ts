@@ -1,3 +1,5 @@
+export const WHATSAPP_CONTACT_ENABLED = false;
+
 export const WHATSAPP_PHONE = "50231325824";
 export const WHATSAPP_BASE_MESSAGE =
   "Hola! Estoy interesada(o) en agendar una consulta";
