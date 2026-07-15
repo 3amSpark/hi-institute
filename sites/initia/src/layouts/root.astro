@@ -2,6 +2,7 @@
 import "../styles/fonts.css";
 import "../styles/global.css";
 import ChatFab from "../components/chat-fab.astro";
+import { WHATSAPP_CONTACT_ENABLED } from "../constants";
 
 interface Props {
   title?: string;
@@ -154,7 +155,7 @@ const gaMeasurementId = "G-KWYF3D6T5G";
     </script>
   </head>
   <body class="selection:bg-initia/30 relative bg-white">
-    <ChatFab />
+    {WHATSAPP_CONTACT_ENABLED && <ChatFab />}
     <slot />
   </body>
 </html>
