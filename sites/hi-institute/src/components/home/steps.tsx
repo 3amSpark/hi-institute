@@ -6,7 +6,6 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { useState } from "react";
-import FadeIn from "../fade-in";
 
 const steps = [
   {
@@ -50,12 +49,12 @@ export default function Steps() {
       <div className="grid w-full lg:h-full lg:grid-cols-[1fr_1fr] lg:gap-4">
         {/* Left column */}
         <div className="flex flex-col justify-center px-4 pt-12 pb-10 sm:px-6 lg:px-0 lg:py-0">
-          <FadeIn className="lg:pt-8 lg:pl-10">
+          <fade-in className="lg:pt-8 lg:pl-10">
             <p className="text-p">Nuestro proceso</p>
             <h2 className="text-h2 mb-8 text-left font-[450] tracking-tighter text-balance text-neutral-800">
               Así empieza tu cambio
             </h2>
-          </FadeIn>
+          </fade-in>
 
           <LayoutGroup>
             <div className="lg:ml-4 lg:border-0">

@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
-import FadeIn from "../fade-in";
 
 type HeroImage = {
   src: string;
@@ -124,21 +123,21 @@ export default function Hero({
                 <div
                   className={`flex max-w-prose flex-col gap-4 sm:gap-5 lg:max-w-xl ${contentClass[align]}`}
                 >
-                  <FadeIn delay={slideRevealDuration} instant={true}>
+                  <fade-in delay={slideRevealDuration}>
                     <h1 className="text-h2 leading-[1.25em] font-[450] tracking-tighter text-balance text-white lg:text-neutral-900">
                       {slideTitle}
                     </h1>
-                  </FadeIn>
+                  </fade-in>
 
-                  <FadeIn delay={slideRevealDuration + 0.15} instant={true}>
+                  <fade-in delay={slideRevealDuration + 0.15}>
                     {slideDescription ? (
                       <p className="text-p max-w-lg leading-8 text-white/90 lg:text-neutral-900">
                         {slideDescription}
                       </p>
                     ) : null}
-                  </FadeIn>
+                  </fade-in>
 
-                  <FadeIn delay={slideRevealDuration + 0.35} instant={true}>
+                  <fade-in delay={slideRevealDuration + 0.35}>
                     {actions.length > 0 ? (
                       <div className="flex flex-wrap gap-3">
                         {actions.map((action) => (
@@ -156,7 +155,7 @@ export default function Hero({
                         ))}
                       </div>
                     ) : null}
-                  </FadeIn>
+                  </fade-in>
                 </div>
               </div>
 

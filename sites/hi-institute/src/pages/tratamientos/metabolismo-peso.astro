@@ -1,5 +1,4 @@
 ---
-import FadeIn from "../../components/fade-in";
 import Footer from "../../components/footer.astro";
 import Navbar from "../../components/navbar";
 import TreatmentPage from "../../components/treatment-page.astro";
@@ -56,7 +55,7 @@ import Root from "../../layouts/root.astro";
         <div
           class="max-w-desktop mx-auto grid gap-10 md:grid-cols-[1fr_0.75fr] md:items-center lg:gap-16"
         >
-          <FadeIn client:visible>
+          <fade-in>
             <img
               src="/assets/images/treatments/metabolism/body-scan-3d.png"
               alt="Análisis corporal 3D de composición y distribución corporal"
@@ -64,20 +63,16 @@ import Root from "../../layouts/root.astro";
               decoding="async"
               class="w-full bg-white object-cover"
             />
-          </FadeIn>
+          </fade-in>
 
           <div>
-            <FadeIn
-              client:visible
-              as="h2"
-              className="text-brand-blue text-(length:--step-2)/9 font-semibold tracking-tight"
+            <fade-in
+              class="text-brand-blue text-(length:--step-2)/9 font-semibold tracking-tight"
             >
-              3D corporal
-            </FadeIn>
-            <FadeIn
-              client:visible
-              as="div"
-              className="mt-6 space-y-6 text-(length:--step-0)/8 text-neutral-600"
+              <h2>3D corporal</h2>
+            </fade-in>
+            <fade-in
+              class="mt-6 space-y-6 text-(length:--step-0)/8 text-neutral-600"
               delay={0.1}
             >
               <p>
@@ -91,7 +86,7 @@ import Root from "../../layouts/root.astro";
                 precisa: no solo por el número en la báscula, sino por los
                 cambios que suceden en tu cuerpo.
               </p>
-            </FadeIn>
+            </fade-in>
           </div>
         </div>
       </section>

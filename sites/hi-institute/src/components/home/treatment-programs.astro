@@ -1,6 +1,4 @@
 ---
-import FadeIn from "../fade-in";
-
 const programs = [
   {
     title: "Metabolismo y control de peso",
@@ -34,10 +32,8 @@ const programs = [
 ---
 
 <section class="border-y border-neutral-200/60 bg-gray-50 pb-32">
-  <FadeIn
-    client:visible
-    as="div"
-    className="flex w-full flex-col items-start justify-between gap-2 px-4 pt-20 pb-10 lg:flex-row lg:items-center lg:gap-0 lg:px-10"
+  <fade-in
+    class="flex w-full flex-col items-start justify-between gap-2 px-4 pt-20 pb-10 lg:flex-row lg:items-center lg:gap-0 lg:px-10"
   >
     <h3
       class="text-h2 sm:text-h3 leading-tight font-[450] tracking-tighter text-balance"
@@ -48,7 +44,7 @@ const programs = [
       Evaluamos la causa de tus síntomas y diseñamos un tratamiento médico según
       lo que tu cuerpo necesita.
     </p>
-  </FadeIn>
+  </fade-in>
 
   <div class="relative">
     <div
@@ -57,7 +53,7 @@ const programs = [
     >
       {
         programs.map((program, index) => (
-          <FadeIn client:visible as="div" delay={index * 0.1} mobileDelay={0}>
+          <fade-in delay={index * 0.1} mobile-delay="0">
             <div
               data-treatment-card
               class="w-[82vw] max-w-sm shrink-0 snap-start scroll-ml-4 md:w-auto md:max-w-none lg:scroll-ml-0"
@@ -106,7 +102,7 @@ const programs = [
                 </span>
               </a>
             </div>
-          </FadeIn>
+          </fade-in>
         ))
       }
     </div>

@@ -27,8 +27,12 @@ const isRootPage = Astro.url.pathname === "/";
       type="image/svg+xml"
       href="/assets/icons/favicons/favicon.svg"
     />
-    <link rel="preconnect" href="https://rsms.me/" />
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&display=swap"
+    />
 
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -46,6 +50,46 @@ const isRootPage = Astro.url.pathname === "/";
     />
     <meta name="apple-mobile-web-app-title" content="HI Institute" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <!--
+      <fade-in> custom element. Inlined so it registers before first paint
+      (no flash of visible-then-hidden content). The hidden state in
+      global.css is gated on `fade-in:defined`, so if JS never runs the
+      content stays visible.
+    -->
+    <script is:inline>
+      (() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.setAttribute("data-visible", "");
+              observer.unobserve(entry.target);
+            }
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.25 },
+        );
+
+        customElements.define(
+          "fade-in",
+          class extends HTMLElement {
+            connectedCallback() {
+              const delay = matchMedia("(min-width: 1024px)").matches
+                ? this.getAttribute("delay")
+                : (this.getAttribute("mobile-delay") ??
+                  this.getAttribute("delay"));
+
+              if (delay) this.style.setProperty("--fade-in-delay", `${delay}s`);
+              observer.observe(this);
+            }
+
+            disconnectedCallback() {
+              observer.unobserve(this);
+            }
+          },
+        );
+      })();
+    </script>
   </head>
   <body class="font-grotesk text-neutral-800">
     {isRootPage && <RevealSlides client:only="react" />}
