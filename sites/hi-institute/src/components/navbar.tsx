@@ -11,41 +11,25 @@ import { logo, whiteLogo, type NavbarProps } from "./navbar/shared";
 
 const DESKTOP_SCROLL_THRESHOLD = 48;
 
-export default function Navbar({ currentPath }: NavbarProps) {
+export default function Navbar({ currentPath, treatmentImages }: NavbarProps) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isDesktopHovered, setIsDesktopHovered] = useState(false);
   const [hasPassedThreshold, setHasPassedThreshold] = useState(false);
-  const [hasDesktopPassedThreshold, setHasDesktopPassedThreshold] =
-    useState(false);
   const { scrollY } = useScroll();
   const scrollProgress = useTransform(
     scrollY,
     [0, DESKTOP_SCROLL_THRESHOLD],
     [0, 1],
   );
-  const desktopScrollProgress = useTransform(scrollProgress, (value) =>
-    isDesktop ? value : 0,
-  );
   const backgroundOpacity = useTransform(scrollProgress, [0, 1], [0, 1]);
   const gradientOpacity = useTransform(scrollProgress, [0, 1], [0.5, 0]);
-  const defaultLogoOpacity = useTransform(
-    desktopScrollProgress,
-    [0, 1],
-    [0, 1],
-  );
-  const whiteLogoOpacity = useTransform(desktopScrollProgress, [0, 1], [1, 0]);
-  const desktopLinkColor = useTransform(
-    desktopScrollProgress,
-    [0, 1],
-    ["rgb(255,255,255)", "rgb(38,38,38)"],
-  );
+  // Desktop links/logo are always dark: the copy half of the hero is light,
+  // so the white-chrome treatment (and its gradient) is mobile-only.
+  const desktopLinkColor = "rgb(38,38,38)";
 
   useMotionValueEvent(scrollY, "change", (latestScrollY) => {
     setHasPassedThreshold(latestScrollY > DESKTOP_SCROLL_THRESHOLD);
-    setHasDesktopPassedThreshold(
-      isDesktop && latestScrollY > DESKTOP_SCROLL_THRESHOLD,
-    );
   });
 
   useEffect(() => {
@@ -54,9 +38,6 @@ export default function Navbar({ currentPath }: NavbarProps) {
     const updateScrollState = () => {
       setIsDesktop(desktopQuery.matches);
       setHasPassedThreshold(window.scrollY > DESKTOP_SCROLL_THRESHOLD);
-      setHasDesktopPassedThreshold(
-        desktopQuery.matches && window.scrollY > DESKTOP_SCROLL_THRESHOLD,
-      );
     };
 
     updateScrollState();
@@ -86,8 +67,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
 
   const hasMobileWhiteChrome =
     !isDesktop && !hasPassedThreshold && !isMobileOpen;
-  const hasDesktopWhiteChrome =
-    isDesktop && !hasDesktopPassedThreshold && !isDesktopHovered;
+  const hasDesktopWhiteChrome = false;
 
   return (
     <>
@@ -98,7 +78,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
       />
 
       <motion.header
-        className={`h-navbar fixed top-0 right-0 left-0 z-50 ${(hasPassedThreshold || isDesktopHovered) && `border-b-[0.5px] border-neutral-300/80`}`}
+        className={`h-navbar fixed top-0 right-0 left-0 z-50 lg:border-b-[0.5px] lg:border-neutral-300/80 ${hasPassedThreshold || isDesktopHovered ? "border-b-[0.5px] border-neutral-300/80" : ""}`}
         onMouseEnter={() => {
           if (isDesktop) setIsDesktopHovered(true);
         }}
@@ -106,9 +86,16 @@ export default function Navbar({ currentPath }: NavbarProps) {
           if (isDesktop) setIsDesktopHovered(false);
         }}
       >
+        {/* Desktop is always the solid navbar: the hero carousel moves the
+            photo between halves, so no single link color survives a
+            transparent bar. Static CSS so it is correct at first paint. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 hidden bg-white lg:block"
+        />
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-white"
+          className="pointer-events-none absolute inset-0 bg-white lg:hidden"
           style={{ opacity: backgroundOpacity }}
         />
         <motion.div
@@ -119,7 +106,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
         />
         <motion.div
           aria-hidden="true"
-          className="navbar-gradient pointer-events-none absolute top-0 right-0 left-0 h-32"
+          className="navbar-gradient pointer-events-none absolute top-0 right-0 left-0 h-32 lg:hidden"
           style={{ opacity: isDesktopHovered ? 0 : gradientOpacity }}
         />
         <nav className="max-w-xxl h-navbar mx-auto flex items-center justify-between px-6 lg:px-10">
@@ -134,13 +121,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
               alt="HI Health Institute International"
               className="h-auto w-full"
               style={{
-                opacity: !isDesktop
-                  ? hasMobileWhiteChrome
-                    ? 0
-                    : 1
-                  : isDesktopHovered
-                    ? 1
-                    : defaultLogoOpacity,
+                opacity: !isDesktop && hasMobileWhiteChrome ? 0 : 1,
               }}
             />
             <motion.img
@@ -149,19 +130,14 @@ export default function Navbar({ currentPath }: NavbarProps) {
               aria-hidden="true"
               className="absolute inset-0 h-auto w-full"
               style={{
-                opacity: !isDesktop
-                  ? hasMobileWhiteChrome
-                    ? 1
-                    : 0
-                  : isDesktopHovered
-                    ? 0
-                    : whiteLogoOpacity,
+                opacity: !isDesktop && hasMobileWhiteChrome ? 1 : 0,
               }}
             />
           </a>
 
           <DesktopNavbar
             currentPath={currentPath}
+            treatmentImages={treatmentImages}
             linkColor={isDesktopHovered ? "rgb(64,64,64)" : desktopLinkColor}
             hasTextShadow={hasDesktopWhiteChrome}
           />

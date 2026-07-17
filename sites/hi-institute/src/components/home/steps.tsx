@@ -7,9 +7,19 @@ import {
 } from "framer-motion";
 import { useState } from "react";
 
+type StepImage = {
+  src: string;
+  srcSet?: string;
+  sizes?: string;
+};
+
+type StepsProps = {
+  /** Optimized images in step order (evaluation, plan, progress). */
+  images: StepImage[];
+};
+
 const steps = [
   {
-    src: "/assets/images/home/steps/evaluation.jpg",
     number: "01",
     title: "Evaluación completa",
     eyebrow: "Primero entendemos",
@@ -18,7 +28,6 @@ const steps = [
       "Reunimos datos claros para identificar qué está frenando tu progreso y qué necesita atención real.",
   },
   {
-    src: "/assets/images/home/steps/personalized-plan.jpg",
     number: "02",
     title: "Plan personalizado",
     eyebrow: "Después diseñamos",
@@ -27,7 +36,6 @@ const steps = [
       "Tu plan se construye alrededor de tus resultados, tus síntomas y lo que puedes sostener en tu vida diaria.",
   },
   {
-    src: "/assets/images/home/steps/progress.jpg",
     number: "03",
     title: "Cambio progresivo",
     eyebrow: "Luego ajustamos",
@@ -39,10 +47,11 @@ const steps = [
 
 const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
-export default function Steps() {
+export default function Steps({ images }: StepsProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const reduceMotion = useReducedMotion();
   const activeStep = steps[activeIndex];
+  const activeImage = images[activeIndex];
 
   return (
     <section className="relative w-full overflow-hidden bg-gray-50 lg:grid lg:min-h-[80svh] lg:place-items-center">
@@ -134,8 +143,10 @@ export default function Steps() {
           {/* Cross-fade image — no mode="wait", absolute stack */}
           <AnimatePresence mode="sync">
             <motion.img
-              key={activeStep.src}
-              src={activeStep.src}
+              key={activeImage.src}
+              src={activeImage.src}
+              srcSet={activeImage.srcSet}
+              sizes={activeImage.sizes}
               alt={activeStep.title}
               className="absolute inset-0 h-full w-full object-cover object-top"
               loading="lazy"

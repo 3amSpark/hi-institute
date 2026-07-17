@@ -1,18 +1,19 @@
 ---
 import Footer from "../../components/footer.astro";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/navbar.astro";
 import TreatmentPage from "../../components/treatment-page.astro";
 import TreatmentSection from "../../components/treatment-section.astro";
 import Root from "../../layouts/root.astro";
+import diabetesBanner from "../../assets/images/treatments/diabetes/banner.jpg";
 ---
 
 <Root
   title="Tratamiento para Diabetes | HI Institute"
   description="Tratamiento integral para diabetes tipo 2 en HI Institute, enfocado en entender el metabolismo y trabajar desde la causa."
 >
-  <Navbar client:load currentPath={Astro.url.pathname} />
+  <Navbar />
   <TreatmentPage
-    heroImage="/assets/images/treatments/diabetes/banner.jpg"
+    heroImage={diabetesBanner}
     heroImageAlt="Profesional de salud midiendo glucosa en sangre"
     heroTitle="Diabetes no es solo azúcar alta."
     heroDescription="Es un desbalance que se puede corregir desde su origen."
@@ -32,7 +33,7 @@ import Root from "../../layouts/root.astro";
     <Fragment slot="sections">
       <TreatmentSection
         title="La glucosa alta es una señal, no toda la historia."
-        image="/assets/images/treatments/diabetes/banner.jpg"
+        image={diabetesBanner}
         imageAlt="Control metabólico para diabetes"
       >
         <p>
@@ -49,7 +50,7 @@ import Root from "../../layouts/root.astro";
 
       <TreatmentSection
         title="Tratamos el metabolismo que está detrás del diagnóstico."
-        image="/assets/images/treatments/diabetes/banner.jpg"
+        image={diabetesBanner}
         imageAlt="Evaluación integral para diabetes tipo 2"
         reverse
       >

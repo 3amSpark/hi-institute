@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "HI Institute",
+  "short_name": "HI Institute",
   "icons": [
     {
       "src": "/assets/icons/favicons/web-app-192x192.png",
@@ -15,7 +15,9 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#1d75b8",
   "background_color": "#ffffff",
+  "lang": "es-GT",
+  "start_url": "/",
   "display": "standalone"
 }

@@ -15,7 +15,11 @@ import {
 type Signal = {
   text: string;
   description: string;
-  image: string;
+  image: {
+    src: string;
+    srcSet?: string;
+    sizes?: string;
+  };
   href: string;
 };
 
@@ -77,7 +81,9 @@ function SignalCard({
         <div className="aspect-4/3 overflow-hidden">
           <motion.div className="h-full w-full" style={{ x }}>
             <img
-              src={signal.image}
+              src={signal.image.src}
+              srcSet={signal.image.srcSet}
+              sizes={signal.image.sizes}
               alt=""
               className="h-full w-full scale-110 object-cover object-center transition-transform duration-700 ease-out group-hover:scale-115 group-focus-visible:scale-115"
               loading="lazy"

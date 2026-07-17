@@ -1,6 +1,6 @@
 ---
 import GlassixWidget from "../components/glassix-widget.astro";
-import RevealSlides from "../components/reveal-slides";
+import defaultSocialImage from "../assets/images/home/hero/metabolism.webp";
 import "../styles/global.css";
 
 interface Props {
@@ -10,18 +10,63 @@ interface Props {
 
 const {
   title = "HI Institute",
-  description = "The new HI Institute website is being prepared.",
+  description = "Clínica especializada en metabolismo, balance hormonal, salud femenina y fertilidad en Ciudad de Guatemala.",
 } = Astro.props;
 
 const isRootPage = Astro.url.pathname === "/";
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const socialImageUrl = new URL(
+  defaultSocialImage.src,
+  Astro.site ?? Astro.url.origin,
+);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  name: "HI Institute",
+  url: new URL("/", Astro.site ?? Astro.url.origin).href,
+  logo: new URL(
+    "/assets/logos/brand/logo.svg",
+    Astro.site ?? Astro.url.origin,
+  ).href,
+  image: socialImageUrl.href,
+  telephone: "+502 5281 0472",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Avenida La Reforma 9-55",
+    addressLocality: "Ciudad de Guatemala",
+    postalCode: "01010",
+    addressCountry: "GT",
+  },
+  sameAs: [
+    "https://www.instagram.com/healthinstitute_int/",
+    "https://www.facebook.com/HealthInstituteInt/",
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es-GT">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#1d75b8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_GT" />
+    <meta property="og:site_name" content="HI Institute" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content="HI Institute en Ciudad de Guatemala" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
     <link
       rel="icon"
       type="image/svg+xml"
@@ -50,6 +95,7 @@ const isRootPage = Astro.url.pathname === "/";
     />
     <meta name="apple-mobile-web-app-title" content="HI Institute" />
     <link rel="manifest" href="/site.webmanifest" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <!--
       <fade-in> custom element. Inlined so it registers before first paint
@@ -80,7 +126,19 @@ const isRootPage = Astro.url.pathname === "/";
                   this.getAttribute("delay"));
 
               if (delay) this.style.setProperty("--fade-in-delay", `${delay}s`);
-              observer.observe(this);
+
+              if (this.hasAttribute("instant")) {
+                // Above-the-fold content: reveal on load instead of on
+                // scroll. Double rAF lets the hidden state paint first so
+                // the transition still runs.
+                requestAnimationFrame(() =>
+                  requestAnimationFrame(() =>
+                    this.setAttribute("data-visible", ""),
+                  ),
+                );
+              } else {
+                observer.observe(this);
+              }
             }
 
             disconnectedCallback() {
@@ -92,7 +150,45 @@ const isRootPage = Astro.url.pathname === "/";
     </script>
   </head>
   <body class="font-grotesk text-neutral-800">
-    {isRootPage && <RevealSlides client:only="react" />}
+    {
+      isRootPage && (
+        <>
+          {/*
+            Homepage intro curtain. The inline script activates it before the
+            div below is parsed, so there is never a flash of content first.
+            Gated to once per session and to users who allow motion; if JS
+            fails the curtain stays display:none and content is visible.
+          */}
+          <script is:inline define:vars={{ isDev: import.meta.env.DEV }}>
+            try {
+              if (
+                (isDev || !sessionStorage.getItem("hi-curtain")) &&
+                matchMedia("(prefers-reduced-motion: no-preference)").matches
+              ) {
+                sessionStorage.setItem("hi-curtain", "1");
+                document.documentElement.setAttribute("data-curtain", "");
+              }
+            } catch (_) {}
+          </script>
+          <div id="page-curtain" aria-hidden="true">
+            <img
+              src="/assets/logos/brand/logo-white.svg"
+              alt=""
+              width="164"
+              height="48"
+            />
+          </div>
+          <script is:inline>
+            document
+              .getElementById("page-curtain")
+              .addEventListener("animationend", (event) => {
+                if (event.target === event.currentTarget)
+                  event.currentTarget.remove();
+              });
+          </script>
+        </>
+      )
+    }
     <div id="site-canvas">
       <slot />
     </div>

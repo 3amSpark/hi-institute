@@ -1,7 +1,9 @@
 ---
+import { Image } from "astro:assets";
+
 interface Props {
   title: string;
-  image?: string;
+  image?: ImageMetadata;
   imageAlt?: string;
   reverse?: boolean;
   placeholderLabel?: string;
@@ -28,9 +30,11 @@ const {
     >
       {
         image ? (
-          <img
+          <Image
             src={image}
             alt={imageAlt}
+            widths={[640, Math.min(image.width, 1280)]}
+            sizes="(min-width: 768px) 46rem, 100vw"
             loading="lazy"
             decoding="async"
             class="relative aspect-5/3 w-full object-cover"

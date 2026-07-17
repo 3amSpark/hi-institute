@@ -9,6 +9,8 @@ declare module "react" {
       "fade-in": HTMLAttributes<HTMLElement> & {
         delay?: number | string;
         "mobile-delay"?: number | string;
+        /** Reveal on load instead of when scrolled into view. */
+        instant?: string;
       };
     }
   }

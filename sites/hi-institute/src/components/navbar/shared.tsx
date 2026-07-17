@@ -10,27 +10,22 @@ export const treatments = [
   {
     href: "/tratamientos/metabolismo-peso",
     label: "Metabolismo & Peso",
-    image: "/assets/images/treatments/navigation/metabolismo.jpg",
   },
   {
     href: "/tratamientos/fertilidad-reproduccion",
     label: "Fertilidad & Reproducción",
-    image: "/assets/images/treatments/navigation/fertilidad.jpg",
   },
   {
     href: "/tratamientos/salud-femenina-ginecologica",
     label: "Salud Femenina & Ginecológica",
-    image: "/assets/images/treatments/navigation/ginecologia.jpg",
   },
   {
     href: "/tratamientos/balance-hormonal",
     label: "Balance Hormonal",
-    image: "/assets/images/treatments/navigation/balance-hormonal.jpg",
   },
   {
     href: "/tratamientos/diabetes",
     label: "Diabetes",
-    image: "/assets/images/treatments/navigation/diabetes.jpg",
   },
 ];
 
@@ -57,6 +52,8 @@ export const clinics = [
 
 export type NavbarProps = {
   currentPath: string;
+  /** Optimized dropdown thumbnail URLs keyed by treatment href. */
+  treatmentImages: Record<string, string>;
 };
 
 const normalizePath = (path: string) => path.replace(/\/$/, "") || "/";

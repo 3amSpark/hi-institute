@@ -1,18 +1,20 @@
 ---
 import Footer from "../../components/footer.astro";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/navbar.astro";
 import TreatmentPage from "../../components/treatment-page.astro";
 import TreatmentSection from "../../components/treatment-section.astro";
 import Root from "../../layouts/root.astro";
+import hormonalBanner from "../../assets/images/treatments/hormonal-balance/banner.jpg";
+import boxing from "../../assets/images/treatments/hormonal-balance/boxing.jpg";
 ---
 
 <Root
   title="Tratamiento de Balance Hormonal | HI Institute"
   description="Tratamiento de balance hormonal en HI Institute, enfocado en identificar desbalances y recuperar energía, claridad y bienestar."
 >
-  <Navbar client:load currentPath={Astro.url.pathname} />
+  <Navbar />
   <TreatmentPage
-    heroImage="/assets/images/treatments/hormonal-balance/banner.jpg"
+    heroImage={hormonalBanner}
     heroImageAlt="Persona con energía y bienestar en un ambiente moderno"
     heroTitle="Tus hormonas no trabajan solas."
     heroDescription="Cuando pierden equilibrio, tu cuerpo lo siente en todo."
@@ -31,7 +33,7 @@ import Root from "../../layouts/root.astro";
     <Fragment slot="sections">
       <TreatmentSection
         title="Todo en tu cuerpo depende de tus hormonas."
-        image="/assets/images/treatments/hormonal-balance/boxing.jpg"
+        image={boxing}
         imageAlt="Persona con bienestar y energía"
       >
         <p>
@@ -48,7 +50,7 @@ import Root from "../../layouts/root.astro";
 
       <TreatmentSection
         title="Un plan hormonal debe mirar el sistema completo."
-        image="/assets/images/treatments/hormonal-balance/banner.jpg"
+        image={hormonalBanner}
         imageAlt="Ambiente de bienestar y salud hormonal"
         reverse
       >

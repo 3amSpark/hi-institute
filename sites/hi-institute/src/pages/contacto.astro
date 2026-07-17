@@ -1,5 +1,5 @@
 ---
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar.astro";
 import Root from "../layouts/root.astro";
 
 const whatsappUrl =
@@ -21,7 +21,7 @@ const socialLinks = [
   title="Contacto | HI Institute"
   description="Escríbenos y agenda tu evaluación metabólica y hormonal en HI Institute."
 >
-  <Navbar client:load currentPath={Astro.url.pathname} />
+  <Navbar />
 
   <main class="bg-neutral-100">
     <section class="grid min-h-svh lg:grid-cols-2">
@@ -60,7 +60,7 @@ const socialLinks = [
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              class="group inline-flex items-center gap-4 rounded-full bg-white py-2 pr-2 pl-5 text-sm font-semibold text-neutral-800 transition-colors hover:bg-neutral-100"
+              class="btn-depth group inline-flex items-center gap-4 rounded-full [--depth-color:#fff] py-2 pr-2 pl-5 text-sm font-semibold text-neutral-800 transition-[filter] hover:brightness-95"
             >
               <span>Escríbenos ahora</span>
               <span
