@@ -78,7 +78,7 @@ export default function Navbar({ currentPath, treatmentImages }: NavbarProps) {
       />
 
       <motion.header
-        className={`h-navbar fixed top-0 right-0 left-0 z-50 lg:border-b-[0.5px] lg:border-neutral-300/80 ${hasPassedThreshold || isDesktopHovered ? "border-b-[0.5px] border-neutral-300/80" : ""}`}
+        className="h-navbar fixed top-0 right-0 left-0 z-50"
         onMouseEnter={() => {
           if (isDesktop) setIsDesktopHovered(true);
         }}

@@ -42,15 +42,15 @@ const slideLayoutClass = {
 // light for white text, so it uses a dark ink of the same hue instead.
 const slideThemes = [
   {
-    background: "bg-neutral-50",
+    background: "bg-gray-100",
     cta: "lg:[--depth-color:var(--color-neutral-900)] lg:text-white/90",
   },
   {
-    background: "bg-neutral-50",
+    background: "bg-gray-100",
     cta: "lg:[--depth-color:var(--color-brand-green)] lg:text-[#31420b]",
   },
   {
-    background: "bg-neutral-50",
+    background: "bg-gray-100",
     cta: "lg:[--depth-color:var(--color-brand-blue)] lg:text-white/90",
   },
 ] as const;
@@ -134,14 +134,14 @@ export default function Hero({
                   className={`flex max-w-prose flex-col gap-4 sm:gap-5 lg:max-w-2xl ${contentClass[align]}`}
                 >
                   <fade-in instant="" delay={slideRevealDuration}>
-                    <Heading className="text-h2/[1.2] lg:text-h1/[1.08] font-[450] tracking-tighter text-balance text-white lg:text-neutral-900">
+                    <Heading className="text-h2/[1.2] font-[450] tracking-tighter text-balance text-white lg:text-5xl/[1.08] lg:text-neutral-900">
                       {slideTitle}
                     </Heading>
                   </fade-in>
 
                   <fade-in instant="" delay={slideRevealDuration + 0.15}>
                     {slideDescription ? (
-                      <p className="text-p max-w-lg text-white/90 lg:text-neutral-600">
+                      <p className="max-w-xl text-lg/[1.6] text-white/90 lg:text-neutral-700">
                         {slideDescription}
                       </p>
                     ) : null}
@@ -154,11 +154,11 @@ export default function Hero({
                           <a
                             key={action.href}
                             href={action.href}
-                            className={`group sm:text-p btn-depth inline-flex w-fit items-center gap-2 rounded-full [--depth-color:#fff] py-1.5 pr-5 pl-7 tracking-wide text-neutral-900 uppercase transition-[filter,box-shadow] duration-300 ease-out hover:brightness-105 ${slideTheme.cta}`}
+                            className={`group sm:text-p btn-depth inline-flex w-fit items-center gap-3 rounded-full [--depth-color:#fff] py-1.5 pr-5 pl-7 font-medium tracking-normal text-neutral-900 transition-[filter,box-shadow] duration-300 ease-out hover:brightness-105 ${slideTheme.cta}`}
                           >
                             <span>{action.label}</span>
                             <span
-                              className="size-5.5 -rotate-45 bg-current [mask-image:url('/assets/icons/ui/arrow-right.svg')] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] transition-transform duration-300 ease-out group-hover:rotate-0"
+                              className="size-5 bg-current [mask-image:url('/assets/icons/ui/arrow-right.svg')] [mask-size:contain] [mask-position:center] [mask-repeat:no-repeat] transition-transform duration-200 ease-out group-hover:translate-x-1"
                               aria-hidden="true"
                             />
                           </a>
