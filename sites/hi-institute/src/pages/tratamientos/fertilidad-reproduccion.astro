@@ -1,18 +1,20 @@
 ---
 import Footer from "../../components/footer.astro";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/navbar.astro";
 import TreatmentPage from "../../components/treatment-page.astro";
 import TreatmentSection from "../../components/treatment-section.astro";
 import Root from "../../layouts/root.astro";
+import fertilityBanner from "../../assets/images/treatments/fertility/banner.webp";
+import couple from "../../assets/images/treatments/fertility/couple.jpg";
 ---
 
 <Root
   title="Tratamiento de Fertilidad y Reproducción | HI Institute"
   description="Acompañamiento integral de fertilidad y reproducción en HI Institute, con una mirada metabólica, hormonal y personalizada."
 >
-  <Navbar client:load currentPath={Astro.url.pathname} />
+  <Navbar />
   <TreatmentPage
-    heroImage="/assets/images/treatments/fertility/banner.webp"
+    heroImage={fertilityBanner}
     heroImageAlt="Pareja recibiendo acompañamiento médico de fertilidad"
     heroTitle="Fertilidad también es equilibrio."
     heroDescription="Miramos más allá del intento para entender qué necesita tu cuerpo."
@@ -31,7 +33,7 @@ import Root from "../../layouts/root.astro";
     <Fragment slot="sections">
       <TreatmentSection
         title="La fertilidad no depende de un solo factor."
-        image="/assets/images/treatments/fertility/couple.jpg"
+        image={couple}
         imageAlt="Acompañamiento médico en fertilidad"
       >
         <p>
@@ -48,7 +50,7 @@ import Root from "../../layouts/root.astro";
 
       <TreatmentSection
         title="Acompañamiento claro, humano y personalizado."
-        image="/assets/images/treatments/fertility/banner.webp"
+        image={fertilityBanner}
         imageAlt="Pareja en proceso de fertilidad"
         reverse
       >

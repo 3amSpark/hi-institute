@@ -1,6 +1,4 @@
 ---
-import FadeIn from "./fade-in";
-
 const navLinks = [
   { href: "/", label: "Inicio" },
   { label: "Tratamientos" },
@@ -20,17 +18,15 @@ const currentYear = new Date().getFullYear();
   <section
     class="bg-brand-blue flex min-h-96 flex-col items-center justify-center border-t border-neutral-200 text-center"
   >
-    <FadeIn
-      client:visible
-      as="h3"
-      className="text-h3 leading-12 font-medium text-white"
-    >
-      Tu cuerpo te está hablando.<br />
-      <span class="text-h2"> Es momento de escucharlo. </span>
-    </FadeIn>
+    <fade-in class="text-h3 leading-12 font-medium text-white">
+      <h3>
+        Tu cuerpo te está hablando.<br />
+        <span class="text-h2"> Es momento de escucharlo. </span>
+      </h3>
+    </fade-in>
     <a
       href="/contacto"
-      class="mt-8 w-fit rounded-full bg-white px-6 py-2 text-base tracking-wide uppercase transition-opacity"
+      class="btn-depth mt-8 w-fit rounded-full [--depth-color:#fff] px-6 py-2 text-base tracking-wide uppercase transition-[filter] hover:brightness-95"
     >
       ¡Agenda tu cita hoy!
     </a>
@@ -39,14 +35,14 @@ const currentYear = new Date().getFullYear();
   <section
     class="bg-brand-green flex max-h-svh flex-col items-center justify-between text-center text-white md:flex-row"
   >
-    <FadeIn
-      client:visible
-      as="h2"
-      className="flex-1 py-20 text-(length:--step-4) leading-tight font-medium tracking-tighter text-balance"
+    <fade-in
+      class="flex-1 py-20 text-(length:--step-4) leading-tight font-medium tracking-tighter text-balance"
     >
-      Estamos más cerca<br />
-      de lo que crees.
-    </FadeIn>
+      <h2>
+        Estamos más cerca<br />
+        de lo que crees.
+      </h2>
+    </fade-in>
 
     <iframe
       src={mapsEmbedUrl}

@@ -1,11 +1,29 @@
 ---
-import FadeIn from "../fade-in";
+import { getImage, Image } from "astro:assets";
 import FounderImageReveal from "./founder-image-reveal";
 import ScrollRevealHeading from "./scroll-reveal-heading";
+import drHerbertMiranda from "../../assets/images/home/founder/dr-herbert-miranda.jpg";
+import feelBetterThanEver from "../../assets/images/home/founder/feel-better-than-ever.webp";
+import signature from "../../assets/images/home/founder/signature.webp";
+
+const revealImage = await getImage({
+  src: feelBetterThanEver,
+  widths: [768, 1280, 1920, 2400],
+  format: "webp",
+});
 ---
 
 <section class="relative overflow-hidden">
-  <FounderImageReveal client:load />
+  <FounderImageReveal
+    client:load
+    image={{
+      src: revealImage.src,
+      srcSet: revealImage.srcSet.attribute,
+      sizes: "100vw",
+      width: feelBetterThanEver.width,
+      height: feelBetterThanEver.height,
+    }}
+  />
 
   <div
     class="from-brand-green to-brand-green/80 via-brand-green relative z-10 grid min-h-96 items-center bg-linear-to-tr"
@@ -22,13 +40,12 @@ import ScrollRevealHeading from "./scroll-reveal-heading";
   <div
     class="text-p relative z-10 flex w-full flex-col-reverse items-start justify-between gap-8 pb-8 text-pretty lg:flex-row lg:items-center lg:pb-0"
   >
-    <FadeIn
-      client:visible
-      as="p"
-      className="max-w-prose min-w-0 px-4 lg:basis-1/2 lg:pl-10"
+    <fade-in
+      class="max-w-prose min-w-0 px-4 lg:basis-1/2 lg:pl-10"
       delay={0.2}
     >
-      <span class="font-semibold">Desde 2010</span> somos expertos en metabolismo,
+      <p>
+        <span class="font-semibold">Desde 2010</span> somos expertos en metabolismo,
       equilibrio hormonal y bienestar integral. Hemos construido clínicas especializadas
       donde la experiencia médica y la tecnología avanzada trabajan para una sola
       meta:
@@ -43,16 +60,19 @@ import ScrollRevealHeading from "./scroll-reveal-heading";
       síntomas. Significa ayudarte a recuperar energía, control, confianza y
       calidad de vida.
 
-      <img
-        src="/assets/images/home/founder/signature.webp"
-        alt=""
-        class="mt-10 h-20 contrast-150"
-      />
-    </FadeIn>
+        <Image
+          src={signature}
+          alt=""
+          class="mt-10 h-20 w-auto contrast-150"
+        />
+      </p>
+    </fade-in>
 
-    <img
-      src="/assets/images/home/founder/dr-herbert-miranda.jpg"
+    <Image
+      src={drHerbertMiranda}
       alt="Dr. Herbert Miranda"
+      widths={[640, drHerbertMiranda.width]}
+      sizes="(min-width: 1024px) 50vw, 100vw"
       class="relative z-10 aspect-4/3 w-full min-w-0 object-cover lg:basis-1/2"
       loading="lazy"
     />

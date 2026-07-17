@@ -1,47 +1,82 @@
 ---
+import { getImage } from "astro:assets";
 import SignalScroller from "./signal-scroller";
+import fatigue from "../../assets/images/home/signals/fatigue.png";
+import fertility from "../../assets/images/home/signals/fertility.png";
+import jeans from "../../assets/images/treatments/metabolism/jeans.jpg";
+import menstrualCycle from "../../assets/images/home/signals/menstrual-cycle.png";
+import sugarCravings from "../../assets/images/home/signals/sugar-cravings.png";
+import weight from "../../assets/images/home/signals/weight.png";
+
+const cardSizes = "(min-width: 1024px) 30rem, 82vw";
+const optimizeCard = async (src: ImageMetadata) => {
+  const image = await getImage({
+    src,
+    widths: [480, 960],
+    format: "webp",
+  });
+
+  return {
+    src: image.src,
+    srcSet: image.srcSet.attribute,
+    sizes: cardSizes,
+  };
+};
+
+const [
+  weightImage,
+  fatigueImage,
+  menstrualCycleImage,
+  fertilityImage,
+  sugarCravingsImage,
+  jeansImage,
+] = await Promise.all(
+  [weight, fatigue, menstrualCycle, fertility, sugarCravings, jeans].map(
+    optimizeCard,
+  ),
+);
 
 const signals = [
   {
     text: 'Te cuesta bajar de peso aunque “comes bien"',
     description:
       "Puede haber señales metabólicas u hormonales que no se resuelven solo con dieta.",
-    image: "/assets/images/home/signals/weight.png",
+    image: weightImage,
     href: "/tratamientos/metabolismo-peso",
   },
   {
     text: "Te sientes cansado sin razón alguna",
     description:
       "La energía baja constante puede ser una pista de desbalance interno.",
-    image: "/assets/images/home/signals/fatigue.png",
+    image: fatigueImage,
     href: "/tratamientos/balance-hormonal",
   },
   {
     text: "Tu ciclo es irregular o doloroso",
     description:
       "Tu ciclo también habla de inflamación, estrés y salud hormonal.",
-    image: "/assets/images/home/signals/menstrual-cycle.png",
+    image: menstrualCycleImage,
     href: "/tratamientos/salud-femenina-ginecologica",
   },
   {
     text: "Te ha costado embarazarte",
     description:
       "Entender tus hormonas y metabolismo puede abrir nuevas respuestas.",
-    image: "/assets/images/home/signals/fertility.png",
+    image: fertilityImage,
     href: "/tratamientos/fertilidad-reproduccion",
   },
   {
     text: "Tienes ansiedad por azúcar o carbohidratos",
     description:
       "No siempre es falta de voluntad; puede estar relacionado con glucosa e insulina.",
-    image: "/assets/images/home/signals/sugar-cravings.png",
+    image: sugarCravingsImage,
     href: "/tratamientos/diabetes",
   },
   {
     text: "Sientes que tu cuerpo cambió, y no sabes por qué",
     description:
       "Cuando algo se siente distinto, vale la pena investigarlo con datos claros.",
-    image: "/assets/images/treatments/metabolism/jeans.jpg",
+    image: jeansImage,
     href: "/tratamientos/balance-hormonal",
   },
 ];

@@ -12,6 +12,7 @@ import {
 
 type DesktopNavbarProps = {
   currentPath: string;
+  treatmentImages: Record<string, string>;
   linkColor: MotionValue<string> | string;
   hasTextShadow: boolean;
 };
@@ -33,6 +34,7 @@ const closedDropdown = {
 
 export default function DesktopNavbar({
   currentPath,
+  treatmentImages,
   linkColor,
   hasTextShadow,
 }: DesktopNavbarProps) {
@@ -138,8 +140,10 @@ export default function DesktopNavbar({
                   className="hover:text-brand-dark-blue group/item block w-full text-sm text-balance transition-opacity duration-300 ease-out group-hover/dropdown:opacity-60 hover:opacity-100"
                 >
                   <img
-                    src={treatment.image}
+                    src={treatmentImages[treatment.href]}
                     alt=""
+                    width="480"
+                    height="480"
                     loading="lazy"
                     decoding="async"
                     className="mb-4 aspect-square w-full object-cover"
@@ -233,7 +237,7 @@ export default function DesktopNavbar({
             aria-current={
               isActivePath(currentPath, link.href) ? "page" : undefined
             }
-            className="ml-2 inline-flex items-center rounded-full bg-black px-5 py-1.5 text-(length:--step--1) text-white transition-colors duration-150 hover:bg-neutral-800"
+            className="btn-depth ml-2 inline-flex items-center rounded-full px-5 py-1.5 text-(length:--step--1) text-white transition-[filter] duration-150 hover:brightness-125"
           >
             {link.label}
           </a>

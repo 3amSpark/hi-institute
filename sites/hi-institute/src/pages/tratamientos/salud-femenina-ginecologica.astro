@@ -1,18 +1,20 @@
 ---
 import Footer from "../../components/footer.astro";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/navbar.astro";
 import TreatmentPage from "../../components/treatment-page.astro";
 import TreatmentSection from "../../components/treatment-section.astro";
 import Root from "../../layouts/root.astro";
+import womensHealthBanner from "../../assets/images/treatments/womens-health/banner.jpg";
+import consultation from "../../assets/images/treatments/womens-health/consultation.jpg";
 ---
 
 <Root
   title="Tratamiento de Salud Femenina y Ginecológica | HI Institute"
   description="Cuidado integral de salud femenina y ginecológica en HI Institute, enfocado en entender síntomas, hormonas y bienestar."
 >
-  <Navbar client:load currentPath={Astro.url.pathname} />
+  <Navbar />
   <TreatmentPage
-    heroImage="/assets/images/treatments/womens-health/banner.jpg"
+    heroImage={womensHealthBanner}
     heroImageAlt="Mujer en consulta de salud femenina"
     heroTitle="Tu ciclo cuenta una historia."
     heroDescription="La escuchamos completa para cuidar tu salud en cada etapa."
@@ -31,7 +33,7 @@ import Root from "../../layouts/root.astro";
     <Fragment slot="sections">
       <TreatmentSection
         title="Tu ciclo, tus síntomas y tus hormonas están conectados."
-        image="/assets/images/treatments/womens-health/consultation.jpg"
+        image={consultation}
         imageAlt="Consulta de salud femenina"
       >
         <p>
@@ -48,7 +50,7 @@ import Root from "../../layouts/root.astro";
 
       <TreatmentSection
         title="Cuidarte también significa entender qué está pasando."
-        image="/assets/images/treatments/womens-health/banner.jpg"
+        image={womensHealthBanner}
         imageAlt="Mujer recibiendo acompañamiento ginecológico"
         reverse
       >

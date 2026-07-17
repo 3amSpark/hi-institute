@@ -11,12 +11,15 @@ import {
   useRef,
   useState,
 } from "react";
-import FadeIn from "../fade-in";
 
 type Signal = {
   text: string;
   description: string;
-  image: string;
+  image: {
+    src: string;
+    srcSet?: string;
+    sizes?: string;
+  };
   href: string;
 };
 
@@ -78,7 +81,9 @@ function SignalCard({
         <div className="aspect-4/3 overflow-hidden">
           <motion.div className="h-full w-full" style={{ x }}>
             <img
-              src={signal.image}
+              src={signal.image.src}
+              srcSet={signal.image.srcSet}
+              sizes={signal.image.sizes}
               alt=""
               className="h-full w-full scale-110 object-cover object-center transition-transform duration-700 ease-out group-hover:scale-115 group-focus-visible:scale-115"
               loading="lazy"
@@ -185,7 +190,7 @@ export default function SignalScroller({ signals }: SignalScrollerProps) {
   return (
     <>
       <div className="mx-auto flex flex-col items-start gap-6 px-4 pt-12 pb-8 md:flex-row md:items-end md:justify-between md:gap-8 md:px-10 md:pt-20 md:pb-12">
-        <FadeIn className="max-w-3xl">
+        <fade-in className="max-w-3xl">
           <h2 className="text-(length:--step-4)/[1.05] font-medium tracking-tighter text-balance">
             ¿Te ha pasado alguna vez?
           </h2>
@@ -195,7 +200,7 @@ export default function SignalScroller({ signals }: SignalScrollerProps) {
               Tiene explicación y solución.
             </span>
           </p>
-        </FadeIn>
+        </fade-in>
 
         <span
           className="shrink-0 self-end pb-1 text-sm font-medium text-neutral-600 tabular-nums"

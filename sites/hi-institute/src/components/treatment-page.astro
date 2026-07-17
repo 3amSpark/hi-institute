@@ -1,8 +1,8 @@
 ---
-import FadeIn from "./fade-in";
+import { Image } from "astro:assets";
 
 interface Props {
-  heroImage: string;
+  heroImage: ImageMetadata;
   heroImageAlt: string;
   heroTitle: string;
   heroDescription: string;
@@ -15,13 +15,16 @@ const { heroImage, heroImageAlt, heroTitle, heroDescription, treatmentName } =
 
 <main>
   <section
-    class="relative min-h-[70svh] overflow-hidden bg-neutral-900 text-white sm:min-h-[50svh]"
+    class="lg:mt-navbar relative min-h-[70svh] overflow-hidden bg-neutral-900 text-white sm:min-h-[50svh]"
   >
-    <img
+    <Image
       src={heroImage}
       alt={heroImageAlt}
+      widths={[768, 1280, 1920, heroImage.width]}
+      sizes="100vw"
       class="absolute inset-0 h-full w-full object-cover"
       loading="eager"
+      fetchpriority="high"
       decoding="async"
     />
     <div class="absolute inset-0 bg-black/25" aria-hidden="true"></div>
@@ -30,21 +33,15 @@ const { heroImage, heroImageAlt, heroTitle, heroDescription, treatmentName } =
       class="relative z-10 mx-auto flex min-h-[70svh] max-w-7xl items-center justify-center px-6 py-20 text-center sm:min-h-[50svh] lg:px-10"
     >
       <div class="max-w-4xl">
-        <FadeIn
-          client:visible
-          as="h1"
-          className="text-(length:--step-5)/13 tracking-tighter text-white"
-        >
-          {heroTitle}
-        </FadeIn>
-        <FadeIn
-          client:visible
-          as="p"
-          className="mx-auto mt-4 max-w-3xl text-(length:--step-0)/8 text-white"
+        <fade-in class="text-(length:--step-5)/13 tracking-tighter text-white">
+          <h1>{heroTitle}</h1>
+        </fade-in>
+        <fade-in
+          class="mx-auto mt-4 max-w-3xl text-(length:--step-0)/8 text-white"
           delay={0.1}
         >
-          {heroDescription}
-        </FadeIn>
+          <p>{heroDescription}</p>
+        </fade-in>
       </div>
     </div>
   </section>
@@ -53,22 +50,18 @@ const { heroImage, heroImageAlt, heroTitle, heroDescription, treatmentName } =
     <div
       class="max-w-desktop mx-auto grid w-full grid-cols-1 items-center justify-around gap-4 gap-20 md:grid-cols-2"
     >
-      <FadeIn
-        client:visible
-        as="h2"
-        className="text-h3 leading-tight font-[450] text-neutral-600 md:text-center"
+      <fade-in
+        class="text-h3 leading-tight font-[450] text-neutral-600 md:text-center"
       >
-        {treatmentName}
-      </FadeIn>
+        <h2>{treatmentName}</h2>
+      </fade-in>
 
-      <FadeIn
-        client:visible
-        as="div"
-        className="text-ne max-w-[80ch] space-y-8 text-left text-(length:--step-0)/8 text-balance"
+      <fade-in
+        class="text-ne max-w-[80ch] space-y-8 text-left text-(length:--step-0)/8 text-balance"
         delay={0.1}
       >
         <slot />
-      </FadeIn>
+      </fade-in>
     </div>
   </section>
 

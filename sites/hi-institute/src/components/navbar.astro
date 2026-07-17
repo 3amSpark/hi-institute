@@ -1,0 +1,38 @@
+---
+import { getImage } from "astro:assets";
+import Navbar from "./navbar.tsx";
+import { treatments } from "./navbar/shared";
+import balanceHormonal from "../assets/images/treatments/navigation/balance-hormonal.jpg";
+import diabetes from "../assets/images/treatments/navigation/diabetes.jpg";
+import fertilidad from "../assets/images/treatments/navigation/fertilidad.jpg";
+import ginecologia from "../assets/images/treatments/navigation/ginecologia.jpg";
+import metabolismo from "../assets/images/treatments/navigation/metabolismo.jpg";
+
+const sources: Record<string, ImageMetadata> = {
+  "/tratamientos/metabolismo-peso": metabolismo,
+  "/tratamientos/fertilidad-reproduccion": fertilidad,
+  "/tratamientos/salud-femenina-ginecologica": ginecologia,
+  "/tratamientos/balance-hormonal": balanceHormonal,
+  "/tratamientos/diabetes": diabetes,
+};
+
+const treatmentImages = Object.fromEntries(
+  await Promise.all(
+    treatments.map(async ({ href }) => {
+      const image = await getImage({
+        src: sources[href],
+        width: 480,
+        height: 480,
+        format: "webp",
+      });
+      return [href, image.src];
+    }),
+  ),
+);
+---
+
+<Navbar
+  client:load
+  currentPath={Astro.url.pathname}
+  treatmentImages={treatmentImages}
+/>

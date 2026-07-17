@@ -1,23 +1,69 @@
 ---
+import { getImage } from "astro:assets";
 import Footer from "../components/footer.astro";
 import FounderIntro from "../components/home/founder-intro.astro";
 import Hero from "../components/home/hero";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar.astro";
 import Steps from "../components/home/steps";
 import TreatmentPrograms from "../components/home/treatment-programs.astro";
 import WhyUs from "../components/home/why-us.astro";
 import Root from "../layouts/root.astro";
+import heroEnergy from "../assets/images/home/hero/energy.webp";
+import heroMetabolism from "../assets/images/home/hero/metabolism.webp";
+import heroWomensHealth from "../assets/images/home/hero/womens-health.webp";
+import stepsEvaluation from "../assets/images/home/steps/evaluation.jpg";
+import stepsPersonalizedPlan from "../assets/images/home/steps/personalized-plan.jpg";
+import stepsProgress from "../assets/images/home/steps/progress.jpg";
+
+const heroSizes = "(min-width: 1024px) 50vw, 100vw";
+const optimizeHero = async (src: ImageMetadata) => {
+  const image = await getImage({
+    src,
+    widths: [768, 1280, 1920, 2400],
+    format: "webp",
+  });
+
+  return {
+    src: image.src,
+    srcSet: image.srcSet.attribute,
+    sizes: heroSizes,
+    width: src.width,
+    height: src.height,
+  };
+};
+
+const stepsSizes = "(min-width: 1024px) 50vw, 100vw";
+const optimizeStep = async (src: ImageMetadata) => {
+  const image = await getImage({
+    src,
+    widths: [640, src.width],
+    format: "webp",
+  });
+
+  return {
+    src: image.src,
+    srcSet: image.srcSet.attribute,
+    sizes: stepsSizes,
+  };
+};
+
+const [metabolism, energy, womensHealth] = await Promise.all(
+  [heroMetabolism, heroEnergy, heroWomensHealth].map(optimizeHero),
+);
+const stepsImages = await Promise.all(
+  [stepsEvaluation, stepsPersonalizedPlan, stepsProgress].map(optimizeStep),
+);
 
 const heroImages = [
   {
-    src: "/assets/images/home/hero/metabolism.webp",
+    ...metabolism,
     alt: "HI Institute clinical space",
     title: "Expertos en metabolismo y equilibrio hormonal",
     description:
       "Evaluamos metabolismo, hormonas y hábitos para entender qué necesita tu cuerpo.",
   },
   {
-    src: "/assets/images/home/hero/energy.webp",
+    ...energy,
     alt: "HI Institute treatment room",
     imagePosition: "left" as const,
     title: "Vuelve a sentirte con energía",
@@ -25,7 +71,7 @@ const heroImages = [
       "Planes médicos personalizados para recuperar energía, composición corporal y salud metabólica.",
   },
   {
-    src: "/assets/images/home/hero/womens-health.webp",
+    ...womensHealth,
     alt: "HI Institute care experience",
     title: "Acompañamos tu salud femenina",
     description:
@@ -35,10 +81,10 @@ const heroImages = [
 ---
 
 <Root
-  title="HI Institute"
-  description="HI Institute is preparing a new, accurate website experience."
+  title="HI Institute Guatemala | Metabolismo y Balance Hormonal"
+  description="Clínica especializada en metabolismo, balance hormonal, salud femenina y fertilidad en Ciudad de Guatemala. Evaluación médica y planes personalizados."
 >
-  <Navbar client:load currentPath={Astro.url.pathname} />
+  <Navbar />
   <Hero
     client:load
     title="Expertos en metabolismo y equilibrio hormonal"
@@ -49,7 +95,7 @@ const heroImages = [
   <main>
     <FounderIntro />
     <TreatmentPrograms />
-    <Steps client:load />
+    <Steps client:load images={stepsImages} />
     <WhyUs />
     <Footer />
   </main>

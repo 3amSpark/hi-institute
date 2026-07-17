@@ -1,6 +1,5 @@
 ---
-import FadeIn from "../components/fade-in";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar.astro";
 import Root from "../layouts/root.astro";
 
 const whatsappUrl =
@@ -22,7 +21,7 @@ const socialLinks = [
   title="Contacto | HI Institute"
   description="Escríbenos y agenda tu evaluación metabólica y hormonal en HI Institute."
 >
-  <Navbar client:load currentPath={Astro.url.pathname} />
+  <Navbar />
 
   <main class="bg-neutral-100">
     <section class="grid min-h-svh lg:grid-cols-2">
@@ -30,13 +29,11 @@ const socialLinks = [
         class="flex flex-col items-center justify-center bg-linear-to-br from-neutral-200/70 via-neutral-100 to-white px-4 py-16 text-center sm:px-6 lg:px-10"
       >
         <div class="mx-auto max-w-3xl">
-          <FadeIn
-            client:visible
-            as="h1"
-            className="text-(length:--step-4)/[1.02] font-[550] tracking-tighter text-balance text-neutral-800 md:text-(length:--step-5)/[0.98]"
+          <fade-in
+            class="text-(length:--step-4)/[1.02] font-[550] tracking-tighter text-balance text-neutral-800 md:text-(length:--step-5)/[0.98]"
           >
-            Empecemos por entender qué necesita tu cuerpo.
-          </FadeIn>
+            <h1>Empecemos por entender qué necesita tu cuerpo.</h1>
+          </fade-in>
         </div>
       </div>
 
@@ -44,28 +41,26 @@ const socialLinks = [
         class="bg-brand-blue relative flex flex-col justify-center px-4 py-20 text-white sm:px-6 lg:px-10"
       >
         <div class="mx-auto w-full max-w-xl">
-          <FadeIn
-            client:visible
-            as="h2"
-            className="max-w-xl text-(length:--step-4)/[1.02] font-[550] tracking-tighter text-balance md:text-(length:--step-5)/[0.98]"
+          <fade-in
+            class="max-w-xl text-(length:--step-4)/[1.02] font-[550] tracking-tighter text-balance md:text-(length:--step-5)/[0.98]"
           >
-            Hablemos por WhatsApp.
-          </FadeIn>
-          <FadeIn
-            client:visible
-            as="p"
+            <h2>Hablemos por WhatsApp.</h2>
+          </fade-in>
+          <fade-in
             delay={0.1}
-            className="mt-6 max-w-lg text-base leading-relaxed text-white/85 md:text-(length:--step-0)/8"
+            class="mt-6 max-w-lg text-base leading-relaxed text-white/85 md:text-(length:--step-0)/8"
           >
-            Te responderemos para conocer tu caso y ayudarte a elegir el mejor
-            punto de partida.
-          </FadeIn>
-          <FadeIn client:visible as="div" delay={0.2} className="mt-10">
+            <p>
+              Te responderemos para conocer tu caso y ayudarte a elegir el
+              mejor punto de partida.
+            </p>
+          </fade-in>
+          <fade-in delay={0.2} class="mt-10">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              class="group inline-flex items-center gap-4 rounded-full bg-white py-2 pr-2 pl-5 text-sm font-semibold text-neutral-800 transition-colors hover:bg-neutral-100"
+              class="btn-depth group inline-flex items-center gap-4 rounded-full [--depth-color:#fff] py-2 pr-2 pl-5 text-sm font-semibold text-neutral-800 transition-[filter] hover:brightness-95"
             >
               <span>Escríbenos ahora</span>
               <span
@@ -138,7 +133,7 @@ const socialLinks = [
                 +502 5281 0472
               </a>
             </div>
-          </FadeIn>
+          </fade-in>
         </div>
       </div>
     </section>

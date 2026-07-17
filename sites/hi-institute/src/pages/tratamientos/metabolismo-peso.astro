@@ -1,19 +1,22 @@
 ---
-import FadeIn from "../../components/fade-in";
 import Footer from "../../components/footer.astro";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/navbar.astro";
 import TreatmentPage from "../../components/treatment-page.astro";
 import TreatmentSection from "../../components/treatment-section.astro";
 import Root from "../../layouts/root.astro";
+import { Image } from "astro:assets";
+import metabolismBanner from "../../assets/images/treatments/metabolism/banner.jpg";
+import jeans from "../../assets/images/treatments/metabolism/jeans.jpg";
+import bodyScan3d from "../../assets/images/treatments/metabolism/body-scan-3d.png";
 ---
 
 <Root
   title="Tratamiento de Metabolismo y Peso | HI Institute"
   description="Tratamiento integral de metabolismo y peso en HI Institute, enfocado en encontrar la causa y recuperar equilibrio metabólico."
 >
-  <Navbar client:load currentPath={Astro.url.pathname} />
+  <Navbar />
   <TreatmentPage
-    heroImage="/assets/images/treatments/metabolism/banner.jpg"
+    heroImage={metabolismBanner}
     heroImageAlt="Persona enfocada en recuperar su salud metabólica"
     heroTitle="Tu peso no define tu salud metabólica."
     heroDescription="Entendemos qué está frenando a tu cuerpo antes de tratarlo."
@@ -33,7 +36,7 @@ import Root from "../../layouts/root.astro";
     <Fragment slot="sections">
       <TreatmentSection
         title="Tu peso no depende solo de comer más o menos."
-        image="/assets/images/treatments/metabolism/jeans.jpg"
+        image={jeans}
         imageAlt="Persona revisando su progreso metabólico"
       >
         <p>
@@ -56,28 +59,26 @@ import Root from "../../layouts/root.astro";
         <div
           class="max-w-desktop mx-auto grid gap-10 md:grid-cols-[1fr_0.75fr] md:items-center lg:gap-16"
         >
-          <FadeIn client:visible>
-            <img
-              src="/assets/images/treatments/metabolism/body-scan-3d.png"
+          <fade-in>
+            <Image
+              src={bodyScan3d}
               alt="Análisis corporal 3D de composición y distribución corporal"
+              widths={[640, bodyScan3d.width]}
+              sizes="(min-width: 768px) 52rem, 100vw"
               loading="lazy"
               decoding="async"
               class="w-full bg-white object-cover"
             />
-          </FadeIn>
+          </fade-in>
 
           <div>
-            <FadeIn
-              client:visible
-              as="h2"
-              className="text-brand-blue text-(length:--step-2)/9 font-semibold tracking-tight"
+            <fade-in
+              class="text-brand-blue text-(length:--step-2)/9 font-semibold tracking-tight"
             >
-              3D corporal
-            </FadeIn>
-            <FadeIn
-              client:visible
-              as="div"
-              className="mt-6 space-y-6 text-(length:--step-0)/8 text-neutral-600"
+              <h2>3D corporal</h2>
+            </fade-in>
+            <fade-in
+              class="mt-6 space-y-6 text-(length:--step-0)/8 text-neutral-600"
               delay={0.1}
             >
               <p>
@@ -91,7 +92,7 @@ import Root from "../../layouts/root.astro";
                 precisa: no solo por el número en la báscula, sino por los
                 cambios que suceden en tu cuerpo.
               </p>
-            </FadeIn>
+            </fade-in>
           </div>
         </div>
       </section>

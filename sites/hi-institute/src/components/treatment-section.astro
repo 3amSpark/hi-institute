@@ -1,9 +1,9 @@
 ---
-import FadeIn from "./fade-in";
+import { Image } from "astro:assets";
 
 interface Props {
   title: string;
-  image?: string;
+  image?: ImageMetadata;
   imageAlt?: string;
   reverse?: boolean;
   placeholderLabel?: string;
@@ -25,15 +25,16 @@ const {
       reverse ? "md:flex-row-reverse" : "md:flex-row",
     ]}
   >
-    <FadeIn
-      client:visible
-      className="from-brand-green relative w-full bg-linear-to-r via-[#b7d4d7] to-[#cfd0dc] p-1.5 md:w-1/2"
+    <fade-in
+      class="from-brand-green relative w-full bg-linear-to-r via-[#b7d4d7] to-[#cfd0dc] p-1.5 md:w-1/2"
     >
       {
         image ? (
-          <img
+          <Image
             src={image}
             alt={imageAlt}
+            widths={[640, Math.min(image.width, 1280)]}
+            sizes="(min-width: 768px) 46rem, 100vw"
             loading="lazy"
             decoding="async"
             class="relative aspect-5/3 w-full object-cover"
@@ -46,24 +47,20 @@ const {
           </div>
         )
       }
-    </FadeIn>
+    </fade-in>
 
     <div class="w-full md:w-1/2">
-      <FadeIn
-        client:visible
-        as="h2"
-        className="text-brand-green text-h3 max-w-xl leading-tight font-[450] tracking-tighter text-pretty"
+      <fade-in
+        class="text-brand-green text-h3 max-w-xl leading-tight font-[450] tracking-tighter text-pretty"
       >
-        {title}
-      </FadeIn>
-      <FadeIn
-        client:visible
-        as="div"
-        className="text-p mt-8 space-y-6 text-balance text-neutral-700"
+        <h2>{title}</h2>
+      </fade-in>
+      <fade-in
+        class="text-p mt-8 space-y-6 text-balance text-neutral-700"
         delay={0.1}
       >
         <slot />
-      </FadeIn>
+      </fade-in>
     </div>
   </div>
 </section>
