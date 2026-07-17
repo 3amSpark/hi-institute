@@ -116,21 +116,26 @@ export default function Navbar({ currentPath, treatmentImages }: NavbarProps) {
             aria-label="HI Institute International home"
             className="relative z-10 block w-41 max-w-full"
           >
+            <img
+              src={logo}
+              alt="HI Health Institute International"
+              className="hidden h-auto w-full lg:block"
+            />
             <motion.img
               src={logo}
               alt="HI Health Institute International"
-              className="h-auto w-full"
+              className="h-auto w-full lg:hidden"
               style={{
-                opacity: !isDesktop && hasMobileWhiteChrome ? 0 : 1,
+                opacity: hasMobileWhiteChrome ? 0 : 1,
               }}
             />
             <motion.img
               src={whiteLogo}
               alt=""
               aria-hidden="true"
-              className="absolute inset-0 h-auto w-full"
+              className="absolute inset-0 h-auto w-full lg:hidden"
               style={{
-                opacity: !isDesktop && hasMobileWhiteChrome ? 1 : 0,
+                opacity: hasMobileWhiteChrome ? 1 : 0,
               }}
             />
           </a>

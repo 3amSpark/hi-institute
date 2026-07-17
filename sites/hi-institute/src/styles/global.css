@@ -186,9 +186,9 @@ html {
 
 /* Homepage intro curtain (markup + activation in root.astro). Hidden by
    default; an inline script stamps `data-curtain` on <html> before first
-   paint — once per session, only when motion is allowed — so no-JS,
-   reduced-motion, and repeat visits never see it. The exit wipe reveals
-   the viewport bottom-up, handing off into the hero's fade-in stagger. */
+   paint whenever motion is allowed, so no-JS and reduced-motion users never
+   see it. The exit wipe reveals the viewport bottom-up, handing off into the
+   hero's fade-in stagger. */
 #page-curtain {
   display: none;
   position: fixed;

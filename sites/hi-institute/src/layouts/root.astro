@@ -156,16 +156,12 @@ const structuredData = {
           {/*
             Homepage intro curtain. The inline script activates it before the
             div below is parsed, so there is never a flash of content first.
-            Gated to once per session and to users who allow motion; if JS
-            fails the curtain stays display:none and content is visible.
+            Shown on every visit for users who allow motion; if JS fails the
+            curtain stays display:none and content is visible.
           */}
-          <script is:inline define:vars={{ isDev: import.meta.env.DEV }}>
+          <script is:inline>
             try {
-              if (
-                (isDev || !sessionStorage.getItem("hi-curtain")) &&
-                matchMedia("(prefers-reduced-motion: no-preference)").matches
-              ) {
-                sessionStorage.setItem("hi-curtain", "1");
+              if (matchMedia("(prefers-reduced-motion: no-preference)").matches) {
                 document.documentElement.setAttribute("data-curtain", "");
               }
             } catch (_) {}
