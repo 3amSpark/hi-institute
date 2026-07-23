@@ -1,4 +1,4 @@
-export const WHATSAPP_CONTACT_ENABLED = false;
+export const WHATSAPP_CONTACT_ENABLED = true;
 
 export const WHATSAPP_PHONE = "50231325824";
 export const WHATSAPP_BASE_MESSAGE =
