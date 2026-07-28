@@ -155,7 +155,7 @@ export default function DesktopNavbar({
           </motion.div>
         </div>
 
-        <a
+        {/* <a
           href="/farmacia"
           data-astro-prefetch="hover"
           aria-current={
@@ -168,7 +168,7 @@ export default function DesktopNavbar({
         >
           Farmacia
           <span aria-hidden="true" className={underlineClassName}></span>
-        </a>
+        </a> */}
 
         <div
           onMouseEnter={openClinics}
@@ -229,7 +229,7 @@ export default function DesktopNavbar({
           </motion.div>
         </div>
 
-        {navLinks.slice(1).map((link) => (
+        {navLinks.map((link) => (
           <a
             key={link.href}
             href={link.href}

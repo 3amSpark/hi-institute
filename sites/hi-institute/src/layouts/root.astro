@@ -15,31 +15,57 @@ const {
 
 const isRootPage = Astro.url.pathname === "/";
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const siteUrl = new URL("/", Astro.site ?? Astro.url.origin);
+const clinicId = new URL("/#clinic", siteUrl);
 const socialImageUrl = new URL(
   defaultSocialImage.src,
-  Astro.site ?? Astro.url.origin,
+  siteUrl,
 );
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "MedicalClinic",
+const mapsUrl =
+  "https://www.google.com/maps/search/?api=1&query=The%20Health%20Institute%20Centro%20de%20Fertilidad%20y%20Peso%20en%20Guatemala%2C%20Avenida%20La%20Reforma%209-55%2C%20Cdad.%20de%20Guatemala%2001010";
+const websiteStructuredData = {
+  "@type": "WebSite",
+  "@id": new URL("/#website", siteUrl).href,
+  url: siteUrl.href,
   name: "HI Institute",
-  url: new URL("/", Astro.site ?? Astro.url.origin).href,
-  logo: new URL(
-    "/assets/logos/brand/logo.svg",
-    Astro.site ?? Astro.url.origin,
-  ).href,
+  alternateName: "Health Institute International",
+  inLanguage: "es-GT",
+  publisher: {
+    "@id": clinicId.href,
+  },
+};
+const clinicStructuredData = {
+  "@type": "MedicalClinic",
+  "@id": clinicId.href,
+  name: "HI Institute",
+  alternateName: "Health Institute International",
+  url: siteUrl.href,
+  logo: new URL("/assets/logos/brand/logo.svg", siteUrl).href,
   image: socialImageUrl.href,
   telephone: "+502 5281 0472",
+  hasMap: mapsUrl,
+  areaServed: {
+    "@type": "Country",
+    name: "Guatemala",
+  },
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Avenida La Reforma 9-55",
+    streetAddress: "Avenida La Reforma 9-55, Zona 10",
     addressLocality: "Ciudad de Guatemala",
+    addressRegion: "Guatemala",
     postalCode: "01010",
     addressCountry: "GT",
   },
   sameAs: [
     "https://www.instagram.com/healthinstitute_int/",
     "https://www.facebook.com/HealthInstituteInt/",
+  ],
+};
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    ...(isRootPage ? [websiteStructuredData] : []),
+    clinicStructuredData,
   ],
 };
 ---

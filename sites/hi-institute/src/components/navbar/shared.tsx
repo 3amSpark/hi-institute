@@ -2,7 +2,7 @@ export const logo = "/assets/logos/brand/logo.svg";
 export const whiteLogo = "/assets/logos/brand/logo-white.svg";
 
 export const navLinks = [
-  { href: "/farmacia", label: "Farmacia" },
+  // { href: "/farmacia", label: "Farmacia" },
   { href: "/contacto", label: "Contacto" },
 ];
 

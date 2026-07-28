@@ -1,6 +1,5 @@
 import {
   motion,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -17,7 +16,6 @@ type RevealLetterProps = {
   index: number;
   total: number;
   progress: MotionValue<number>;
-  reduceMotion: boolean;
 };
 
 function RevealLetter({
@@ -25,7 +23,6 @@ function RevealLetter({
   index,
   total,
   progress,
-  reduceMotion,
 }: RevealLetterProps) {
   const start = index / total;
   const end = (index + 1) / total;
@@ -38,7 +35,8 @@ function RevealLetter({
   return (
     <motion.span
       aria-hidden="true"
-      style={{ opacity: reduceMotion ? 1 : opacity }}
+      className="motion-reduce:opacity-100!"
+      style={{ opacity }}
     >
       {letter}
     </motion.span>
@@ -49,7 +47,6 @@ export default function ScrollRevealHeading({
   text,
 }: Props) {
   const targetRef = useRef<HTMLHeadingElement>(null);
-  const reduceMotion = useReducedMotion();
   const words = text.split(" ");
   const totalLetters = Array.from(text.replaceAll(" ", "")).length;
   let letterIndex = 0;
@@ -76,7 +73,6 @@ export default function ScrollRevealHeading({
                     index={currentIndex}
                     total={totalLetters}
                     progress={scrollYProgress}
-                    reduceMotion={reduceMotion === true}
                   />
                 );
               })}
