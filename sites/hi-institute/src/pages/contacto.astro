@@ -4,6 +4,8 @@ import Root from "../layouts/root.astro";
 
 const whatsappUrl =
   "https://wa.me/50252810472?text=%C2%A1Hola!%20Estoy%20interesada(o)%20en%20agendar%20una%20evaluaci%C3%B3n%20metab%C3%B3lica%20y%20hormonal";
+const mapsUrl =
+  "https://www.google.com/maps/search/?api=1&query=The%20Health%20Institute%20Centro%20de%20Fertilidad%20y%20Peso%20en%20Guatemala%2C%20Avenida%20La%20Reforma%209-55%2C%20Cdad.%20de%20Guatemala%2001010";
 
 const socialLinks = [
   {
@@ -18,8 +20,8 @@ const socialLinks = [
 ---
 
 <Root
-  title="Contacto | HI Institute"
-  description="Escríbenos y agenda tu evaluación metabólica y hormonal en HI Institute."
+  title="Contacto y Citas en Guatemala | HI Institute"
+  description="Contacta a HI Institute en Ciudad de Guatemala y agenda tu evaluación metabólica y hormonal por WhatsApp o teléfono."
 >
   <Navbar />
 
@@ -133,6 +135,17 @@ const socialLinks = [
                 +502 5281 0472
               </a>
             </div>
+            <address class="mt-5 text-sm leading-relaxed text-white/80 not-italic">
+              <a
+                href={mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="underline decoration-white/30 underline-offset-4 transition-colors hover:text-white"
+              >
+                Avenida La Reforma 9-55, Zona 10<br />
+                Ciudad de Guatemala, Guatemala 01010
+              </a>
+            </address>
           </fade-in>
         </div>
       </div>

@@ -127,7 +127,7 @@ export default function MobileNavbar({
               </div>
             </div>
 
-            <a
+            {/* <a
               href="/farmacia"
               aria-current={
                 isActivePath(currentPath, "/farmacia") ? "page" : undefined
@@ -136,7 +136,7 @@ export default function MobileNavbar({
               onClick={onClose}
             >
               Farmacia
-            </a>
+            </a> */}
 
             <div>
               <button
