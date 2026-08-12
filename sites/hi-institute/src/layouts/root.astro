@@ -1,5 +1,6 @@
 ---
 import GlassixWidget from "../components/glassix-widget.astro";
+import NewsletterPopup from "../components/newsletter-popup.astro";
 import defaultSocialImage from "../assets/images/home/hero/metabolism.webp";
 import "../styles/global.css";
 
@@ -146,24 +147,41 @@ const structuredData = {
           "fade-in",
           class extends HTMLElement {
             connectedCallback() {
-              const delay = matchMedia("(min-width: 1024px)").matches
-                ? this.getAttribute("delay")
-                : (this.getAttribute("mobile-delay") ??
-                  this.getAttribute("delay"));
+              const activate = () => {
+                if (!this.isConnected) return;
 
-              if (delay) this.style.setProperty("--fade-in-delay", `${delay}s`);
+                const delay = matchMedia("(min-width: 1024px)").matches
+                  ? this.getAttribute("delay")
+                  : (this.getAttribute("mobile-delay") ??
+                    this.getAttribute("delay"));
 
-              if (this.hasAttribute("instant")) {
-                // Above-the-fold content: reveal on load instead of on
-                // scroll. Double rAF lets the hidden state paint first so
-                // the transition still runs.
-                requestAnimationFrame(() =>
+                if (delay)
+                  this.style.setProperty("--fade-in-delay", `${delay}s`);
+
+                if (this.hasAttribute("instant")) {
+                  // Above-the-fold content: reveal on load instead of on
+                  // scroll. Double rAF lets the hidden state paint first so
+                  // the transition still runs.
                   requestAnimationFrame(() =>
-                    this.setAttribute("data-visible", ""),
-                  ),
-                );
+                    requestAnimationFrame(() =>
+                      this.setAttribute("data-visible", ""),
+                    ),
+                  );
+                } else {
+                  observer.observe(this);
+                }
+              };
+
+              // React must hydrate against the unchanged server HTML. Astro
+              // emits this event once an island has finished hydrating, so
+              // delay attribute and style mutations for fade-ins inside it.
+              const island = this.closest("astro-island[ssr]");
+              if (island) {
+                island.addEventListener("astro:hydrate", activate, {
+                  once: true,
+                });
               } else {
-                observer.observe(this);
+                activate();
               }
             }
 
@@ -214,6 +232,7 @@ const structuredData = {
     <div id="site-canvas">
       <slot />
     </div>
+    <NewsletterPopup />
     <GlassixWidget />
   </body>
 </html>

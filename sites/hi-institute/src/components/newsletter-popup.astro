@@ -1,0 +1,219 @@
+---
+import { Image } from "astro:assets";
+import newsletterImage from "../assets/images/home/newsletter/newsletter-brand-heart.jpg";
+
+const newsletterAction =
+  "https://hiinsitute.us19.list-manage.com/subscribe/post?u=0fb5590dd50788770783c1cb4&id=bf8507dcf1&f_id=00aa7ce7f0";
+---
+
+<dialog
+  id="newsletter-popup"
+  aria-labelledby="newsletter-popup-title"
+  aria-describedby="newsletter-popup-description"
+  class="newsletter-popup m-auto max-h-[calc(100svh-2rem)] w-[calc(100%-2rem)] max-w-5xl overflow-auto bg-white p-0 text-neutral-800 shadow-2xl backdrop:bg-neutral-950/55"
+>
+  <div class="grid md:min-h-148 md:grid-cols-[0.95fr_1.05fr]">
+    <div class="relative min-h-52 overflow-hidden md:min-h-full">
+      <Image
+        src={newsletterImage}
+        alt=""
+        widths={[480, 720, 960]}
+        sizes="(min-width: 768px) 46vw, 100vw"
+        class="absolute inset-0 size-full object-cover"
+      />
+    </div>
+
+    <div
+      class="relative flex flex-col justify-center px-6 pt-14 pb-7 sm:px-9 md:px-12 md:py-14"
+    >
+      <button
+        type="button"
+        data-newsletter-close
+        aria-label="Cerrar invitación al newsletter"
+        class="focus-visible:outline-brand-blue absolute top-4 right-4 grid size-10 place-items-center rounded-full text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M6 6l12 12M18 6 6 18"></path>
+        </svg>
+      </button>
+
+      <h2
+        id="newsletter-popup-title"
+        class="max-w-md text-(length:--step-4) leading-[1.04] font-medium tracking-tight text-balance"
+      >
+        Hi there!
+      </h2>
+      <p
+        id="newsletter-popup-description"
+        class="mt-5 max-w-md text-base leading-8 text-neutral-600"
+      >
+        Recibe Hi News con consejos de nuestros especialistas, novedades y
+        contenido para sentirte mejor cada día.
+      </p>
+
+      <form
+        action={newsletterAction}
+        method="post"
+        name="newsletter-popup-form"
+        target="_self"
+        class="mt-6 grid gap-4"
+      >
+        <label class="sr-only" for="newsletter-popup-email">
+          Correo electrónico
+        </label>
+        <input
+          id="newsletter-popup-email"
+          type="email"
+          name="EMAIL"
+          placeholder="Tu correo electrónico"
+          autocomplete="email"
+          inputmode="email"
+          required
+          class="focus:border-brand-blue focus:ring-brand-blue/20 h-14 w-full rounded-full border border-neutral-300 bg-white px-6 text-base text-neutral-800 transition-[border-color,box-shadow] outline-none placeholder:text-neutral-400 focus:ring-3"
+        />
+
+        <div aria-hidden="true" class="absolute -left-[5000px]">
+          <input
+            type="text"
+            name="b_0fb5590dd50788770783c1cb4_bf8507dcf1"
+            tabindex="-1"
+            autocomplete="off"
+            value=""
+          />
+        </div>
+
+        <button
+          type="submit"
+          name="subscribe"
+          class="btn-depth focus-visible:outline-brand-blue h-14 rounded-full px-7 text-base font-semibold text-white transition-[filter] [--depth-color:var(--color-brand-blue)] hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-3"
+        >
+          ¡Sí, quiero recibir Hi News!
+        </button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<script is:inline>
+  (() => {
+    const popup = document.getElementById("newsletter-popup");
+    if (!(popup instanceof HTMLDialogElement)) return;
+
+    const storageKey = "hi-newsletter-popup-seen-v1";
+    const cookieName = "hi_newsletter_popup_seen";
+    const isPreview = new URLSearchParams(window.location.search).has(
+      "newsletter-preview",
+    );
+
+    const hasSeenPopup = () => {
+      try {
+        if (localStorage.getItem(storageKey) === "1") return true;
+      } catch (_) {}
+
+      return document.cookie
+        .split(";")
+        .some((cookie) => cookie.trim().startsWith(`${cookieName}=`));
+    };
+
+    const rememberPopup = () => {
+      try {
+        localStorage.setItem(storageKey, "1");
+      } catch (_) {}
+
+      document.cookie = `${cookieName}=1; Max-Age=63072000; Path=/; SameSite=Lax`;
+    };
+
+    if (!isPreview && hasSeenPopup()) return;
+
+    const showPopup = () => {
+      if (popup.open) return;
+
+      if (document.visibilityState !== "visible") {
+        document.addEventListener("visibilitychange", showPopup, {
+          once: true,
+        });
+        return;
+      }
+
+      if (!isPreview) rememberPopup();
+      popup.showModal();
+    };
+
+    const schedulePopup = () =>
+      window.setTimeout(showPopup, isPreview ? 250 : 4500);
+
+    if (document.readyState === "complete") schedulePopup();
+    else window.addEventListener("load", schedulePopup, { once: true });
+
+    popup
+      .querySelector("[data-newsletter-close]")
+      ?.addEventListener("click", () => popup.close());
+
+    popup.addEventListener("click", (event) => {
+      const bounds = popup.getBoundingClientRect();
+      const clickedOutside =
+        event.clientX < bounds.left ||
+        event.clientX > bounds.right ||
+        event.clientY < bounds.top ||
+        event.clientY > bounds.bottom;
+
+      if (clickedOutside) popup.close();
+    });
+  })();
+</script>
+
+<style>
+  .newsletter-popup {
+    opacity: 0;
+    translate: 0 0.75rem;
+    transition:
+      opacity 220ms ease,
+      translate 220ms ease,
+      display 220ms allow-discrete,
+      overlay 220ms allow-discrete;
+  }
+
+  .newsletter-popup[open] {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .newsletter-popup::backdrop {
+    opacity: 0;
+    transition:
+      opacity 220ms ease,
+      display 220ms allow-discrete,
+      overlay 220ms allow-discrete;
+  }
+
+  .newsletter-popup[open]::backdrop {
+    opacity: 1;
+  }
+
+  @starting-style {
+    .newsletter-popup[open] {
+      opacity: 0;
+      translate: 0 0.75rem;
+    }
+
+    .newsletter-popup[open]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .newsletter-popup,
+    .newsletter-popup::backdrop {
+      transition: none;
+    }
+  }
+</style>
