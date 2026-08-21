@@ -1,0 +1,291 @@
+---
+import { Image } from "astro:assets";
+import Footer from "../components/footer.astro";
+import Navbar from "../components/navbar.astro";
+import Root from "../layouts/root.astro";
+import drHerbertMiranda from "../assets/images/home/founder/dr-herbert-miranda.jpg";
+
+const milestones = [
+  {
+    year: "2025",
+    items: ["Director médico fundador del Recetario Atómico."],
+  },
+  {
+    year: "2024",
+    items: [
+      "Director fundador de HI Skin & Beauty, centro de dermatología y medicina estética.",
+    ],
+  },
+  {
+    year: "2018",
+    items: [
+      "Diplomado en colposcopia y medicina regenerativa, Buenos Aires, Argentina.",
+    ],
+  },
+  {
+    year: "2016",
+    items: [
+      "Director fundador del Hospital HI, especializado en histeroscopia y cirugía laparoscópica láser para endometriosis.",
+    ],
+  },
+  {
+    year: "2013",
+    items: ["Formación en láser ginecológico, Colombia."],
+  },
+  {
+    year: "2012",
+    items: [
+      "Diplomado en diabetes y sobrepeso, Buenos Aires, Argentina.",
+      "Formación en ultrasonido 3D/4D, Valencia, España.",
+      "Master en fertilidad y reproducción humana, Valencia, España (ginecólogo endocrinólogo).",
+    ],
+  },
+  {
+    year: "2011",
+    items: [
+      "Master en climaterio y menopausia, Ministerio de Salud de España.",
+    ],
+  },
+  {
+    year: "2009",
+    items: ["Formación en uso de hCG para el manejo de sobrepeso, Argentina."],
+  },
+  {
+    year: "2005",
+    items: [
+      "Ginecólogo y obstetra, Instituto Guatemalteco de Seguridad Social.",
+      "Médico y cirujano, Universidad de San Carlos de Guatemala.",
+    ],
+  },
+];
+
+const initiatives = [
+  "Director fundador de HI Institute en sus ramas metabólica, de fertilidad y de ginecología láser regenerativa.",
+  "Director médico fundador del primer recetario farmacéutico centroamericano de hormonas bioidénticas naturales.",
+  "Fundador de HI Fem, centro metabólico contra la endometriosis.",
+  "Fundador del centro láser HI preventivo y curativo contra el virus del papiloma humano.",
+];
+
+const publicationTitles = [
+  "Vivir sin endometriosis activa",
+  "El eslabón perdido: Estrés, deficiencia de cortisol y Covid-19",
+  "Mitos y verdades del tratamiento hCG",
+  "Potenciando mi vida",
+  "Fertilidad del siglo XXI",
+  "¿Las dietas balanceadas realmente existen?",
+  "Bases de la ginecología del siglo XXI",
+];
+---
+
+<Root
+  title="Nosotros | HI Institute"
+  description="Dr. Herbert Alexander Miranda Tojo, director fundador de HI Institute. Metabolismo, fertilidad y ginecología en Guatemala."
+>
+  <Navbar />
+
+  <main class="bg-white">
+    <section class="mt-navbar py-6 sm:py-8 lg:py-10">
+      <div class="mx-auto max-w-208 px-4 sm:px-6 lg:px-10">
+        <fade-in instant>
+          <h1
+            class="mt-2 text-(length:--step-3)/[1.05] font-[550] tracking-tighter text-balance text-neutral-800 sm:text-(length:--step-2)/[1.02]"
+          >
+            Dr. Herbert Alexander Miranda Tojo
+          </h1>
+
+          <p
+            class="text-brand-blue mt-2 mb-8 text-(length:--step-0)/[1.2] font-medium tracking-tight"
+          >
+            Fundador
+          </p>
+        </fade-in>
+      </div>
+
+      <fade-in
+        delay={0.05}
+        class="mt-5 border-y-[0.5px] border-neutral-500/30 bg-neutral-50 sm:mt-6"
+      >
+        <div class="mx-auto max-w-[52rem] px-4 sm:px-6 lg:px-10">
+          <div
+            class="] max-h-[min(34svh,17.5rem)] overflow-hidden bg-white sm:max-h-[min(50svh,40rem)]"
+          >
+            <Image
+              src={drHerbertMiranda}
+              alt="Dr. Herbert Alexander Miranda Tojo"
+              widths={[768, 1280, 1920, drHerbertMiranda.width]}
+              sizes="(min-width: 896px) 896px, 100vw"
+              class="h-full max-h-[min(34svh,17.5rem)] w-full border-x-[0.5px] border-neutral-500/30 object-cover object-[center_22%] p-1.5 sm:max-h-[min(50svh,40rem)]"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </fade-in>
+
+      <div class="mx-auto mt-5 max-w-[52rem] px-4 sm:mt-6 sm:px-6 lg:px-10">
+        <fade-in
+          delay={0.1}
+          instant
+          class="space-y-4 text-base/8 text-pretty text-neutral-700"
+        >
+          <p>
+            Médico y cirujano guatemalteco, ginecólogo y obstetra. Se ha formado
+            en fertilidad, climaterio, metabolismo y medicina regenerativa en
+            Argentina, Colombia y España. Desde 2010 dirige clínicas que parten
+            de una evaluación rigurosa antes de indicar un tratamiento.
+          </p>
+        </fade-in>
+        <fade-in
+          delay={0.2}
+          instant
+          class="mt-4 text-base/8 text-pretty text-neutral-700"
+        >
+          <p>
+            De ese enfoque nacieron HI Fem, Hospital HI, HI Skin & Beauty y el
+            recetario centroamericano de hormonas bioidénticas. Su trabajo
+            abarca metabolismo, fertilidad, ginecología láser y dermatología,
+            con una misma premisa: comprender el cuerpo antes de intervenir.
+          </p>
+        </fade-in>
+      </div>
+    </section>
+
+    <section class="bg-neutral-50 py-12 sm:py-16 lg:py-20">
+      <div class="mx-auto max-w-[52rem] px-4 sm:px-6 lg:px-10">
+        <div>
+          <fade-in>
+            <p
+              class="text-(length:--step-0)/[1.2] font-medium tracking-tight text-neutral-500"
+            >
+              Trayectoria
+            </p>
+            <h2
+              class="mt-2 text-(length:--step-2)/[1.05] font-[550] tracking-tighter text-balance text-neutral-800"
+            >
+              Lo que hemos construido
+            </h2>
+          </fade-in>
+
+          <fade-in delay={0.05} class="mt-6 sm:mt-8">
+            <p class="max-w-2xl text-base text-pretty text-neutral-700">
+              Desde 2010, una clínica tras otra. Cada una nació de un problema
+              concreto.
+            </p>
+
+            <ul class="mt-8 space-y-5">
+              {
+                initiatives.map((item) => (
+                  <li class="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 text-base text-pretty text-neutral-700">
+                    <span
+                      class="mt-[0.55em] size-1 shrink-0 rounded-full bg-neutral-300"
+                      aria-hidden="true"
+                    />
+                    <span>{item}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </fade-in>
+        </div>
+
+        <div class="mt-16 lg:mt-20">
+          <fade-in>
+            <p
+              class="text-(length:--step-0)/[1.2] font-medium tracking-tight text-neutral-500"
+            >
+              Formación
+            </p>
+            <h2
+              class="mt-2 text-(length:--step-2)/[1.05] font-[550] tracking-tighter text-balance text-neutral-800"
+            >
+              Especialización
+            </h2>
+          </fade-in>
+
+          <fade-in delay={0.05} class="mt-6 sm:mt-8">
+            <p class="max-w-2xl text-base text-pretty text-neutral-700">
+              Formación continua en cuatro países a lo largo de dos décadas:
+              Guatemala, Argentina, Colombia y España. Fertilidad, climaterio,
+              metabolismo, láser ginecológico y medicina regenerativa.
+            </p>
+
+            <ol class="relative mt-10">
+              {
+                milestones.map((entry, index) => (
+                  <li
+                    class:list={[
+                      "relative pl-8",
+                      index < milestones.length - 1 && "pb-10",
+                    ]}
+                  >
+                    {index < milestones.length - 1 && (
+                      <span
+                        class="absolute top-2.5 -bottom-2.5 left-0 w-px -translate-x-1/2 bg-neutral-300/70"
+                        aria-hidden="true"
+                      />
+                    )}
+                    <span
+                      class="btn-depth absolute top-1.5 left-0 z-10 size-2.5 -translate-x-1/2 rounded-full [--depth-color:var(--color-brand-green)]"
+                      aria-hidden="true"
+                    />
+                    <p class="text-(length:--step--1) font-medium tracking-wider text-neutral-400 tabular-nums">
+                      {entry.year}
+                    </p>
+                    <div class="mt-2 space-y-2">
+                      {entry.items.map((item) => (
+                        <p class="text-base text-pretty text-neutral-700">
+                          {item}
+                        </p>
+                      ))}
+                    </div>
+                  </li>
+                ))
+              }
+            </ol>
+          </fade-in>
+        </div>
+
+        <div class="mt-16 lg:mt-20">
+          <fade-in>
+            <p
+              class="text-(length:--step-0)/[1.2] font-medium tracking-tight text-neutral-500"
+            >
+              Autor
+            </p>
+            <h2
+              class="mt-2 text-(length:--step-2)/[1.05] font-[550] tracking-tighter text-balance text-neutral-800"
+            >
+              Publicaciones
+            </h2>
+          </fade-in>
+
+          <fade-in delay={0.05} class="mt-6 sm:mt-8">
+            <p
+              class="max-w-2xl text-(length:--step-0)/[1.65] text-pretty text-neutral-700"
+            >
+              Siete libros. Endometriosis, metabolismo, fertilidad, menopausia.
+            </p>
+
+            <figure
+              class="mt-8 overflow-hidden border-[0.5px] border-neutral-500/30 bg-white"
+            >
+              <div class="p-1.5 sm:p-2">
+                <img
+                  src="/assets/images/books/books.png"
+                  alt="Los siete libros publicados por el Dr. Herbert Miranda"
+                  width="1448"
+                  height="1086"
+                  loading="lazy"
+                  decoding="async"
+                  class="aspect-4/3 w-full object-cover"
+                />
+              </div>
+            </figure>
+          </fade-in>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Root>

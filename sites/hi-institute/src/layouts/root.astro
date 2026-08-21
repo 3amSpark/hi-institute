@@ -132,6 +132,10 @@ const structuredData = {
     -->
     <script is:inline>
       (() => {
+        const rootMargin = matchMedia("(max-width: 767px)").matches
+          ? "0px 0px -10% 0px"
+          : "0px 0px -20% 0px";
+
         const observer = new IntersectionObserver(
           (entries) => {
             for (const entry of entries) {
@@ -140,7 +144,7 @@ const structuredData = {
               observer.unobserve(entry.target);
             }
           },
-          { rootMargin: "0px 0px -10% 0px", threshold: 0.25 },
+          { rootMargin, threshold: 0.25 },
         );
 
         customElements.define(

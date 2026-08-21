@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import DesktopNavbar from "./navbar/desktop-navbar";
 import MobileNavbar from "./navbar/mobile-navbar";
 import { logo, whiteLogo, type NavbarProps } from "./navbar/shared";
@@ -17,11 +12,7 @@ export default function Navbar({ currentPath, treatmentImages }: NavbarProps) {
   const [isDesktopHovered, setIsDesktopHovered] = useState(false);
   const [hasPassedThreshold, setHasPassedThreshold] = useState(false);
   const { scrollY } = useScroll();
-  const scrollProgress = useTransform(
-    scrollY,
-    [0, DESKTOP_SCROLL_THRESHOLD],
-    [0, 1],
-  );
+  const scrollProgress = useTransform(scrollY, [0, DESKTOP_SCROLL_THRESHOLD], [0, 1]);
   const backgroundOpacity = useTransform(scrollProgress, [0, 1], [0, 1]);
   const gradientOpacity = useTransform(scrollProgress, [0, 1], [0.5, 0]);
   // Desktop links/logo are always dark: the copy half of the hero is light,
@@ -65,8 +56,7 @@ export default function Navbar({ currentPath, treatmentImages }: NavbarProps) {
     };
   }, [isMobileOpen]);
 
-  const hasMobileWhiteChrome =
-    !isDesktop && !hasPassedThreshold && !isMobileOpen;
+  const hasMobileWhiteChrome = !isDesktop && !hasPassedThreshold && !isMobileOpen;
   const hasDesktopWhiteChrome = false;
 
   return (
@@ -78,7 +68,7 @@ export default function Navbar({ currentPath, treatmentImages }: NavbarProps) {
       />
 
       <motion.header
-        className="h-navbar fixed top-0 right-0 left-0 z-50"
+        className="h-navbar fixed top-0 right-0 left-0 z-50 "
         onMouseEnter={() => {
           if (isDesktop) setIsDesktopHovered(true);
         }}

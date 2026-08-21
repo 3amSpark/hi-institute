@@ -3,8 +3,10 @@ export const whiteLogo = "/assets/logos/brand/logo-white.svg";
 
 export const navLinks = [
   // { href: "/farmacia", label: "Farmacia" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/nosotros", label: "Nosotros" },
 ];
+
+export const ctaNavLinks = [{ href: "/contacto", label: "Contacto" }];
 
 export const treatments = [
   {

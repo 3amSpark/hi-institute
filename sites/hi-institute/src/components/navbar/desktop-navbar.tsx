@@ -3,6 +3,7 @@ import { motion, type MotionValue } from "framer-motion";
 import {
   ChevronDown,
   clinics,
+  ctaNavLinks,
   isActivePath,
   linkClassName,
   navLinks,
@@ -230,6 +231,24 @@ export default function DesktopNavbar({
         </div>
 
         {navLinks.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            data-astro-prefetch="hover"
+            aria-current={
+              isActivePath(currentPath, link.href) ? "page" : undefined
+            }
+            className={linkClassName(
+              isActivePath(currentPath, link.href),
+              hasTextShadow,
+            )}
+          >
+            {link.label}
+            <span aria-hidden="true" className={underlineClassName}></span>
+          </a>
+        ))}
+
+        {ctaNavLinks.map((link) => (
           <a
             key={link.href}
             href={link.href}

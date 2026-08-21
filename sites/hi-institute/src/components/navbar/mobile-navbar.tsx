@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, clinics, isActivePath, treatments } from "./shared";
+import {
+  ChevronDown,
+  clinics,
+  isActivePath,
+  navLinks,
+  treatments,
+} from "./shared";
 
 type MobileNavbarProps = {
   currentPath: string;
@@ -185,6 +191,20 @@ export default function MobileNavbar({
                 </div>
               </div>
             </div>
+
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                aria-current={
+                  isActivePath(currentPath, link.href) ? "page" : undefined
+                }
+                className={primaryLinkClassName}
+                onClick={onClose}
+              >
+                {link.label}
+              </a>
+            ))}
 
             <a
               href="/contacto"
