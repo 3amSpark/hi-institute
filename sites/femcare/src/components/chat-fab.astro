@@ -14,6 +14,9 @@ const { href = buildWhatsAppUrl() } = Astro.props;
   target="_blank"
   rel="noopener noreferrer"
   aria-label="Enviar mensaje"
+  data-fb-event="Contact"
+  data-fb-content-name="whatsapp"
+  data-fb-cta-location="fab"
   class="from-ziggurat to-smokey-pink highlight fixed right-6 bottom-6 z-50 flex size-16 cursor-pointer items-center justify-center rounded-full bg-radial-[at_50%_80%] text-white shadow-lg transition-transform hover:scale-110"
 >
   <MessageCircle class="size-6" />

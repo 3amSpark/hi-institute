@@ -6,12 +6,14 @@ interface Props {
   topic?: string;
   href?: string;
   class?: string;
+  ctaLocation?: "hero" | "content" | "footer";
 }
 const {
   text,
   topic,
   href: customHref,
   class: className,
+  ctaLocation = "content",
 } = Astro.props as Props;
 const href = customHref ?? buildWhatsAppUrl(topic);
 ---
@@ -20,6 +22,9 @@ const href = customHref ?? buildWhatsAppUrl(topic);
   href={href}
   target="_blank"
   rel="noopener noreferrer"
+  data-fb-event="Schedule"
+  data-fb-content-name={text}
+  data-fb-cta-location={ctaLocation}
   class:list={[
     "from-ziggurat to-smokey-pink font-heading group highlight relative inline-block w-fit cursor-pointer overflow-hidden rounded-full bg-radial-[at_50%_80%] px-7 py-2 text-lg font-medium text-white uppercase",
     className,
