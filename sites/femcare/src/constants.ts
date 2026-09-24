@@ -1,4 +1,5 @@
 export const META_PIXEL_ID = "1138070364063975";
+export const META_PIXEL_ENABLED = false;
 export const WHATSAPP_PHONE = "50252810472";
 export const WHATSAPP_BASE_MESSAGE =
   "¡Hola! Estoy interesada(o) en Agendar una Consulta";

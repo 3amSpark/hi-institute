@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import ChatFab from "../components/chat-fab.astro";
-import { META_PIXEL_ID } from "../constants";
+import { META_PIXEL_ENABLED, META_PIXEL_ID } from "../constants";
 
 interface Props {
   title?: string;
@@ -55,61 +55,69 @@ const imageURL = Astro.site ? new URL(image, Astro.site).href : image;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageURL} />
 
-    <script is:inline define:vars={{ pixelId: META_PIXEL_ID }}>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod
-            ? n.callMethod.apply(n, arguments)
-            : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = "2.0";
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(
-        window,
-        document,
-        "script",
-        "https://connect.facebook.net/en_US/fbevents.js",
-      );
-      fbq("init", pixelId);
-      fbq("track", "PageView");
+    {
+      META_PIXEL_ENABLED && (
+        <script is:inline define:vars={{ pixelId: META_PIXEL_ID }}>
+          !(function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+              n.callMethod
+                ? n.callMethod.apply(n, arguments)
+                : n.queue.push(arguments);
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = "2.0";
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s);
+          })(
+            window,
+            document,
+            "script",
+            "https://connect.facebook.net/en_US/fbevents.js",
+          );
+          fbq("init", pixelId);
+          fbq("track", "PageView");
 
-      document.addEventListener("click", (event) => {
-        const target = event.target;
-        if (!(target instanceof Element)) return;
+          document.addEventListener("click", (event) => {
+            const target = event.target;
+            if (!(target instanceof Element)) return;
 
-        const cta = target.closest("[data-fb-event]");
-        if (!cta || typeof fbq !== "function") return;
+            const cta = target.closest("[data-fb-event]");
+            if (!cta || typeof fbq !== "function") return;
 
-        const eventName = cta.dataset.fbEvent;
-        if (!eventName) return;
+            const eventName = cta.dataset.fbEvent;
+            if (!eventName) return;
 
-        fbq("track", eventName, {
-          content_name: cta.dataset.fbContentName || document.title,
-          content_category: window.location.pathname,
-          cta_location: cta.dataset.fbCtaLocation,
-        });
-      });
-    </script>
+            fbq("track", eventName, {
+              content_name: cta.dataset.fbContentName || document.title,
+              content_category: window.location.pathname,
+              cta_location: cta.dataset.fbCtaLocation,
+            });
+          });
+        </script>
+      )
+    }
   </head>
   <body class="selection:bg-ziggurat/30 relative bg-white">
-    <noscript>
-      <img
-        height="1"
-        width="1"
-        style="display:none"
-        src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
-        alt=""
-      />
-    </noscript>
+    {
+      META_PIXEL_ENABLED && (
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style="display:none"
+            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+            alt=""
+          />
+        </noscript>
+      )
+    }
     <ChatFab />
     <slot />
   </body>
